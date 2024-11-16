@@ -126,14 +126,16 @@ class ParamType(Parser[dict, Object], Object):
 
 class BaseParamType(ParamType):
     name: str
+    required: bool
 
     @staticmethod
     def __base_parse__(item: dict) -> Tuple[Optional[str], Optional[str], Dict]:
         return dict(
-            name = item.get('name'),
-            label = item['label'],
-            kind = item.get('type'),
-            details = item.get('details', {})
+              name     = item.get('name')
+            , label    = item['label']
+            , kind     = item.get('type')
+            , details  = item.get('details', {})
+            , required = item.get('required', False)
         )
 
 class Option(Object, Generic[T]):
@@ -146,10 +148,11 @@ class StringListWidget(BaseParamType):
     @classmethod
     def __parse__(
         cls, 
-        name    : Optional[str], 
-        label   : str, 
-        kind    : Optional[str], 
-        details : Dict) -> Object:
+        name     : Optional[str], 
+        label    : str, 
+        kind     : Optional[str], 
+        required : bool,
+        details  : Dict) -> Object:
         
         values = details.get('values', [])
         labels = details.get('labels', [])
@@ -158,7 +161,7 @@ class StringListWidget(BaseParamType):
             for val in values
         ]
 
-        return cls(name=name, label=label, options=options)
+        return cls(name=name, label=label, options=options, required=required)
 
 class StringChoiceWidget(StringListWidget): ...
 
@@ -189,17 +192,19 @@ class StringListArrayWidget(BaseParamType):
     @classmethod
     def __parse__(
         cls, 
-        name    : Optional[str], 
-        label   : str, 
-        kind    : Optional[str], 
-        details : Dict) -> Object:
+        name     : Optional[str], 
+        label    : str, 
+        kind     : Optional[str], 
+        required : bool,
+        details  : Dict) -> Object:
 
         groups = details.get('groups', [])
 
         return cls(
             name   = name, 
             label  = label, 
-            groups = [Group.parse(group) for group in groups]
+            groups = [Group.parse(group) for group in groups],
+            required = required
         )
 
 class MISSING_VALUE(object): ...
@@ -258,15 +263,22 @@ class GeographicExtentWidget(BaseParamType):
     @classmethod
     def __parse__(
         cls, 
-        name    : Optional[str], 
-        label   : str, 
-        kind    : Optional[str], 
-        details : Dict) -> Object:
+        name     : Optional[str], 
+        label    : str, 
+        kind     : Optional[str], 
+        required : bool,
+        details  : Dict) -> Object:
 
         precision = details.get('precision', 2)
         default_range = details.get('default', {})
         range = details.get('range', default_range)
-        return cls(name=name, label=label, precision=precision, range=range)
+        return cls(
+              name      = name
+            , label     = label
+            , precision = precision
+            , range     = range
+            , required  = required
+        )
 
 class License(Object):
     id: str
@@ -281,41 +293,51 @@ class LicenceWidget(BaseParamType): # [sic]
     @classmethod
     def __parse__(
         cls, 
-        name    : Optional[str], 
-        label   : str, 
-        kind    : Optional[str], 
-        details : Dict) -> Object:
+        name     : Optional[str], 
+        label    : str, 
+        kind     : Optional[str], 
+        required : bool,
+        details  : Dict) -> Object:
 
         licences = details.get('licences', [])
         licenses = [License(**license) for license in licences]
-        return cls(name=name, label=label, licences=licenses)
+
+        return cls(
+                name      = name
+            ,   label     = label
+            ,   licences  = licences
+            ,   required  = required
+        )
     
 class ExclusiveFrameWidget(ParamType):
     widgets: List[str]
+    required: bool
     id: Optional[int] = None
     
     @staticmethod
     def __base_parse__(item: dict) -> dict:
         return dict(
-            id      = item.get('id'),
-            label   = item['label'],
-            kind    = item.get('type'),
-            details = item.get('details', {}),
-            widgets = item.get('widgets', []),
+              id       = item.get('id')
+            , label    = item['label']
+            , kind     = item.get('type')
+            , details  = item.get('details', {})
+            , widgets  = item.get('widgets', [])
+            , required = item.get('required', False)
         )
     
     @classmethod
     def __parse__(
         cls, 
-        id      : Optional[int], 
-        label   : str, 
-        kind    : Optional[str], 
-        details : Dict, 
-        widgets : List[str]) -> Object:
+        id       : Optional[int], 
+        label    : str, 
+        kind     : Optional[str], 
+        details  : Dict, 
+        required : bool,
+        widgets  : List[str]) -> Object:
 
         id = details.get('id', None)
         
-        return cls(id=id, label=label, widgets=widgets)
+        return cls(id=id, label=label, widgets=widgets, required=required)
     
 class GeographicExtentMapWidget(BaseParamType):
     range: Dict[GeographicExtentLabel, number]
@@ -327,10 +349,11 @@ class GeographicExtentMapWidget(BaseParamType):
     @classmethod
     def __parse__(
         cls, 
-        name    : Optional[str], 
-        label   : str, 
-        kind    : Optional[str], 
-        details : Dict) -> Object:
+        name     : Optional[str], 
+        label    : str, 
+        kind     : Optional[str], 
+        required : bool,
+        details  : Dict) -> Object:
 
         precision     = details.get('precision', 2)
         default_range = details.get('default', {})
@@ -341,10 +364,12 @@ class GeographicExtentMapWidget(BaseParamType):
         return cls(
               name       = name
             , label      = label
+            , default    = default_range
             , precision  = precision
             , range      = range
             , fullheight = fullheight
             , wrapping   = wrapping
+            , required   = required
         )
     
 
@@ -355,10 +380,11 @@ class LabelWidget(BaseParamType):
     @classmethod
     def __parse__(
         cls, 
-        name    : Optional[str], 
-        label   : str, 
-        kind    : Optional[str], 
-        details : Dict) -> Object:
+        name     : Optional[str], 
+        label    : str, 
+        kind     : Optional[str], 
+        required : bool,
+        details  : Dict) -> Object:
 
         information = details.get('information', '')
         accordion   = details.get('accordion', False)
@@ -368,6 +394,7 @@ class LabelWidget(BaseParamType):
             , label       = label
             , information = information
             , accordion   = accordion
+            , required    = required
         )
     
 class FreeEditionWidget(LabelWidget): ...
