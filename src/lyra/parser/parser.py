@@ -398,3 +398,28 @@ class LabelWidget(BaseParamType):
         )
     
 class FreeEditionWidget(LabelWidget): ...
+
+__all__ = [
+          'parse'
+        , 'Parser'
+        , 'Object'
+        , 'ParamType'
+        , 'BaseParamType'
+        , 'Option'
+        , 'StringListWidget'
+        , 'StringChoiceWidget'
+        , 'Group'
+        , 'StringListArrayWidget'
+        , 'ExclusiveGroupWidget'
+        , 'number'
+        , 'GeographicExtentLabel'
+        , 'INVERSE_GEOGRAPHIC_EXTENT_LABELS'
+        , 'GeographicExtentWidget'
+        , 'License'
+        , 'LicenceWidget'
+        , 'ExclusiveFrameWidget'
+        , 'GeographicExtentMapWidget'
+        , 'LabelWidget'
+        , 'FreeEditionWidget'
+        , 'MISSING_VALUE'
+]
