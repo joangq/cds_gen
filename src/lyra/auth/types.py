@@ -1,0 +1,6 @@
+from typing import Optional, Callable, Any, Generic, TypeVar
+
+T = TypeVar('T')
+
+class Deprecated(Generic[T]): ...
+class Unreachable(Generic[T]): ...
