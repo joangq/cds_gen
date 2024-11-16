@@ -49,7 +49,7 @@ class MissingParser:
     parser_name: str
     data: Optional[Any] = None
 
-def parse_form(form: List):
+def parse_form(form: List) -> List[MissingParser | ParamType]:
     assert isinstance(form, list)
     assert all(is_valid_object(x) for x in form)
     return [
