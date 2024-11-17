@@ -97,7 +97,7 @@ def transform_node(x: ParamType, **transform_kwargs) -> MissingTransformer | Par
 
 def transform_form(form: list[ParamType]) -> list[MissingTransformer | Parameter]:
     return [
-        str(y)
+        y
         for x in form
         
         # Algunas transformaciones (como la de ExclusiveGroupWidget) pueden
