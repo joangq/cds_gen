@@ -8,6 +8,9 @@ def TODO() -> None:
 def MISSING_IMPLEMENTATION() -> None:
     raise NotImplementedError("This method is not implemented")
 
+def UNREACHABLE() -> None:
+    raise Exception("This should not have been reached")
+
 class OneOrMore(Generic[T]): ...
 
 class GeographicExtentType: ...

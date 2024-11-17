@@ -9,6 +9,7 @@ from lyra.common import GeographicExtentType
 from lyra.common import GeographicExtentMapType
 from lyra.common import LabelType
 from lyra.common import FreeEditionType
+from lyra.common import UNREACHABLE
 from lyra.downloader import download_data
 from typing import Union, Optional
 
@@ -28,10 +29,7 @@ base_quote = \
 class Collection_{name}(Collection):
 
     @Collection.wrapper
-    def download(cls, {parameters}):
-        return Collection_{name}.__download__(
-            {kw_parameters}
-        )
+    def download(cls, {parameters}): UNREACHABLE()
     
     @classmethod
     def __download__(cls, {parameters}):
