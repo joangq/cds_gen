@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 import lyra.parser
 from lyra.common import MISSING_IMPLEMENTATION, OneOrMore
+from functools import total_ordering
 from abc import ABC as AbstractBaseClass, abstractmethod
 from typing import Generic, TypeVar, Optional, Any
 from collections.abc import Iterable
@@ -24,7 +25,20 @@ class Transformer(AbstractBaseClass, Generic[T, P]):
     def transform(cls, obj: T) -> P:
         MISSING_IMPLEMENTATION()
 
-@dataclass
+PARAMETER_DATACLASS_OPTIONS = dict(
+      init        = True
+    , repr        = True
+    , eq          = True
+    , order       = False
+    , unsafe_hash = True
+    , frozen      = False
+    , match_args  = True
+    , kw_only     = False
+    , slots       = False
+)
+
+@total_ordering
+@dataclass(**PARAMETER_DATACLASS_OPTIONS)
 class Parameter:
     name         : str
     innertype    : type | str
@@ -32,6 +46,10 @@ class Parameter:
     required     : bool
     valid_values : Optional[Iterable[Any]] = None
     bound        : Optional[str] = None
+
+    def has_default_value(self):
+        return (self.default is not None 
+                or (self.default is None and not self.required))
 
     def __str__(self):
         if isinstance(self.innertype, type):
@@ -42,15 +60,19 @@ class Parameter:
         if self.default is None and not self.required:
             innertype_str = f"Optional[{innertype_str}]"
 
-        if (self.default is not None 
-            or (self.default is None and not self.required)):
+        if self.has_default_value():
             default_str = f" = {repr(self.default)}"
+            self.__has_default_value__ = True
         else:
             default_str = ""
 
         if self.bound:
             return f"{self.name}: {innertype_str}{default_str}@{self.bound}"
+        
         return f"{self.name}: {innertype_str}{default_str}"
+    
+    def __gt__(self, other):
+        return self.has_default_value() > other.has_default_value()
     
 
 global AVAILABLE_TRANSFORMERS
