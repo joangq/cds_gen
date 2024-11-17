@@ -19,90 +19,87 @@ this code can be found in
 class Collection_sis_energy_derived_projections(Collection):
 
     @Collection.wrapper
-    def download(cls, energy_product_type: OneOrMore[str], ensemble_member: OneOrMore[str], rcm: str, spatial_aggregation: str, temporal_aggregation: str, gcm: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str]): UNREACHABLE()
+    def download(cls, ensemble_member: OneOrMore[str], variable: OneOrMore[str], spatial_aggregation: str, experiment: OneOrMore[str], rcm: str, gcm: OneOrMore[str], temporal_aggregation: str, energy_product_type: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, energy_product_type: OneOrMore[str], ensemble_member: OneOrMore[str], rcm: str, spatial_aggregation: str, temporal_aggregation: str, gcm: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str]):
-        energy_product_type_valid_values = ['capacity_factor_ratio', 'energy', 'power']
-        assert energy_product_type in energy_product_type_valid_values
-
+    def __download__(cls, ensemble_member: OneOrMore[str], variable: OneOrMore[str], spatial_aggregation: str, experiment: OneOrMore[str], rcm: str, gcm: OneOrMore[str], temporal_aggregation: str, energy_product_type: OneOrMore[str]):
         ensemble_member_valid_values = ['r12i1p1', 'r1i1p1', 'r3i1p1']
         assert ensemble_member in ensemble_member_valid_values
-
-        rcm_valid_values = ['aladin63', 'cclm4_8_17', 'hirham5', 'racmo22e', 'regcm4', 'rca4', 'wrf381p']
-        assert rcm in rcm_valid_values
-
-        spatial_aggregation_valid_values = ['country_level', 'sub_country_level', 'maritime_country_level', 'maritime_sub_country_level', 'original_grid']
-        assert spatial_aggregation in spatial_aggregation_valid_values
-
-        temporal_aggregation_valid_values = ['3_hourly', 'daily', 'monthly', 'seasonal', 'annual']
-        assert temporal_aggregation in temporal_aggregation_valid_values
-
-        gcm_valid_values = ['cnrm_cm5', 'ec_earth', 'ipsl_cm5a_mr', 'hadgem2_es', 'mpi_esm_lr', 'noresm1_m']
-        assert gcm in gcm_valid_values
 
         variable_valid_values = ['wind_speed_at_100m', 'wind_speed_at_10m', 'surface_downwelling_shortwave_radiation', '2m_air_temperature', 'total_precipitation', 'electricity_demand', 'hydro_power_generation_reservoirs', 'hydro_power_generation_rivers', 'solar_photovoltaic_power_generation', 'wind_power_generation_offshore', 'wind_power_generation_onshore']
         assert variable in variable_valid_values
 
+        spatial_aggregation_valid_values = ['country_level', 'sub_country_level', 'maritime_country_level', 'maritime_sub_country_level', 'original_grid']
+        assert spatial_aggregation in spatial_aggregation_valid_values
+
         experiment_valid_values = ['rcp_2_6', 'rcp_4_5', 'rcp_8_5']
         assert experiment in experiment_valid_values
 
-        return download_data(energy_product_type=energy_product_type, ensemble_member=ensemble_member, rcm=rcm, spatial_aggregation=spatial_aggregation, temporal_aggregation=temporal_aggregation, gcm=gcm, variable=variable, experiment=experiment)
+        rcm_valid_values = ['aladin63', 'cclm4_8_17', 'hirham5', 'racmo22e', 'regcm4', 'rca4', 'wrf381p']
+        assert rcm in rcm_valid_values
 
+        gcm_valid_values = ['cnrm_cm5', 'ec_earth', 'ipsl_cm5a_mr', 'hadgem2_es', 'mpi_esm_lr', 'noresm1_m']
+        assert gcm in gcm_valid_values
+
+        temporal_aggregation_valid_values = ['3_hourly', 'daily', 'monthly', 'seasonal', 'annual']
+        assert temporal_aggregation in temporal_aggregation_valid_values
+
+        energy_product_type_valid_values = ['capacity_factor_ratio', 'energy', 'power']
+        assert energy_product_type in energy_product_type_valid_values
+
+        return download_data(ensemble_member=ensemble_member, variable=variable, spatial_aggregation=spatial_aggregation, experiment=experiment, rcm=rcm, gcm=gcm, temporal_aggregation=temporal_aggregation, energy_product_type=energy_product_type)
 class Collection_satellite_lake_water_level(Collection):
 
     @Collection.wrapper
-    def download(cls, region: OneOrMore[str], lake: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
+    def download(cls, lake: OneOrMore[str], region: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, region: OneOrMore[str], lake: OneOrMore[str], variable: str = 'all'):
-        region_valid_values = ['oceania', 'southern_america', 'northern_africa', 'southern_africa', 'northern_north_america', 'southern_north_america', 'northern_europe', 'southern_europe', 'northern_asia', 'southwestern_asia', 'southeastern_asia']
-        assert region in region_valid_values
-
+    def __download__(cls, lake: OneOrMore[str], region: OneOrMore[str], variable: str = 'all'):
         lake_valid_values = ['albert', 'bagre', 'bankim', 'bogoria', 'fitri', 'kainji', 'kossou', 'kyoga', 'lagdo', 'langano', 'mangbeto', 'nasser', 'roseires', 'shiroro', 'tana', 'tchad', 'turkana', 'volta', 'ziway', 'bangweulu', 'cahora_bassa', 'chishi', 'edouard', 'george', 'hendrik_verwoerd', 'kabele', 'kabwe', 'kariba', 'kisale', 'kinkony', 'kivu', 'mai_ndombe', 'malawi', 'mweru', 'naivasha', 'rukwa', 'tanganika', 'tumba', 'victoria', 'zimbambo', 'sulunga', 'amadjuak', 'athabasca', 'aylmer', 'baker', 'bienville', 'birch', 'big_trout', 'bluenose', 'caribou', 'cedar', 'claire', 'dubawnt', 'faber', 'gods', 'grande_trois', 'greatslave', 'hottah', 'iliamna', 'kamilukuak', 'kasba', 'manitoba', 'nueltin', 'old_wives', 'swan', 'williston', 'winnipegosis', 'winnipeg', 'atlin', 'churchill', 'teshekpuk', 'black', 'tustumena', 'cormorant', 'cumberland', 'american_falls', 'cayuga', 'cerros_colorados', 'chapala', 'des_bois', 'erie', 'fort_peck', 'hinojo', 'huron', 'michigan', 'mono', 'mullet', 'nezahualcoyoti', 'nicaragua', 'nipissing', 'oahe', 'ontario', 'saint_jean', 'sakakawea', 'san_martin', 'superior', 'tres_marias', 'viedma', 'walker', 'yellowstone', 'okeechobee', 'argentino', 'balbina', 'chocon', 'cienagachilloa', 'cochrane', 'fontana', 'guri', 'lagoa_dos_patos', 'ranco', 'sobradino', 'titicaca', 'todos_los_santos', 'valencia', 'brokopondo', 'cabaliana', 'cardiel', 'biarini', 'coari', 'azhibeksorkoli', 'hovsgol', 'tengiz', 'uvs', 'alakol', 'aydarkul', 'bairab', 'balkhash', 'beas', 'beysehir', 'biylikol', 'bugunskoye', 'caspian', 'chardarya', 'chagbo_co', 'chatyrkol', 'egridir', 'gyeze_caka', 'habbaniyah', 'hamrin', 'hawizeh_marshes', 'heishi_beihu', 'issykkul', 'iznik', 'jayakwadi', 'kairakum', 'kamyshlybas', 'kapchagayskoye', 'kara_bogaz_gol', 'karasor', 'langa_co', 'lumajangdong_co', 'luotuo', 'memar', 'mingacevir', 'mossoul', 'saksak', 'sarykamish', 'sasykkol', 'saysan', 'sevan', 'srisailam', 'tharthar', 'toktogul', 'van', 'achit', 'aqqikol_hu', 'ayakkum', 'bosten', 'cuodarima', 'dagze_co', 'dalai', 'danau_towuti', 'danausingkarak', 'dangqiong', 'dogaicoring_q', 'dorgon', 'dorsoidong_co', 'garkung', 'gyaring_co', 'hala', 'har', 'hoh_xil_hu', 'hongze', 'hulun', 'hyargas', 'kokonor', 'lano', 'lixiodain_co', 'migriggyangzham', 'namco', 'namngum', 'ngangze', 'ngoring_co', 'serbug', 'soungari', 'tangra_yumco', 'telashi', 'telmen', 'tonle_sap', 'ulan_ul', 'ulungur', 'xiangyang', 'yamzho_yumco', 'zhari_namco', 'zhelin', 'ziling', 'zonag', 'chlew_larn', 'bay', 'boontsagaan', 'xuelian_hu', 'barkal', 'orba_co', 'baikal', 'baunt', 'bratskoye', 'chlya', 'chukochye', 'illmen', 'inarinjarvi', 'krasnoyarskoye', 'kubenskoye', 'kulundinskoye', 'kumskoye', 'kuybyshevskoye', 'ladoga', 'novosibirskoye', 'onega', 'peipus', 'pyaozero', 'rybinskoye', 'saratovskoye', 'segozerskoye', 'tchany', 'teletskoye', 'umbozero', 'vanajanselka', 'vanerm', 'vattern', 'zeyskoye', 'bolmen', 'bodensee', 'khanka', 'kremenchutska', 'leman', 'prespa', 'tsimlyanskoye', 'rosarito', 'corangamite', 'pukaki', 'argyle']
         assert lake in lake_valid_values
+
+        region_valid_values = ['oceania', 'southern_america', 'northern_africa', 'southern_africa', 'northern_north_america', 'southern_north_america', 'northern_europe', 'southern_europe', 'northern_asia', 'southwestern_asia', 'southeastern_asia']
+        assert region in region_valid_values
 
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(region=region, lake=lake, variable=variable)
-
+        return download_data(lake=lake, region=region, variable=variable)
 class Collection_satellite_lake_water_temperature(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], version: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
+    def download(cls, month: OneOrMore[str], version: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], version: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: str = 'all'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, month: OneOrMore[str], version: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], variable: str = 'all'):
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
         version_valid_values = ['4_0', '4_2', '4_5', '4_5_1', '4_5_2']
         assert version in version_valid_values
 
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
         year_valid_values = ['1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
         assert year in year_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
 
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(day=day, version=version, year=year, month=month, variable=variable)
-
+        return download_data(month=month, version=version, day=day, year=year, variable=variable)
 class Collection_multi_origin_c3s_atlas(Collection):
 
     @Collection.wrapper
-    def download(cls, period: str, origin: str, variable: str, domain: str, experiment: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, origin: str, period: str, variable: str, domain: str, experiment: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, period: str, origin: str, variable: str, domain: str, experiment: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
-        period_valid_values = ['1850-2005', '1850-2014', '1940-2022', '1950-2021', '1950-2022', '1958-2014', '1970-2005', '2006-2100', '2015-2100']
-        assert period in period_valid_values
-
+    def __download__(cls, origin: str, period: str, variable: str, domain: str, experiment: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
         origin_valid_values = ['cmip5', 'cmip6', 'cordex_core', 'cordex_eur_11', 'e_obs', 'era5', 'era5_land', 'oras5']
         assert origin in origin_valid_values
+
+        period_valid_values = ['1850-2005', '1850-2014', '1940-2022', '1950-2021', '1950-2022', '1958-2014', '1970-2005', '2006-2100', '2015-2100']
+        assert period in period_valid_values
 
         variable_valid_values = ['monthly_mean_of_daily_accumulated_evaporation', 'monthly_mean_of_daily_accumulated_precipitation', 'monthly_sea_level_pressure', 'monthly_near_surface_specific_humidity', 'monthly_mean_of_daily_accumulated_runoff', 'monthly_mean_of_daily_accumulated_snowfall_precipitation', 'monthly_mean_of_daily_accumulated_soil_moisture_in_upper_soil_portion', 'monthly_surface_thermal_radiation_downwards', 'monthly_surface_solar_radiation_downwards', 'monthly_fraction_of_cloud_cover', 'annual_cooling_degree_days', 'annual_consecutive_dry_days', 'monthly_count_of_frost_days', 'annual_heating_degree_days', 'monthly_maximum_of_1_day_accumulated_precipitation', 'monthly_maximum_of_5_day_accumulated_precipitation', 'monthly_mean_of_daily_mean_wind_speed', 'monthly_mean_of_sea_ice_area_percentage', 'monthly_standardised_precipitation_index_for_6_months_cumulation_period', 'monthly_mean_of_sea_surface_temperature', 'monthly_mean_of_daily_mean_temperature', 'monthly_mean_of_daily_minimum_temperature', 'monthly_minimum_of_daily_minimum_temperature', 'monthly_mean_of_daily_maximum_temperature', 'monthly_count_of_days_with_maximum_temperature_above_35_c', 'monthly_count_of_days_with_bias_adjusted_maximum_temperature_above_35_c', 'monthly_count_of_days_with_maximum_temperature_above_40_c', 'monthly_count_of_days_with_bias_adjusted_maximum_temperature_above_40_c', 'monthly_maximum_of_daily_maximum_temperature', 'monthly_standardised_precipitation_evapotranspiration_index_for_6_months_cumulation_period']
         assert variable in variable_valid_values
@@ -113,41 +110,39 @@ class Collection_multi_origin_c3s_atlas(Collection):
         experiment_valid_values = ['historical', 'rcp_2_6', 'rcp_4_5', 'rcp_8_5', 'ssp1_2_6', 'ssp2_4_5', 'ssp3_7_0', 'ssp5_8_5']
         assert experiment in experiment_valid_values
 
-        return download_data(period=period, origin=origin, variable=variable, domain=domain, experiment=experiment, area_group=area_group)
-
+        return download_data(origin=origin, period=period, variable=variable, domain=domain, experiment=experiment, area_group=area_group)
 class Collection_seasonal_postprocessed_single_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, system: str, leadtime_month: OneOrMore[str], originating_centre: str, year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, system: str, originating_centre: str, variable: OneOrMore[str], month: OneOrMore[str], leadtime_month: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, system: str, leadtime_month: OneOrMore[str], originating_centre: str, year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, system: str, originating_centre: str, variable: OneOrMore[str], month: OneOrMore[str], leadtime_month: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
         system_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '12', '13', '14', '15', '21', '35', '51', '600', '601', '602', '603']
         assert system in system_valid_values
-
-        leadtime_month_valid_values = ['1', '2', '3', '4', '5', '6']
-        assert leadtime_month in leadtime_month_valid_values
 
         originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc', 'ncep', 'jma', 'eccc']
         assert originating_centre in originating_centre_valid_values
 
-        year_valid_values = ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
+        variable_valid_values = ['10m_u_component_of_wind_anomaly', '10m_v_component_of_wind_anomaly', '10m_wind_gust_anomaly', '10m_wind_speed_anomaly', '2m_dewpoint_temperature_anomaly', '2m_temperature_anomaly', 'east_west_surface_stress_anomalous_rate_of_accumulation', 'evaporation_anomalous_rate_of_accumulation', 'maximum_2m_temperature_in_the_last_24_hours_anomaly', 'mean_sea_level_pressure_anomaly', 'mean_sub_surface_runoff_rate_anomaly', 'mean_surface_runoff_rate_anomaly', 'minimum_2m_temperature_in_the_last_24_hours_anomaly', 'north_south_surface_stress_anomalous_rate_of_accumulation', 'runoff_anomalous_rate_of_accumulation', 'sea_surface_temperature_anomaly', 'sea_ice_cover_anomaly', 'snow_density_anomaly', 'snow_depth_anomaly', 'snowfall_anomalous_rate_of_accumulation', 'soil_temperature_anomaly_level_1', 'solar_insolation_anomalous_rate_of_accumulation', 'surface_latent_heat_flux_anomalous_rate_of_accumulation', 'surface_sensible_heat_flux_anomalous_rate_of_accumulation', 'surface_solar_radiation_anomalous_rate_of_accumulation', 'surface_solar_radiation_downwards_anomalous_rate_of_accumulation', 'surface_thermal_radiation_anomalous_rate_of_accumulation', 'surface_thermal_radiation_downwards_anomalous_rate_of_accumulation', 'top_solar_radiation_anomalous_rate_of_accumulation', 'top_thermal_radiation_anomalous_rate_of_accumulation', 'total_cloud_cover_anomaly', 'total_column_ice_water_anomaly', 'total_column_liquid_water_anomaly', 'total_column_water_vapour_anomaly', 'total_precipitation_anomalous_rate_of_accumulation']
+        assert variable in variable_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
+        leadtime_month_valid_values = ['1', '2', '3', '4', '5', '6']
+        assert leadtime_month in leadtime_month_valid_values
+
         product_type_valid_values = ['ensemble_mean', 'monthly_mean']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['10m_u_component_of_wind_anomaly', '10m_v_component_of_wind_anomaly', '10m_wind_gust_anomaly', '10m_wind_speed_anomaly', '2m_dewpoint_temperature_anomaly', '2m_temperature_anomaly', 'east_west_surface_stress_anomalous_rate_of_accumulation', 'evaporation_anomalous_rate_of_accumulation', 'maximum_2m_temperature_in_the_last_24_hours_anomaly', 'mean_sea_level_pressure_anomaly', 'mean_sub_surface_runoff_rate_anomaly', 'mean_surface_runoff_rate_anomaly', 'minimum_2m_temperature_in_the_last_24_hours_anomaly', 'north_south_surface_stress_anomalous_rate_of_accumulation', 'runoff_anomalous_rate_of_accumulation', 'sea_surface_temperature_anomaly', 'sea_ice_cover_anomaly', 'snow_density_anomaly', 'snow_depth_anomaly', 'snowfall_anomalous_rate_of_accumulation', 'soil_temperature_anomaly_level_1', 'solar_insolation_anomalous_rate_of_accumulation', 'surface_latent_heat_flux_anomalous_rate_of_accumulation', 'surface_sensible_heat_flux_anomalous_rate_of_accumulation', 'surface_solar_radiation_anomalous_rate_of_accumulation', 'surface_solar_radiation_downwards_anomalous_rate_of_accumulation', 'surface_thermal_radiation_anomalous_rate_of_accumulation', 'surface_thermal_radiation_downwards_anomalous_rate_of_accumulation', 'top_solar_radiation_anomalous_rate_of_accumulation', 'top_thermal_radiation_anomalous_rate_of_accumulation', 'total_cloud_cover_anomaly', 'total_column_ice_water_anomaly', 'total_column_liquid_water_anomaly', 'total_column_water_vapour_anomaly', 'total_precipitation_anomalous_rate_of_accumulation']
-        assert variable in variable_valid_values
+        year_valid_values = ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
 
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(system=system, leadtime_month=leadtime_month, originating_centre=originating_centre, year=year, month=month, product_type=product_type, variable=variable, data_format=data_format, area_group=area_group)
-
+        return download_data(system=system, originating_centre=originating_centre, variable=variable, month=month, leadtime_month=leadtime_month, product_type=product_type, year=year, data_format=data_format, area_group=area_group)
 class Collection_satellite_ice_sheet_mass_balance(Collection):
 
     @Collection.wrapper
@@ -159,196 +154,189 @@ class Collection_satellite_ice_sheet_mass_balance(Collection):
         assert variable in variable_valid_values
 
         return download_data(variable=variable)
-
 class Collection_satellite_soil_moisture(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time_aggregation: OneOrMore[str], version: OneOrMore[str], year: OneOrMore[str], type_of_sensor: OneOrMore[str], month: OneOrMore[str], type_of_record: OneOrMore[str], variable: OneOrMore[str]): UNREACHABLE()
+    def download(cls, type_of_sensor: OneOrMore[str], time_aggregation: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], version: OneOrMore[str], type_of_record: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time_aggregation: OneOrMore[str], version: OneOrMore[str], year: OneOrMore[str], type_of_sensor: OneOrMore[str], month: OneOrMore[str], type_of_record: OneOrMore[str], variable: OneOrMore[str]):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, type_of_sensor: OneOrMore[str], time_aggregation: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], version: OneOrMore[str], type_of_record: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str]):
+        type_of_sensor_valid_values = ['active', 'passive', 'combined_passive_and_active']
+        assert type_of_sensor in type_of_sensor_valid_values
 
         time_aggregation_valid_values = ['day_average', '10_day_average', 'month_average']
         assert time_aggregation in time_aggregation_valid_values
 
-        version_valid_values = ['v202212', 'v201706', 'v201812', 'deprecated_v201912', 'v201912_1', 'v202012']
-        assert version in version_valid_values
-
-        year_valid_values = ['1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
-        type_of_sensor_valid_values = ['active', 'passive', 'combined_passive_and_active']
-        assert type_of_sensor in type_of_sensor_valid_values
+        variable_valid_values = ['surface_soil_moisture', 'volumetric_surface_soil_moisture']
+        assert variable in variable_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
+
+        version_valid_values = ['v202212', 'v201706', 'v201812', 'deprecated_v201912', 'v201912_1', 'v202012']
+        assert version in version_valid_values
 
         type_of_record_valid_values = ['icdr', 'cdr']
         assert type_of_record in type_of_record_valid_values
 
-        variable_valid_values = ['surface_soil_moisture', 'volumetric_surface_soil_moisture']
-        assert variable in variable_valid_values
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
 
-        return download_data(day=day, time_aggregation=time_aggregation, version=version, year=year, type_of_sensor=type_of_sensor, month=month, type_of_record=type_of_record, variable=variable)
+        year_valid_values = ['1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
 
+        return download_data(type_of_sensor=type_of_sensor, time_aggregation=time_aggregation, variable=variable, month=month, version=version, type_of_record=type_of_record, day=day, year=year)
 class Collection_insitu_gridded_observations_alpine_precipitation(Collection):
 
     @Collection.wrapper
-    def download(cls, dataset_issue: OneOrMore[str], variable: str = 'precipitation', version: OneOrMore[str] = '1.2'): UNREACHABLE()
+    def download(cls, dataset_issue: OneOrMore[str], version: OneOrMore[str] = '1.2', variable: str = 'precipitation'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, dataset_issue: OneOrMore[str], variable: str = 'precipitation', version: OneOrMore[str] = '1.2'):
+    def __download__(cls, dataset_issue: OneOrMore[str], version: OneOrMore[str] = '1.2', variable: str = 'precipitation'):
         dataset_issue_valid_values = ['laprec1871', 'laprec1901']
         assert dataset_issue in dataset_issue_valid_values
-
-        variable_valid_values = ['precipitation']
-        assert variable in variable_valid_values
 
         version_valid_values = ['1_1', '1_2']
         assert version in version_valid_values
 
-        return download_data(dataset_issue=dataset_issue, variable=variable, version=version)
+        variable_valid_values = ['precipitation']
+        assert variable in variable_valid_values
 
+        return download_data(dataset_issue=dataset_issue, version=version, variable=variable)
 class Collection_reanalysis_cerra_model_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], data_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], model_level: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], model_level: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], data_type: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], data_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], model_level: OneOrMore[str], data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
-        assert time in time_valid_values
-
-        data_type_valid_values = ['ensemble_members', 'reanalysis']
-        assert data_type in data_type_valid_values
-
-        year_valid_values = ['1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
-        assert year in year_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
+    def __download__(cls, variable: OneOrMore[str], model_level: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], data_type: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'):
         variable_valid_values = ['specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind']
         assert variable in variable_valid_values
 
         model_level_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60', '61', '62', '63', '64', '65', '66', '67', '68', '69', '70', '71', '72', '73', '74', '75', '76', '77', '78', '79', '80', '81', '82', '83', '84', '85', '86', '87', '88', '89', '90', '91', '92', '93', '94', '95', '96', '97', '98', '99', '100', '101', '102', '103', '104', '105', '106']
         assert model_level in model_level_valid_values
 
-        data_format_valid_values = ['grib', 'netcdf']
-        assert data_format in data_format_valid_values
-
-        return download_data(day=day, time=time, data_type=data_type, year=year, month=month, variable=variable, model_level=model_level, data_format=data_format)
-
-class Collection_reanalysis_uerra_europe_single_levels(Collection):
-
-    @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], origin: str, year: OneOrMore[str], month: OneOrMore[str], variable: str, data_format: str = 'grib'): UNREACHABLE()
-    
-    @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], origin: str, year: OneOrMore[str], month: OneOrMore[str], variable: str, data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_valid_values = ['00:00', '06:00', '12:00', '18:00']
+        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
         assert time in time_valid_values
-
-        origin_valid_values = ['mescan_surfex', 'uerra_harmonie']
-        assert origin in origin_valid_values
-
-        year_valid_values = ['1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
-        assert year in year_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
+
+        data_type_valid_values = ['ensemble_members', 'reanalysis']
+        assert data_type in data_type_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+        assert year in year_valid_values
+
+        data_format_valid_values = ['grib', 'netcdf']
+        assert data_format in data_format_valid_values
+
+        return download_data(variable=variable, model_level=model_level, time=time, month=month, data_type=data_type, day=day, year=year, data_format=data_format)
+class Collection_reanalysis_uerra_europe_single_levels(Collection):
+
+    @Collection.wrapper
+    def download(cls, origin: str, variable: str, time: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
+    
+    @classmethod
+    def __download__(cls, origin: str, variable: str, time: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'):
+        origin_valid_values = ['mescan_surfex', 'uerra_harmonie']
+        assert origin in origin_valid_values
 
         variable_valid_values = ['10m_wind_direction', '10m_wind_speed', '2m_relative_humidity', '2m_temperature', 'albedo', 'high_cloud_cover', 'land_sea_mask', 'low_cloud_cover', 'mean_sea_level_pressure', 'medium_cloud_cover', 'orography', 'skin_temperature', 'snow_density', 'snow_depth_water_equivalent', 'surface_pressure', 'surface_roughness', 'total_cloud_cover', 'total_column_integrated_water_vapour', 'total_precipitation']
         assert variable in variable_valid_values
 
-        data_format_valid_values = ['grib', 'netcdf']
-        assert data_format in data_format_valid_values
-
-        return download_data(day=day, time=time, origin=origin, year=year, month=month, variable=variable, data_format=data_format)
-
-class Collection_insitu_observations_near_surface_temperature_us_climate_reference_network(Collection):
-
-    @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time_aggregation: OneOrMore[str], year: OneOrMore[str], format: str, month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
-    
-    @classmethod
-    def __download__(cls, day: OneOrMore[str], time_aggregation: OneOrMore[str], year: OneOrMore[str], format: str, month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_aggregation_valid_values = ['daily', 'hourly', 'monthly', 'sub_hourly']
-        assert time_aggregation in time_aggregation_valid_values
-
-        year_valid_values = ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
-        assert year in year_valid_values
-
-        format_valid_values = ['netcdf', 'csv']
-        assert format in format_valid_values
+        time_valid_values = ['00:00', '06:00', '12:00', '18:00']
+        assert time in time_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+        assert year in year_valid_values
+
+        data_format_valid_values = ['grib', 'netcdf']
+        assert data_format in data_format_valid_values
+
+        return download_data(origin=origin, variable=variable, time=time, month=month, day=day, year=year, data_format=data_format)
+class Collection_insitu_observations_near_surface_temperature_us_climate_reference_network(Collection):
+
+    @Collection.wrapper
+    def download(cls, time_aggregation: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], format: str, day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    
+    @classmethod
+    def __download__(cls, time_aggregation: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], format: str, day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        time_aggregation_valid_values = ['daily', 'hourly', 'monthly', 'sub_hourly']
+        assert time_aggregation in time_aggregation_valid_values
 
         variable_valid_values = ['air_temperature', 'daily_maximum_air_temperature', 'daily_minimum_air_temperature', 'relative_humidity', 'daily_maximum_relative_humidity', 'daily_minimum_relative_humidity', 'downward_shortwave_irradiance_at_earth_surface', 'hourly_maximum_downward_shortwave_irradiance_at_earth_surface', 'hourly_minimum_downward_shortwave_irradiance_at_earth_surface', 'hourly_maximum_soil_temperature', 'hourly_minimum_soil_temperature', 'monthly_maximum_soil_temperature', 'monthly_minimum_soil_temperature', 'soil_temperature', 'soil_temperature_100cm_from_earth_surface', 'soil_temperature_10cm_from_earth_surface', 'soil_temperature_20cm_from_earth_surface', 'soil_temperature_50cm_from_earth_surface', 'soil_temperature_5cm_from_earth_surface', 'soil_moisture_100cm_from_earth_surface', 'soil_moisture_10cm_from_earth_surface', 'soil_moisture_20cm_from_earth_surface', 'soil_moisture_50cm_from_earth_surface', 'soil_moisture_5cm_from_earth_surface', 'accumulated_precipitation', 'wind_speed_2_meters_from_earth_surface']
         assert variable in variable_valid_values
 
-        return download_data(day=day, time_aggregation=time_aggregation, year=year, format=format, month=month, variable=variable, area_group=area_group)
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
-class Collection_seasonal_original_pressure_levels(Collection):
-
-    @Collection.wrapper
-    def download(cls, system: str, day: OneOrMore[str], originating_centre: str, year: OneOrMore[str], leadtime_hour: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
-    
-    @classmethod
-    def __download__(cls, system: str, day: OneOrMore[str], originating_centre: str, year: OneOrMore[str], leadtime_hour: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
-        system_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '12', '13', '14', '15', '21', '35', '51', '600', '601', '602', '603']
-        assert system in system_valid_values
+        format_valid_values = ['netcdf', 'csv']
+        assert format in format_valid_values
 
         day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
         assert day in day_valid_values
 
+        year_valid_values = ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        assert year in year_valid_values
+
+        return download_data(time_aggregation=time_aggregation, variable=variable, month=month, format=format, day=day, year=year, area_group=area_group)
+class Collection_seasonal_original_pressure_levels(Collection):
+
+    @Collection.wrapper
+    def download(cls, system: str, originating_centre: str, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], pressure_level: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    
+    @classmethod
+    def __download__(cls, system: str, originating_centre: str, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], pressure_level: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        system_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '12', '13', '14', '15', '21', '35', '51', '600', '601', '602', '603']
+        assert system in system_valid_values
+
         originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc', 'ncep', 'jma', 'eccc']
         assert originating_centre in originating_centre_valid_values
-
-        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
 
         leadtime_hour_valid_values = ['12', '24', '36', '48', '60', '72', '84', '96', '108', '120', '132', '144', '156', '168', '180', '192', '204', '216', '228', '240', '252', '264', '276', '288', '300', '312', '324', '336', '348', '360', '372', '384', '396', '408', '420', '432', '444', '456', '468', '480', '492', '504', '516', '528', '540', '552', '564', '576', '588', '600', '612', '624', '636', '648', '660', '672', '684', '696', '708', '720', '732', '744', '756', '768', '780', '792', '804', '816', '828', '840', '852', '864', '876', '888', '900', '912', '924', '936', '948', '960', '972', '984', '996', '1008', '1020', '1032', '1044', '1056', '1068', '1080', '1092', '1104', '1116', '1128', '1140', '1152', '1164', '1176', '1188', '1200', '1212', '1224', '1236', '1248', '1260', '1272', '1284', '1296', '1308', '1320', '1332', '1344', '1356', '1368', '1380', '1392', '1404', '1416', '1428', '1440', '1452', '1464', '1476', '1488', '1500', '1512', '1524', '1536', '1548', '1560', '1572', '1584', '1596', '1608', '1620', '1632', '1644', '1656', '1668', '1680', '1692', '1704', '1716', '1728', '1740', '1752', '1764', '1776', '1788', '1800', '1812', '1824', '1836', '1848', '1860', '1872', '1884', '1896', '1908', '1920', '1932', '1944', '1956', '1968', '1980', '1992', '2004', '2016', '2028', '2040', '2052', '2064', '2076', '2088', '2100', '2112', '2124', '2136', '2148', '2160', '2172', '2184', '2196', '2208', '2220', '2232', '2244', '2256', '2268', '2280', '2292', '2304', '2316', '2328', '2340', '2352', '2364', '2376', '2388', '2400', '2412', '2424', '2436', '2448', '2460', '2472', '2484', '2496', '2508', '2520', '2532', '2544', '2556', '2568', '2580', '2592', '2604', '2616', '2628', '2640', '2652', '2664', '2676', '2688', '2700', '2712', '2724', '2736', '2748', '2760', '2772', '2784', '2796', '2808', '2820', '2832', '2844', '2856', '2868', '2880', '2892', '2904', '2916', '2928', '2940', '2952', '2964', '2976', '2988', '3000', '3012', '3024', '3036', '3048', '3060', '3072', '3084', '3096', '3108', '3120', '3132', '3144', '3156', '3168', '3180', '3192', '3204', '3216', '3228', '3240', '3252', '3264', '3276', '3288', '3300', '3312', '3324', '3336', '3348', '3360', '3372', '3384', '3396', '3408', '3420', '3432', '3444', '3456', '3468', '3480', '3492', '3504', '3516', '3528', '3540', '3552', '3564', '3576', '3588', '3600', '3612', '3624', '3636', '3648', '3660', '3672', '3684', '3696', '3708', '3720', '3732', '3744', '3756', '3768', '3780', '3792', '3804', '3816', '3828', '3840', '3852', '3864', '3876', '3888', '3900', '3912', '3924', '3936', '3948', '3960', '3972', '3984', '3996', '4008', '4020', '4032', '4044', '4056', '4068', '4080', '4092', '4104', '4116', '4128', '4140', '4152', '4164', '4176', '4188', '4200', '4212', '4224', '4236', '4248', '4260', '4272', '4284', '4296', '4308', '4320', '4332', '4344', '4356', '4368', '4380', '4392', '4404', '4416', '4428', '4440', '4452', '4464', '4476', '4488', '4500', '4512', '4524', '4536', '4548', '4560', '4572', '4584', '4596', '4608', '4620', '4632', '4644', '4656', '4668', '4680', '4692', '4704', '4716', '4728', '4740', '4752', '4764', '4776', '4788', '4800', '4812', '4824', '4836', '4848', '4860', '4872', '4884', '4896', '4908', '4920', '4932', '4944', '4956', '4968', '4980', '4992', '5004', '5016', '5028', '5040', '5052', '5064', '5076', '5088', '5100', '5112', '5124', '5136', '5148', '5160']
         assert leadtime_hour in leadtime_hour_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
         variable_valid_values = ['geopotential', 'specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind']
         assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
         pressure_level_valid_values = ['10', '30', '50', '100', '200', '300', '400', '500', '700', '850', '925', '1000']
         assert pressure_level in pressure_level_valid_values
 
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(system=system, day=day, originating_centre=originating_centre, year=year, leadtime_hour=leadtime_hour, month=month, variable=variable, pressure_level=pressure_level, data_format=data_format, area_group=area_group)
-
+        return download_data(system=system, originating_centre=originating_centre, leadtime_hour=leadtime_hour, variable=variable, month=month, pressure_level=pressure_level, day=day, year=year, data_format=data_format, area_group=area_group)
 class Collection_satellite_albedo(Collection):
 
     @Collection.wrapper
-    def download(cls, product_version: OneOrMore[str], year: OneOrMore[str], sensor: str, nominal_day: OneOrMore[str], month: OneOrMore[str], horizontal_resolution: OneOrMore[str], satellite: OneOrMore[str], variable: OneOrMore[str], area: Optional[str] = None, area_group: Optional[Union[GeographicExtentMapType, LabelType]] = None): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], sensor: str, nominal_day: OneOrMore[str], satellite: OneOrMore[str], product_version: OneOrMore[str], horizontal_resolution: OneOrMore[str], year: OneOrMore[str], area_group: Optional[Union[GeographicExtentMapType, LabelType]] = None, area: Optional[str] = None): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, product_version: OneOrMore[str], year: OneOrMore[str], sensor: str, nominal_day: OneOrMore[str], month: OneOrMore[str], horizontal_resolution: OneOrMore[str], satellite: OneOrMore[str], variable: OneOrMore[str], area: Optional[str] = None, area_group: Optional[Union[GeographicExtentMapType, LabelType]] = None):
-        product_version_valid_values = ['v0', 'v1', 'v2', 'v3']
-        assert product_version in product_version_valid_values
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], sensor: str, nominal_day: OneOrMore[str], satellite: OneOrMore[str], product_version: OneOrMore[str], horizontal_resolution: OneOrMore[str], year: OneOrMore[str], area_group: Optional[Union[GeographicExtentMapType, LabelType]] = None, area: Optional[str] = None):
+        variable_valid_values = ['albb_bh', 'albb_dh', 'alsp_bh', 'alsp_dh']
+        assert variable in variable_valid_values
 
-        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
-        assert year in year_valid_values
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
         sensor_valid_values = ['avhrr', 'vgt', 'olci_and_slstr']
         assert sensor in sensor_valid_values
@@ -356,65 +344,63 @@ class Collection_satellite_albedo(Collection):
         nominal_day_valid_values = ['03', '10', '13', '20', '21', '22', '23', '24', '28', '29', '30', '31']
         assert nominal_day in nominal_day_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
+        satellite_valid_values = ['proba', 'spot', 'noaa_7', 'noaa_9', 'noaa_11', 'noaa_14', 'noaa_16', 'noaa_17', 'sentinel_3']
+        assert satellite in satellite_valid_values
+
+        product_version_valid_values = ['v0', 'v1', 'v2', 'v3']
+        assert product_version in product_version_valid_values
 
         horizontal_resolution_valid_values = ['300m', '1km', '4km']
         assert horizontal_resolution in horizontal_resolution_valid_values
 
-        satellite_valid_values = ['proba', 'spot', 'noaa_7', 'noaa_9', 'noaa_11', 'noaa_14', 'noaa_16', 'noaa_17', 'sentinel_3']
-        assert satellite in satellite_valid_values
+        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+        assert year in year_valid_values
 
-        variable_valid_values = ['albb_bh', 'albb_dh', 'alsp_bh', 'alsp_dh']
-        assert variable in variable_valid_values
-
-        return download_data(product_version=product_version, year=year, sensor=sensor, nominal_day=nominal_day, month=month, horizontal_resolution=horizontal_resolution, satellite=satellite, variable=variable, area=area, area_group=area_group)
-
+        return download_data(variable=variable, month=month, sensor=sensor, nominal_day=nominal_day, satellite=satellite, product_version=product_version, horizontal_resolution=horizontal_resolution, year=year, area_group=area_group, area=area)
 class Collection_satellite_upper_troposphere_humidity(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: OneOrMore[str], sensor_on_satellite: str, month: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global', variable: str = 'all'): UNREACHABLE()
+    def download(cls, sensor_on_satellite: str, month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], variable: str = 'all', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: OneOrMore[str], sensor_on_satellite: str, month: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global', variable: str = 'all'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        year_valid_values = ['1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
-        assert year in year_valid_values
-
+    def __download__(cls, sensor_on_satellite: str, month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], variable: str = 'all', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
         sensor_on_satellite_valid_values = ['mhs_on_metop_a', 'mhs_on_metop_b', 'mhs_on_metop_c', 'amsu_b_on_noaa_15', 'amsu_b_on_noaa_16', 'amsu_b_on_noaa_17', 'mhs_on_noaa_18', 'mhs_on_noaa_19']
         assert sensor_on_satellite in sensor_on_satellite_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+        assert year in year_valid_values
+
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(day=day, year=year, sensor_on_satellite=sensor_on_satellite, month=month, area_group=area_group, variable=variable)
-
+        return download_data(sensor_on_satellite=sensor_on_satellite, month=month, day=day, year=year, variable=variable, area_group=area_group)
 class Collection_projections_cordex_domains_single_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, start_year: OneOrMore[str], ensemble_member: str, end_year: OneOrMore[str], rcm_model: str, gcm_model: str, horizontal_resolution: str, temporal_resolution: str, variable: OneOrMore[str], experiment: str, domain: str): UNREACHABLE()
+    def download(cls, ensemble_member: str, end_year: OneOrMore[str], variable: OneOrMore[str], domain: str, experiment: str, horizontal_resolution: str, temporal_resolution: str, start_year: OneOrMore[str], gcm_model: str, rcm_model: str): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, start_year: OneOrMore[str], ensemble_member: str, end_year: OneOrMore[str], rcm_model: str, gcm_model: str, horizontal_resolution: str, temporal_resolution: str, variable: OneOrMore[str], experiment: str, domain: str):
-        start_year_valid_values = ['1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100']
-        assert start_year in start_year_valid_values
-
+    def __download__(cls, ensemble_member: str, end_year: OneOrMore[str], variable: OneOrMore[str], domain: str, experiment: str, horizontal_resolution: str, temporal_resolution: str, start_year: OneOrMore[str], gcm_model: str, rcm_model: str):
         ensemble_member_valid_values = ['r1i1p1', 'r2i1p1', 'r3i1p1', 'r6i1p1', 'r12i1p1', 'r0i0p0']
         assert ensemble_member in ensemble_member_valid_values
 
         end_year_valid_values = ['1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100', '2101']
         assert end_year in end_year_valid_values
 
-        rcm_model_valid_values = ['awi_hirham5', 'bccr_wrf331', 'boun_regcm4_3', 'cccma_canrcm4', 'clmcom_btu_cclm4_8_17', 'clmcom_clm_cclm4_8_17', 'clmcom_cclm4_8_17_clm3_5', 'clmcom_cclm5_0_2', 'clmcom_eth_cosmo_crclim', 'clmcom_hzg_cclm5_0_15', 'clmcom_kit_cclm5_0_15', 'cmcc_cclm4_8_19', 'cnrm_aladin52', 'cnrm_aladin53', 'cnrm_aladin63', 'csiro_ccam_2008', 'cyi_wrf351', 'dmi_hirham5', 'elu_regcm4_3', 'gerics_remo2009', 'gerics_remo2015', 'guf_cclm4_8_18_germany', 'ictp_regcm4_3', 'ictp_regcm4_4', 'ictp_regcm4_6', 'ictp_regcm4_7', 'iitm_regcm4_4', 'inpe_eta', 'ipsl_wrf381p', 'isu_regcm4', 'knmi_racmo21p', 'knmi_racmo22e', 'knmi_racmo22t', 'lmd_lmdz4nemomed8', 'mgo_rrcm', 'mohc_hadrem3_ga7_05', 'mohc_hadrm3p', 'mpi_csc_remo2009', 'ncar_regcm4', 'ncar_wrf', 'ornl_regcm4_7', 'ouranos_crcm5', 'rmib_ugent_alaro_0', 'ru_core_regcm4_3', 'smhi_rca4', 'smhi_rca4_sn', 'ua_wrf', 'ucan_wrf341i', 'uhoh_wrf361h', 'ulg_mar311', 'ulg_mar36', 'unsw_wrf360j', 'unsw_wrf360k', 'unsw_wrf360l', 'uqam_crcm5', 'uqam_crcm5_sn']
-        assert rcm_model in rcm_model_valid_values
+        variable_valid_values = ['2m_air_temperature', '2m_relative_humidity', '2m_surface_specific_humidity', '10m_u_component_of_the_wind', '10m_v_component_of_the_wind', '10m_wind_speed', 'maximum_2m_temperature_in_the_last_24_hours', 'minimum_2m_temperature_in_the_last_24_hours', '200hpa_temperature', '200hpa_u_component_of_the_wind', '200hpa_v_component_of_the_wind', '500hpa_geopotential_height', '850hpa_u_component_of_the_wind', '850hpa_v_component_of_the_wind', 'evaporation', 'land_area_fraction', 'mean_sea_level_pressure', 'mean_precipitation_flux', 'orography', 'surface_pressure', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downward', 'surface_upwelling_shortwave_radiation', 'total_cloud_cover', 'total_run_off_flux']
+        assert variable in variable_valid_values
 
-        gcm_model_valid_values = ['cccma_canesm2', 'cnrm_cerfacs_cm5', 'csiro_bom_access1_0', 'csiro_bom_access1_3', 'csiro_qccce_csiro_mk3_6_0', 'era_interim', 'ichec_ec_earth', 'ipsl_cm5a_lr', 'ipsl_cm5a_mr', 'miroc_miroc5', 'mohc_hadgem2_es', 'mpi_m_mpi_esm_lr', 'mpi_m_mpi_esm_mr', 'ncar_ccsm4', 'ncc_noresm1_m', 'noaa_gfdl_gfdl_esm2g', 'noaa_gfdl_esm2m']
-        assert gcm_model in gcm_model_valid_values
+        domain_valid_values = ['africa', 'antarctic', 'arctic', 'australasia', 'central_america', 'central_asia', 'east_asia', 'europe', 'mediterranean', 'middle_east_and_north_africa', 'north_america', 'south_america', 'south_east_asia', 'south_asia']
+        assert domain in domain_valid_values
+
+        experiment_valid_values = ['evaluation', 'historical', 'rcp_2_6', 'rcp_4_5', 'rcp_8_5']
+        assert experiment in experiment_valid_values
 
         horizontal_resolution_valid_values = ['0_11_degree_x_0_11_degree', '0_20_degree_x_0_20_degree', '0_22_degree_x_0_22_degree', '0_44_degree_x_0_44_degree', 'interpolated_0_44_degree_x_0_44_degree']
         assert horizontal_resolution in horizontal_resolution_valid_values
@@ -422,152 +408,141 @@ class Collection_projections_cordex_domains_single_levels(Collection):
         temporal_resolution_valid_values = ['daily_mean', 'monthly_mean', 'seasonal_mean', '3_hours', '6_hours', 'fixed']
         assert temporal_resolution in temporal_resolution_valid_values
 
-        variable_valid_values = ['2m_air_temperature', '2m_relative_humidity', '2m_surface_specific_humidity', '10m_u_component_of_the_wind', '10m_v_component_of_the_wind', '10m_wind_speed', 'maximum_2m_temperature_in_the_last_24_hours', 'minimum_2m_temperature_in_the_last_24_hours', '200hpa_temperature', '200hpa_u_component_of_the_wind', '200hpa_v_component_of_the_wind', '500hpa_geopotential_height', '850hpa_u_component_of_the_wind', '850hpa_v_component_of_the_wind', 'evaporation', 'land_area_fraction', 'mean_sea_level_pressure', 'mean_precipitation_flux', 'orography', 'surface_pressure', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downward', 'surface_upwelling_shortwave_radiation', 'total_cloud_cover', 'total_run_off_flux']
-        assert variable in variable_valid_values
+        start_year_valid_values = ['1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100']
+        assert start_year in start_year_valid_values
 
-        experiment_valid_values = ['evaluation', 'historical', 'rcp_2_6', 'rcp_4_5', 'rcp_8_5']
-        assert experiment in experiment_valid_values
+        gcm_model_valid_values = ['cccma_canesm2', 'cnrm_cerfacs_cm5', 'csiro_bom_access1_0', 'csiro_bom_access1_3', 'csiro_qccce_csiro_mk3_6_0', 'era_interim', 'ichec_ec_earth', 'ipsl_cm5a_lr', 'ipsl_cm5a_mr', 'miroc_miroc5', 'mohc_hadgem2_es', 'mpi_m_mpi_esm_lr', 'mpi_m_mpi_esm_mr', 'ncar_ccsm4', 'ncc_noresm1_m', 'noaa_gfdl_gfdl_esm2g', 'noaa_gfdl_esm2m']
+        assert gcm_model in gcm_model_valid_values
 
-        domain_valid_values = ['africa', 'antarctic', 'arctic', 'australasia', 'central_america', 'central_asia', 'east_asia', 'europe', 'mediterranean', 'middle_east_and_north_africa', 'north_america', 'south_america', 'south_east_asia', 'south_asia']
-        assert domain in domain_valid_values
+        rcm_model_valid_values = ['awi_hirham5', 'bccr_wrf331', 'boun_regcm4_3', 'cccma_canrcm4', 'clmcom_btu_cclm4_8_17', 'clmcom_clm_cclm4_8_17', 'clmcom_cclm4_8_17_clm3_5', 'clmcom_cclm5_0_2', 'clmcom_eth_cosmo_crclim', 'clmcom_hzg_cclm5_0_15', 'clmcom_kit_cclm5_0_15', 'cmcc_cclm4_8_19', 'cnrm_aladin52', 'cnrm_aladin53', 'cnrm_aladin63', 'csiro_ccam_2008', 'cyi_wrf351', 'dmi_hirham5', 'elu_regcm4_3', 'gerics_remo2009', 'gerics_remo2015', 'guf_cclm4_8_18_germany', 'ictp_regcm4_3', 'ictp_regcm4_4', 'ictp_regcm4_6', 'ictp_regcm4_7', 'iitm_regcm4_4', 'inpe_eta', 'ipsl_wrf381p', 'isu_regcm4', 'knmi_racmo21p', 'knmi_racmo22e', 'knmi_racmo22t', 'lmd_lmdz4nemomed8', 'mgo_rrcm', 'mohc_hadrem3_ga7_05', 'mohc_hadrm3p', 'mpi_csc_remo2009', 'ncar_regcm4', 'ncar_wrf', 'ornl_regcm4_7', 'ouranos_crcm5', 'rmib_ugent_alaro_0', 'ru_core_regcm4_3', 'smhi_rca4', 'smhi_rca4_sn', 'ua_wrf', 'ucan_wrf341i', 'uhoh_wrf361h', 'ulg_mar311', 'ulg_mar36', 'unsw_wrf360j', 'unsw_wrf360k', 'unsw_wrf360l', 'uqam_crcm5', 'uqam_crcm5_sn']
+        assert rcm_model in rcm_model_valid_values
 
-        return download_data(start_year=start_year, ensemble_member=ensemble_member, end_year=end_year, rcm_model=rcm_model, gcm_model=gcm_model, horizontal_resolution=horizontal_resolution, temporal_resolution=temporal_resolution, variable=variable, experiment=experiment, domain=domain)
-
+        return download_data(ensemble_member=ensemble_member, end_year=end_year, variable=variable, domain=domain, experiment=experiment, horizontal_resolution=horizontal_resolution, temporal_resolution=temporal_resolution, start_year=start_year, gcm_model=gcm_model, rcm_model=rcm_model)
 class Collection_sis_health_vector(Collection):
 
     @Collection.wrapper
-    def download(cls, ensemble_statistic: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str]): UNREACHABLE()
+    def download(cls, experiment: OneOrMore[str], ensemble_statistic: OneOrMore[str], variable: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, ensemble_statistic: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str]):
+    def __download__(cls, experiment: OneOrMore[str], ensemble_statistic: OneOrMore[str], variable: OneOrMore[str]):
+        experiment_valid_values = ['rcp4_5', 'rcp8_5']
+        assert experiment in experiment_valid_values
+
         ensemble_statistic_valid_values = ['ensemble_members_average', 'ensemble_members_standard_deviation']
         assert ensemble_statistic in ensemble_statistic_valid_values
 
         variable_valid_values = ['suitability', 'season_length']
         assert variable in variable_valid_values
 
-        experiment_valid_values = ['rcp4_5', 'rcp8_5']
-        assert experiment in experiment_valid_values
-
-        return download_data(ensemble_statistic=ensemble_statistic, variable=variable, experiment=experiment)
-
+        return download_data(experiment=experiment, ensemble_statistic=ensemble_statistic, variable=variable)
 class Collection_reanalysis_cerra_pressure_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], data_type: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
+    def download(cls, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], data_type: OneOrMore[str], pressure_level: OneOrMore[str], day: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], data_type: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
-        assert time in time_valid_values
-
-        data_type_valid_values = ['ensemble_members', 'reanalysis']
-        assert data_type in data_type_valid_values
-
-        year_valid_values = ['1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
-        assert year in year_valid_values
-
+    def __download__(cls, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], data_type: OneOrMore[str], pressure_level: OneOrMore[str], day: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'):
         leadtime_hour_valid_values = ['1', '2', '3', '4', '5', '6', '9', '12', '15', '18', '21', '24', '27', '30']
         assert leadtime_hour in leadtime_hour_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        product_type_valid_values = ['analysis', 'forecast']
-        assert product_type in product_type_valid_values
 
         variable_valid_values = ['cloud_cover', 'geopotential', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_rain_water_content', 'specific_snow_water_content', 'temperature', 'turbulent_kinetic_energy', 'u_component_of_wind', 'v_component_of_wind']
         assert variable in variable_valid_values
 
+        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
+        assert time in time_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        data_type_valid_values = ['ensemble_members', 'reanalysis']
+        assert data_type in data_type_valid_values
+
         pressure_level_valid_values = ['1', '2', '3', '5', '7', '10', '20', '30', '50', '70', '100', '150', '200', '250', '300', '400', '500', '600', '700', '750', '800', '825', '850', '875', '900', '925', '950', '975', '1000']
         assert pressure_level in pressure_level_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        product_type_valid_values = ['analysis', 'forecast']
+        assert product_type in product_type_valid_values
+
+        year_valid_values = ['1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+        assert year in year_valid_values
 
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(day=day, time=time, data_type=data_type, year=year, leadtime_hour=leadtime_hour, month=month, product_type=product_type, variable=variable, pressure_level=pressure_level, data_format=data_format)
-
+        return download_data(leadtime_hour=leadtime_hour, variable=variable, time=time, month=month, data_type=data_type, pressure_level=pressure_level, day=day, product_type=product_type, year=year, data_format=data_format)
 class Collection_sis_marine_properties(Collection):
 
     @Collection.wrapper
-    def download(cls, time_aggregation: str, vertical_resolution: str, origin: str, year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str]): UNREACHABLE()
+    def download(cls, origin: str, time_aggregation: str, vertical_resolution: str, month: OneOrMore[str], experiment: OneOrMore[str], variable: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, time_aggregation: str, vertical_resolution: str, origin: str, year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str]):
+    def __download__(cls, origin: str, time_aggregation: str, vertical_resolution: str, month: OneOrMore[str], experiment: OneOrMore[str], variable: OneOrMore[str], year: OneOrMore[str]):
+        origin_valid_values = ['nemo_ersem', 'polcoms_ersem']
+        assert origin in origin_valid_values
+
         time_aggregation_valid_values = ['day', 'month']
         assert time_aggregation in time_aggregation_valid_values
 
         vertical_resolution_valid_values = ['surface', 'water_column']
         assert vertical_resolution in vertical_resolution_valid_values
 
-        origin_valid_values = ['nemo_ersem', 'polcoms_ersem']
-        assert origin in origin_valid_values
-
-        year_valid_values = ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099']
-        assert year in year_valid_values
-
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
-
-        variable_valid_values = ['apparent_oxygen_utilisation', 'total_chlorophyll_a', 'euphotic_zone_chlorophyll_a', 'euphotic_zone_depth', 'mole_concentration_of_nitrate_and_nitrite', 'mole_concentration_of_dissolved_oxygen', 'potential_energy_anomaly', 'sea_water_ph', 'phytoplankton_carbon', 'mole_concentration_of_phosphate', 'net_primary_production', 'saturation_state_of_aragonite', 'mole_concentration_of_silicate', 'sea_water_salinity', 'sea_water_potential_temperature', 'organic_carbon_in_the_water_column', 'u_component_of_water_velocity', 'v_component_of_water_velocity', 'zooplankton_carbon', 'secondary_production']
-        assert variable in variable_valid_values
 
         experiment_valid_values = ['rcp4_5', 'rcp8_5']
         assert experiment in experiment_valid_values
 
-        return download_data(time_aggregation=time_aggregation, vertical_resolution=vertical_resolution, origin=origin, year=year, month=month, variable=variable, experiment=experiment)
+        variable_valid_values = ['apparent_oxygen_utilisation', 'total_chlorophyll_a', 'euphotic_zone_chlorophyll_a', 'euphotic_zone_depth', 'mole_concentration_of_nitrate_and_nitrite', 'mole_concentration_of_dissolved_oxygen', 'potential_energy_anomaly', 'sea_water_ph', 'phytoplankton_carbon', 'mole_concentration_of_phosphate', 'net_primary_production', 'saturation_state_of_aragonite', 'mole_concentration_of_silicate', 'sea_water_salinity', 'sea_water_potential_temperature', 'organic_carbon_in_the_water_column', 'u_component_of_water_velocity', 'v_component_of_water_velocity', 'zooplankton_carbon', 'secondary_production']
+        assert variable in variable_valid_values
 
+        year_valid_values = ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099']
+        assert year in year_valid_values
+
+        return download_data(origin=origin, time_aggregation=time_aggregation, vertical_resolution=vertical_resolution, month=month, experiment=experiment, variable=variable, year=year)
 class Collection_reanalysis_uerra_europe_soil_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], origin: str, year: OneOrMore[str], month: OneOrMore[str], soil_level: OneOrMore[str], variable: str, data_format: str = 'grib'): UNREACHABLE()
+    def download(cls, origin: str, variable: str, soil_level: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], origin: str, year: OneOrMore[str], month: OneOrMore[str], soil_level: OneOrMore[str], variable: str, data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_valid_values = ['00:00', '06:00', '12:00', '18:00']
-        assert time in time_valid_values
-
+    def __download__(cls, origin: str, variable: str, soil_level: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'):
         origin_valid_values = ['mescan_surfex', 'uerra_harmonie']
         assert origin in origin_valid_values
-
-        year_valid_values = ['1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
-        assert year in year_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        soil_level_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14']
-        assert soil_level in soil_level_valid_values
 
         variable_valid_values = ['soil_temperature', 'volumetric_soil_moisture', 'volumetric_transpiration_stress_onset', 'volumetric_wilting_point']
         assert variable in variable_valid_values
 
+        soil_level_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14']
+        assert soil_level in soil_level_valid_values
+
+        time_valid_values = ['00:00', '06:00', '12:00', '18:00']
+        assert time in time_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+        assert year in year_valid_values
+
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(day=day, time=time, origin=origin, year=year, month=month, soil_level=soil_level, variable=variable, data_format=data_format)
-
+        return download_data(origin=origin, variable=variable, soil_level=soil_level, time=time, month=month, day=day, year=year, data_format=data_format)
 class Collection_sis_biodiversity_era5_regional(Collection):
 
     @Collection.wrapper
-    def download(cls, region: OneOrMore[str], origin: str, statistic: OneOrMore[str], derived_variable: OneOrMore[str], variable: OneOrMore[str], version: OneOrMore[str] = '1.0'): UNREACHABLE()
+    def download(cls, origin: str, derived_variable: OneOrMore[str], variable: OneOrMore[str], region: OneOrMore[str], statistic: OneOrMore[str], version: OneOrMore[str] = '1.0'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, region: OneOrMore[str], origin: str, statistic: OneOrMore[str], derived_variable: OneOrMore[str], variable: OneOrMore[str], version: OneOrMore[str] = '1.0'):
-        region_valid_values = ['central_africa', 'northern_brazil', 'europe']
-        assert region in region_valid_values
-
+    def __download__(cls, origin: str, derived_variable: OneOrMore[str], variable: OneOrMore[str], region: OneOrMore[str], statistic: OneOrMore[str], version: OneOrMore[str] = '1.0'):
         origin_valid_values = ['era5', 'era5_land']
         assert origin in origin_valid_values
-
-        statistic_valid_values = ['mean', 'median', '25th_quartile', '75th_quartile']
-        assert statistic in statistic_valid_values
 
         derived_variable_valid_values = ['annual_maximum', 'annual_maximum_of_daily_mean', 'annual_mean', 'annual_mean_of_daily_maximum', 'annual_mean_of_daily_minimum', 'annual_minimum', 'annual_sum', 'coldest_quarter', 'driest_quarter', 'end_of_season', 'length_of_season', 'maximum_length', 'mean_intensity', 'mean_length_with_minimum_5_days', 'monthly_mean', 'monthly_mean_of_daily_maximum', 'monthly_mean_of_daily_minimum', 'monthly_sum', 'number_of_occurrences', 'start_of_season', 'warmest_quarter', 'wettest_quarter']
         assert derived_variable in derived_variable_valid_values
@@ -575,18 +550,29 @@ class Collection_sis_biodiversity_era5_regional(Collection):
         variable_valid_values = ['annual_mean_temperature', 'mean_diurnal_range', 'isothermality', 'temperature_seasonality', 'maximum_temperature_of_warmest_month', 'minimum_temperature_of_coldest_month', 'temperature_annual_range', 'mean_temperature_of_wettest_quarter', 'mean_temperature_of_driest_quarter', 'mean_temperature_of_warmest_quarter', 'mean_temperature_of_coldest_quarter', 'annual_precipitation', 'precipitation_of_wettest_month', 'precipitation_of_driest_month', 'precipitation_seasonality', 'precipitation_of_wettest_quarter', 'precipitation_of_driest_quarter', 'precipitation_of_warmest_quarter', 'precipitation_of_coldest_quarter', 'aridity', 'dry_spells', 'dry_days', 'summer_days', 'surface_latent_heat_flux', 'surface_sensible_heat_flux', 'evaporative_fraction', 'frost_days', 'growing_season', 'growing_degree_days', 'growing_degree_days_during_growing_season_length', 'koeppen_geiger_class', 'potential_evaporation', '2m_temperature', 'precipitation', 'water_vapor_pressure', 'cloud_cover', 'volumetric_soil_water', 'wind_speed', 'zonal_wind_speed', 'meridional_wind_speed']
         assert variable in variable_valid_values
 
+        region_valid_values = ['central_africa', 'northern_brazil', 'europe']
+        assert region in region_valid_values
+
+        statistic_valid_values = ['mean', 'median', '25th_quartile', '75th_quartile']
+        assert statistic in statistic_valid_values
+
         version_valid_values = ['1_0']
         assert version in version_valid_values
 
-        return download_data(region=region, origin=origin, statistic=statistic, derived_variable=derived_variable, variable=variable, version=version)
-
+        return download_data(origin=origin, derived_variable=derived_variable, variable=variable, region=region, statistic=statistic, version=version)
 class Collection_sis_hydrology_variables_derived_seasonal_reforecast(Collection):
 
     @Collection.wrapper
-    def download(cls, version: OneOrMore[str], hydrological_model: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str]): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], version: OneOrMore[str], hydrological_model: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, version: OneOrMore[str], hydrological_model: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str]):
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], version: OneOrMore[str], hydrological_model: OneOrMore[str], year: OneOrMore[str]):
+        variable_valid_values = ['river_discharge', 'reference_river_discharge_lower_tercile', 'reference_river_discharge_upper_tercile', 'brier_skill_score_above_normal_conditions', 'brier_skill_score_below_normal_conditions', 'continuous_ranked_probability_skill_score', 'fair_ranked_probability_skill_score']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
         version_valid_values = ['1']
         assert version in version_valid_values
 
@@ -596,179 +582,164 @@ class Collection_sis_hydrology_variables_derived_seasonal_reforecast(Collection)
         year_valid_values = ['1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
         assert year in year_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['river_discharge', 'reference_river_discharge_lower_tercile', 'reference_river_discharge_upper_tercile', 'brier_skill_score_above_normal_conditions', 'brier_skill_score_below_normal_conditions', 'continuous_ranked_probability_skill_score', 'fair_ranked_probability_skill_score']
-        assert variable in variable_valid_values
-
-        return download_data(version=version, hydrological_model=hydrological_model, year=year, month=month, variable=variable)
-
+        return download_data(variable=variable, month=month, version=version, hydrological_model=hydrological_model, year=year)
 class Collection_reanalysis_era5_single_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], download_format: str = 'unarchived', data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', product_type: OneOrMore[str] = 'reanalysis'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', download_format: str = 'unarchived', product_type: OneOrMore[str] = 'reanalysis'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], download_format: str = 'unarchived', data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', product_type: OneOrMore[str] = 'reanalysis'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', download_format: str = 'unarchived', product_type: OneOrMore[str] = 'reanalysis'):
+        variable_valid_values = ['10m_u_component_of_wind', '10m_v_component_of_wind', '2m_dewpoint_temperature', '2m_temperature', 'mean_sea_level_pressure', 'mean_wave_direction', 'mean_wave_period', 'sea_surface_temperature', 'significant_height_of_combined_wind_waves_and_swell', 'surface_pressure', 'total_precipitation', '2m_dewpoint_temperature', '2m_temperature', 'ice_temperature_layer_1', 'ice_temperature_layer_2', 'ice_temperature_layer_3', 'ice_temperature_layer_4', 'maximum_2m_temperature_since_previous_post_processing', 'mean_sea_level_pressure', 'minimum_2m_temperature_since_previous_post_processing', 'sea_surface_temperature', 'skin_temperature', 'surface_pressure', '100m_u_component_of_wind', '100m_v_component_of_wind', '10m_u_component_of_neutral_wind', '10m_u_component_of_wind', '10m_v_component_of_neutral_wind', '10m_v_component_of_wind', '10m_wind_gust_since_previous_post_processing', 'instantaneous_10m_wind_gust', 'mean_boundary_layer_dissipation', 'mean_convective_precipitation_rate', 'mean_convective_snowfall_rate', 'mean_eastward_gravity_wave_surface_stress', 'mean_eastward_turbulent_surface_stress', 'mean_evaporation_rate', 'mean_gravity_wave_dissipation', 'mean_large_scale_precipitation_fraction', 'mean_large_scale_precipitation_rate', 'mean_large_scale_snowfall_rate', 'mean_northward_gravity_wave_surface_stress', 'mean_northward_turbulent_surface_stress', 'mean_potential_evaporation_rate', 'mean_runoff_rate', 'mean_snow_evaporation_rate', 'mean_snowfall_rate', 'mean_snowmelt_rate', 'mean_sub_surface_runoff_rate', 'mean_surface_direct_short_wave_radiation_flux', 'mean_surface_direct_short_wave_radiation_flux_clear_sky', 'mean_surface_downward_long_wave_radiation_flux', 'mean_surface_downward_long_wave_radiation_flux_clear_sky', 'mean_surface_downward_short_wave_radiation_flux', 'mean_surface_downward_short_wave_radiation_flux_clear_sky', 'mean_surface_downward_uv_radiation_flux', 'mean_surface_latent_heat_flux', 'mean_surface_net_long_wave_radiation_flux', 'mean_surface_net_long_wave_radiation_flux_clear_sky', 'mean_surface_net_short_wave_radiation_flux', 'mean_surface_net_short_wave_radiation_flux_clear_sky', 'mean_surface_runoff_rate', 'mean_surface_sensible_heat_flux', 'mean_top_downward_short_wave_radiation_flux', 'mean_top_net_long_wave_radiation_flux', 'mean_top_net_long_wave_radiation_flux_clear_sky', 'mean_top_net_short_wave_radiation_flux', 'mean_top_net_short_wave_radiation_flux_clear_sky', 'mean_total_precipitation_rate', 'mean_vertically_integrated_moisture_divergence', 'clear_sky_direct_solar_radiation_at_surface', 'downward_uv_radiation_at_the_surface', 'forecast_logarithm_of_surface_roughness_for_heat', 'instantaneous_surface_sensible_heat_flux', 'near_ir_albedo_for_diffuse_radiation', 'near_ir_albedo_for_direct_radiation', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_solar_radiation_clear_sky', 'surface_net_thermal_radiation', 'surface_net_thermal_radiation_clear_sky', 'surface_sensible_heat_flux', 'surface_solar_radiation_downward_clear_sky', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downward_clear_sky', 'surface_thermal_radiation_downwards', 'toa_incident_solar_radiation', 'top_net_solar_radiation', 'top_net_solar_radiation_clear_sky', 'top_net_thermal_radiation', 'top_net_thermal_radiation_clear_sky', 'total_sky_direct_solar_radiation_at_surface', 'uv_visible_albedo_for_diffuse_radiation', 'uv_visible_albedo_for_direct_radiation', 'cloud_base_height', 'high_cloud_cover', 'low_cloud_cover', 'medium_cloud_cover', 'total_cloud_cover', 'total_column_cloud_ice_water', 'total_column_cloud_liquid_water', 'vertical_integral_of_divergence_of_cloud_frozen_water_flux', 'vertical_integral_of_divergence_of_cloud_liquid_water_flux', 'vertical_integral_of_eastward_cloud_frozen_water_flux', 'vertical_integral_of_eastward_cloud_liquid_water_flux', 'vertical_integral_of_northward_cloud_frozen_water_flux', 'vertical_integral_of_northward_cloud_liquid_water_flux', 'lake_bottom_temperature', 'lake_cover', 'lake_depth', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'evaporation', 'potential_evaporation', 'runoff', 'sub_surface_runoff', 'surface_runoff', 'convective_precipitation', 'convective_rain_rate', 'instantaneous_large_scale_surface_precipitation_fraction', 'large_scale_rain_rate', 'large_scale_precipitation', 'large_scale_precipitation_fraction', 'maximum_total_precipitation_rate_since_previous_post_processing', 'minimum_total_precipitation_rate_since_previous_post_processing', 'precipitation_type', 'total_column_rain_water', 'total_precipitation', 'convective_snowfall', 'convective_snowfall_rate_water_equivalent', 'large_scale_snowfall_rate_water_equivalent', 'large_scale_snowfall', 'snow_albedo', 'snow_density', 'snow_depth', 'snow_evaporation', 'snowfall', 'snowmelt', 'temperature_of_snow_layer', 'total_column_snow_water', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'soil_type', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', 'vertical_integral_of_divergence_of_cloud_frozen_water_flux', 'vertical_integral_of_divergence_of_cloud_liquid_water_flux', 'vertical_integral_of_divergence_of_geopotential_flux', 'vertical_integral_of_divergence_of_kinetic_energy_flux', 'vertical_integral_of_divergence_of_mass_flux', 'vertical_integral_of_divergence_of_moisture_flux', 'vertical_integral_of_divergence_of_ozone_flux', 'vertical_integral_of_divergence_of_thermal_energy_flux', 'vertical_integral_of_divergence_of_total_energy_flux', 'vertical_integral_of_eastward_cloud_frozen_water_flux', 'vertical_integral_of_eastward_cloud_liquid_water_flux', 'vertical_integral_of_eastward_geopotential_flux', 'vertical_integral_of_eastward_heat_flux', 'vertical_integral_of_eastward_kinetic_energy_flux', 'vertical_integral_of_eastward_mass_flux', 'vertical_integral_of_eastward_ozone_flux', 'vertical_integral_of_eastward_total_energy_flux', 'vertical_integral_of_eastward_water_vapour_flux', 'vertical_integral_of_energy_conversion', 'vertical_integral_of_kinetic_energy', 'vertical_integral_of_mass_of_atmosphere', 'vertical_integral_of_mass_tendency', 'vertical_integral_of_northward_cloud_frozen_water_flux', 'vertical_integral_of_northward_cloud_liquid_water_flux', 'vertical_integral_of_northward_geopotential_flux', 'vertical_integral_of_northward_heat_flux', 'vertical_integral_of_northward_kinetic_energy_flux', 'vertical_integral_of_northward_mass_flux', 'vertical_integral_of_northward_ozone_flux', 'vertical_integral_of_northward_total_energy_flux', 'vertical_integral_of_northward_water_vapour_flux', 'vertical_integral_of_potential_and_internal_energy', 'vertical_integral_of_potential_internal_and_latent_energy', 'vertical_integral_of_temperature', 'vertical_integral_of_thermal_energy', 'vertical_integral_of_total_energy', 'vertically_integrated_moisture_divergence', 'high_vegetation_cover', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation', 'low_vegetation_cover', 'type_of_high_vegetation', 'type_of_low_vegetation', 'air_density_over_the_oceans', 'coefficient_of_drag_with_waves', 'free_convective_velocity_over_the_oceans', 'maximum_individual_wave_height', 'mean_direction_of_total_swell', 'mean_direction_of_wind_waves', 'mean_period_of_total_swell', 'mean_period_of_wind_waves', 'mean_square_slope_of_waves', 'mean_wave_direction', 'mean_wave_direction_of_first_swell_partition', 'mean_wave_direction_of_second_swell_partition', 'mean_wave_direction_of_third_swell_partition', 'mean_wave_period', 'mean_wave_period_based_on_first_moment', 'mean_wave_period_based_on_first_moment_for_swell', 'mean_wave_period_based_on_first_moment_for_wind_waves', 'mean_wave_period_based_on_second_moment_for_swell', 'mean_wave_period_based_on_second_moment_for_wind_waves', 'mean_wave_period_of_first_swell_partition', 'mean_wave_period_of_second_swell_partition', 'mean_wave_period_of_third_swell_partition', 'mean_zero_crossing_wave_period', 'model_bathymetry', 'normalized_energy_flux_into_ocean', 'normalized_energy_flux_into_waves', 'normalized_stress_into_ocean', 'ocean_surface_stress_equivalent_10m_neutral_wind_direction', 'ocean_surface_stress_equivalent_10m_neutral_wind_speed', 'peak_wave_period', 'period_corresponding_to_maximum_individual_wave_height', 'significant_height_of_combined_wind_waves_and_swell', 'significant_height_of_total_swell', 'significant_height_of_wind_waves', 'significant_wave_height_of_first_swell_partition', 'significant_wave_height_of_second_swell_partition', 'significant_wave_height_of_third_swell_partition', 'wave_spectral_directional_width', 'wave_spectral_directional_width_for_swell', 'wave_spectral_directional_width_for_wind_waves', 'wave_spectral_kurtosis', 'wave_spectral_peakedness', 'wave_spectral_skewness', 'angle_of_sub_gridscale_orography', 'anisotropy_of_sub_gridscale_orography', 'benjamin_feir_index', 'boundary_layer_dissipation', 'boundary_layer_height', 'charnock', 'convective_available_potential_energy', 'convective_inhibition', 'duct_base_height', 'eastward_gravity_wave_surface_stress', 'eastward_turbulent_surface_stress', 'forecast_albedo', 'forecast_surface_roughness', 'friction_velocity', 'geopotential', 'gravity_wave_dissipation', 'instantaneous_eastward_turbulent_surface_stress', 'instantaneous_moisture_flux', 'instantaneous_northward_turbulent_surface_stress', 'k_index', 'land_sea_mask', 'mean_vertical_gradient_of_refractivity_inside_trapping_layer', 'minimum_vertical_gradient_of_refractivity_inside_trapping_layer', 'northward_gravity_wave_surface_stress', 'northward_turbulent_surface_stress', 'sea_ice_cover', 'skin_reservoir_content', 'slope_of_sub_gridscale_orography', 'standard_deviation_of_filtered_subgrid_orography', 'standard_deviation_of_orography', 'total_column_ozone', 'total_column_supercooled_liquid_water', 'total_column_water', 'total_column_water_vapour', 'total_totals_index', 'trapping_layer_base_height', 'trapping_layer_top_height', 'u_component_stokes_drift', 'v_component_stokes_drift', 'zero_degree_level']
+        assert variable in variable_valid_values
 
         time_valid_values = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
         assert time in time_valid_values
 
-        year_valid_values = ['1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        variable_valid_values = ['10m_u_component_of_wind', '10m_v_component_of_wind', '2m_dewpoint_temperature', '2m_temperature', 'mean_sea_level_pressure', 'mean_wave_direction', 'mean_wave_period', 'sea_surface_temperature', 'significant_height_of_combined_wind_waves_and_swell', 'surface_pressure', 'total_precipitation', '2m_dewpoint_temperature', '2m_temperature', 'ice_temperature_layer_1', 'ice_temperature_layer_2', 'ice_temperature_layer_3', 'ice_temperature_layer_4', 'maximum_2m_temperature_since_previous_post_processing', 'mean_sea_level_pressure', 'minimum_2m_temperature_since_previous_post_processing', 'sea_surface_temperature', 'skin_temperature', 'surface_pressure', '100m_u_component_of_wind', '100m_v_component_of_wind', '10m_u_component_of_neutral_wind', '10m_u_component_of_wind', '10m_v_component_of_neutral_wind', '10m_v_component_of_wind', '10m_wind_gust_since_previous_post_processing', 'instantaneous_10m_wind_gust', 'mean_boundary_layer_dissipation', 'mean_convective_precipitation_rate', 'mean_convective_snowfall_rate', 'mean_eastward_gravity_wave_surface_stress', 'mean_eastward_turbulent_surface_stress', 'mean_evaporation_rate', 'mean_gravity_wave_dissipation', 'mean_large_scale_precipitation_fraction', 'mean_large_scale_precipitation_rate', 'mean_large_scale_snowfall_rate', 'mean_northward_gravity_wave_surface_stress', 'mean_northward_turbulent_surface_stress', 'mean_potential_evaporation_rate', 'mean_runoff_rate', 'mean_snow_evaporation_rate', 'mean_snowfall_rate', 'mean_snowmelt_rate', 'mean_sub_surface_runoff_rate', 'mean_surface_direct_short_wave_radiation_flux', 'mean_surface_direct_short_wave_radiation_flux_clear_sky', 'mean_surface_downward_long_wave_radiation_flux', 'mean_surface_downward_long_wave_radiation_flux_clear_sky', 'mean_surface_downward_short_wave_radiation_flux', 'mean_surface_downward_short_wave_radiation_flux_clear_sky', 'mean_surface_downward_uv_radiation_flux', 'mean_surface_latent_heat_flux', 'mean_surface_net_long_wave_radiation_flux', 'mean_surface_net_long_wave_radiation_flux_clear_sky', 'mean_surface_net_short_wave_radiation_flux', 'mean_surface_net_short_wave_radiation_flux_clear_sky', 'mean_surface_runoff_rate', 'mean_surface_sensible_heat_flux', 'mean_top_downward_short_wave_radiation_flux', 'mean_top_net_long_wave_radiation_flux', 'mean_top_net_long_wave_radiation_flux_clear_sky', 'mean_top_net_short_wave_radiation_flux', 'mean_top_net_short_wave_radiation_flux_clear_sky', 'mean_total_precipitation_rate', 'mean_vertically_integrated_moisture_divergence', 'clear_sky_direct_solar_radiation_at_surface', 'downward_uv_radiation_at_the_surface', 'forecast_logarithm_of_surface_roughness_for_heat', 'instantaneous_surface_sensible_heat_flux', 'near_ir_albedo_for_diffuse_radiation', 'near_ir_albedo_for_direct_radiation', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_solar_radiation_clear_sky', 'surface_net_thermal_radiation', 'surface_net_thermal_radiation_clear_sky', 'surface_sensible_heat_flux', 'surface_solar_radiation_downward_clear_sky', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downward_clear_sky', 'surface_thermal_radiation_downwards', 'toa_incident_solar_radiation', 'top_net_solar_radiation', 'top_net_solar_radiation_clear_sky', 'top_net_thermal_radiation', 'top_net_thermal_radiation_clear_sky', 'total_sky_direct_solar_radiation_at_surface', 'uv_visible_albedo_for_diffuse_radiation', 'uv_visible_albedo_for_direct_radiation', 'cloud_base_height', 'high_cloud_cover', 'low_cloud_cover', 'medium_cloud_cover', 'total_cloud_cover', 'total_column_cloud_ice_water', 'total_column_cloud_liquid_water', 'vertical_integral_of_divergence_of_cloud_frozen_water_flux', 'vertical_integral_of_divergence_of_cloud_liquid_water_flux', 'vertical_integral_of_eastward_cloud_frozen_water_flux', 'vertical_integral_of_eastward_cloud_liquid_water_flux', 'vertical_integral_of_northward_cloud_frozen_water_flux', 'vertical_integral_of_northward_cloud_liquid_water_flux', 'lake_bottom_temperature', 'lake_cover', 'lake_depth', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'evaporation', 'potential_evaporation', 'runoff', 'sub_surface_runoff', 'surface_runoff', 'convective_precipitation', 'convective_rain_rate', 'instantaneous_large_scale_surface_precipitation_fraction', 'large_scale_rain_rate', 'large_scale_precipitation', 'large_scale_precipitation_fraction', 'maximum_total_precipitation_rate_since_previous_post_processing', 'minimum_total_precipitation_rate_since_previous_post_processing', 'precipitation_type', 'total_column_rain_water', 'total_precipitation', 'convective_snowfall', 'convective_snowfall_rate_water_equivalent', 'large_scale_snowfall_rate_water_equivalent', 'large_scale_snowfall', 'snow_albedo', 'snow_density', 'snow_depth', 'snow_evaporation', 'snowfall', 'snowmelt', 'temperature_of_snow_layer', 'total_column_snow_water', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'soil_type', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', 'vertical_integral_of_divergence_of_cloud_frozen_water_flux', 'vertical_integral_of_divergence_of_cloud_liquid_water_flux', 'vertical_integral_of_divergence_of_geopotential_flux', 'vertical_integral_of_divergence_of_kinetic_energy_flux', 'vertical_integral_of_divergence_of_mass_flux', 'vertical_integral_of_divergence_of_moisture_flux', 'vertical_integral_of_divergence_of_ozone_flux', 'vertical_integral_of_divergence_of_thermal_energy_flux', 'vertical_integral_of_divergence_of_total_energy_flux', 'vertical_integral_of_eastward_cloud_frozen_water_flux', 'vertical_integral_of_eastward_cloud_liquid_water_flux', 'vertical_integral_of_eastward_geopotential_flux', 'vertical_integral_of_eastward_heat_flux', 'vertical_integral_of_eastward_kinetic_energy_flux', 'vertical_integral_of_eastward_mass_flux', 'vertical_integral_of_eastward_ozone_flux', 'vertical_integral_of_eastward_total_energy_flux', 'vertical_integral_of_eastward_water_vapour_flux', 'vertical_integral_of_energy_conversion', 'vertical_integral_of_kinetic_energy', 'vertical_integral_of_mass_of_atmosphere', 'vertical_integral_of_mass_tendency', 'vertical_integral_of_northward_cloud_frozen_water_flux', 'vertical_integral_of_northward_cloud_liquid_water_flux', 'vertical_integral_of_northward_geopotential_flux', 'vertical_integral_of_northward_heat_flux', 'vertical_integral_of_northward_kinetic_energy_flux', 'vertical_integral_of_northward_mass_flux', 'vertical_integral_of_northward_ozone_flux', 'vertical_integral_of_northward_total_energy_flux', 'vertical_integral_of_northward_water_vapour_flux', 'vertical_integral_of_potential_and_internal_energy', 'vertical_integral_of_potential_internal_and_latent_energy', 'vertical_integral_of_temperature', 'vertical_integral_of_thermal_energy', 'vertical_integral_of_total_energy', 'vertically_integrated_moisture_divergence', 'high_vegetation_cover', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation', 'low_vegetation_cover', 'type_of_high_vegetation', 'type_of_low_vegetation', 'air_density_over_the_oceans', 'coefficient_of_drag_with_waves', 'free_convective_velocity_over_the_oceans', 'maximum_individual_wave_height', 'mean_direction_of_total_swell', 'mean_direction_of_wind_waves', 'mean_period_of_total_swell', 'mean_period_of_wind_waves', 'mean_square_slope_of_waves', 'mean_wave_direction', 'mean_wave_direction_of_first_swell_partition', 'mean_wave_direction_of_second_swell_partition', 'mean_wave_direction_of_third_swell_partition', 'mean_wave_period', 'mean_wave_period_based_on_first_moment', 'mean_wave_period_based_on_first_moment_for_swell', 'mean_wave_period_based_on_first_moment_for_wind_waves', 'mean_wave_period_based_on_second_moment_for_swell', 'mean_wave_period_based_on_second_moment_for_wind_waves', 'mean_wave_period_of_first_swell_partition', 'mean_wave_period_of_second_swell_partition', 'mean_wave_period_of_third_swell_partition', 'mean_zero_crossing_wave_period', 'model_bathymetry', 'normalized_energy_flux_into_ocean', 'normalized_energy_flux_into_waves', 'normalized_stress_into_ocean', 'ocean_surface_stress_equivalent_10m_neutral_wind_direction', 'ocean_surface_stress_equivalent_10m_neutral_wind_speed', 'peak_wave_period', 'period_corresponding_to_maximum_individual_wave_height', 'significant_height_of_combined_wind_waves_and_swell', 'significant_height_of_total_swell', 'significant_height_of_wind_waves', 'significant_wave_height_of_first_swell_partition', 'significant_wave_height_of_second_swell_partition', 'significant_wave_height_of_third_swell_partition', 'wave_spectral_directional_width', 'wave_spectral_directional_width_for_swell', 'wave_spectral_directional_width_for_wind_waves', 'wave_spectral_kurtosis', 'wave_spectral_peakedness', 'wave_spectral_skewness', 'angle_of_sub_gridscale_orography', 'anisotropy_of_sub_gridscale_orography', 'benjamin_feir_index', 'boundary_layer_dissipation', 'boundary_layer_height', 'charnock', 'convective_available_potential_energy', 'convective_inhibition', 'duct_base_height', 'eastward_gravity_wave_surface_stress', 'eastward_turbulent_surface_stress', 'forecast_albedo', 'forecast_surface_roughness', 'friction_velocity', 'geopotential', 'gravity_wave_dissipation', 'instantaneous_eastward_turbulent_surface_stress', 'instantaneous_moisture_flux', 'instantaneous_northward_turbulent_surface_stress', 'k_index', 'land_sea_mask', 'mean_vertical_gradient_of_refractivity_inside_trapping_layer', 'minimum_vertical_gradient_of_refractivity_inside_trapping_layer', 'northward_gravity_wave_surface_stress', 'northward_turbulent_surface_stress', 'sea_ice_cover', 'skin_reservoir_content', 'slope_of_sub_gridscale_orography', 'standard_deviation_of_filtered_subgrid_orography', 'standard_deviation_of_orography', 'total_column_ozone', 'total_column_supercooled_liquid_water', 'total_column_water', 'total_column_water_vapour', 'total_totals_index', 'trapping_layer_base_height', 'trapping_layer_top_height', 'u_component_stokes_drift', 'v_component_stokes_drift', 'zero_degree_level']
-        assert variable in variable_valid_values
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
 
-        download_format_valid_values = ['unarchived', 'zip']
-        assert download_format in download_format_valid_values
+        year_valid_values = ['1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
 
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
+        download_format_valid_values = ['unarchived', 'zip']
+        assert download_format in download_format_valid_values
+
         product_type_valid_values = ['reanalysis', 'ensemble_members', 'ensemble_mean', 'ensemble_spread']
         assert product_type in product_type_valid_values
 
-        return download_data(day=day, time=time, year=year, month=month, variable=variable, download_format=download_format, data_format=data_format, area_group=area_group, product_type=product_type)
-
+        return download_data(variable=variable, time=time, month=month, day=day, year=year, data_format=data_format, area_group=area_group, download_format=download_format, product_type=product_type)
 class Collection_sis_energy_derived_reanalysis(Collection):
 
     @Collection.wrapper
-    def download(cls, energy_product_type: OneOrMore[str], year: OneOrMore[str], spatial_aggregation: OneOrMore[str], month: OneOrMore[str], temporal_aggregation: OneOrMore[str], variable: OneOrMore[str]): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], spatial_aggregation: OneOrMore[str], temporal_aggregation: OneOrMore[str], energy_product_type: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, energy_product_type: OneOrMore[str], year: OneOrMore[str], spatial_aggregation: OneOrMore[str], month: OneOrMore[str], temporal_aggregation: OneOrMore[str], variable: OneOrMore[str]):
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], spatial_aggregation: OneOrMore[str], temporal_aggregation: OneOrMore[str], energy_product_type: OneOrMore[str], year: OneOrMore[str]):
+        variable_valid_values = ['wind_speed_at_100m', 'wind_speed_at_10m', 'surface_downwelling_shortwave_radiation', 'pressure_at_sea_level', '2m_air_temperature', 'total_precipitation', 'electricity_demand', 'hydro_power_generation_reservoirs', 'hydro_power_generation_rivers', 'solar_photovoltaic_power_generation', 'wind_power_generation_offshore', 'wind_power_generation_onshore']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        spatial_aggregation_valid_values = ['original_grid', 'country_level', 'sub_country_level', 'maritime_country_level', 'maritime_sub_country_level']
+        assert spatial_aggregation in spatial_aggregation_valid_values
+
+        temporal_aggregation_valid_values = ['hourly', 'daily', 'monthly', 'seasonal', 'annual']
+        assert temporal_aggregation in temporal_aggregation_valid_values
+
         energy_product_type_valid_values = ['capacity_factor_ratio', 'energy', 'power']
         assert energy_product_type in energy_product_type_valid_values
 
         year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
         assert year in year_valid_values
 
-        spatial_aggregation_valid_values = ['original_grid', 'country_level', 'sub_country_level', 'maritime_country_level', 'maritime_sub_country_level']
-        assert spatial_aggregation in spatial_aggregation_valid_values
+        return download_data(variable=variable, month=month, spatial_aggregation=spatial_aggregation, temporal_aggregation=temporal_aggregation, energy_product_type=energy_product_type, year=year)
+class Collection_satellite_sea_level_global(Collection):
+
+    @Collection.wrapper
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], version: str = 'vDT2021'): UNREACHABLE()
+    
+    @classmethod
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], version: str = 'vDT2021'):
+        variable_valid_values = ['daily', 'monthly_mean']
+        assert variable in variable_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        temporal_aggregation_valid_values = ['hourly', 'daily', 'monthly', 'seasonal', 'annual']
-        assert temporal_aggregation in temporal_aggregation_valid_values
-
-        variable_valid_values = ['wind_speed_at_100m', 'wind_speed_at_10m', 'surface_downwelling_shortwave_radiation', 'pressure_at_sea_level', '2m_air_temperature', 'total_precipitation', 'electricity_demand', 'hydro_power_generation_reservoirs', 'hydro_power_generation_rivers', 'solar_photovoltaic_power_generation', 'wind_power_generation_offshore', 'wind_power_generation_onshore']
-        assert variable in variable_valid_values
-
-        return download_data(energy_product_type=energy_product_type, year=year, spatial_aggregation=spatial_aggregation, month=month, temporal_aggregation=temporal_aggregation, variable=variable)
-
-class Collection_satellite_sea_level_global(Collection):
-
-    @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], version: str = 'vDT2021'): UNREACHABLE()
-    
-    @classmethod
-    def __download__(cls, day: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], version: str = 'vDT2021'):
         day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
         assert day in day_valid_values
 
         year_valid_values = ['1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
         assert year in year_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['daily', 'monthly_mean']
-        assert variable in variable_valid_values
-
         version_valid_values = ['vdt2018', 'vdt2021']
         assert version in version_valid_values
 
-        return download_data(day=day, year=year, month=month, variable=variable, version=version)
-
+        return download_data(variable=variable, month=month, day=day, year=year, version=version)
 class Collection_satellite_sea_surface_temperature_ensemble_product(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
+    def download(cls, month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: str = 'all'):
+    def __download__(cls, month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], variable: str = 'all'):
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
         day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
         assert day in day_valid_values
 
         year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016']
         assert year in year_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(day=day, year=year, month=month, variable=variable)
-
+        return download_data(month=month, day=day, year=year, variable=variable)
 class Collection_reanalysis_carra_height_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], height_level: OneOrMore[str], month: OneOrMore[str], product_type: str, variable: OneOrMore[str], domain: str, data_format: str = 'grib'): UNREACHABLE()
+    def download(cls, height_level: OneOrMore[str], leadtime_hour: OneOrMore[str], variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], domain: str, day: OneOrMore[str], product_type: str, year: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], height_level: OneOrMore[str], month: OneOrMore[str], product_type: str, variable: OneOrMore[str], domain: str, data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
-        assert time in time_valid_values
-
-        year_valid_values = ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
+    def __download__(cls, height_level: OneOrMore[str], leadtime_hour: OneOrMore[str], variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], domain: str, day: OneOrMore[str], product_type: str, year: OneOrMore[str], data_format: str = 'grib'):
+        height_level_valid_values = ['15_m', '30_m', '50_m', '75_m', '100_m', '150_m', '200_m', '250_m', '300_m', '400_m', '500_m']
+        assert height_level in height_level_valid_values
 
         leadtime_hour_valid_values = ['1', '2', '3', '4', '5', '6', '9', '12', '15', '18', '21', '24', '27', '30']
         assert leadtime_hour in leadtime_hour_valid_values
 
-        height_level_valid_values = ['15_m', '30_m', '50_m', '75_m', '100_m', '150_m', '200_m', '250_m', '300_m', '400_m', '500_m']
-        assert height_level in height_level_valid_values
+        variable_valid_values = ['pressure', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'temperature', 'wind_direction', 'wind_speed']
+        assert variable in variable_valid_values
+
+        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
+        assert time in time_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
+        domain_valid_values = ['east_domain', 'west_domain']
+        assert domain in domain_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
         product_type_valid_values = ['analysis', 'forecast']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['pressure', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'temperature', 'wind_direction', 'wind_speed']
-        assert variable in variable_valid_values
-
-        domain_valid_values = ['east_domain', 'west_domain']
-        assert domain in domain_valid_values
+        year_valid_values = ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
 
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(day=day, time=time, year=year, leadtime_hour=leadtime_hour, height_level=height_level, month=month, product_type=product_type, variable=variable, domain=domain, data_format=data_format)
-
+        return download_data(height_level=height_level, leadtime_hour=leadtime_hour, variable=variable, time=time, month=month, domain=domain, day=day, product_type=product_type, year=year, data_format=data_format)
 class Collection_derived_era5_land_daily_statistics(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: str, month: str, variable: OneOrMore[str], time_zone: str = 'utc+00:00', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', frequency: str = '1_hourly', daily_statistic: str = 'daily_mean'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: str, day: OneOrMore[str], year: str, frequency: str = '1_hourly', daily_statistic: str = 'daily_mean', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', time_zone: str = 'utc+00:00'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: str, month: str, variable: OneOrMore[str], time_zone: str = 'utc+00:00', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', frequency: str = '1_hourly', daily_statistic: str = 'daily_mean'):
+    def __download__(cls, variable: OneOrMore[str], month: str, day: OneOrMore[str], year: str, frequency: str = '1_hourly', daily_statistic: str = 'daily_mean', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', time_zone: str = 'utc+00:00'):
+        variable_valid_values = ['2m_dewpoint_temperature', '2m_temperature', 'skin_temperature', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'lake_bottom_temperature', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'snow_albedo', 'snow_cover', 'snow_density', 'snow_depth', 'snow_depth_water_equivalent', 'temperature_of_snow_layer', 'skin_reservoir_content', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', '10m_u_component_of_wind', '10m_v_component_of_wind', 'surface_pressure', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation', 'forecast_albedo']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
         day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
         assert day in day_valid_values
 
         year_valid_values = ['1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
         assert year in year_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['2m_dewpoint_temperature', '2m_temperature', 'skin_temperature', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'lake_bottom_temperature', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'snow_albedo', 'snow_cover', 'snow_density', 'snow_depth', 'snow_depth_water_equivalent', 'temperature_of_snow_layer', 'skin_reservoir_content', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', '10m_u_component_of_wind', '10m_v_component_of_wind', 'surface_pressure', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation', 'forecast_albedo']
-        assert variable in variable_valid_values
-
-        time_zone_valid_values = ['utc-12:00', 'utc-11:00', 'utc-10:00', 'utc-09:00', 'utc-08:00', 'utc-07:00', 'utc-06:00', 'utc-05:00', 'utc-04:00', 'utc-03:00', 'utc-02:00', 'utc-01:00', 'utc+00:00', 'utc+01:00', 'utc+02:00', 'utc+03:00', 'utc+04:00', 'utc+05:00', 'utc+06:00', 'utc+07:00', 'utc+08:00', 'utc+09:00', 'utc+10:00', 'utc+11:00', 'utc+12:00', 'utc+13:00', 'utc+14:00']
-        assert time_zone in time_zone_valid_values
 
         frequency_valid_values = ['1_hourly', '3_hourly', '6_hourly']
         assert frequency in frequency_valid_values
@@ -776,35 +747,36 @@ class Collection_derived_era5_land_daily_statistics(Collection):
         daily_statistic_valid_values = ['daily_mean', 'daily_minimum', 'daily_maximum']
         assert daily_statistic in daily_statistic_valid_values
 
-        return download_data(day=day, year=year, month=month, variable=variable, time_zone=time_zone, area_group=area_group, frequency=frequency, daily_statistic=daily_statistic)
+        time_zone_valid_values = ['utc-12:00', 'utc-11:00', 'utc-10:00', 'utc-09:00', 'utc-08:00', 'utc-07:00', 'utc-06:00', 'utc-05:00', 'utc-04:00', 'utc-03:00', 'utc-02:00', 'utc-01:00', 'utc+00:00', 'utc+01:00', 'utc+02:00', 'utc+03:00', 'utc+04:00', 'utc+05:00', 'utc+06:00', 'utc+07:00', 'utc+08:00', 'utc+09:00', 'utc+10:00', 'utc+11:00', 'utc+12:00', 'utc+13:00', 'utc+14:00']
+        assert time_zone in time_zone_valid_values
 
+        return download_data(variable=variable, month=month, day=day, year=year, frequency=frequency, daily_statistic=daily_statistic, area_group=area_group, time_zone=time_zone)
 class Collection_insitu_observations_woudc_ozone_total_column_and_profiles(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: OneOrMore[str], format: str, observation_type: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], observation_type: OneOrMore[str], format: str, day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: OneOrMore[str], format: str, observation_type: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], observation_type: OneOrMore[str], format: str, day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        variable_valid_values = ['air_temperature', 'relative_humidity', 'wind_from_direction', 'wind_speed', 'geopotential_height', 'total_ozone_column', 'column_sulphur_dioxide', 'ozone_partial_pressure']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        observation_type_valid_values = ['total_column', 'vertical_profile']
+        assert observation_type in observation_type_valid_values
+
+        format_valid_values = ['netcdf', 'csv']
+        assert format in format_valid_values
+
         day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
         assert day in day_valid_values
 
         year_valid_values = ['1924', '1925', '1926', '1927', '1928', '1929', '1930', '1931', '1932', '1933', '1934', '1935', '1936', '1937', '1938', '1939', '1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
         assert year in year_valid_values
 
-        format_valid_values = ['netcdf', 'csv']
-        assert format in format_valid_values
-
-        observation_type_valid_values = ['total_column', 'vertical_profile']
-        assert observation_type in observation_type_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['air_temperature', 'relative_humidity', 'wind_from_direction', 'wind_speed', 'geopotential_height', 'total_ozone_column', 'column_sulphur_dioxide', 'ozone_partial_pressure']
-        assert variable in variable_valid_values
-
-        return download_data(day=day, year=year, format=format, observation_type=observation_type, month=month, variable=variable, area_group=area_group)
-
+        return download_data(variable=variable, month=month, observation_type=observation_type, format=format, day=day, year=year, area_group=area_group)
 class Collection_insitu_glaciers_extent(Collection):
 
     @Collection.wrapper
@@ -822,7 +794,6 @@ class Collection_insitu_glaciers_extent(Collection):
         assert version in version_valid_values
 
         return download_data(product_type=product_type, variable=variable, version=version)
-
 class Collection_projections_cmip5_daily_pressure_levels(Collection):
 
     @Collection.wrapper
@@ -846,25 +817,24 @@ class Collection_projections_cmip5_daily_pressure_levels(Collection):
         assert ensemble_member in ensemble_member_valid_values
 
         return download_data(period=period, model=model, variable=variable, experiment=experiment, ensemble_member=ensemble_member)
-
 class Collection_satellite_fire_burned_area(Collection):
 
     @Collection.wrapper
-    def download(cls, region: OneOrMore[str], version: str, origin: str, year: OneOrMore[str], sensor: str, nominal_day: OneOrMore[str], month: OneOrMore[str], variable: str): UNREACHABLE()
+    def download(cls, origin: str, variable: str, region: OneOrMore[str], month: OneOrMore[str], sensor: str, nominal_day: OneOrMore[str], version: str, year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, region: OneOrMore[str], version: str, origin: str, year: OneOrMore[str], sensor: str, nominal_day: OneOrMore[str], month: OneOrMore[str], variable: str):
-        region_valid_values = ['north_america', 'south_america', 'europe', 'asia', 'africa', 'australia']
-        assert region in region_valid_values
-
-        version_valid_values = ['5_1_1cds', '1_0', '1_1', '5_0cds', '5_1cds']
-        assert version in version_valid_values
-
+    def __download__(cls, origin: str, variable: str, region: OneOrMore[str], month: OneOrMore[str], sensor: str, nominal_day: OneOrMore[str], version: str, year: OneOrMore[str]):
         origin_valid_values = ['c3s', 'esa_cci']
         assert origin in origin_valid_values
 
-        year_valid_values = ['2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
-        assert year in year_valid_values
+        variable_valid_values = ['grid_variables', 'pixel_variables']
+        assert variable in variable_valid_values
+
+        region_valid_values = ['north_america', 'south_america', 'europe', 'asia', 'africa', 'australia']
+        assert region in region_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
         sensor_valid_values = ['modis', 'olci']
         assert sensor in sensor_valid_values
@@ -872,116 +842,109 @@ class Collection_satellite_fire_burned_area(Collection):
         nominal_day_valid_values = ['01', '07', '22']
         assert nominal_day in nominal_day_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
+        version_valid_values = ['5_1_1cds', '1_0', '1_1', '5_0cds', '5_1cds']
+        assert version in version_valid_values
 
-        variable_valid_values = ['grid_variables', 'pixel_variables']
-        assert variable in variable_valid_values
+        year_valid_values = ['2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        assert year in year_valid_values
 
-        return download_data(region=region, version=version, origin=origin, year=year, sensor=sensor, nominal_day=nominal_day, month=month, variable=variable)
-
+        return download_data(origin=origin, variable=variable, region=region, month=month, sensor=sensor, nominal_day=nominal_day, version=version, year=year)
 class Collection_reanalysis_uerra_europe_pressure_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: str, pressure_level: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
+    def download(cls, variable: str, time: OneOrMore[str], month: OneOrMore[str], pressure_level: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: str, pressure_level: OneOrMore[str], data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, variable: str, time: OneOrMore[str], month: OneOrMore[str], pressure_level: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'):
+        variable_valid_values = ['geopotential', 'geopotential_height', 'relative_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind']
+        assert variable in variable_valid_values
 
         time_valid_values = ['00:00', '06:00', '12:00', '18:00']
         assert time in time_valid_values
 
-        year_valid_values = ['1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
-        assert year in year_valid_values
-
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
-
-        variable_valid_values = ['geopotential', 'geopotential_height', 'relative_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind']
-        assert variable in variable_valid_values
 
         pressure_level_valid_values = ['10', '20', '30', '50', '70', '100', '150', '200', '250', '300', '400', '500', '600', '700', '750', '800', '825', '850', '875', '900', '925', '950', '975', '1000']
         assert pressure_level in pressure_level_valid_values
 
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+        assert year in year_valid_values
+
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(day=day, time=time, year=year, month=month, variable=variable, pressure_level=pressure_level, data_format=data_format)
-
+        return download_data(variable=variable, time=time, month=month, pressure_level=pressure_level, day=day, year=year, data_format=data_format)
 class Collection_satellite_sea_ice_edge_type(Collection):
 
     @Collection.wrapper
-    def download(cls, region: str, day: OneOrMore[str], cdr_type: str, year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], version: str = '3_0'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], region: str, cdr_type: str, month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], version: str = '3_0'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, region: str, day: OneOrMore[str], cdr_type: str, year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], version: str = '3_0'):
+    def __download__(cls, variable: OneOrMore[str], region: str, cdr_type: str, month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], version: str = '3_0'):
+        variable_valid_values = ['sea_ice_edge', 'sea_ice_type']
+        assert variable in variable_valid_values
+
         region_valid_values = ['northern_hemisphere', 'southern_hemisphere']
         assert region in region_valid_values
-
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
 
         cdr_type_valid_values = ['cdr', 'icdr']
         assert cdr_type in cdr_type_valid_values
 
-        year_valid_values = ['1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        variable_valid_values = ['sea_ice_edge', 'sea_ice_type']
-        assert variable in variable_valid_values
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
 
         version_valid_values = ['1_0', '2_0', '3_0']
         assert version in version_valid_values
 
-        return download_data(region=region, day=day, cdr_type=cdr_type, year=year, month=month, variable=variable, version=version)
-
+        return download_data(variable=variable, region=region, cdr_type=cdr_type, month=month, day=day, year=year, version=version)
 class Collection_sis_ocean_wave_timeseries(Collection):
 
     @Collection.wrapper
-    def download(cls, year: OneOrMore[str], variable: OneOrMore[str], experiment: str): UNREACHABLE()
+    def download(cls, experiment: str, variable: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, year: OneOrMore[str], variable: OneOrMore[str], experiment: str):
-        year_valid_values = ['1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100']
-        assert year in year_valid_values
+    def __download__(cls, experiment: str, variable: OneOrMore[str], year: OneOrMore[str]):
+        experiment_valid_values = ['ERA5 reanalysis', 'Historical', 'RCP4.5', 'RCP8.5']
+        assert experiment in experiment_valid_values
 
         variable_valid_values = ['Mean wave direction', 'Mean wave period', 'Peak wave period', 'Significant wave height', 'Wave spectral directional width']
         assert variable in variable_valid_values
 
-        experiment_valid_values = ['ERA5 reanalysis', 'Historical', 'RCP4.5', 'RCP8.5']
-        assert experiment in experiment_valid_values
+        year_valid_values = ['1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100']
+        assert year in year_valid_values
 
-        return download_data(year=year, variable=variable, experiment=experiment)
-
+        return download_data(experiment=experiment, variable=variable, year=year)
 class Collection_satellite_cloud_properties(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time_aggregation: str, origin: str, climate_data_record_type: str, year: OneOrMore[str], product_family: str, sensor_on_satellite: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, climate_data_record_type: str, origin: str, product_family: str, time_aggregation: str, variable: OneOrMore[str], sensor_on_satellite: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time_aggregation: str, origin: str, climate_data_record_type: str, year: OneOrMore[str], product_family: str, sensor_on_satellite: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_aggregation_valid_values = ['monthly_mean', 'daily_mean']
-        assert time_aggregation in time_aggregation_valid_values
+    def __download__(cls, climate_data_record_type: str, origin: str, product_family: str, time_aggregation: str, variable: OneOrMore[str], sensor_on_satellite: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        climate_data_record_type_valid_values = ['interim_climate_data_record', 'thematic_climate_data_record']
+        assert climate_data_record_type in climate_data_record_type_valid_values
 
         origin_valid_values = ['c3s', 'eumetsat', 'esa']
         assert origin in origin_valid_values
 
-        climate_data_record_type_valid_values = ['interim_climate_data_record', 'thematic_climate_data_record']
-        assert climate_data_record_type in climate_data_record_type_valid_values
-
-        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
-        assert year in year_valid_values
-
         product_family_valid_values = ['clara_a2', 'clara_a3', 'cci']
         assert product_family in product_family_valid_values
+
+        time_aggregation_valid_values = ['monthly_mean', 'daily_mean']
+        assert time_aggregation in time_aggregation_valid_values
+
+        variable_valid_values = ['cloud_fraction', 'cloud_top_level', 'cloud_physical_properties_of_the_ice_phase', 'cloud_physical_properties_of_the_liquid_phase', 'all_variables']
+        assert variable in variable_valid_values
 
         sensor_on_satellite_valid_values = ['aatsr_on_envisat', 'atsr2_on_ers2', 'slstr_on_sentinel_3a', 'slstr_on_sentinel_3b', 'slstr_on_sentinel_3a_3b']
         assert sensor_on_satellite in sensor_on_satellite_valid_values
@@ -989,56 +952,60 @@ class Collection_satellite_cloud_properties(Collection):
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        variable_valid_values = ['cloud_fraction', 'cloud_top_level', 'cloud_physical_properties_of_the_ice_phase', 'cloud_physical_properties_of_the_liquid_phase', 'all_variables']
-        assert variable in variable_valid_values
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
 
-        return download_data(day=day, time_aggregation=time_aggregation, origin=origin, climate_data_record_type=climate_data_record_type, year=year, product_family=product_family, sensor_on_satellite=sensor_on_satellite, month=month, variable=variable, area_group=area_group)
+        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
+        assert year in year_valid_values
 
+        return download_data(climate_data_record_type=climate_data_record_type, origin=origin, product_family=product_family, time_aggregation=time_aggregation, variable=variable, sensor_on_satellite=sensor_on_satellite, month=month, day=day, year=year, area_group=area_group)
 class Collection_seasonal_postprocessed_pressure_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, system: str, leadtime_month: OneOrMore[str], originating_centre: str, year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, system: str, originating_centre: str, variable: OneOrMore[str], month: OneOrMore[str], leadtime_month: OneOrMore[str], pressure_level: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, system: str, leadtime_month: OneOrMore[str], originating_centre: str, year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, system: str, originating_centre: str, variable: OneOrMore[str], month: OneOrMore[str], leadtime_month: OneOrMore[str], pressure_level: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
         system_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '12', '13', '14', '15', '21', '35', '51', '600', '601', '602', '603']
         assert system in system_valid_values
-
-        leadtime_month_valid_values = ['1', '2', '3', '4', '5', '6']
-        assert leadtime_month in leadtime_month_valid_values
 
         originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc', 'ncep', 'jma', 'eccc']
         assert originating_centre in originating_centre_valid_values
 
-        year_valid_values = ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
+        variable_valid_values = ['geopotential_anomaly', 'specific_humidity_anomaly', 'temperature_anomaly', 'u_component_of_wind_anomaly', 'v_component_of_wind_anomaly']
+        assert variable in variable_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        product_type_valid_values = ['ensemble_mean', 'monthly_mean']
-        assert product_type in product_type_valid_values
-
-        variable_valid_values = ['geopotential_anomaly', 'specific_humidity_anomaly', 'temperature_anomaly', 'u_component_of_wind_anomaly', 'v_component_of_wind_anomaly']
-        assert variable in variable_valid_values
+        leadtime_month_valid_values = ['1', '2', '3', '4', '5', '6']
+        assert leadtime_month in leadtime_month_valid_values
 
         pressure_level_valid_values = ['10', '30', '50', '100', '200', '300', '400', '500', '700', '850', '925', '1000']
         assert pressure_level in pressure_level_valid_values
 
+        product_type_valid_values = ['ensemble_mean', 'monthly_mean']
+        assert product_type in product_type_valid_values
+
+        year_valid_values = ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(system=system, leadtime_month=leadtime_month, originating_centre=originating_centre, year=year, month=month, product_type=product_type, variable=variable, pressure_level=pressure_level, data_format=data_format, area_group=area_group)
-
+        return download_data(system=system, originating_centre=originating_centre, variable=variable, month=month, leadtime_month=leadtime_month, pressure_level=pressure_level, product_type=product_type, year=year, data_format=data_format, area_group=area_group)
 class Collection_sis_heat_and_cold_spells(Collection):
 
     @Collection.wrapper
-    def download(cls, ensemble_statistic: OneOrMore[str], definition: str, variable: OneOrMore[str], experiment: OneOrMore[str]): UNREACHABLE()
+    def download(cls, ensemble_statistic: OneOrMore[str], experiment: OneOrMore[str], definition: str, variable: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, ensemble_statistic: OneOrMore[str], definition: str, variable: OneOrMore[str], experiment: OneOrMore[str]):
+    def __download__(cls, ensemble_statistic: OneOrMore[str], experiment: OneOrMore[str], definition: str, variable: OneOrMore[str]):
         ensemble_statistic_valid_values = ['ensemble_members_average', 'ensemble_members_standard_deviation']
         assert ensemble_statistic in ensemble_statistic_valid_values
+
+        experiment_valid_values = ['rcp4_5', 'rcp8_5']
+        assert experiment in experiment_valid_values
 
         definition_valid_values = ['climatological_related', 'health_related', 'country_related']
         assert definition in definition_valid_values
@@ -1046,11 +1013,7 @@ class Collection_sis_heat_and_cold_spells(Collection):
         variable_valid_values = ['heat_wave_days', 'cold_spell_days']
         assert variable in variable_valid_values
 
-        experiment_valid_values = ['rcp4_5', 'rcp8_5']
-        assert experiment in experiment_valid_values
-
-        return download_data(ensemble_statistic=ensemble_statistic, definition=definition, variable=variable, experiment=experiment)
-
+        return download_data(ensemble_statistic=ensemble_statistic, experiment=experiment, definition=definition, variable=variable)
 class Collection_derived_gridded_glacier_mass_change(Collection):
 
     @Collection.wrapper
@@ -1068,194 +1031,179 @@ class Collection_derived_gridded_glacier_mass_change(Collection):
         assert variable in variable_valid_values
 
         return download_data(hydrological_year=hydrological_year, product_version=product_version, variable=variable)
-
 class Collection_reanalysis_cerra_land(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], soil_layer: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], level_type: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
+    def download(cls, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], level_type: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], soil_layer: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], soil_layer: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], level_type: OneOrMore[str], data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
-        assert time in time_valid_values
-
-        year_valid_values = ['1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
-        assert year in year_valid_values
-
+    def __download__(cls, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], level_type: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], soil_layer: OneOrMore[str], data_format: str = 'grib'):
         leadtime_hour_valid_values = ['1', '2', '3']
         assert leadtime_hour in leadtime_hour_valid_values
-
-        soil_layer_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14']
-        assert soil_layer in soil_layer_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        product_type_valid_values = ['analysis', 'forecast']
-        assert product_type in product_type_valid_values
 
         variable_valid_values = ['albedo', 'evaporation', 'fraction_of_snow_cover', 'lake_bottom_temperature', 'lake_depth', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'land_sea_mask', 'liquid_volumetric_soil_moisture', 'orography', 'percolation', 'skin_temperature', 'snow_albedo', 'snow_density', 'snow_depth', 'snow_depth_water_equivalent', 'snow_melt', 'soil_heat_flux', 'soil_temperature', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_thermal_radiation', 'surface_roughness', 'surface_runoff', 'surface_sensible_heat_flux', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downwards', 'temperature_of_snow_layer', 'total_precipitation', 'volumetric_soil_moisture', 'volumetric_transpiration_stress_onset', 'volumetric_wilting_point']
         assert variable in variable_valid_values
 
+        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
+        assert time in time_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
         level_type_valid_values = ['surface', 'soil']
         assert level_type in level_type_valid_values
+
+        product_type_valid_values = ['analysis', 'forecast']
+        assert product_type in product_type_valid_values
+
+        year_valid_values = ['1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+        assert year in year_valid_values
+
+        soil_layer_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14']
+        assert soil_layer in soil_layer_valid_values
 
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(day=day, time=time, year=year, leadtime_hour=leadtime_hour, soil_layer=soil_layer, month=month, product_type=product_type, variable=variable, level_type=level_type, data_format=data_format)
-
+        return download_data(leadtime_hour=leadtime_hour, variable=variable, time=time, month=month, day=day, level_type=level_type, product_type=product_type, year=year, soil_layer=soil_layer, data_format=data_format)
 class Collection_satellite_sea_surface_temperature(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: OneOrMore[str], sensor_on_satellite: str, month: OneOrMore[str], processinglevel: str, version: str = '2_1', variable: str = 'all'): UNREACHABLE()
+    def download(cls, sensor_on_satellite: str, month: OneOrMore[str], day: OneOrMore[str], processinglevel: str, year: OneOrMore[str], variable: str = 'all', version: str = '2_1'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: OneOrMore[str], sensor_on_satellite: str, month: OneOrMore[str], processinglevel: str, version: str = '2_1', variable: str = 'all'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
-        assert year in year_valid_values
-
+    def __download__(cls, sensor_on_satellite: str, month: OneOrMore[str], day: OneOrMore[str], processinglevel: str, year: OneOrMore[str], variable: str = 'all', version: str = '2_1'):
         sensor_on_satellite_valid_values = ['avhrr_on_noaa_07', 'avhrr_on_noaa_15', 'avhrr_on_metop_a', 'aatsr_on_envisat', 'avhrr_on_noaa_09', 'avhrr_on_noaa_16', 'avhrr_on_metop_b', 'slstr_on_sentinel_3a', 'avhrr_on_noaa_11', 'avhrr_on_noaa_17', 'atsr1_on_ers_1', 'slstr_on_sentinel_3b', 'avhrr_on_noaa_12', 'avhrr_on_noaa_18', 'atsr2_on_ers_2', 'combined_product', 'avhrr_on_noaa_14', 'avhrr_on_noaa_19']
         assert sensor_on_satellite in sensor_on_satellite_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
         processinglevel_valid_values = ['level_3c', 'level_4']
         assert processinglevel in processinglevel_valid_values
 
-        version_valid_values = ['2_1', '2_0', '1_1']
-        assert version in version_valid_values
+        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        assert year in year_valid_values
 
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(day=day, year=year, sensor_on_satellite=sensor_on_satellite, month=month, processinglevel=processinglevel, version=version, variable=variable)
+        version_valid_values = ['2_1', '2_0', '1_1']
+        assert version in version_valid_values
 
+        return download_data(sensor_on_satellite=sensor_on_satellite, month=month, day=day, processinglevel=processinglevel, year=year, variable=variable, version=version)
 class Collection_reanalysis_uerra_europe_height_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], height_level: OneOrMore[str], month: OneOrMore[str], variable: str, data_format: str = 'grib'): UNREACHABLE()
+    def download(cls, height_level: OneOrMore[str], variable: str, time: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], height_level: OneOrMore[str], month: OneOrMore[str], variable: str, data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_valid_values = ['00:00', '06:00', '12:00', '18:00']
-        assert time in time_valid_values
-
-        year_valid_values = ['1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
-        assert year in year_valid_values
-
+    def __download__(cls, height_level: OneOrMore[str], variable: str, time: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'):
         height_level_valid_values = ['15_m', '30_m', '50_m', '75_m', '100_m', '150_m', '200_m', '250_m', '300_m', '400_m', '500_m']
         assert height_level in height_level_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
 
         variable_valid_values = ['pressure', 'relative_humidity', 'temperature', 'wind_direction', 'wind_speed']
         assert variable in variable_valid_values
 
+        time_valid_values = ['00:00', '06:00', '12:00', '18:00']
+        assert time in time_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+        assert year in year_valid_values
+
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(day=day, time=time, year=year, height_level=height_level, month=month, variable=variable, data_format=data_format)
-
+        return download_data(height_level=height_level, variable=variable, time=time, month=month, day=day, year=year, data_format=data_format)
 class Collection_reanalysis_era5_land(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], year: str, month: str, variable: OneOrMore[str], download_format: str = 'unarchived', data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], time: OneOrMore[str], month: str, day: OneOrMore[str], year: str, data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', download_format: str = 'unarchived'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], year: str, month: str, variable: OneOrMore[str], download_format: str = 'unarchived', data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, variable: OneOrMore[str], time: OneOrMore[str], month: str, day: OneOrMore[str], year: str, data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', download_format: str = 'unarchived'):
+        variable_valid_values = ['2m_dewpoint_temperature', '2m_temperature', 'skin_temperature', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'lake_bottom_temperature', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'snow_albedo', 'snow_cover', 'snow_density', 'snow_depth', 'snow_depth_water_equivalent', 'snowfall', 'snowmelt', 'temperature_of_snow_layer', 'skin_reservoir_content', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', 'forecast_albedo', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_thermal_radiation', 'surface_sensible_heat_flux', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downwards', 'evaporation_from_bare_soil', 'evaporation_from_open_water_surfaces_excluding_oceans', 'evaporation_from_the_top_of_canopy', 'evaporation_from_vegetation_transpiration', 'potential_evaporation', 'runoff', 'snow_evaporation', 'sub_surface_runoff', 'surface_runoff', 'total_evaporation', '10m_u_component_of_wind', '10m_v_component_of_wind', 'surface_pressure', 'total_precipitation', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation']
+        assert variable in variable_valid_values
 
         time_valid_values = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
         assert time in time_valid_values
 
-        year_valid_values = ['1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        variable_valid_values = ['2m_dewpoint_temperature', '2m_temperature', 'skin_temperature', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'lake_bottom_temperature', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'snow_albedo', 'snow_cover', 'snow_density', 'snow_depth', 'snow_depth_water_equivalent', 'snowfall', 'snowmelt', 'temperature_of_snow_layer', 'skin_reservoir_content', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', 'forecast_albedo', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_thermal_radiation', 'surface_sensible_heat_flux', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downwards', 'evaporation_from_bare_soil', 'evaporation_from_open_water_surfaces_excluding_oceans', 'evaporation_from_the_top_of_canopy', 'evaporation_from_vegetation_transpiration', 'potential_evaporation', 'runoff', 'snow_evaporation', 'sub_surface_runoff', 'surface_runoff', 'total_evaporation', '10m_u_component_of_wind', '10m_v_component_of_wind', 'surface_pressure', 'total_precipitation', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation']
-        assert variable in variable_valid_values
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
+        data_format_valid_values = ['grib', 'netcdf']
+        assert data_format in data_format_valid_values
 
         download_format_valid_values = ['unarchived', 'zip']
         assert download_format in download_format_valid_values
 
-        data_format_valid_values = ['grib', 'netcdf']
-        assert data_format in data_format_valid_values
-
-        return download_data(day=day, time=time, year=year, month=month, variable=variable, download_format=download_format, data_format=data_format, area_group=area_group)
-
+        return download_data(variable=variable, time=time, month=month, day=day, year=year, data_format=data_format, area_group=area_group, download_format=download_format)
 class Collection_reanalysis_carra_single_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], month: OneOrMore[str], product_type: str, soil_level: OneOrMore[str], variable: OneOrMore[str], level_type: str, domain: str, data_format: str = 'grib'): UNREACHABLE()
+    def download(cls, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], soil_level: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], domain: str, day: OneOrMore[str], level_type: str, product_type: str, year: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], month: OneOrMore[str], product_type: str, soil_level: OneOrMore[str], variable: OneOrMore[str], level_type: str, domain: str, data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
-        assert time in time_valid_values
-
-        year_valid_values = ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
+    def __download__(cls, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], soil_level: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], domain: str, day: OneOrMore[str], level_type: str, product_type: str, year: OneOrMore[str], data_format: str = 'grib'):
         leadtime_hour_valid_values = ['1', '2', '3', '4', '5', '6', '9', '12', '15', '18', '21', '24', '27', '30']
         assert leadtime_hour in leadtime_hour_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        product_type_valid_values = ['analysis', 'forecast']
-        assert product_type in product_type_valid_values
-
-        soil_level_valid_values = ['soil_surface', 'root_depth']
-        assert soil_level in soil_level_valid_values
 
         variable_valid_values = ['10m_eastward_wind_gust_since_previous_post_processing', '10m_northward_wind_gust_since_previous_post_processing', '10m_u_component_of_wind', '10m_v_component_of_wind', '10m_wind_direction', '10m_wind_gust_since_previous_post_processing', '10m_wind_speed', '2m_relative_humidity', '2m_specific_humidity', '2m_temperature', 'albedo', 'cloud_base', 'cloud_top', 'direct_solar_radiation', 'evaporation', 'fog', 'fraction_of_snow_cover', 'high_cloud_cover', 'land_sea_mask', 'low_cloud_cover', 'maximum_2m_temperature_since_previous_post_processing', 'mean_sea_level_pressure', 'medium_cloud_cover', 'minimum_2m_temperature_since_previous_post_processing', 'orography', 'percolation', 'precipitation_type', 'sea_ice_area_fraction', 'sea_ice_surface_temperature', 'sea_ice_thickness', 'sea_surface_temperature', 'skin_temperature', 'snow_albedo', 'snow_density', 'snow_depth_water_equivalent', 'snow_on_ice_total_depth', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_solar_radiation,_clear_sky', 'surface_net_thermal_radiation', 'surface_net_thermal_radiation,_clear_sky', 'surface_pressure', 'surface_roughness', 'surface_roughness_length_for_heat', 'surface_runoff', 'surface_sensible_heat_flux', 'surface_solar_radiation_downwards', 'thermal_surface_radiation_downwards', 'time_integral_of_rain_flux', 'time_integral_of_snow_evaporation_flux', 'time_integral_of_surface_eastward_momentum_flux', 'time_integral_of_surface_latent_heat_evaporation_flux', 'time_integral_of_surface_latent_heat_sublimation_flux', 'time_integral_of_surface_northward_momentum_flux', 'time_integral_of_total_solid_precipitation_flux', 'time_integrated_surface_direct_short_wave_radiation_flux', 'top_net_solar_radiation', 'top_net_thermal_radiation', 'total_cloud_cover', 'total_column_cloud_ice_water', 'total_column_cloud_liquid_water', 'total_column_graupel', 'total_column_integrated_water_vapour', 'total_precipitation', 'visibility', 'volumetric_soil_ice', 'volumetric_soil_moisture']
         assert variable in variable_valid_values
 
-        level_type_valid_values = ['surface_or_atmosphere', 'soil_level']
-        assert level_type in level_type_valid_values
+        soil_level_valid_values = ['soil_surface', 'root_depth']
+        assert soil_level in soil_level_valid_values
+
+        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
+        assert time in time_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
         domain_valid_values = ['east_domain', 'west_domain']
         assert domain in domain_valid_values
 
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        level_type_valid_values = ['surface_or_atmosphere', 'soil_level']
+        assert level_type in level_type_valid_values
+
+        product_type_valid_values = ['analysis', 'forecast']
+        assert product_type in product_type_valid_values
+
+        year_valid_values = ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(day=day, time=time, year=year, leadtime_hour=leadtime_hour, month=month, product_type=product_type, soil_level=soil_level, variable=variable, level_type=level_type, domain=domain, data_format=data_format)
-
+        return download_data(leadtime_hour=leadtime_hour, variable=variable, soil_level=soil_level, time=time, month=month, domain=domain, day=day, level_type=level_type, product_type=product_type, year=year, data_format=data_format)
 class Collection_sis_biodiversity_cmip5_regional(Collection):
 
     @Collection.wrapper
-    def download(cls, region: OneOrMore[str], statistic: OneOrMore[str], model: OneOrMore[str], ensemble_member: OneOrMore[str], derived_variable: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str], version: OneOrMore[str] = '1.0'): UNREACHABLE()
+    def download(cls, ensemble_member: OneOrMore[str], derived_variable: OneOrMore[str], variable: OneOrMore[str], region: OneOrMore[str], statistic: OneOrMore[str], experiment: OneOrMore[str], model: OneOrMore[str], version: OneOrMore[str] = '1.0'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, region: OneOrMore[str], statistic: OneOrMore[str], model: OneOrMore[str], ensemble_member: OneOrMore[str], derived_variable: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str], version: OneOrMore[str] = '1.0'):
-        region_valid_values = ['central_africa', 'northern_brazil', 'europe']
-        assert region in region_valid_values
-
-        statistic_valid_values = ['mean', 'median', '25th_quartile', '75th_quartile']
-        assert statistic in statistic_valid_values
-
-        model_valid_values = ['access1_0', 'bcc_csm1_1_m', 'csiro_mk3_6_0', 'gfdl_esm2m', 'hadgem2_cc', 'hadgem2_es', 'ipsl_cm5a_lr', 'ipsl_cm5a_mr', 'ipsl_cm5b_lr', 'noresm1_m']
-        assert model in model_valid_values
-
+    def __download__(cls, ensemble_member: OneOrMore[str], derived_variable: OneOrMore[str], variable: OneOrMore[str], region: OneOrMore[str], statistic: OneOrMore[str], experiment: OneOrMore[str], model: OneOrMore[str], version: OneOrMore[str] = '1.0'):
         ensemble_member_valid_values = ['r1i1p1', 'r2i1p1']
         assert ensemble_member in ensemble_member_valid_values
 
@@ -1265,47 +1213,54 @@ class Collection_sis_biodiversity_cmip5_regional(Collection):
         variable_valid_values = ['annual_mean_temperature', 'mean_diurnal_range', 'isothermality', 'temperature_seasonality', 'maximum_temperature_of_warmest_month', 'minimum_temperature_of_coldest_month', 'temperature_annual_range', 'mean_temperature_of_wettest_quarter', 'mean_temperature_of_driest_quarter', 'mean_temperature_of_warmest_quarter', 'mean_temperature_of_coldest_quarter', 'annual_precipitation', 'precipitation_of_wettest_month', 'precipitation_of_driest_month', 'precipitation_seasonality', 'precipitation_of_wettest_quarter', 'precipitation_of_driest_quarter', 'precipitation_of_warmest_quarter', 'precipitation_of_coldest_quarter', 'aridity', 'dry_spells', 'dry_days', 'summer_days', 'surface_latent_heat_flux', 'surface_sensible_heat_flux', 'evaporative_fraction', 'frost_days', 'growing_season', 'growing_degree_days', 'growing_degree_days_during_growing_season_length', 'koeppen_geiger_class', 'potential_evaporation', '2m_temperature', 'precipitation', 'water_vapor_pressure', 'cloud_cover', 'volumetric_soil_water', 'wind_speed']
         assert variable in variable_valid_values
 
+        region_valid_values = ['central_africa', 'northern_brazil', 'europe']
+        assert region in region_valid_values
+
+        statistic_valid_values = ['mean', 'median', '25th_quartile', '75th_quartile']
+        assert statistic in statistic_valid_values
+
         experiment_valid_values = ['rcp4_5', 'rcp8_5']
         assert experiment in experiment_valid_values
+
+        model_valid_values = ['access1_0', 'bcc_csm1_1_m', 'csiro_mk3_6_0', 'gfdl_esm2m', 'hadgem2_cc', 'hadgem2_es', 'ipsl_cm5a_lr', 'ipsl_cm5a_mr', 'ipsl_cm5b_lr', 'noresm1_m']
+        assert model in model_valid_values
 
         version_valid_values = ['1_0']
         assert version in version_valid_values
 
-        return download_data(region=region, statistic=statistic, model=model, ensemble_member=ensemble_member, derived_variable=derived_variable, variable=variable, experiment=experiment, version=version)
-
+        return download_data(ensemble_member=ensemble_member, derived_variable=derived_variable, variable=variable, region=region, statistic=statistic, experiment=experiment, model=model, version=version)
 class Collection_insitu_gridded_observations_global_and_regional(Collection):
 
     @Collection.wrapper
-    def download(cls, region: str, time_aggregation: str, version: OneOrMore[str], origin: str, statistic: OneOrMore[str], year: OneOrMore[str], horizontal_aggregation: OneOrMore[str], variable: OneOrMore[str]): UNREACHABLE()
+    def download(cls, origin: str, horizontal_aggregation: OneOrMore[str], time_aggregation: str, variable: OneOrMore[str], region: str, statistic: OneOrMore[str], version: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, region: str, time_aggregation: str, version: OneOrMore[str], origin: str, statistic: OneOrMore[str], year: OneOrMore[str], horizontal_aggregation: OneOrMore[str], variable: OneOrMore[str]):
-        region_valid_values = ['africa', 'conus', 'global', 'quasi_global']
-        assert region in region_valid_values
-
-        time_aggregation_valid_values = ['daily', 'monthly']
-        assert time_aggregation in time_aggregation_valid_values
-
-        version_valid_values = ['v1_0', 'v2020_0', 'v2020_0_v6_0_fg', 'v2_0', 'v4_0', 'v4_03', 'v6_0']
-        assert version in version_valid_values
-
+    def __download__(cls, origin: str, horizontal_aggregation: OneOrMore[str], time_aggregation: str, variable: OneOrMore[str], region: str, statistic: OneOrMore[str], version: OneOrMore[str], year: OneOrMore[str]):
         origin_valid_values = ['berkearth', 'chirps', 'cmorph', 'cpc', 'cpc_conus', 'cru', 'gistemp', 'gpcc', 'imerg']
         assert origin in origin_valid_values
-
-        statistic_valid_values = ['maximum', 'minimum', 'mean']
-        assert statistic in statistic_valid_values
-
-        year_valid_values = ['1750', '1751', '1752', '1753', '1754', '1755', '1756', '1757', '1758', '1759', '1760', '1761', '1762', '1763', '1764', '1765', '1766', '1767', '1768', '1769', '1770', '1771', '1772', '1773', '1774', '1775', '1776', '1777', '1778', '1779', '1780', '1781', '1782', '1783', '1784', '1785', '1786', '1787', '1788', '1789', '1790', '1791', '1792', '1793', '1794', '1795', '1796', '1797', '1798', '1799', '1800', '1801', '1802', '1803', '1804', '1805', '1806', '1807', '1808', '1809', '1810', '1811', '1812', '1813', '1814', '1815', '1816', '1817', '1818', '1819', '1820', '1821', '1822', '1823', '1824', '1825', '1826', '1827', '1828', '1829', '1830', '1831', '1832', '1833', '1834', '1835', '1836', '1837', '1838', '1839', '1840', '1841', '1842', '1843', '1844', '1845', '1846', '1847', '1848', '1849', '1850', '1851', '1852', '1853', '1854', '1855', '1856', '1857', '1858', '1859', '1860', '1861', '1862', '1863', '1864', '1865', '1866', '1867', '1868', '1869', '1870', '1871', '1872', '1873', '1874', '1875', '1876', '1877', '1878', '1879', '1880', '1881', '1882', '1883', '1884', '1885', '1886', '1887', '1888', '1889', '1890', '1891', '1892', '1893', '1894', '1895', '1896', '1897', '1898', '1899', '1900', '1901', '1902', '1903', '1904', '1905', '1906', '1907', '1908', '1909', '1910', '1911', '1912', '1913', '1914', '1915', '1916', '1917', '1918', '1919', '1920', '1921', '1922', '1923', '1924', '1925', '1926', '1927', '1928', '1929', '1930', '1931', '1932', '1933', '1934', '1935', '1936', '1937', '1938', '1939', '1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
-        assert year in year_valid_values
 
         horizontal_aggregation_valid_values = ['0_25_x_0_25', '0_2_x_0_2', '0_5_x_0_5', '1_x_1', '2_5_x_2_5', 'horizontal_average']
         assert horizontal_aggregation in horizontal_aggregation_valid_values
 
+        time_aggregation_valid_values = ['daily', 'monthly']
+        assert time_aggregation in time_aggregation_valid_values
+
         variable_valid_values = ['temperature', 'temperature_anomaly', 'precipitation']
         assert variable in variable_valid_values
 
-        return download_data(region=region, time_aggregation=time_aggregation, version=version, origin=origin, statistic=statistic, year=year, horizontal_aggregation=horizontal_aggregation, variable=variable)
+        region_valid_values = ['africa', 'conus', 'global', 'quasi_global']
+        assert region in region_valid_values
 
+        statistic_valid_values = ['maximum', 'minimum', 'mean']
+        assert statistic in statistic_valid_values
+
+        version_valid_values = ['v1_0', 'v2020_0', 'v2020_0_v6_0_fg', 'v2_0', 'v4_0', 'v4_03', 'v6_0']
+        assert version in version_valid_values
+
+        year_valid_values = ['1750', '1751', '1752', '1753', '1754', '1755', '1756', '1757', '1758', '1759', '1760', '1761', '1762', '1763', '1764', '1765', '1766', '1767', '1768', '1769', '1770', '1771', '1772', '1773', '1774', '1775', '1776', '1777', '1778', '1779', '1780', '1781', '1782', '1783', '1784', '1785', '1786', '1787', '1788', '1789', '1790', '1791', '1792', '1793', '1794', '1795', '1796', '1797', '1798', '1799', '1800', '1801', '1802', '1803', '1804', '1805', '1806', '1807', '1808', '1809', '1810', '1811', '1812', '1813', '1814', '1815', '1816', '1817', '1818', '1819', '1820', '1821', '1822', '1823', '1824', '1825', '1826', '1827', '1828', '1829', '1830', '1831', '1832', '1833', '1834', '1835', '1836', '1837', '1838', '1839', '1840', '1841', '1842', '1843', '1844', '1845', '1846', '1847', '1848', '1849', '1850', '1851', '1852', '1853', '1854', '1855', '1856', '1857', '1858', '1859', '1860', '1861', '1862', '1863', '1864', '1865', '1866', '1867', '1868', '1869', '1870', '1871', '1872', '1873', '1874', '1875', '1876', '1877', '1878', '1879', '1880', '1881', '1882', '1883', '1884', '1885', '1886', '1887', '1888', '1889', '1890', '1891', '1892', '1893', '1894', '1895', '1896', '1897', '1898', '1899', '1900', '1901', '1902', '1903', '1904', '1905', '1906', '1907', '1908', '1909', '1910', '1911', '1912', '1913', '1914', '1915', '1916', '1917', '1918', '1919', '1920', '1921', '1922', '1923', '1924', '1925', '1926', '1927', '1928', '1929', '1930', '1931', '1932', '1933', '1934', '1935', '1936', '1937', '1938', '1939', '1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+        assert year in year_valid_values
+
+        return download_data(origin=origin, horizontal_aggregation=horizontal_aggregation, time_aggregation=time_aggregation, variable=variable, region=region, statistic=statistic, version=version, year=year)
 class Collection_projections_cmip5_daily_single_levels(Collection):
 
     @Collection.wrapper
@@ -1329,43 +1284,41 @@ class Collection_projections_cmip5_daily_single_levels(Collection):
         assert ensemble_member in ensemble_member_valid_values
 
         return download_data(period=period, model=model, variable=variable, experiment=experiment, ensemble_member=ensemble_member)
-
 class Collection_sis_biodiversity_era5_global(Collection):
 
     @Collection.wrapper
-    def download(cls, statistic: OneOrMore[str], derived_variable: OneOrMore[str], temporal_aggregation: OneOrMore[str], variable: OneOrMore[str], version: OneOrMore[str] = '1.0'): UNREACHABLE()
+    def download(cls, derived_variable: OneOrMore[str], variable: OneOrMore[str], statistic: OneOrMore[str], temporal_aggregation: OneOrMore[str], version: OneOrMore[str] = '1.0'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, statistic: OneOrMore[str], derived_variable: OneOrMore[str], temporal_aggregation: OneOrMore[str], variable: OneOrMore[str], version: OneOrMore[str] = '1.0'):
-        statistic_valid_values = ['mean', 'median', '25th_quartile', '75th_quartile']
-        assert statistic in statistic_valid_values
-
+    def __download__(cls, derived_variable: OneOrMore[str], variable: OneOrMore[str], statistic: OneOrMore[str], temporal_aggregation: OneOrMore[str], version: OneOrMore[str] = '1.0'):
         derived_variable_valid_values = ['annual_maximum', 'annual_maximum_of_daily_mean', 'annual_mean', 'annual_mean_of_daily_maximum', 'annual_mean_of_daily_minimum', 'annual_minimum', 'annual_sum', 'coldest_quarter', 'driest_quarter', 'end_of_season', 'length_of_season', 'maximum_length', 'mean_intensity', 'mean_length_with_minimum_5_days', 'monthly_mean', 'monthly_mean_of_daily_maximum', 'monthly_mean_of_daily_minimum', 'monthly_sum', 'number_of_occurrences', 'start_of_season', 'warmest_quarter', 'wettest_quarter']
         assert derived_variable in derived_variable_valid_values
-
-        temporal_aggregation_valid_values = ['annual', 'monthly', 'climatology']
-        assert temporal_aggregation in temporal_aggregation_valid_values
 
         variable_valid_values = ['annual_mean_temperature', 'mean_diurnal_range', 'isothermality', 'temperature_seasonality', 'maximum_temperature_of_warmest_month', 'minimum_temperature_of_coldest_month', 'temperature_annual_range', 'mean_temperature_of_wettest_quarter', 'mean_temperature_of_driest_quarter', 'mean_temperature_of_warmest_quarter', 'mean_temperature_of_coldest_quarter', 'annual_precipitation', 'precipitation_of_wettest_month', 'precipitation_of_driest_month', 'precipitation_seasonality', 'precipitation_of_wettest_quarter', 'precipitation_of_driest_quarter', 'precipitation_of_warmest_quarter', 'precipitation_of_coldest_quarter', 'aridity', 'dry_spells', 'dry_days', 'summer_days', 'surface_latent_heat_flux', 'surface_sensible_heat_flux', 'evaporative_fraction', 'frost_days', 'growing_season', 'growing_degree_days', 'growing_degree_days_during_growing_season_length', 'koeppen_geiger_class', 'potential_evaporation', 'sea_ice_concentration', 'sea_surface_temperature', '2m_temperature', 'precipitation', 'water_vapour_pressure', 'cloud_cover', 'volumetric_soil_water', 'wind_speed', 'zonal_wind_speed', 'meridional_wind_speed']
         assert variable in variable_valid_values
 
+        statistic_valid_values = ['mean', 'median', '25th_quartile', '75th_quartile']
+        assert statistic in statistic_valid_values
+
+        temporal_aggregation_valid_values = ['annual', 'monthly', 'climatology']
+        assert temporal_aggregation in temporal_aggregation_valid_values
+
         version_valid_values = ['1_0']
         assert version in version_valid_values
 
-        return download_data(statistic=statistic, derived_variable=derived_variable, temporal_aggregation=temporal_aggregation, variable=variable, version=version)
-
+        return download_data(derived_variable=derived_variable, variable=variable, statistic=statistic, temporal_aggregation=temporal_aggregation, version=version)
 class Collection_reanalysis_era5_land_monthly_means(Collection):
 
     @Collection.wrapper
-    def download(cls, time: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], download_format: str = 'unarchived', data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', download_format: str = 'unarchived'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, time: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], download_format: str = 'unarchived', data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', download_format: str = 'unarchived'):
+        variable_valid_values = ['2m_dewpoint_temperature', '2m_temperature', 'skin_temperature', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'lake_bottom_temperature', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'snow_albedo', 'snow_cover', 'snow_density', 'snow_depth', 'snow_depth_water_equivalent', 'snowfall', 'snowmelt', 'temperature_of_snow_layer', 'skin_reservoir_content', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', 'forecast_albedo', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_thermal_radiation', 'surface_sensible_heat_flux', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downwards', 'evaporation_from_bare_soil', 'evaporation_from_open_water_surfaces_excluding_oceans', 'evaporation_from_the_top_of_canopy', 'evaporation_from_vegetation_transpiration', 'potential_evaporation', 'runoff', 'snow_evaporation', 'sub_surface_runoff', 'surface_runoff', 'total_evaporation', '10m_u_component_of_wind', '10m_v_component_of_wind', 'surface_pressure', 'total_precipitation', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation']
+        assert variable in variable_valid_values
+
         time_valid_values = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
         assert time in time_valid_values
-
-        year_valid_values = ['1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
@@ -1373,110 +1326,109 @@ class Collection_reanalysis_era5_land_monthly_means(Collection):
         product_type_valid_values = ['monthly_averaged_reanalysis', 'monthly_averaged_reanalysis_by_hour_of_day']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['2m_dewpoint_temperature', '2m_temperature', 'skin_temperature', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'lake_bottom_temperature', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'snow_albedo', 'snow_cover', 'snow_density', 'snow_depth', 'snow_depth_water_equivalent', 'snowfall', 'snowmelt', 'temperature_of_snow_layer', 'skin_reservoir_content', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', 'forecast_albedo', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_thermal_radiation', 'surface_sensible_heat_flux', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downwards', 'evaporation_from_bare_soil', 'evaporation_from_open_water_surfaces_excluding_oceans', 'evaporation_from_the_top_of_canopy', 'evaporation_from_vegetation_transpiration', 'potential_evaporation', 'runoff', 'snow_evaporation', 'sub_surface_runoff', 'surface_runoff', 'total_evaporation', '10m_u_component_of_wind', '10m_v_component_of_wind', 'surface_pressure', 'total_precipitation', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation']
-        assert variable in variable_valid_values
-
-        download_format_valid_values = ['unarchived', 'zip']
-        assert download_format in download_format_valid_values
+        year_valid_values = ['1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
 
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(time=time, year=year, month=month, product_type=product_type, variable=variable, download_format=download_format, data_format=data_format, area_group=area_group)
+        download_format_valid_values = ['unarchived', 'zip']
+        assert download_format in download_format_valid_values
 
+        return download_data(variable=variable, time=time, month=month, product_type=product_type, year=year, data_format=data_format, area_group=area_group, download_format=download_format)
 class Collection_insitu_comprehensive_upper_air_observation_network(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: OneOrMore[str], format: str, month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], format: str, day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: OneOrMore[str], format: str, month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], format: str, day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        variable_valid_values = ['air_pressure', 'air_temperature', 'dew_point_temperature', 'dew_point_depression', 'specific_humidity', 'relative_humidity', 'wind_speed', 'wind_from_direction', 'eastward_wind_speed', 'northward_wind_speed', 'geopotential_height', 'wind_bias_estimate', 'rise_bias_estimate', 'desroziers_30_uncertainty', 'humidity_bias_estimate']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        format_valid_values = ['netcdf', 'csv']
+        assert format in format_valid_values
+
         day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
         assert day in day_valid_values
 
         year_valid_values = ['1905', '1906', '1907', '1908', '1909', '1910', '1911', '1912', '1913', '1914', '1915', '1916', '1917', '1918', '1919', '1920', '1921', '1922', '1923', '1924', '1925', '1926', '1927', '1928', '1929', '1930', '1931', '1932', '1933', '1934', '1935', '1936', '1937', '1938', '1939', '1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
         assert year in year_valid_values
 
-        format_valid_values = ['netcdf', 'csv']
-        assert format in format_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['air_pressure', 'air_temperature', 'dew_point_temperature', 'dew_point_depression', 'specific_humidity', 'relative_humidity', 'wind_speed', 'wind_from_direction', 'eastward_wind_speed', 'northward_wind_speed', 'geopotential_height', 'wind_bias_estimate', 'rise_bias_estimate', 'desroziers_30_uncertainty', 'humidity_bias_estimate']
-        assert variable in variable_valid_values
-
-        return download_data(day=day, year=year, format=format, month=month, variable=variable, area_group=area_group)
-
+        return download_data(variable=variable, month=month, format=format, day=day, year=year, area_group=area_group)
 class Collection_projections_cmip6(Collection):
 
     @Collection.wrapper
-    def download(cls, level: OneOrMore[str], day: OneOrMore[str], model: str, year: OneOrMore[str], month: OneOrMore[str], temporal_resolution: str, variable: str, experiment: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, model: str, variable: str, level: OneOrMore[str], month: OneOrMore[str], experiment: str, temporal_resolution: str, day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, level: OneOrMore[str], day: OneOrMore[str], model: str, year: OneOrMore[str], month: OneOrMore[str], temporal_resolution: str, variable: str, experiment: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
-        level_valid_values = ['1', '5', '10', '20', '30', '50', '70', '100', '150', '200', '250', '300', '400', '500', '600', '700', '850', '925', '1000']
-        assert level in level_valid_values
-
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
+    def __download__(cls, model: str, variable: str, level: OneOrMore[str], month: OneOrMore[str], experiment: str, temporal_resolution: str, day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
         model_valid_values = ['access_cm2', 'access_esm1_5', 'awi_cm_1_1_mr', 'awi_esm_1_1_lr', 'bcc_csm2_mr', 'bcc_esm1', 'cams_csm1_0', 'canesm5', 'canesm5_canoe', 'cesm2', 'cesm2_fv2', 'cesm2_waccm', 'cesm2_waccm_fv2', 'ciesm', 'cmcc_cm2_hr4', 'cmcc_cm2_sr5', 'cmcc_esm2', 'cnrm_cm6_1', 'cnrm_cm6_1_hr', 'cnrm_esm2_1', 'e3sm_1_0', 'e3sm_1_1', 'e3sm_1_1_eca', 'ec_earth3', 'ec_earth3_aerchem', 'ec_earth3_cc', 'ec_earth3_veg', 'ec_earth3_veg_lr', 'fgoals_f3_l', 'fgoals_g3', 'fio_esm_2_0', 'gfdl_esm4', 'giss_e2_1_g', 'giss_e2_1_h', 'hadgem3_gc31_ll', 'hadgem3_gc31_mm', 'iitm_esm', 'inm_cm4_8', 'inm_cm5_0', 'ipsl_cm5a2_inca', 'ipsl_cm6a_lr', 'kace_1_0_g', 'kiost_esm', 'mcm_ua_1_0', 'miroc6', 'miroc_es2h', 'miroc_es2l', 'mpi_esm_1_2_ham', 'mpi_esm1_2_hr', 'mpi_esm1_2_lr', 'mri_esm2_0', 'nesm3', 'norcpm1', 'noresm2_lm', 'noresm2_mm', 'sam0_unicon', 'taiesm1', 'ukesm1_0_ll']
         assert model in model_valid_values
-
-        year_valid_values = ['1850', '1851', '1852', '1853', '1854', '1855', '1856', '1857', '1858', '1859', '1860', '1861', '1862', '1863', '1864', '1865', '1866', '1867', '1868', '1869', '1870', '1871', '1872', '1873', '1874', '1875', '1876', '1877', '1878', '1879', '1880', '1881', '1882', '1883', '1884', '1885', '1886', '1887', '1888', '1889', '1890', '1891', '1892', '1893', '1894', '1895', '1896', '1897', '1898', '1899', '1900', '1901', '1902', '1903', '1904', '1905', '1906', '1907', '1908', '1909', '1910', '1911', '1912', '1913', '1914', '1915', '1916', '1917', '1918', '1919', '1920', '1921', '1922', '1923', '1924', '1925', '1926', '1927', '1928', '1929', '1930', '1931', '1932', '1933', '1934', '1935', '1936', '1937', '1938', '1939', '1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100', '2101', '2102', '2103', '2104', '2105', '2106', '2107', '2108', '2109', '2110', '2111', '2112', '2113', '2114', '2115', '2116', '2117', '2118', '2119', '2120', '2121', '2122', '2123', '2124', '2125', '2126', '2127', '2128', '2129', '2130', '2131', '2132', '2133', '2134', '2135', '2136', '2137', '2138', '2139', '2140', '2141', '2142', '2143', '2144', '2145', '2146', '2147', '2148', '2149', '2150', '2151', '2152', '2153', '2154', '2155', '2156', '2157', '2158', '2159', '2160', '2161', '2162', '2163', '2164', '2165', '2166', '2167', '2168', '2169', '2170', '2171', '2172', '2173', '2174', '2175', '2176', '2177', '2178', '2179', '2180', '2181', '2182', '2183', '2184', '2185', '2186', '2187', '2188', '2189', '2190', '2191', '2192', '2193', '2194', '2195', '2196', '2197', '2198', '2199', '2200', '2201', '2202', '2203', '2204', '2205', '2206', '2207', '2208', '2209', '2210', '2211', '2212', '2213', '2214', '2215', '2216', '2217', '2218', '2219', '2220', '2221', '2222', '2223', '2224', '2225', '2226', '2227', '2228', '2229', '2230', '2231', '2232', '2233', '2234', '2235', '2236', '2237', '2238', '2239', '2240', '2241', '2242', '2243', '2244', '2245', '2246', '2247', '2248', '2249', '2250', '2251', '2252', '2253', '2254', '2255', '2256', '2257', '2258', '2259', '2260', '2261', '2262', '2263', '2264', '2265', '2266', '2267', '2268', '2269', '2270', '2271', '2272', '2273', '2274', '2275', '2276', '2277', '2278', '2279', '2280', '2281', '2282', '2283', '2284', '2285', '2286', '2287', '2288', '2289', '2290', '2291', '2292', '2293', '2294', '2295', '2296', '2297', '2298', '2299', '2300']
-        assert year in year_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        temporal_resolution_valid_values = ['monthly', 'daily', 'fixed']
-        assert temporal_resolution in temporal_resolution_valid_values
 
         variable_valid_values = ['air_temperature', 'capacity_of_soil_to_store_water', 'daily_maximum_near_surface_air_temperature', 'daily_minimum_near_surface_air_temperature', 'eastward_near_surface_wind', 'eastward_wind', 'evaporation_including_sublimation_and_transpiration', 'geopotential_height', 'grid_cell_area_for_atmospheric_grid_variables', 'grid_cell_area_for_ocean_variables', 'land_ice_area_percentage', 'moisture_in_upper_portion_of_soil_column', 'near_surface_air_temperature', 'near_surface_relative_humidity', 'near_surface_specific_humidity', 'near_surface_wind_speed', 'northward_near_surface_wind', 'northward_wind', 'percentage_of_the_grid_cell_occupied_by_land_including_lakes', 'precipitation', 'relative_humidity', 'sea_area_percentage', 'sea_floor_depth_below_geoid', 'sea_ice_thickness', 'sea_level_pressure', 'sea_surface_height_above_geoid', 'sea_surface_salinity', 'sea_surface_temperature', 'sea_ice_area_percentage_on_ocean_grid', 'sea_ice_mass_per_area', 'snow_depth', 'snowfall_flux', 'specific_humidity', 'surface_air_pressure', 'surface_altitude', 'surface_downward_eastward_wind_stress', 'surface_downward_northward_wind_stress', 'surface_downwelling_longwave_radiation', 'surface_downwelling_shortwave_radiation', 'surface_snow_amount', 'surface_temperature', 'surface_temperature_of_sea_ice', 'surface_upward_latent_heat_flux', 'surface_upward_sensible_heat_flux', 'surface_upwelling_longwave_radiation', 'surface_upwelling_shortwave_radiation', 'toa_incident_shortwave_radiation', 'toa_outgoing_longwave_radiation', 'toa_outgoing_shortwave_radiation', 'total_cloud_cover_percentage', 'total_runoff']
         assert variable in variable_valid_values
 
+        level_valid_values = ['1', '5', '10', '20', '30', '50', '70', '100', '150', '200', '250', '300', '400', '500', '600', '700', '850', '925', '1000']
+        assert level in level_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
         experiment_valid_values = ['historical', 'ssp1_1_9', 'ssp1_2_6', 'ssp4_3_4', 'ssp5_3_4os', 'ssp2_4_5', 'ssp4_6_0', 'ssp3_7_0', 'ssp5_8_5']
         assert experiment in experiment_valid_values
 
-        return download_data(level=level, day=day, model=model, year=year, month=month, temporal_resolution=temporal_resolution, variable=variable, experiment=experiment, area_group=area_group)
+        temporal_resolution_valid_values = ['monthly', 'daily', 'fixed']
+        assert temporal_resolution in temporal_resolution_valid_values
 
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1850', '1851', '1852', '1853', '1854', '1855', '1856', '1857', '1858', '1859', '1860', '1861', '1862', '1863', '1864', '1865', '1866', '1867', '1868', '1869', '1870', '1871', '1872', '1873', '1874', '1875', '1876', '1877', '1878', '1879', '1880', '1881', '1882', '1883', '1884', '1885', '1886', '1887', '1888', '1889', '1890', '1891', '1892', '1893', '1894', '1895', '1896', '1897', '1898', '1899', '1900', '1901', '1902', '1903', '1904', '1905', '1906', '1907', '1908', '1909', '1910', '1911', '1912', '1913', '1914', '1915', '1916', '1917', '1918', '1919', '1920', '1921', '1922', '1923', '1924', '1925', '1926', '1927', '1928', '1929', '1930', '1931', '1932', '1933', '1934', '1935', '1936', '1937', '1938', '1939', '1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100', '2101', '2102', '2103', '2104', '2105', '2106', '2107', '2108', '2109', '2110', '2111', '2112', '2113', '2114', '2115', '2116', '2117', '2118', '2119', '2120', '2121', '2122', '2123', '2124', '2125', '2126', '2127', '2128', '2129', '2130', '2131', '2132', '2133', '2134', '2135', '2136', '2137', '2138', '2139', '2140', '2141', '2142', '2143', '2144', '2145', '2146', '2147', '2148', '2149', '2150', '2151', '2152', '2153', '2154', '2155', '2156', '2157', '2158', '2159', '2160', '2161', '2162', '2163', '2164', '2165', '2166', '2167', '2168', '2169', '2170', '2171', '2172', '2173', '2174', '2175', '2176', '2177', '2178', '2179', '2180', '2181', '2182', '2183', '2184', '2185', '2186', '2187', '2188', '2189', '2190', '2191', '2192', '2193', '2194', '2195', '2196', '2197', '2198', '2199', '2200', '2201', '2202', '2203', '2204', '2205', '2206', '2207', '2208', '2209', '2210', '2211', '2212', '2213', '2214', '2215', '2216', '2217', '2218', '2219', '2220', '2221', '2222', '2223', '2224', '2225', '2226', '2227', '2228', '2229', '2230', '2231', '2232', '2233', '2234', '2235', '2236', '2237', '2238', '2239', '2240', '2241', '2242', '2243', '2244', '2245', '2246', '2247', '2248', '2249', '2250', '2251', '2252', '2253', '2254', '2255', '2256', '2257', '2258', '2259', '2260', '2261', '2262', '2263', '2264', '2265', '2266', '2267', '2268', '2269', '2270', '2271', '2272', '2273', '2274', '2275', '2276', '2277', '2278', '2279', '2280', '2281', '2282', '2283', '2284', '2285', '2286', '2287', '2288', '2289', '2290', '2291', '2292', '2293', '2294', '2295', '2296', '2297', '2298', '2299', '2300']
+        assert year in year_valid_values
+
+        return download_data(model=model, variable=variable, level=level, month=month, experiment=experiment, temporal_resolution=temporal_resolution, day=day, year=year, area_group=area_group)
 class Collection_insitu_observations_gruan_reference_network(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: str, format: str, month: str, variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: str, format: str, day: OneOrMore[str], year: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: str, format: str, month: str, variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, variable: OneOrMore[str], month: str, format: str, day: OneOrMore[str], year: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        variable_valid_values = ['air_temperature', 'relative_humidity', 'air_relative_humidity_effective_vertical_resolution', 'eastward_wind_speed', 'northward_wind_speed', 'wind_from_direction', 'wind_speed', 'shortwave_radiation', 'altitude', 'frost_point_temperature', 'geopotential_height', 'vertical_speed_of_radiosonde', 'water_vapour_mixing_ratio']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        format_valid_values = ['netcdf', 'csv']
+        assert format in format_valid_values
+
         day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
         assert day in day_valid_values
 
         year_valid_values = ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
         assert year in year_valid_values
 
-        format_valid_values = ['netcdf', 'csv']
-        assert format in format_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['air_temperature', 'relative_humidity', 'air_relative_humidity_effective_vertical_resolution', 'eastward_wind_speed', 'northward_wind_speed', 'wind_from_direction', 'wind_speed', 'shortwave_radiation', 'altitude', 'frost_point_temperature', 'geopotential_height', 'vertical_speed_of_radiosonde', 'water_vapour_mixing_ratio']
-        assert variable in variable_valid_values
-
-        return download_data(day=day, year=year, format=format, month=month, variable=variable, area_group=area_group)
-
+        return download_data(variable=variable, month=month, format=format, day=day, year=year, area_group=area_group)
 class Collection_insitu_gridded_observations_europe(Collection):
 
     @Collection.wrapper
-    def download(cls, grid_resolution: str, period: str, version: OneOrMore[str], product_type: str, variable: OneOrMore[str]): UNREACHABLE()
+    def download(cls, period: str, variable: OneOrMore[str], grid_resolution: str, version: OneOrMore[str], product_type: str): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, grid_resolution: str, period: str, version: OneOrMore[str], product_type: str, variable: OneOrMore[str]):
-        grid_resolution_valid_values = ['0_1deg', '0_25deg']
-        assert grid_resolution in grid_resolution_valid_values
-
+    def __download__(cls, period: str, variable: OneOrMore[str], grid_resolution: str, version: OneOrMore[str], product_type: str):
         period_valid_values = ['full_period', '1950_1964', '1965_1979', '1980_1994', '1995_2010', '2011_2019', '2011_2020', '2011_2021', '2011_2022', '2011_2023', '2011_2024']
         assert period in period_valid_values
+
+        variable_valid_values = ['mean_temperature', 'minimum_temperature', 'maximum_temperature', 'precipitation_amount', 'sea_level_pressure', 'surface_shortwave_downwelling_radiation', 'relative_humidity', 'wind_speed', 'land_surface_elevation']
+        assert variable in variable_valid_values
+
+        grid_resolution_valid_values = ['0_1deg', '0_25deg']
+        assert grid_resolution in grid_resolution_valid_values
 
         version_valid_values = ['30_0e', '21_0e', '22_0e', '23_1e', '24_0e', '25_0e', '26_0e', '27_0e', '28_0e', '29_0e']
         assert version in version_valid_values
@@ -1484,47 +1436,42 @@ class Collection_insitu_gridded_observations_europe(Collection):
         product_type_valid_values = ['ensemble_mean', 'ensemble_spread', 'elevation']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['mean_temperature', 'minimum_temperature', 'maximum_temperature', 'precipitation_amount', 'sea_level_pressure', 'surface_shortwave_downwelling_radiation', 'relative_humidity', 'wind_speed', 'land_surface_elevation']
-        assert variable in variable_valid_values
-
-        return download_data(grid_resolution=grid_resolution, period=period, version=version, product_type=product_type, variable=variable)
-
+        return download_data(period=period, variable=variable, grid_resolution=grid_resolution, version=version, product_type=product_type)
 class Collection_derived_era5_pressure_levels_daily_statistics(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: str, month: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], time_zone: str = 'utc+00:00', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', frequency: str = '1_hourly', product_type: str = 'reanalysis', daily_statistic: str = 'daily_mean'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], pressure_level: OneOrMore[str], day: OneOrMore[str], year: str, frequency: str = '1_hourly', daily_statistic: str = 'daily_mean', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', time_zone: str = 'utc+00:00', product_type: str = 'reanalysis'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: str, month: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], time_zone: str = 'utc+00:00', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', frequency: str = '1_hourly', product_type: str = 'reanalysis', daily_statistic: str = 'daily_mean'):
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], pressure_level: OneOrMore[str], day: OneOrMore[str], year: str, frequency: str = '1_hourly', daily_statistic: str = 'daily_mean', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', time_zone: str = 'utc+00:00', product_type: str = 'reanalysis'):
+        variable_valid_values = ['divergence', 'fraction_of_cloud_cover', 'geopotential', 'ozone_mass_mixing_ratio', 'potential_vorticity', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_humidity', 'specific_rain_water_content', 'specific_snow_water_content', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'vertical_velocity', 'vorticity']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        pressure_level_valid_values = ['1', '2', '3', '5', '7', '10', '20', '30', '50', '70', '100', '125', '150', '175', '200', '225', '250', '300', '350', '400', '450', '500', '550', '600', '650', '700', '750', '775', '800', '825', '850', '875', '900', '925', '950', '975', '1000']
+        assert pressure_level in pressure_level_valid_values
+
         day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
         assert day in day_valid_values
 
         year_valid_values = ['1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
         assert year in year_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['divergence', 'fraction_of_cloud_cover', 'geopotential', 'ozone_mass_mixing_ratio', 'potential_vorticity', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_humidity', 'specific_rain_water_content', 'specific_snow_water_content', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'vertical_velocity', 'vorticity']
-        assert variable in variable_valid_values
-
-        pressure_level_valid_values = ['1', '2', '3', '5', '7', '10', '20', '30', '50', '70', '100', '125', '150', '175', '200', '225', '250', '300', '350', '400', '450', '500', '550', '600', '650', '700', '750', '775', '800', '825', '850', '875', '900', '925', '950', '975', '1000']
-        assert pressure_level in pressure_level_valid_values
-
-        time_zone_valid_values = ['utc-12:00', 'utc-11:00', 'utc-10:00', 'utc-09:00', 'utc-08:00', 'utc-07:00', 'utc-06:00', 'utc-05:00', 'utc-04:00', 'utc-03:00', 'utc-02:00', 'utc-01:00', 'utc+00:00', 'utc+01:00', 'utc+02:00', 'utc+03:00', 'utc+04:00', 'utc+05:00', 'utc+06:00', 'utc+07:00', 'utc+08:00', 'utc+09:00', 'utc+10:00', 'utc+11:00', 'utc+12:00', 'utc+13:00', 'utc+14:00']
-        assert time_zone in time_zone_valid_values
-
         frequency_valid_values = ['1_hourly', '3_hourly', '6_hourly']
         assert frequency in frequency_valid_values
-
-        product_type_valid_values = ['reanalysis', 'ensemble_members', 'ensemble_mean']
-        assert product_type in product_type_valid_values
 
         daily_statistic_valid_values = ['daily_mean', 'daily_minimum', 'daily_maximum']
         assert daily_statistic in daily_statistic_valid_values
 
-        return download_data(day=day, year=year, month=month, variable=variable, pressure_level=pressure_level, time_zone=time_zone, area_group=area_group, frequency=frequency, product_type=product_type, daily_statistic=daily_statistic)
+        time_zone_valid_values = ['utc-12:00', 'utc-11:00', 'utc-10:00', 'utc-09:00', 'utc-08:00', 'utc-07:00', 'utc-06:00', 'utc-05:00', 'utc-04:00', 'utc-03:00', 'utc-02:00', 'utc-01:00', 'utc+00:00', 'utc+01:00', 'utc+02:00', 'utc+03:00', 'utc+04:00', 'utc+05:00', 'utc+06:00', 'utc+07:00', 'utc+08:00', 'utc+09:00', 'utc+10:00', 'utc+11:00', 'utc+12:00', 'utc+13:00', 'utc+14:00']
+        assert time_zone in time_zone_valid_values
 
+        product_type_valid_values = ['reanalysis', 'ensemble_members', 'ensemble_mean']
+        assert product_type in product_type_valid_values
+
+        return download_data(variable=variable, month=month, pressure_level=pressure_level, day=day, year=year, frequency=frequency, daily_statistic=daily_statistic, area_group=area_group, time_zone=time_zone, product_type=product_type)
 class Collection_reanalysis_era5_complete(Collection):
 
     @Collection.wrapper
@@ -1533,52 +1480,53 @@ class Collection_reanalysis_era5_complete(Collection):
     @classmethod
     def __download__(cls, download_instructions: Optional[str] = None):
         return download_data(download_instructions=download_instructions)
-
 class Collection_derived_near_surface_meteorological_variables(Collection):
 
     @Collection.wrapper
-    def download(cls, reference_dataset: str, year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], version: OneOrMore[str] = '2.1'): UNREACHABLE()
+    def download(cls, reference_dataset: str, variable: OneOrMore[str], month: OneOrMore[str], year: OneOrMore[str], version: OneOrMore[str] = '2.1'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, reference_dataset: str, year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], version: OneOrMore[str] = '2.1'):
+    def __download__(cls, reference_dataset: str, variable: OneOrMore[str], month: OneOrMore[str], year: OneOrMore[str], version: OneOrMore[str] = '2.1'):
         reference_dataset_valid_values = ['cru', 'cru_and_gpcc']
         assert reference_dataset in reference_dataset_valid_values
-
-        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
-        assert year in year_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
 
         variable_valid_values = ['grid_point_altitude', 'near_surface_wind_speed', 'near_surface_air_temperature', 'surface_air_pressure', 'near_surface_specific_humidity', 'surface_downwelling_shortwave_radiation', 'surface_downwelling_longwave_radiation', 'rainfall_flux', 'snowfall_flux']
         assert variable in variable_valid_values
 
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+        assert year in year_valid_values
+
         version_valid_values = ['deprecated (1.0)', '1_1', '2_0', '2_1']
         assert version in version_valid_values
 
-        return download_data(reference_dataset=reference_dataset, year=year, month=month, variable=variable, version=version)
-
+        return download_data(reference_dataset=reference_dataset, variable=variable, month=month, year=year, version=version)
 class Collection_sis_tourism_snow_indicators(Collection):
 
     @Collection.wrapper
-    def download(cls, period: OneOrMore[str], time_aggregation: str, version: OneOrMore[str], statistic: OneOrMore[str], year: OneOrMore[str], rcm: str, gcm: OneOrMore[str], variable: OneOrMore[str], experiment: str): UNREACHABLE()
+    def download(cls, period: OneOrMore[str], time_aggregation: str, variable: OneOrMore[str], statistic: OneOrMore[str], version: OneOrMore[str], experiment: str, rcm: str, gcm: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, period: OneOrMore[str], time_aggregation: str, version: OneOrMore[str], statistic: OneOrMore[str], year: OneOrMore[str], rcm: str, gcm: OneOrMore[str], variable: OneOrMore[str], experiment: str):
+    def __download__(cls, period: OneOrMore[str], time_aggregation: str, variable: OneOrMore[str], statistic: OneOrMore[str], version: OneOrMore[str], experiment: str, rcm: str, gcm: OneOrMore[str], year: OneOrMore[str]):
         period_valid_values = ['1961_1990', '1986_2005', '1990_2015', '2021_2040', '2041_2060', '2081_2100']
         assert period in period_valid_values
 
         time_aggregation_valid_values = ['climatology', 'annual_data']
         assert time_aggregation in time_aggregation_valid_values
 
-        version_valid_values = ['1_0', '1_1']
-        assert version in version_valid_values
+        variable_valid_values = ['start_of_the_longest_period_with_groomed_snow', 'start_of_the_longest_period_with_managed_snow', 'start_of_the_longest_period_with_natural_snow', 'end_of_the_longest_period_with_groomed_snow', 'end_of_the_longest_period_with_managed_snow', 'end_of_the_longest_period_with_natural_snow', 'annual_amount_of_machine_made_snow_produced', 'total_precipitation_from_november_to_april', 'total_snow_precipitation_from_november_to_april', 'period_with_medium_height_of_groomed_snow', 'period_with_medium_height_of_managed_snow', 'period_with_medium_height_of_natural_snow', 'period_with_low_height_of_groomed_snow', 'period_with_low_height_of_managed_snow', 'period_with_low_height_of_natural_snow', 'period_with_high_height_of_groomed_snow', 'period_with_high_height_of_managed_snow', 'period_with_high_height_of_natural_snow', 'period_with_medium_height_of_groomed_snow_between_fourth_and_tenth_december', 'period_with_medium_height_of_managed_snow_between_fourth_and_tenth_december', 'period_with_medium_height_of_natural_snow_between_fourth_and_tenth_december', 'period_with_medium_height_of_groomed_snow_between_twenty_second_december_and_fourth_january', 'period_with_medium_height_of_managed_snow_between_twenty_second_december_and_fourth_january', 'period_with_medium_height_of_natural_snow_between_twenty_second_december_and_fourth_january', 'period_with_medium_amount_of_groomed_snow', 'period_with_medium_amount_of_managed_snow', 'period_with_medium_amount_of_natural_snow', 'period_with_high_amount_of_groomed_snow', 'period_with_high_amount_of_managed_snow', 'period_with_high_amount_of_natural_snow', 'mean_winter_air_temperature', 'monthly_mean_air_temperature_for_november', 'monthly_mean_air_temperature_for_december', 'monthly_mean_air_temperature_for_january', 'monthly_mean_air_temperature_for_february', 'monthly_mean_air_temperature_for_march', 'monthly_mean_air_temperature_for_april', 'snow_making_hours_for_WBT_lower_than_negative_2_degc', 'snow_making_hours_for_WBT_lower_than_negative_5_degc']
+        assert variable in variable_valid_values
 
         statistic_valid_values = ['10th_percentile', '20th_percentile', '50th_percentile', '80th_percentile', '90th_percentile', 'mean', 'standard_deviation']
         assert statistic in statistic_valid_values
 
-        year_valid_values = ['1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100']
-        assert year in year_valid_values
+        version_valid_values = ['1_0', '1_1']
+        assert version in version_valid_values
+
+        experiment_valid_values = ['historical', 'rcp2_6', 'rcp4_5', 'rcp8_5', 'uerra_reanalysis']
+        assert experiment in experiment_valid_values
 
         rcm_valid_values = ['cclm4_8_17', 'aladin53', 'wrf331f', 'remo2009', 'rca4']
         assert rcm in rcm_valid_values
@@ -1586,14 +1534,10 @@ class Collection_sis_tourism_snow_indicators(Collection):
         gcm_valid_values = ['mpi_esm_lr', 'cnrm_cm5', 'cm5a_mr', 'hadgem2_es', 'ec_earth']
         assert gcm in gcm_valid_values
 
-        variable_valid_values = ['start_of_the_longest_period_with_groomed_snow', 'start_of_the_longest_period_with_managed_snow', 'start_of_the_longest_period_with_natural_snow', 'end_of_the_longest_period_with_groomed_snow', 'end_of_the_longest_period_with_managed_snow', 'end_of_the_longest_period_with_natural_snow', 'annual_amount_of_machine_made_snow_produced', 'total_precipitation_from_november_to_april', 'total_snow_precipitation_from_november_to_april', 'period_with_medium_height_of_groomed_snow', 'period_with_medium_height_of_managed_snow', 'period_with_medium_height_of_natural_snow', 'period_with_low_height_of_groomed_snow', 'period_with_low_height_of_managed_snow', 'period_with_low_height_of_natural_snow', 'period_with_high_height_of_groomed_snow', 'period_with_high_height_of_managed_snow', 'period_with_high_height_of_natural_snow', 'period_with_medium_height_of_groomed_snow_between_fourth_and_tenth_december', 'period_with_medium_height_of_managed_snow_between_fourth_and_tenth_december', 'period_with_medium_height_of_natural_snow_between_fourth_and_tenth_december', 'period_with_medium_height_of_groomed_snow_between_twenty_second_december_and_fourth_january', 'period_with_medium_height_of_managed_snow_between_twenty_second_december_and_fourth_january', 'period_with_medium_height_of_natural_snow_between_twenty_second_december_and_fourth_january', 'period_with_medium_amount_of_groomed_snow', 'period_with_medium_amount_of_managed_snow', 'period_with_medium_amount_of_natural_snow', 'period_with_high_amount_of_groomed_snow', 'period_with_high_amount_of_managed_snow', 'period_with_high_amount_of_natural_snow', 'mean_winter_air_temperature', 'monthly_mean_air_temperature_for_november', 'monthly_mean_air_temperature_for_december', 'monthly_mean_air_temperature_for_january', 'monthly_mean_air_temperature_for_february', 'monthly_mean_air_temperature_for_march', 'monthly_mean_air_temperature_for_april', 'snow_making_hours_for_WBT_lower_than_negative_2_degc', 'snow_making_hours_for_WBT_lower_than_negative_5_degc']
-        assert variable in variable_valid_values
+        year_valid_values = ['1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100']
+        assert year in year_valid_values
 
-        experiment_valid_values = ['historical', 'rcp2_6', 'rcp4_5', 'rcp8_5', 'uerra_reanalysis']
-        assert experiment in experiment_valid_values
-
-        return download_data(period=period, time_aggregation=time_aggregation, version=version, statistic=statistic, year=year, rcm=rcm, gcm=gcm, variable=variable, experiment=experiment)
-
+        return download_data(period=period, time_aggregation=time_aggregation, variable=variable, statistic=statistic, version=version, experiment=experiment, rcm=rcm, gcm=gcm, year=year)
 class Collection_reanalysis_uerra_europe_complete(Collection):
 
     @Collection.wrapper
@@ -1602,25 +1546,24 @@ class Collection_reanalysis_uerra_europe_complete(Collection):
     @classmethod
     def __download__(cls, download_instructions: Optional[str] = None):
         return download_data(download_instructions=download_instructions)
-
 class Collection_sis_european_risk_extreme_precipitation_indicators(Collection):
 
     @Collection.wrapper
-    def download(cls, return_period: OneOrMore[str], period: OneOrMore[str], percentile: OneOrMore[str], city: OneOrMore[str], temporal_aggregation: OneOrMore[str], product_type: OneOrMore[str], spatial_coverage: OneOrMore[str], variable: OneOrMore[str]): UNREACHABLE()
+    def download(cls, percentile: OneOrMore[str], period: OneOrMore[str], variable: OneOrMore[str], return_period: OneOrMore[str], temporal_aggregation: OneOrMore[str], product_type: OneOrMore[str], city: OneOrMore[str], spatial_coverage: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, return_period: OneOrMore[str], period: OneOrMore[str], percentile: OneOrMore[str], city: OneOrMore[str], temporal_aggregation: OneOrMore[str], product_type: OneOrMore[str], spatial_coverage: OneOrMore[str], variable: OneOrMore[str]):
-        return_period_valid_values = ['10-yrs', '100-yrs', '25-yrs', '5-yrs', '50-yrs']
-        assert return_period in return_period_valid_values
+    def __download__(cls, percentile: OneOrMore[str], period: OneOrMore[str], variable: OneOrMore[str], return_period: OneOrMore[str], temporal_aggregation: OneOrMore[str], product_type: OneOrMore[str], city: OneOrMore[str], spatial_coverage: OneOrMore[str]):
+        percentile_valid_values = ['90th', '95th', '99th']
+        assert percentile in percentile_valid_values
 
         period_valid_values = ['1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '1989_2018']
         assert period in period_valid_values
 
-        percentile_valid_values = ['90th', '95th', '99th']
-        assert percentile in percentile_valid_values
+        variable_valid_values = ['maximum_1_day_precipitation', 'maximum_5_day_precipitation', 'number_of_consecutive_wet_days', 'number_of_precipitation_days_exceeding_20mm', 'number_of_precipitation_days_exceeding_fixed_percentiles', 'number_of_wet_days', 'total_precipitation', 'precipitation_at_fixed_percentiles', 'precipitation_at_fixed_return_periods', 'standardised_precipitation_exceeding_fixed_percentiles']
+        assert variable in variable_valid_values
 
-        city_valid_values = ['amadora', 'amersfoort', 'antwerp', 'athens', 'bilbao', 'birmingham', 'brussels', 'bucharest', 'budapest', 'frankfurt_am_main', 'koln', 'london', 'milan', 'pamplona', 'paris', 'prague', 'riga', 'rimini', 'stockholm', 'vienna']
-        assert city in city_valid_values
+        return_period_valid_values = ['10-yrs', '100-yrs', '25-yrs', '5-yrs', '50-yrs']
+        assert return_period in return_period_valid_values
 
         temporal_aggregation_valid_values = ['30_year', 'daily', 'monthly', 'yearly']
         assert temporal_aggregation in temporal_aggregation_valid_values
@@ -1628,254 +1571,245 @@ class Collection_sis_european_risk_extreme_precipitation_indicators(Collection):
         product_type_valid_values = ['e_obs', 'eca_d', 'era5', 'era5_2km']
         assert product_type in product_type_valid_values
 
+        city_valid_values = ['amadora', 'amersfoort', 'antwerp', 'athens', 'bilbao', 'birmingham', 'brussels', 'bucharest', 'budapest', 'frankfurt_am_main', 'koln', 'london', 'milan', 'pamplona', 'paris', 'prague', 'riga', 'rimini', 'stockholm', 'vienna']
+        assert city in city_valid_values
+
         spatial_coverage_valid_values = ['city', 'europe']
         assert spatial_coverage in spatial_coverage_valid_values
 
-        variable_valid_values = ['maximum_1_day_precipitation', 'maximum_5_day_precipitation', 'number_of_consecutive_wet_days', 'number_of_precipitation_days_exceeding_20mm', 'number_of_precipitation_days_exceeding_fixed_percentiles', 'number_of_wet_days', 'total_precipitation', 'precipitation_at_fixed_percentiles', 'precipitation_at_fixed_return_periods', 'standardised_precipitation_exceeding_fixed_percentiles']
-        assert variable in variable_valid_values
-
-        return download_data(return_period=return_period, period=period, percentile=percentile, city=city, temporal_aggregation=temporal_aggregation, product_type=product_type, spatial_coverage=spatial_coverage, variable=variable)
-
+        return download_data(percentile=percentile, period=period, variable=variable, return_period=return_period, temporal_aggregation=temporal_aggregation, product_type=product_type, city=city, spatial_coverage=spatial_coverage)
 class Collection_satellite_total_column_water_vapour_land_ocean(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], product: str, year: OneOrMore[str], month: OneOrMore[str], temporal_aggregation: str, horizontal_aggregation: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
+    def download(cls, horizontal_aggregation: OneOrMore[str], product: str, month: OneOrMore[str], day: OneOrMore[str], temporal_aggregation: str, year: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], product: str, year: OneOrMore[str], month: OneOrMore[str], temporal_aggregation: str, horizontal_aggregation: OneOrMore[str], variable: str = 'all'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, horizontal_aggregation: OneOrMore[str], product: str, month: OneOrMore[str], day: OneOrMore[str], temporal_aggregation: str, year: OneOrMore[str], variable: str = 'all'):
+        horizontal_aggregation_valid_values = ['0_05_x_0_05', '0_5_x_0_5']
+        assert horizontal_aggregation in horizontal_aggregation_valid_values
 
         product_valid_values = ['c3s_meris_and_ssm_i', 'near_infrared_hoaps_combined']
         assert product in product_valid_values
 
-        year_valid_values = ['2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017']
-        assert year in year_valid_values
-
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
 
         temporal_aggregation_valid_values = ['monthly', 'daily']
         assert temporal_aggregation in temporal_aggregation_valid_values
 
-        horizontal_aggregation_valid_values = ['0_05_x_0_05', '0_5_x_0_5']
-        assert horizontal_aggregation in horizontal_aggregation_valid_values
+        year_valid_values = ['2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017']
+        assert year in year_valid_values
 
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(day=day, product=product, year=year, month=month, temporal_aggregation=temporal_aggregation, horizontal_aggregation=horizontal_aggregation, variable=variable)
-
+        return download_data(horizontal_aggregation=horizontal_aggregation, product=product, month=month, day=day, temporal_aggregation=temporal_aggregation, year=year, variable=variable)
 class Collection_sis_temperature_statistics(Collection):
 
     @Collection.wrapper
-    def download(cls, period: str, ensemble_statistic: OneOrMore[str], statistic: OneOrMore[str], variable: str, experiment: OneOrMore[str]): UNREACHABLE()
+    def download(cls, period: str, ensemble_statistic: OneOrMore[str], variable: str, statistic: OneOrMore[str], experiment: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, period: str, ensemble_statistic: OneOrMore[str], statistic: OneOrMore[str], variable: str, experiment: OneOrMore[str]):
+    def __download__(cls, period: str, ensemble_statistic: OneOrMore[str], variable: str, statistic: OneOrMore[str], experiment: OneOrMore[str]):
         period_valid_values = ['summer', 'winter', 'year']
         assert period in period_valid_values
 
         ensemble_statistic_valid_values = ['ensemble_members_average', 'ensemble_members_standard_deviation']
         assert ensemble_statistic in ensemble_statistic_valid_values
 
-        statistic_valid_values = ['time_average', '1st_percentile', '5th_percentile', '10th_percentile', '25th_percentile', '50th_percentile', '75th_percentile', '90th_percentile', '95th_percentile', '97th_percentile', '99th_percentile']
-        assert statistic in statistic_valid_values
-
         variable_valid_values = ['maximum_temperature', 'minimum_temperature', 'average_temperature']
         assert variable in variable_valid_values
+
+        statistic_valid_values = ['time_average', '1st_percentile', '5th_percentile', '10th_percentile', '25th_percentile', '50th_percentile', '75th_percentile', '90th_percentile', '95th_percentile', '97th_percentile', '99th_percentile']
+        assert statistic in statistic_valid_values
 
         experiment_valid_values = ['rcp4_5', 'rcp8_5']
         assert experiment in experiment_valid_values
 
-        return download_data(period=period, ensemble_statistic=ensemble_statistic, statistic=statistic, variable=variable, experiment=experiment)
-
+        return download_data(period=period, ensemble_statistic=ensemble_statistic, variable=variable, statistic=statistic, experiment=experiment)
 class Collection_satellite_fire_radiative_power(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time_aggregation: str, version: OneOrMore[str], year: str, observation_time: OneOrMore[str], month: OneOrMore[str], satellite: OneOrMore[str], horizontal_aggregation: str, product_type: str, variable: str = 'all'): UNREACHABLE()
+    def download(cls, horizontal_aggregation: str, time_aggregation: str, month: OneOrMore[str], observation_time: OneOrMore[str], satellite: OneOrMore[str], version: OneOrMore[str], day: OneOrMore[str], product_type: str, year: str, variable: str = 'all'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time_aggregation: str, version: OneOrMore[str], year: str, observation_time: OneOrMore[str], month: OneOrMore[str], satellite: OneOrMore[str], horizontal_aggregation: str, product_type: str, variable: str = 'all'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, horizontal_aggregation: str, time_aggregation: str, month: OneOrMore[str], observation_time: OneOrMore[str], satellite: OneOrMore[str], version: OneOrMore[str], day: OneOrMore[str], product_type: str, year: str, variable: str = 'all'):
+        horizontal_aggregation_valid_values = ['0_1_degree_x_0_1_degree', '0_25_degree_x_0_25_degree']
+        assert horizontal_aggregation in horizontal_aggregation_valid_values
 
         time_aggregation_valid_values = ['day', '27_days', 'month']
         assert time_aggregation in time_aggregation_valid_values
 
-        version_valid_values = ['1_0', '1_2']
-        assert version in version_valid_values
-
-        year_valid_values = ['2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
         observation_time_valid_values = ['night', 'day']
         assert observation_time in observation_time_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
         satellite_valid_values = ['sentinel_3a', 'sentinel_3b']
         assert satellite in satellite_valid_values
 
-        horizontal_aggregation_valid_values = ['0_1_degree_x_0_1_degree', '0_25_degree_x_0_25_degree']
-        assert horizontal_aggregation in horizontal_aggregation_valid_values
+        version_valid_values = ['1_0', '1_2']
+        assert version in version_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
 
         product_type_valid_values = ['gridded', 'table_summary']
         assert product_type in product_type_valid_values
 
+        year_valid_values = ['2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(day=day, time_aggregation=time_aggregation, version=version, year=year, observation_time=observation_time, month=month, satellite=satellite, horizontal_aggregation=horizontal_aggregation, product_type=product_type, variable=variable)
-
+        return download_data(horizontal_aggregation=horizontal_aggregation, time_aggregation=time_aggregation, month=month, observation_time=observation_time, satellite=satellite, version=version, day=day, product_type=product_type, year=year, variable=variable)
 class Collection_satellite_methane(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], sensor_and_algorithm: str, version: OneOrMore[str], year: OneOrMore[str], processing_level: OneOrMore[str], month: OneOrMore[str], variable: str): UNREACHABLE()
+    def download(cls, processing_level: OneOrMore[str], sensor_and_algorithm: str, variable: str, month: OneOrMore[str], version: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], sensor_and_algorithm: str, version: OneOrMore[str], year: OneOrMore[str], processing_level: OneOrMore[str], month: OneOrMore[str], variable: str):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, processing_level: OneOrMore[str], sensor_and_algorithm: str, variable: str, month: OneOrMore[str], version: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str]):
+        processing_level_valid_values = ['level_2', 'level_3']
+        assert processing_level in processing_level_valid_values
 
         sensor_and_algorithm_valid_values = ['iasi_metop_a_nlis', 'iasi_metop_b_nlis', 'iasi_metop_c_nlis', 'sciamachy_imap', 'sciamachy_wfmd', 'tanso_fts_ocfp', 'tanso_fts_ocpr', 'tanso_fts_srfp', 'tanso_fts_srpr', 'tanso2_fts_srfp', 'tanso2_fts_srpr', 'merged_emma', 'merged_obs4mips']
         assert sensor_and_algorithm in sensor_and_algorithm_valid_values
 
-        version_valid_values = ['4_3', '4_5', '7_2', '7_3', '9_0', '9_1', '10_2', '2_0_1', '2_3_8', '2_3_9', '3', '3_0', '3_1', '4_0', '4_1', '4_2', '4_4', '4_5', '7_0', '7_1', '7_2', '7_3', '8_1', '8_4', '9_0', '9_1', '10_2', '2_0_0', '2_0_1', '2_3_8', '2_3_9']
-        assert version in version_valid_values
-
-        year_valid_values = ['2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
-        assert year in year_valid_values
-
-        processing_level_valid_values = ['level_2', 'level_3']
-        assert processing_level in processing_level_valid_values
+        variable_valid_values = ['ch4', 'xch4']
+        assert variable in variable_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        variable_valid_values = ['ch4', 'xch4']
-        assert variable in variable_valid_values
+        version_valid_values = ['4_3', '4_5', '7_2', '7_3', '9_0', '9_1', '10_2', '2_0_1', '2_3_8', '2_3_9', '3', '3_0', '3_1', '4_0', '4_1', '4_2', '4_4', '4_5', '7_0', '7_1', '7_2', '7_3', '8_1', '8_4', '9_0', '9_1', '10_2', '2_0_0', '2_0_1', '2_3_8', '2_3_9']
+        assert version in version_valid_values
 
-        return download_data(day=day, sensor_and_algorithm=sensor_and_algorithm, version=version, year=year, processing_level=processing_level, month=month, variable=variable)
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
 
+        year_valid_values = ['2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        assert year in year_valid_values
+
+        return download_data(processing_level=processing_level, sensor_and_algorithm=sensor_and_algorithm, variable=variable, month=month, version=version, day=day, year=year)
 class Collection_satellite_ice_sheet_elevation_change(Collection):
 
     @Collection.wrapper
-    def download(cls, climate_data_record_type: OneOrMore[str], version: OneOrMore[str], domain: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
+    def download(cls, climate_data_record_type: OneOrMore[str], domain: OneOrMore[str], version: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, climate_data_record_type: OneOrMore[str], version: OneOrMore[str], domain: OneOrMore[str], variable: str = 'all'):
+    def __download__(cls, climate_data_record_type: OneOrMore[str], domain: OneOrMore[str], version: OneOrMore[str], variable: str = 'all'):
         climate_data_record_type_valid_values = ['icdr', 'tcdr']
         assert climate_data_record_type in climate_data_record_type_valid_values
-
-        version_valid_values = ['2_0', '3_0', '4_0', '5_0']
-        assert version in version_valid_values
 
         domain_valid_values = ['antarctica', 'greenland']
         assert domain in domain_valid_values
 
+        version_valid_values = ['2_0', '3_0', '4_0', '5_0']
+        assert version in version_valid_values
+
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(climate_data_record_type=climate_data_record_type, version=version, domain=domain, variable=variable)
-
+        return download_data(climate_data_record_type=climate_data_record_type, domain=domain, version=version, variable=variable)
 class Collection_seasonal_monthly_pressure_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, system: str, leadtime_month: OneOrMore[str], originating_centre: str, year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, system: str, originating_centre: str, variable: OneOrMore[str], month: OneOrMore[str], leadtime_month: OneOrMore[str], pressure_level: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, system: str, leadtime_month: OneOrMore[str], originating_centre: str, year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, system: str, originating_centre: str, variable: OneOrMore[str], month: OneOrMore[str], leadtime_month: OneOrMore[str], pressure_level: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
         system_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '12', '13', '14', '15', '21', '35', '51', '600', '601', '602', '603']
         assert system in system_valid_values
-
-        leadtime_month_valid_values = ['1', '2', '3', '4', '5', '6']
-        assert leadtime_month in leadtime_month_valid_values
 
         originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc', 'ncep', 'jma', 'eccc']
         assert originating_centre in originating_centre_valid_values
 
-        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
+        variable_valid_values = ['geopotential', 'specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind']
+        assert variable in variable_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        product_type_valid_values = ['ensemble_mean', 'hindcast_climate_mean', 'monthly_mean']
-        assert product_type in product_type_valid_values
-
-        variable_valid_values = ['geopotential', 'specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind']
-        assert variable in variable_valid_values
+        leadtime_month_valid_values = ['1', '2', '3', '4', '5', '6']
+        assert leadtime_month in leadtime_month_valid_values
 
         pressure_level_valid_values = ['10', '30', '50', '100', '200', '300', '400', '500', '700', '850', '925', '1000']
         assert pressure_level in pressure_level_valid_values
 
+        product_type_valid_values = ['ensemble_mean', 'hindcast_climate_mean', 'monthly_mean']
+        assert product_type in product_type_valid_values
+
+        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(system=system, leadtime_month=leadtime_month, originating_centre=originating_centre, year=year, month=month, product_type=product_type, variable=variable, pressure_level=pressure_level, data_format=data_format, area_group=area_group)
-
+        return download_data(system=system, originating_centre=originating_centre, variable=variable, month=month, leadtime_month=leadtime_month, pressure_level=pressure_level, product_type=product_type, year=year, data_format=data_format, area_group=area_group)
 class Collection_satellite_carbon_dioxide(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], sensor_and_algorithm: str, version: OneOrMore[str], year: OneOrMore[str], processing_level: OneOrMore[str], month: OneOrMore[str], variable: str): UNREACHABLE()
+    def download(cls, processing_level: OneOrMore[str], sensor_and_algorithm: str, variable: str, month: OneOrMore[str], version: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], sensor_and_algorithm: str, version: OneOrMore[str], year: OneOrMore[str], processing_level: OneOrMore[str], month: OneOrMore[str], variable: str):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, processing_level: OneOrMore[str], sensor_and_algorithm: str, variable: str, month: OneOrMore[str], version: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str]):
+        processing_level_valid_values = ['level_2', 'level_3']
+        assert processing_level in processing_level_valid_values
 
         sensor_and_algorithm_valid_values = ['airs_nlis', 'iasi_metop_a_nlis', 'iasi_metop_b_nlis', 'iasi_metop_c_nlis', 'sciamachy_wfmd', 'sciamachy_besd', 'tanso_fts_ocfp', 'tanso_fts_srfp', 'tanso2_fts_srfp', 'merged_emma', 'merged_obs4mips']
         assert sensor_and_algorithm in sensor_and_algorithm_valid_values
 
+        variable_valid_values = ['co2', 'xco2']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
         version_valid_values = ['3_0', '4_5', '7_3', '10_1', '2_0_0', '2_3_8', '02_01_02', '3', '3_0', '3_1', '4_0', '4_1', '4_2', '4_3', '4_4', '4_5', '7_1', '7_2', '7_3', '8_0', '9_1', '10_1', '2_0_0', '2_3_8', '02_01_02']
         assert version in version_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
 
         year_valid_values = ['2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
         assert year in year_valid_values
 
-        processing_level_valid_values = ['level_2', 'level_3']
-        assert processing_level in processing_level_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['co2', 'xco2']
-        assert variable in variable_valid_values
-
-        return download_data(day=day, sensor_and_algorithm=sensor_and_algorithm, version=version, year=year, processing_level=processing_level, month=month, variable=variable)
-
+        return download_data(processing_level=processing_level, sensor_and_algorithm=sensor_and_algorithm, variable=variable, month=month, version=version, day=day, year=year)
 class Collection_insitu_observations_surface_land(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time_aggregation: str, usage_restrictions: OneOrMore[str], year: OneOrMore[str], data_quality: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, time_aggregation: str, variable: OneOrMore[str], month: OneOrMore[str], data_quality: OneOrMore[str], usage_restrictions: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time_aggregation: str, usage_restrictions: OneOrMore[str], year: OneOrMore[str], data_quality: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
+    def __download__(cls, time_aggregation: str, variable: OneOrMore[str], month: OneOrMore[str], data_quality: OneOrMore[str], usage_restrictions: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
         time_aggregation_valid_values = ['daily', 'monthly', 'sub_daily']
         assert time_aggregation in time_aggregation_valid_values
-
-        usage_restrictions_valid_values = ['non_commercial', 'open']
-        assert usage_restrictions in usage_restrictions_valid_values
-
-        year_valid_values = ['1755', '1756', '1757', '1758', '1759', '1760', '1761', '1762', '1763', '1764', '1765', '1766', '1767', '1768', '1769', '1770', '1771', '1772', '1773', '1774', '1775', '1776', '1777', '1778', '1779', '1780', '1781', '1782', '1783', '1784', '1785', '1786', '1787', '1788', '1789', '1790', '1791', '1792', '1793', '1794', '1795', '1796', '1797', '1798', '1799', '1800', '1801', '1802', '1803', '1804', '1805', '1806', '1807', '1808', '1809', '1810', '1811', '1812', '1813', '1814', '1815', '1816', '1817', '1818', '1819', '1820', '1821', '1822', '1823', '1824', '1825', '1826', '1827', '1828', '1829', '1830', '1831', '1832', '1833', '1834', '1835', '1836', '1837', '1838', '1839', '1840', '1841', '1842', '1843', '1844', '1845', '1846', '1847', '1848', '1849', '1850', '1851', '1852', '1853', '1854', '1855', '1856', '1857', '1858', '1859', '1860', '1861', '1862', '1863', '1864', '1865', '1866', '1867', '1868', '1869', '1870', '1871', '1872', '1873', '1874', '1875', '1876', '1877', '1878', '1879', '1880', '1881', '1882', '1883', '1884', '1885', '1886', '1887', '1888', '1889', '1890', '1891', '1892', '1893', '1894', '1895', '1896', '1897', '1898', '1899', '1900', '1901', '1902', '1903', '1904', '1905', '1906', '1907', '1908', '1909', '1910', '1911', '1912', '1913', '1914', '1915', '1916', '1917', '1918', '1919', '1920', '1921', '1922', '1923', '1924', '1925', '1926', '1927', '1928', '1929', '1930', '1931', '1932', '1933', '1934', '1935', '1936', '1937', '1938', '1939', '1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
-        assert year in year_valid_values
-
-        data_quality_valid_values = ['failed', 'passed']
-        assert data_quality in data_quality_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
 
         variable_valid_values = ['accumulated_precipitation', 'air_pressure', 'air_pressure_at_sea_level', 'air_temperature', 'dew_point_temperature', 'fresh_snow', 'snow_depth', 'snow_water_equivalent', 'wind_from_direction', 'wind_speed']
         assert variable in variable_valid_values
 
-        return download_data(day=day, time_aggregation=time_aggregation, usage_restrictions=usage_restrictions, year=year, data_quality=data_quality, month=month, variable=variable, area_group=area_group)
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
+        data_quality_valid_values = ['failed', 'passed']
+        assert data_quality in data_quality_valid_values
+
+        usage_restrictions_valid_values = ['non_commercial', 'open']
+        assert usage_restrictions in usage_restrictions_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1755', '1756', '1757', '1758', '1759', '1760', '1761', '1762', '1763', '1764', '1765', '1766', '1767', '1768', '1769', '1770', '1771', '1772', '1773', '1774', '1775', '1776', '1777', '1778', '1779', '1780', '1781', '1782', '1783', '1784', '1785', '1786', '1787', '1788', '1789', '1790', '1791', '1792', '1793', '1794', '1795', '1796', '1797', '1798', '1799', '1800', '1801', '1802', '1803', '1804', '1805', '1806', '1807', '1808', '1809', '1810', '1811', '1812', '1813', '1814', '1815', '1816', '1817', '1818', '1819', '1820', '1821', '1822', '1823', '1824', '1825', '1826', '1827', '1828', '1829', '1830', '1831', '1832', '1833', '1834', '1835', '1836', '1837', '1838', '1839', '1840', '1841', '1842', '1843', '1844', '1845', '1846', '1847', '1848', '1849', '1850', '1851', '1852', '1853', '1854', '1855', '1856', '1857', '1858', '1859', '1860', '1861', '1862', '1863', '1864', '1865', '1866', '1867', '1868', '1869', '1870', '1871', '1872', '1873', '1874', '1875', '1876', '1877', '1878', '1879', '1880', '1881', '1882', '1883', '1884', '1885', '1886', '1887', '1888', '1889', '1890', '1891', '1892', '1893', '1894', '1895', '1896', '1897', '1898', '1899', '1900', '1901', '1902', '1903', '1904', '1905', '1906', '1907', '1908', '1909', '1910', '1911', '1912', '1913', '1914', '1915', '1916', '1917', '1918', '1919', '1920', '1921', '1922', '1923', '1924', '1925', '1926', '1927', '1928', '1929', '1930', '1931', '1932', '1933', '1934', '1935', '1936', '1937', '1938', '1939', '1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+        assert year in year_valid_values
+
+        return download_data(time_aggregation=time_aggregation, variable=variable, month=month, data_quality=data_quality, usage_restrictions=usage_restrictions, day=day, year=year, area_group=area_group)
 class Collection_projections_cmip5_monthly_single_levels(Collection):
 
     @Collection.wrapper
@@ -1899,133 +1833,113 @@ class Collection_projections_cmip5_monthly_single_levels(Collection):
         assert ensemble_member in ensemble_member_valid_values
 
         return download_data(period=period, model=model, variable=variable, experiment=experiment, ensemble_member=ensemble_member)
-
 class Collection_insitu_observations_surface_marine(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: OneOrMore[str], data_quality: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], data_quality: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: OneOrMore[str], data_quality: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], data_quality: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        variable_valid_values = ['air_pressure_at_sea_level', 'air_temperature', 'dew_point_temperature', 'water_temperature', 'wind_from_direction', 'wind_speed']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        data_quality_valid_values = ['failed', 'passed']
+        assert data_quality in data_quality_valid_values
+
         day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
         assert day in day_valid_values
 
         year_valid_values = ['1851', '1852', '1853', '1854', '1855', '1856', '1857', '1858', '1859', '1860', '1861', '1862', '1863', '1864', '1865', '1866', '1867', '1868', '1869', '1870', '1871', '1872', '1873', '1874', '1875', '1876', '1877', '1878', '1879', '1880', '1881', '1882', '1883', '1884', '1885', '1886', '1887', '1888', '1889', '1890', '1891', '1892', '1893', '1894', '1895', '1896', '1897', '1898', '1899', '1900', '1901', '1902', '1903', '1904', '1905', '1906', '1907', '1908', '1909', '1910', '1911', '1912', '1913', '1914', '1915', '1916', '1917', '1918', '1919', '1920', '1921', '1922', '1923', '1924', '1925', '1926', '1927', '1928', '1929', '1930', '1931', '1932', '1933', '1934', '1935', '1936', '1937', '1938', '1939', '1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010']
         assert year in year_valid_values
 
-        data_quality_valid_values = ['failed', 'passed']
-        assert data_quality in data_quality_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['air_pressure_at_sea_level', 'air_temperature', 'dew_point_temperature', 'water_temperature', 'wind_from_direction', 'wind_speed']
-        assert variable in variable_valid_values
-
-        return download_data(day=day, year=year, data_quality=data_quality, month=month, variable=variable, area_group=area_group)
-
+        return download_data(variable=variable, month=month, data_quality=data_quality, day=day, year=year, area_group=area_group)
 class Collection_seasonal_monthly_ocean(Collection):
 
     @Collection.wrapper
-    def download(cls, system: str, originating_centre: str, year: OneOrMore[str], month: OneOrMore[str], forecast_type: OneOrMore[str], variable: OneOrMore[str]): UNREACHABLE()
+    def download(cls, system: str, originating_centre: str, variable: OneOrMore[str], forecast_type: OneOrMore[str], month: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, system: str, originating_centre: str, year: OneOrMore[str], month: OneOrMore[str], forecast_type: OneOrMore[str], variable: OneOrMore[str]):
+    def __download__(cls, system: str, originating_centre: str, variable: OneOrMore[str], forecast_type: OneOrMore[str], month: OneOrMore[str], year: OneOrMore[str]):
         system_valid_values = ['8', '21', '35', '51', '602', '603']
         assert system in system_valid_values
 
         originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc']
         assert originating_centre in originating_centre_valid_values
 
-        year_valid_values = ['1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2023', '2024']
-        assert year in year_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
+        variable_valid_values = ['mixed_layer_depth_0_01', 'sea_ice_thickness', 'depth_average_salinity_of_upper_300m', 'depth_average_potential_temperature_of_upper_300m', 'mixed_layer_depth_0_03', 'sea_surface_salinity', 'depth_of_14_c_isotherm', 'depth_of_17_c_isotherm', 'depth_of_20_c_isotherm', 'depth_of_26_c_isotherm', 'depth_of_28_c_isotherm', 'sea_surface_height_above_geoid']
+        assert variable in variable_valid_values
 
         forecast_type_valid_values = ['forecast', 'hindcast']
         assert forecast_type in forecast_type_valid_values
 
-        variable_valid_values = ['mixed_layer_depth_0_01', 'sea_ice_thickness', 'depth_average_salinity_of_upper_300m', 'depth_average_potential_temperature_of_upper_300m', 'mixed_layer_depth_0_03', 'sea_surface_salinity', 'depth_of_14_c_isotherm', 'depth_of_17_c_isotherm', 'depth_of_20_c_isotherm', 'depth_of_26_c_isotherm', 'depth_of_28_c_isotherm', 'sea_surface_height_above_geoid']
-        assert variable in variable_valid_values
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
-        return download_data(system=system, originating_centre=originating_centre, year=year, month=month, forecast_type=forecast_type, variable=variable)
+        year_valid_values = ['1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2023', '2024']
+        assert year in year_valid_values
 
+        return download_data(system=system, originating_centre=originating_centre, variable=variable, forecast_type=forecast_type, month=month, year=year)
 class Collection_seasonal_monthly_single_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, system: str, leadtime_month: OneOrMore[str], originating_centre: str, year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, system: str, originating_centre: str, variable: OneOrMore[str], month: OneOrMore[str], leadtime_month: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, system: str, leadtime_month: OneOrMore[str], originating_centre: str, year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, system: str, originating_centre: str, variable: OneOrMore[str], month: OneOrMore[str], leadtime_month: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
         system_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '12', '13', '14', '15', '21', '35', '51', '600', '601', '602', '603']
         assert system in system_valid_values
-
-        leadtime_month_valid_values = ['1', '2', '3', '4', '5', '6']
-        assert leadtime_month in leadtime_month_valid_values
 
         originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc', 'ncep', 'jma', 'eccc']
         assert originating_centre in originating_centre_valid_values
 
-        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
+        variable_valid_values = ['10m_u_component_of_wind', '10m_v_component_of_wind', '10m_wind_gust_since_previous_post_processing', '10m_wind_speed', '2m_dewpoint_temperature', '2m_temperature', 'east_west_surface_stress_rate_of_accumulation', 'evaporation', 'maximum_2m_temperature_in_the_last_24_hours', 'mean_sea_level_pressure', 'mean_sub_surface_runoff_rate', 'mean_surface_runoff_rate', 'minimum_2m_temperature_in_the_last_24_hours', 'north_south_surface_stress_rate_of_accumulation', 'runoff', 'sea_surface_temperature', 'sea_ice_cover', 'snow_density', 'snow_depth', 'snowfall', 'soil_temperature_level_1', 'solar_insolation_rate_of_accumulation', 'surface_latent_heat_flux', 'surface_sensible_heat_flux', 'surface_solar_radiation', 'surface_solar_radiation_downwards', 'surface_thermal_radiation', 'surface_thermal_radiation_downwards', 'top_solar_radiation', 'top_thermal_radiation', 'total_cloud_cover', 'total_column_cloud_ice_water', 'total_column_cloud_liquid_water', 'total_column_water_vapour', 'total_precipitation']
+        assert variable in variable_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
+
+        leadtime_month_valid_values = ['1', '2', '3', '4', '5', '6']
+        assert leadtime_month in leadtime_month_valid_values
 
         product_type_valid_values = ['ensemble_mean', 'hindcast_climate_mean', 'monthly_mean', 'monthly_minimum', 'monthly_maximum', 'monthly_standard_deviation']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['10m_u_component_of_wind', '10m_v_component_of_wind', '10m_wind_gust_since_previous_post_processing', '10m_wind_speed', '2m_dewpoint_temperature', '2m_temperature', 'east_west_surface_stress_rate_of_accumulation', 'evaporation', 'maximum_2m_temperature_in_the_last_24_hours', 'mean_sea_level_pressure', 'mean_sub_surface_runoff_rate', 'mean_surface_runoff_rate', 'minimum_2m_temperature_in_the_last_24_hours', 'north_south_surface_stress_rate_of_accumulation', 'runoff', 'sea_surface_temperature', 'sea_ice_cover', 'snow_density', 'snow_depth', 'snowfall', 'soil_temperature_level_1', 'solar_insolation_rate_of_accumulation', 'surface_latent_heat_flux', 'surface_sensible_heat_flux', 'surface_solar_radiation', 'surface_solar_radiation_downwards', 'surface_thermal_radiation', 'surface_thermal_radiation_downwards', 'top_solar_radiation', 'top_thermal_radiation', 'total_cloud_cover', 'total_column_cloud_ice_water', 'total_column_cloud_liquid_water', 'total_column_water_vapour', 'total_precipitation']
-        assert variable in variable_valid_values
+        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
 
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(system=system, leadtime_month=leadtime_month, originating_centre=originating_centre, year=year, month=month, product_type=product_type, variable=variable, data_format=data_format, area_group=area_group)
-
+        return download_data(system=system, originating_centre=originating_centre, variable=variable, month=month, leadtime_month=leadtime_month, product_type=product_type, year=year, data_format=data_format, area_group=area_group)
 class Collection_satellite_greenland_ice_sheet_velocity(Collection):
 
     @Collection.wrapper
-    def download(cls, period: OneOrMore[str], version: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
+    def download(cls, version: OneOrMore[str], period: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, period: OneOrMore[str], version: OneOrMore[str], variable: str = 'all'):
-        period_valid_values = ['2017_2018', '2018_2019', '2019_2020', '2020_2021']
-        assert period in period_valid_values
-
+    def __download__(cls, version: OneOrMore[str], period: OneOrMore[str], variable: str = 'all'):
         version_valid_values = ['1_2', '1_3', '1_4']
         assert version in version_valid_values
+
+        period_valid_values = ['2017_2018', '2018_2019', '2019_2020', '2020_2021']
+        assert period in period_valid_values
 
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(period=period, version=version, variable=variable)
-
+        return download_data(version=version, period=period, variable=variable)
 class Collection_satellite_ozone_v1(Collection):
 
     @Collection.wrapper
-    def download(cls, version: OneOrMore[str], year: OneOrMore[str], sensor: OneOrMore[str], processing_level: str, month: OneOrMore[str], vertical_aggregation: str, algorithm: str, variable: str): UNREACHABLE()
+    def download(cls, processing_level: str, algorithm: str, variable: str, month: OneOrMore[str], sensor: OneOrMore[str], vertical_aggregation: str, version: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, version: OneOrMore[str], year: OneOrMore[str], sensor: OneOrMore[str], processing_level: str, month: OneOrMore[str], vertical_aggregation: str, algorithm: str, variable: str):
-        version_valid_values = ['v0001', 'v0002', 'v0003', 'v0004', 'v0005', 'v0006', 'v0007', 'v0008', 'v0009', 'v0020', 'v0021', 'v0022', 'v0023', 'v0024', 'v0025', 'v0100', 'v0101', 'v0200', 'v0300', 'v0400', 'v0500', 'v0600', 'v0700', 'v0800', 'v0900', 'v1000', 'v1100', 'v2000']
-        assert version in version_valid_values
-
-        year_valid_values = ['1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
-        assert year in year_valid_values
-
-        sensor_valid_values = ['msr', 'merged_uv', 'merged_np', 'allg', 'cllg', 'amzm', 'cmzm', 'ace', 'gome', 'gome2_a', 'gome2_b', 'gome2_c', 'gomos', 'haloe', 'iasi_a_day_time', 'iasi_a_night_time', 'iasi_b_day_time', 'iasi_b_night_time', 'iasi_c_day_time', 'iasi_c_night_time', 'mipas', 'mls', 'omi', 'omps', 'osiris', 'saber', 'sage_2', 'sage_3', 'sciamachy', 'smr', 'tropomi']
-        assert sensor in sensor_valid_values
-
+    def __download__(cls, processing_level: str, algorithm: str, variable: str, month: OneOrMore[str], sensor: OneOrMore[str], vertical_aggregation: str, version: OneOrMore[str], year: OneOrMore[str]):
         processing_level_valid_values = ['level_3', 'level_4']
         assert processing_level in processing_level_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        vertical_aggregation_valid_values = ['total_column', 'tropospheric_column_0_6_km', 'vertical_profiles_from_limb_sensors', 'vertical_profiles_from_nadir_sensors']
-        assert vertical_aggregation in vertical_aggregation_valid_values
 
         algorithm_valid_values = ['ubr', 'usask']
         assert algorithm in algorithm_valid_values
@@ -2033,197 +1947,205 @@ class Collection_satellite_ozone_v1(Collection):
         variable_valid_values = ['mole_concentration_of_ozone_in_air', 'mole_fraction_of_ozone_in_air', 'anomaly_of_mole_concentration_of_ozone_in_air', 'mole_content_of_ozone_in_atmosphere_layer', 'atmosphere_mole_content_of_ozone']
         assert variable in variable_valid_values
 
-        return download_data(version=version, year=year, sensor=sensor, processing_level=processing_level, month=month, vertical_aggregation=vertical_aggregation, algorithm=algorithm, variable=variable)
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
+        sensor_valid_values = ['msr', 'merged_uv', 'merged_np', 'allg', 'cllg', 'amzm', 'cmzm', 'ace', 'gome', 'gome2_a', 'gome2_b', 'gome2_c', 'gomos', 'haloe', 'iasi_a_day_time', 'iasi_a_night_time', 'iasi_b_day_time', 'iasi_b_night_time', 'iasi_c_day_time', 'iasi_c_night_time', 'mipas', 'mls', 'omi', 'omps', 'osiris', 'saber', 'sage_2', 'sage_3', 'sciamachy', 'smr', 'tropomi']
+        assert sensor in sensor_valid_values
+
+        vertical_aggregation_valid_values = ['total_column', 'tropospheric_column_0_6_km', 'vertical_profiles_from_limb_sensors', 'vertical_profiles_from_nadir_sensors']
+        assert vertical_aggregation in vertical_aggregation_valid_values
+
+        version_valid_values = ['v0001', 'v0002', 'v0003', 'v0004', 'v0005', 'v0006', 'v0007', 'v0008', 'v0009', 'v0020', 'v0021', 'v0022', 'v0023', 'v0024', 'v0025', 'v0100', 'v0101', 'v0200', 'v0300', 'v0400', 'v0500', 'v0600', 'v0700', 'v0800', 'v0900', 'v1000', 'v1100', 'v2000']
+        assert version in version_valid_values
+
+        year_valid_values = ['1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
+        assert year in year_valid_values
+
+        return download_data(processing_level=processing_level, algorithm=algorithm, variable=variable, month=month, sensor=sensor, vertical_aggregation=vertical_aggregation, version=version, year=year)
 class Collection_derived_era5_single_levels_daily_statistics(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: str, month: OneOrMore[str], variable: OneOrMore[str], time_zone: str = 'utc+00:00', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', frequency: str = '1_hourly', product_type: str = 'reanalysis', daily_statistic: str = 'daily_mean'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: str, frequency: str = '1_hourly', daily_statistic: str = 'daily_mean', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', time_zone: str = 'utc+00:00', product_type: str = 'reanalysis'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: str, month: OneOrMore[str], variable: OneOrMore[str], time_zone: str = 'utc+00:00', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', frequency: str = '1_hourly', product_type: str = 'reanalysis', daily_statistic: str = 'daily_mean'):
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: str, frequency: str = '1_hourly', daily_statistic: str = 'daily_mean', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', time_zone: str = 'utc+00:00', product_type: str = 'reanalysis'):
+        variable_valid_values = ['10m_u_component_of_wind', '10m_v_component_of_wind', '2m_dewpoint_temperature', '2m_temperature', 'mean_sea_level_pressure', 'mean_wave_direction', 'mean_wave_period', 'sea_surface_temperature', 'significant_height_of_combined_wind_waves_and_swell', 'surface_pressure', 'total_precipitation', '2m_dewpoint_temperature', '2m_temperature', 'ice_temperature_layer_1', 'ice_temperature_layer_2', 'ice_temperature_layer_3', 'ice_temperature_layer_4', 'maximum_2m_temperature_since_previous_post_processing', 'mean_sea_level_pressure', 'minimum_2m_temperature_since_previous_post_processing', 'sea_surface_temperature', 'skin_temperature', 'surface_pressure', '100m_u_component_of_wind', '100m_v_component_of_wind', '10m_u_component_of_neutral_wind', '10m_u_component_of_wind', '10m_v_component_of_neutral_wind', '10m_v_component_of_wind', '10m_wind_gust_since_previous_post_processing', 'instantaneous_10m_wind_gust', 'mean_boundary_layer_dissipation', 'mean_convective_precipitation_rate', 'mean_convective_snowfall_rate', 'mean_eastward_gravity_wave_surface_stress', 'mean_eastward_turbulent_surface_stress', 'mean_evaporation_rate', 'mean_gravity_wave_dissipation', 'mean_large_scale_precipitation_fraction', 'mean_large_scale_precipitation_rate', 'mean_large_scale_snowfall_rate', 'mean_northward_gravity_wave_surface_stress', 'mean_northward_turbulent_surface_stress', 'mean_potential_evaporation_rate', 'mean_runoff_rate', 'mean_snow_evaporation_rate', 'mean_snowfall_rate', 'mean_snowmelt_rate', 'mean_sub_surface_runoff_rate', 'mean_surface_direct_short_wave_radiation_flux', 'mean_surface_direct_short_wave_radiation_flux_clear_sky', 'mean_surface_downward_long_wave_radiation_flux', 'mean_surface_downward_long_wave_radiation_flux_clear_sky', 'mean_surface_downward_short_wave_radiation_flux', 'mean_surface_downward_short_wave_radiation_flux_clear_sky', 'mean_surface_downward_uv_radiation_flux', 'mean_surface_latent_heat_flux', 'mean_surface_net_long_wave_radiation_flux', 'mean_surface_net_long_wave_radiation_flux_clear_sky', 'mean_surface_net_short_wave_radiation_flux', 'mean_surface_net_short_wave_radiation_flux_clear_sky', 'mean_surface_runoff_rate', 'mean_surface_sensible_heat_flux', 'mean_top_downward_short_wave_radiation_flux', 'mean_top_net_long_wave_radiation_flux', 'mean_top_net_long_wave_radiation_flux_clear_sky', 'mean_top_net_short_wave_radiation_flux', 'mean_top_net_short_wave_radiation_flux_clear_sky', 'mean_total_precipitation_rate', 'mean_vertically_integrated_moisture_divergence', 'clear_sky_direct_solar_radiation_at_surface', 'downward_uv_radiation_at_the_surface', 'forecast_logarithm_of_surface_roughness_for_heat', 'instantaneous_surface_sensible_heat_flux', 'near_ir_albedo_for_diffuse_radiation', 'near_ir_albedo_for_direct_radiation', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_solar_radiation_clear_sky', 'surface_net_thermal_radiation', 'surface_net_thermal_radiation_clear_sky', 'surface_sensible_heat_flux', 'surface_solar_radiation_downward_clear_sky', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downward_clear_sky', 'surface_thermal_radiation_downwards', 'toa_incident_solar_radiation', 'top_net_solar_radiation', 'top_net_solar_radiation_clear_sky', 'top_net_thermal_radiation', 'top_net_thermal_radiation_clear_sky', 'total_sky_direct_solar_radiation_at_surface', 'uv_visible_albedo_for_diffuse_radiation', 'uv_visible_albedo_for_direct_radiation', 'cloud_base_height', 'high_cloud_cover', 'low_cloud_cover', 'medium_cloud_cover', 'total_cloud_cover', 'total_column_cloud_ice_water', 'total_column_cloud_liquid_water', 'vertical_integral_of_divergence_of_cloud_frozen_water_flux', 'vertical_integral_of_divergence_of_cloud_liquid_water_flux', 'vertical_integral_of_eastward_cloud_frozen_water_flux', 'vertical_integral_of_eastward_cloud_liquid_water_flux', 'vertical_integral_of_northward_cloud_frozen_water_flux', 'vertical_integral_of_northward_cloud_liquid_water_flux', 'lake_bottom_temperature', 'lake_cover', 'lake_depth', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'evaporation', 'potential_evaporation', 'runoff', 'sub_surface_runoff', 'surface_runoff', 'convective_precipitation', 'convective_rain_rate', 'instantaneous_large_scale_surface_precipitation_fraction', 'large_scale_rain_rate', 'large_scale_precipitation', 'large_scale_precipitation_fraction', 'maximum_total_precipitation_rate_since_previous_post_processing', 'minimum_total_precipitation_rate_since_previous_post_processing', 'precipitation_type', 'total_column_rain_water', 'total_precipitation', 'convective_snowfall', 'convective_snowfall_rate_water_equivalent', 'large_scale_snowfall_rate_water_equivalent', 'large_scale_snowfall', 'snow_albedo', 'snow_density', 'snow_depth', 'snow_evaporation', 'snowfall', 'snowmelt', 'temperature_of_snow_layer', 'total_column_snow_water', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'soil_type', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', 'vertical_integral_of_divergence_of_cloud_frozen_water_flux', 'vertical_integral_of_divergence_of_cloud_liquid_water_flux', 'vertical_integral_of_divergence_of_geopotential_flux', 'vertical_integral_of_divergence_of_kinetic_energy_flux', 'vertical_integral_of_divergence_of_mass_flux', 'vertical_integral_of_divergence_of_moisture_flux', 'vertical_integral_of_divergence_of_ozone_flux', 'vertical_integral_of_divergence_of_thermal_energy_flux', 'vertical_integral_of_divergence_of_total_energy_flux', 'vertical_integral_of_eastward_cloud_frozen_water_flux', 'vertical_integral_of_eastward_cloud_liquid_water_flux', 'vertical_integral_of_eastward_geopotential_flux', 'vertical_integral_of_eastward_heat_flux', 'vertical_integral_of_eastward_kinetic_energy_flux', 'vertical_integral_of_eastward_mass_flux', 'vertical_integral_of_eastward_ozone_flux', 'vertical_integral_of_eastward_total_energy_flux', 'vertical_integral_of_eastward_water_vapour_flux', 'vertical_integral_of_energy_conversion', 'vertical_integral_of_kinetic_energy', 'vertical_integral_of_mass_of_atmosphere', 'vertical_integral_of_mass_tendency', 'vertical_integral_of_northward_cloud_frozen_water_flux', 'vertical_integral_of_northward_cloud_liquid_water_flux', 'vertical_integral_of_northward_geopotential_flux', 'vertical_integral_of_northward_heat_flux', 'vertical_integral_of_northward_kinetic_energy_flux', 'vertical_integral_of_northward_mass_flux', 'vertical_integral_of_northward_ozone_flux', 'vertical_integral_of_northward_total_energy_flux', 'vertical_integral_of_northward_water_vapour_flux', 'vertical_integral_of_potential_and_internal_energy', 'vertical_integral_of_potential_internal_and_latent_energy', 'vertical_integral_of_temperature', 'vertical_integral_of_thermal_energy', 'vertical_integral_of_total_energy', 'vertically_integrated_moisture_divergence', 'high_vegetation_cover', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation', 'low_vegetation_cover', 'type_of_high_vegetation', 'type_of_low_vegetation', 'air_density_over_the_oceans', 'coefficient_of_drag_with_waves', 'free_convective_velocity_over_the_oceans', 'maximum_individual_wave_height', 'mean_direction_of_total_swell', 'mean_direction_of_wind_waves', 'mean_period_of_total_swell', 'mean_period_of_wind_waves', 'mean_square_slope_of_waves', 'mean_wave_direction', 'mean_wave_direction_of_first_swell_partition', 'mean_wave_direction_of_second_swell_partition', 'mean_wave_direction_of_third_swell_partition', 'mean_wave_period', 'mean_wave_period_based_on_first_moment', 'mean_wave_period_based_on_first_moment_for_swell', 'mean_wave_period_based_on_first_moment_for_wind_waves', 'mean_wave_period_based_on_second_moment_for_swell', 'mean_wave_period_based_on_second_moment_for_wind_waves', 'mean_wave_period_of_first_swell_partition', 'mean_wave_period_of_second_swell_partition', 'mean_wave_period_of_third_swell_partition', 'mean_zero_crossing_wave_period', 'model_bathymetry', 'normalized_energy_flux_into_ocean', 'normalized_energy_flux_into_waves', 'normalized_stress_into_ocean', 'ocean_surface_stress_equivalent_10m_neutral_wind_direction', 'ocean_surface_stress_equivalent_10m_neutral_wind_speed', 'peak_wave_period', 'period_corresponding_to_maximum_individual_wave_height', 'significant_height_of_combined_wind_waves_and_swell', 'significant_height_of_total_swell', 'significant_height_of_wind_waves', 'significant_wave_height_of_first_swell_partition', 'significant_wave_height_of_second_swell_partition', 'significant_wave_height_of_third_swell_partition', 'wave_spectral_directional_width', 'wave_spectral_directional_width_for_swell', 'wave_spectral_directional_width_for_wind_waves', 'wave_spectral_kurtosis', 'wave_spectral_peakedness', 'wave_spectral_skewness', 'angle_of_sub_gridscale_orography', 'anisotropy_of_sub_gridscale_orography', 'benjamin_feir_index', 'boundary_layer_dissipation', 'boundary_layer_height', 'charnock', 'convective_available_potential_energy', 'convective_inhibition', 'duct_base_height', 'eastward_gravity_wave_surface_stress', 'eastward_turbulent_surface_stress', 'forecast_albedo', 'forecast_surface_roughness', 'friction_velocity', 'geopotential', 'gravity_wave_dissipation', 'instantaneous_eastward_turbulent_surface_stress', 'instantaneous_moisture_flux', 'instantaneous_northward_turbulent_surface_stress', 'k_index', 'land_sea_mask', 'mean_vertical_gradient_of_refractivity_inside_trapping_layer', 'minimum_vertical_gradient_of_refractivity_inside_trapping_layer', 'northward_gravity_wave_surface_stress', 'northward_turbulent_surface_stress', 'sea_ice_cover', 'skin_reservoir_content', 'slope_of_sub_gridscale_orography', 'standard_deviation_of_filtered_subgrid_orography', 'standard_deviation_of_orography', 'total_column_ozone', 'total_column_supercooled_liquid_water', 'total_column_water', 'total_column_water_vapour', 'total_totals_index', 'trapping_layer_base_height', 'trapping_layer_top_height', 'u_component_stokes_drift', 'v_component_stokes_drift', 'zero_degree_level']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
         day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
         assert day in day_valid_values
 
         year_valid_values = ['1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
         assert year in year_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['10m_u_component_of_wind', '10m_v_component_of_wind', '2m_dewpoint_temperature', '2m_temperature', 'mean_sea_level_pressure', 'mean_wave_direction', 'mean_wave_period', 'sea_surface_temperature', 'significant_height_of_combined_wind_waves_and_swell', 'surface_pressure', 'total_precipitation', '2m_dewpoint_temperature', '2m_temperature', 'ice_temperature_layer_1', 'ice_temperature_layer_2', 'ice_temperature_layer_3', 'ice_temperature_layer_4', 'maximum_2m_temperature_since_previous_post_processing', 'mean_sea_level_pressure', 'minimum_2m_temperature_since_previous_post_processing', 'sea_surface_temperature', 'skin_temperature', 'surface_pressure', '100m_u_component_of_wind', '100m_v_component_of_wind', '10m_u_component_of_neutral_wind', '10m_u_component_of_wind', '10m_v_component_of_neutral_wind', '10m_v_component_of_wind', '10m_wind_gust_since_previous_post_processing', 'instantaneous_10m_wind_gust', 'mean_boundary_layer_dissipation', 'mean_convective_precipitation_rate', 'mean_convective_snowfall_rate', 'mean_eastward_gravity_wave_surface_stress', 'mean_eastward_turbulent_surface_stress', 'mean_evaporation_rate', 'mean_gravity_wave_dissipation', 'mean_large_scale_precipitation_fraction', 'mean_large_scale_precipitation_rate', 'mean_large_scale_snowfall_rate', 'mean_northward_gravity_wave_surface_stress', 'mean_northward_turbulent_surface_stress', 'mean_potential_evaporation_rate', 'mean_runoff_rate', 'mean_snow_evaporation_rate', 'mean_snowfall_rate', 'mean_snowmelt_rate', 'mean_sub_surface_runoff_rate', 'mean_surface_direct_short_wave_radiation_flux', 'mean_surface_direct_short_wave_radiation_flux_clear_sky', 'mean_surface_downward_long_wave_radiation_flux', 'mean_surface_downward_long_wave_radiation_flux_clear_sky', 'mean_surface_downward_short_wave_radiation_flux', 'mean_surface_downward_short_wave_radiation_flux_clear_sky', 'mean_surface_downward_uv_radiation_flux', 'mean_surface_latent_heat_flux', 'mean_surface_net_long_wave_radiation_flux', 'mean_surface_net_long_wave_radiation_flux_clear_sky', 'mean_surface_net_short_wave_radiation_flux', 'mean_surface_net_short_wave_radiation_flux_clear_sky', 'mean_surface_runoff_rate', 'mean_surface_sensible_heat_flux', 'mean_top_downward_short_wave_radiation_flux', 'mean_top_net_long_wave_radiation_flux', 'mean_top_net_long_wave_radiation_flux_clear_sky', 'mean_top_net_short_wave_radiation_flux', 'mean_top_net_short_wave_radiation_flux_clear_sky', 'mean_total_precipitation_rate', 'mean_vertically_integrated_moisture_divergence', 'clear_sky_direct_solar_radiation_at_surface', 'downward_uv_radiation_at_the_surface', 'forecast_logarithm_of_surface_roughness_for_heat', 'instantaneous_surface_sensible_heat_flux', 'near_ir_albedo_for_diffuse_radiation', 'near_ir_albedo_for_direct_radiation', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_solar_radiation_clear_sky', 'surface_net_thermal_radiation', 'surface_net_thermal_radiation_clear_sky', 'surface_sensible_heat_flux', 'surface_solar_radiation_downward_clear_sky', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downward_clear_sky', 'surface_thermal_radiation_downwards', 'toa_incident_solar_radiation', 'top_net_solar_radiation', 'top_net_solar_radiation_clear_sky', 'top_net_thermal_radiation', 'top_net_thermal_radiation_clear_sky', 'total_sky_direct_solar_radiation_at_surface', 'uv_visible_albedo_for_diffuse_radiation', 'uv_visible_albedo_for_direct_radiation', 'cloud_base_height', 'high_cloud_cover', 'low_cloud_cover', 'medium_cloud_cover', 'total_cloud_cover', 'total_column_cloud_ice_water', 'total_column_cloud_liquid_water', 'vertical_integral_of_divergence_of_cloud_frozen_water_flux', 'vertical_integral_of_divergence_of_cloud_liquid_water_flux', 'vertical_integral_of_eastward_cloud_frozen_water_flux', 'vertical_integral_of_eastward_cloud_liquid_water_flux', 'vertical_integral_of_northward_cloud_frozen_water_flux', 'vertical_integral_of_northward_cloud_liquid_water_flux', 'lake_bottom_temperature', 'lake_cover', 'lake_depth', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'evaporation', 'potential_evaporation', 'runoff', 'sub_surface_runoff', 'surface_runoff', 'convective_precipitation', 'convective_rain_rate', 'instantaneous_large_scale_surface_precipitation_fraction', 'large_scale_rain_rate', 'large_scale_precipitation', 'large_scale_precipitation_fraction', 'maximum_total_precipitation_rate_since_previous_post_processing', 'minimum_total_precipitation_rate_since_previous_post_processing', 'precipitation_type', 'total_column_rain_water', 'total_precipitation', 'convective_snowfall', 'convective_snowfall_rate_water_equivalent', 'large_scale_snowfall_rate_water_equivalent', 'large_scale_snowfall', 'snow_albedo', 'snow_density', 'snow_depth', 'snow_evaporation', 'snowfall', 'snowmelt', 'temperature_of_snow_layer', 'total_column_snow_water', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'soil_type', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', 'vertical_integral_of_divergence_of_cloud_frozen_water_flux', 'vertical_integral_of_divergence_of_cloud_liquid_water_flux', 'vertical_integral_of_divergence_of_geopotential_flux', 'vertical_integral_of_divergence_of_kinetic_energy_flux', 'vertical_integral_of_divergence_of_mass_flux', 'vertical_integral_of_divergence_of_moisture_flux', 'vertical_integral_of_divergence_of_ozone_flux', 'vertical_integral_of_divergence_of_thermal_energy_flux', 'vertical_integral_of_divergence_of_total_energy_flux', 'vertical_integral_of_eastward_cloud_frozen_water_flux', 'vertical_integral_of_eastward_cloud_liquid_water_flux', 'vertical_integral_of_eastward_geopotential_flux', 'vertical_integral_of_eastward_heat_flux', 'vertical_integral_of_eastward_kinetic_energy_flux', 'vertical_integral_of_eastward_mass_flux', 'vertical_integral_of_eastward_ozone_flux', 'vertical_integral_of_eastward_total_energy_flux', 'vertical_integral_of_eastward_water_vapour_flux', 'vertical_integral_of_energy_conversion', 'vertical_integral_of_kinetic_energy', 'vertical_integral_of_mass_of_atmosphere', 'vertical_integral_of_mass_tendency', 'vertical_integral_of_northward_cloud_frozen_water_flux', 'vertical_integral_of_northward_cloud_liquid_water_flux', 'vertical_integral_of_northward_geopotential_flux', 'vertical_integral_of_northward_heat_flux', 'vertical_integral_of_northward_kinetic_energy_flux', 'vertical_integral_of_northward_mass_flux', 'vertical_integral_of_northward_ozone_flux', 'vertical_integral_of_northward_total_energy_flux', 'vertical_integral_of_northward_water_vapour_flux', 'vertical_integral_of_potential_and_internal_energy', 'vertical_integral_of_potential_internal_and_latent_energy', 'vertical_integral_of_temperature', 'vertical_integral_of_thermal_energy', 'vertical_integral_of_total_energy', 'vertically_integrated_moisture_divergence', 'high_vegetation_cover', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation', 'low_vegetation_cover', 'type_of_high_vegetation', 'type_of_low_vegetation', 'air_density_over_the_oceans', 'coefficient_of_drag_with_waves', 'free_convective_velocity_over_the_oceans', 'maximum_individual_wave_height', 'mean_direction_of_total_swell', 'mean_direction_of_wind_waves', 'mean_period_of_total_swell', 'mean_period_of_wind_waves', 'mean_square_slope_of_waves', 'mean_wave_direction', 'mean_wave_direction_of_first_swell_partition', 'mean_wave_direction_of_second_swell_partition', 'mean_wave_direction_of_third_swell_partition', 'mean_wave_period', 'mean_wave_period_based_on_first_moment', 'mean_wave_period_based_on_first_moment_for_swell', 'mean_wave_period_based_on_first_moment_for_wind_waves', 'mean_wave_period_based_on_second_moment_for_swell', 'mean_wave_period_based_on_second_moment_for_wind_waves', 'mean_wave_period_of_first_swell_partition', 'mean_wave_period_of_second_swell_partition', 'mean_wave_period_of_third_swell_partition', 'mean_zero_crossing_wave_period', 'model_bathymetry', 'normalized_energy_flux_into_ocean', 'normalized_energy_flux_into_waves', 'normalized_stress_into_ocean', 'ocean_surface_stress_equivalent_10m_neutral_wind_direction', 'ocean_surface_stress_equivalent_10m_neutral_wind_speed', 'peak_wave_period', 'period_corresponding_to_maximum_individual_wave_height', 'significant_height_of_combined_wind_waves_and_swell', 'significant_height_of_total_swell', 'significant_height_of_wind_waves', 'significant_wave_height_of_first_swell_partition', 'significant_wave_height_of_second_swell_partition', 'significant_wave_height_of_third_swell_partition', 'wave_spectral_directional_width', 'wave_spectral_directional_width_for_swell', 'wave_spectral_directional_width_for_wind_waves', 'wave_spectral_kurtosis', 'wave_spectral_peakedness', 'wave_spectral_skewness', 'angle_of_sub_gridscale_orography', 'anisotropy_of_sub_gridscale_orography', 'benjamin_feir_index', 'boundary_layer_dissipation', 'boundary_layer_height', 'charnock', 'convective_available_potential_energy', 'convective_inhibition', 'duct_base_height', 'eastward_gravity_wave_surface_stress', 'eastward_turbulent_surface_stress', 'forecast_albedo', 'forecast_surface_roughness', 'friction_velocity', 'geopotential', 'gravity_wave_dissipation', 'instantaneous_eastward_turbulent_surface_stress', 'instantaneous_moisture_flux', 'instantaneous_northward_turbulent_surface_stress', 'k_index', 'land_sea_mask', 'mean_vertical_gradient_of_refractivity_inside_trapping_layer', 'minimum_vertical_gradient_of_refractivity_inside_trapping_layer', 'northward_gravity_wave_surface_stress', 'northward_turbulent_surface_stress', 'sea_ice_cover', 'skin_reservoir_content', 'slope_of_sub_gridscale_orography', 'standard_deviation_of_filtered_subgrid_orography', 'standard_deviation_of_orography', 'total_column_ozone', 'total_column_supercooled_liquid_water', 'total_column_water', 'total_column_water_vapour', 'total_totals_index', 'trapping_layer_base_height', 'trapping_layer_top_height', 'u_component_stokes_drift', 'v_component_stokes_drift', 'zero_degree_level']
-        assert variable in variable_valid_values
-
-        time_zone_valid_values = ['utc-12:00', 'utc-11:00', 'utc-10:00', 'utc-09:00', 'utc-08:00', 'utc-07:00', 'utc-06:00', 'utc-05:00', 'utc-04:00', 'utc-03:00', 'utc-02:00', 'utc-01:00', 'utc+00:00', 'utc+01:00', 'utc+02:00', 'utc+03:00', 'utc+04:00', 'utc+05:00', 'utc+06:00', 'utc+07:00', 'utc+08:00', 'utc+09:00', 'utc+10:00', 'utc+11:00', 'utc+12:00', 'utc+13:00', 'utc+14:00']
-        assert time_zone in time_zone_valid_values
 
         frequency_valid_values = ['1_hourly', '3_hourly', '6_hourly']
         assert frequency in frequency_valid_values
 
-        product_type_valid_values = ['reanalysis', 'ensemble_members', 'ensemble_mean']
-        assert product_type in product_type_valid_values
-
         daily_statistic_valid_values = ['daily_mean', 'daily_minimum', 'daily_maximum', 'daily_sum']
         assert daily_statistic in daily_statistic_valid_values
 
-        return download_data(day=day, year=year, month=month, variable=variable, time_zone=time_zone, area_group=area_group, frequency=frequency, product_type=product_type, daily_statistic=daily_statistic)
+        time_zone_valid_values = ['utc-12:00', 'utc-11:00', 'utc-10:00', 'utc-09:00', 'utc-08:00', 'utc-07:00', 'utc-06:00', 'utc-05:00', 'utc-04:00', 'utc-03:00', 'utc-02:00', 'utc-01:00', 'utc+00:00', 'utc+01:00', 'utc+02:00', 'utc+03:00', 'utc+04:00', 'utc+05:00', 'utc+06:00', 'utc+07:00', 'utc+08:00', 'utc+09:00', 'utc+10:00', 'utc+11:00', 'utc+12:00', 'utc+13:00', 'utc+14:00']
+        assert time_zone in time_zone_valid_values
 
+        product_type_valid_values = ['reanalysis', 'ensemble_members', 'ensemble_mean']
+        assert product_type in product_type_valid_values
+
+        return download_data(variable=variable, month=month, day=day, year=year, frequency=frequency, daily_statistic=daily_statistic, area_group=area_group, time_zone=time_zone, product_type=product_type)
 class Collection_seasonal_original_single_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, system: str, day: OneOrMore[str], originating_centre: str, year: OneOrMore[str], leadtime_hour: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, system: str, originating_centre: str, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, system: str, day: OneOrMore[str], originating_centre: str, year: OneOrMore[str], leadtime_hour: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, system: str, originating_centre: str, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
         system_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '12', '13', '14', '15', '21', '35', '51', '600', '601', '602', '603']
         assert system in system_valid_values
-
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
 
         originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc', 'ncep', 'jma', 'eccc']
         assert originating_centre in originating_centre_valid_values
 
-        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
         leadtime_hour_valid_values = ['0', '6', '12', '18', '24', '30', '36', '42', '48', '54', '60', '66', '72', '78', '84', '90', '96', '102', '108', '114', '120', '126', '132', '138', '144', '150', '156', '162', '168', '174', '180', '186', '192', '198', '204', '210', '216', '222', '228', '234', '240', '246', '252', '258', '264', '270', '276', '282', '288', '294', '300', '306', '312', '318', '324', '330', '336', '342', '348', '354', '360', '366', '372', '378', '384', '390', '396', '402', '408', '414', '420', '426', '432', '438', '444', '450', '456', '462', '468', '474', '480', '486', '492', '498', '504', '510', '516', '522', '528', '534', '540', '546', '552', '558', '564', '570', '576', '582', '588', '594', '600', '606', '612', '618', '624', '630', '636', '642', '648', '654', '660', '666', '672', '678', '684', '690', '696', '702', '708', '714', '720', '726', '732', '738', '744', '750', '756', '762', '768', '774', '780', '786', '792', '798', '804', '810', '816', '822', '828', '834', '840', '846', '852', '858', '864', '870', '876', '882', '888', '894', '900', '906', '912', '918', '924', '930', '936', '942', '948', '954', '960', '966', '972', '978', '984', '990', '996', '1002', '1008', '1014', '1020', '1026', '1032', '1038', '1044', '1050', '1056', '1062', '1068', '1074', '1080', '1086', '1092', '1098', '1104', '1110', '1116', '1122', '1128', '1134', '1140', '1146', '1152', '1158', '1164', '1170', '1176', '1182', '1188', '1194', '1200', '1206', '1212', '1218', '1224', '1230', '1236', '1242', '1248', '1254', '1260', '1266', '1272', '1278', '1284', '1290', '1296', '1302', '1308', '1314', '1320', '1326', '1332', '1338', '1344', '1350', '1356', '1362', '1368', '1374', '1380', '1386', '1392', '1398', '1404', '1410', '1416', '1422', '1428', '1434', '1440', '1446', '1452', '1458', '1464', '1470', '1476', '1482', '1488', '1494', '1500', '1506', '1512', '1518', '1524', '1530', '1536', '1542', '1548', '1554', '1560', '1566', '1572', '1578', '1584', '1590', '1596', '1602', '1608', '1614', '1620', '1626', '1632', '1638', '1644', '1650', '1656', '1662', '1668', '1674', '1680', '1686', '1692', '1698', '1704', '1710', '1716', '1722', '1728', '1734', '1740', '1746', '1752', '1758', '1764', '1770', '1776', '1782', '1788', '1794', '1800', '1806', '1812', '1818', '1824', '1830', '1836', '1842', '1848', '1854', '1860', '1866', '1872', '1878', '1884', '1890', '1896', '1902', '1908', '1914', '1920', '1926', '1932', '1938', '1944', '1950', '1956', '1962', '1968', '1974', '1980', '1986', '1992', '1998', '2004', '2010', '2016', '2022', '2028', '2034', '2040', '2046', '2052', '2058', '2064', '2070', '2076', '2082', '2088', '2094', '2100', '2106', '2112', '2118', '2124', '2130', '2136', '2142', '2148', '2154', '2160', '2166', '2172', '2178', '2184', '2190', '2196', '2202', '2208', '2214', '2220', '2226', '2232', '2238', '2244', '2250', '2256', '2262', '2268', '2274', '2280', '2286', '2292', '2298', '2304', '2310', '2316', '2322', '2328', '2334', '2340', '2346', '2352', '2358', '2364', '2370', '2376', '2382', '2388', '2394', '2400', '2406', '2412', '2418', '2424', '2430', '2436', '2442', '2448', '2454', '2460', '2466', '2472', '2478', '2484', '2490', '2496', '2502', '2508', '2514', '2520', '2526', '2532', '2538', '2544', '2550', '2556', '2562', '2568', '2574', '2580', '2586', '2592', '2598', '2604', '2610', '2616', '2622', '2628', '2634', '2640', '2646', '2652', '2658', '2664', '2670', '2676', '2682', '2688', '2694', '2700', '2706', '2712', '2718', '2724', '2730', '2736', '2742', '2748', '2754', '2760', '2766', '2772', '2778', '2784', '2790', '2796', '2802', '2808', '2814', '2820', '2826', '2832', '2838', '2844', '2850', '2856', '2862', '2868', '2874', '2880', '2886', '2892', '2898', '2904', '2910', '2916', '2922', '2928', '2934', '2940', '2946', '2952', '2958', '2964', '2970', '2976', '2982', '2988', '2994', '3000', '3006', '3012', '3018', '3024', '3030', '3036', '3042', '3048', '3054', '3060', '3066', '3072', '3078', '3084', '3090', '3096', '3102', '3108', '3114', '3120', '3126', '3132', '3138', '3144', '3150', '3156', '3162', '3168', '3174', '3180', '3186', '3192', '3198', '3204', '3210', '3216', '3222', '3228', '3234', '3240', '3246', '3252', '3258', '3264', '3270', '3276', '3282', '3288', '3294', '3300', '3306', '3312', '3318', '3324', '3330', '3336', '3342', '3348', '3354', '3360', '3366', '3372', '3378', '3384', '3390', '3396', '3402', '3408', '3414', '3420', '3426', '3432', '3438', '3444', '3450', '3456', '3462', '3468', '3474', '3480', '3486', '3492', '3498', '3504', '3510', '3516', '3522', '3528', '3534', '3540', '3546', '3552', '3558', '3564', '3570', '3576', '3582', '3588', '3594', '3600', '3606', '3612', '3618', '3624', '3630', '3636', '3642', '3648', '3654', '3660', '3666', '3672', '3678', '3684', '3690', '3696', '3702', '3708', '3714', '3720', '3726', '3732', '3738', '3744', '3750', '3756', '3762', '3768', '3774', '3780', '3786', '3792', '3798', '3804', '3810', '3816', '3822', '3828', '3834', '3840', '3846', '3852', '3858', '3864', '3870', '3876', '3882', '3888', '3894', '3900', '3906', '3912', '3918', '3924', '3930', '3936', '3942', '3948', '3954', '3960', '3966', '3972', '3978', '3984', '3990', '3996', '4002', '4008', '4014', '4020', '4026', '4032', '4038', '4044', '4050', '4056', '4062', '4068', '4074', '4080', '4086', '4092', '4098', '4104', '4110', '4116', '4122', '4128', '4134', '4140', '4146', '4152', '4158', '4164', '4170', '4176', '4182', '4188', '4194', '4200', '4206', '4212', '4218', '4224', '4230', '4236', '4242', '4248', '4254', '4260', '4266', '4272', '4278', '4284', '4290', '4296', '4302', '4308', '4314', '4320', '4326', '4332', '4338', '4344', '4350', '4356', '4362', '4368', '4374', '4380', '4386', '4392', '4398', '4404', '4410', '4416', '4422', '4428', '4434', '4440', '4446', '4452', '4458', '4464', '4470', '4476', '4482', '4488', '4494', '4500', '4506', '4512', '4518', '4524', '4530', '4536', '4542', '4548', '4554', '4560', '4566', '4572', '4578', '4584', '4590', '4596', '4602', '4608', '4614', '4620', '4626', '4632', '4638', '4644', '4650', '4656', '4662', '4668', '4674', '4680', '4686', '4692', '4698', '4704', '4710', '4716', '4722', '4728', '4734', '4740', '4746', '4752', '4758', '4764', '4770', '4776', '4782', '4788', '4794', '4800', '4806', '4812', '4818', '4824', '4830', '4836', '4842', '4848', '4854', '4860', '4866', '4872', '4878', '4884', '4890', '4896', '4902', '4908', '4914', '4920', '4926', '4932', '4938', '4944', '4950', '4956', '4962', '4968', '4974', '4980', '4986', '4992', '4998', '5004', '5010', '5016', '5022', '5028', '5034', '5040', '5046', '5052', '5058', '5064', '5070', '5076', '5082', '5088', '5094', '5100', '5106', '5112', '5118', '5124', '5130', '5136', '5142', '5148', '5154', '5160']
         assert leadtime_hour in leadtime_hour_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
 
         variable_valid_values = ['10m_u_component_of_wind', '10m_v_component_of_wind', '10m_wind_gust_since_previous_post_processing', '2m_dewpoint_temperature', '2m_temperature', 'eastward_turbulent_surface_stress', 'evaporation', 'land_sea_mask', 'maximum_2m_temperature_in_the_last_24_hours', 'mean_sea_level_pressure', 'minimum_2m_temperature_in_the_last_24_hours', 'northward_turbulent_surface_stress', 'orography', 'runoff', 'sea_surface_temperature', 'sea_ice_cover', 'snow_density', 'snow_depth', 'snowfall', 'soil_temperature_level_1', 'sub_surface_runoff', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_thermal_radiation', 'surface_runoff', 'surface_sensible_heat_flux', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downwards', 'toa_incident_solar_radiation', 'top_net_solar_radiation', 'top_net_thermal_radiation', 'total_cloud_cover', 'total_column_cloud_ice_water', 'total_column_cloud_liquid_water', 'total_column_water_vapour', 'total_precipitation', 'volumetric_soil_moisture']
         assert variable in variable_valid_values
 
-        data_format_valid_values = ['grib', 'netcdf']
-        assert data_format in data_format_valid_values
-
-        return download_data(system=system, day=day, originating_centre=originating_centre, year=year, leadtime_hour=leadtime_hour, month=month, variable=variable, data_format=data_format, area_group=area_group)
-
-class Collection_reanalysis_cerra_single_levels(Collection):
-
-    @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], data_type: OneOrMore[str], leadtime_hour: OneOrMore[str], soil_layer: OneOrMore[str], month: OneOrMore[str], product_type: str, variable: OneOrMore[str], level_type: str, data_format: str = 'grib'): UNREACHABLE()
-    
-    @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], data_type: OneOrMore[str], leadtime_hour: OneOrMore[str], soil_layer: OneOrMore[str], month: OneOrMore[str], product_type: str, variable: OneOrMore[str], level_type: str, data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
-        assert time in time_valid_values
-
-        year_valid_values = ['1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
-        assert year in year_valid_values
-
-        data_type_valid_values = ['ensemble_members', 'reanalysis']
-        assert data_type in data_type_valid_values
-
-        leadtime_hour_valid_values = ['1', '2', '3', '4', '5', '6', '9', '12', '15', '18', '21', '24', '27', '30']
-        assert leadtime_hour in leadtime_hour_valid_values
-
-        soil_layer_valid_values = ['top_layer']
-        assert soil_layer in soil_layer_valid_values
-
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        product_type_valid_values = ['analysis', 'forecast']
-        assert product_type in product_type_valid_values
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
+        data_format_valid_values = ['grib', 'netcdf']
+        assert data_format in data_format_valid_values
+
+        return download_data(system=system, originating_centre=originating_centre, leadtime_hour=leadtime_hour, variable=variable, month=month, day=day, year=year, data_format=data_format, area_group=area_group)
+class Collection_reanalysis_cerra_single_levels(Collection):
+
+    @Collection.wrapper
+    def download(cls, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], data_type: OneOrMore[str], day: OneOrMore[str], level_type: str, product_type: str, year: OneOrMore[str], soil_layer: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
+    
+    @classmethod
+    def __download__(cls, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], data_type: OneOrMore[str], day: OneOrMore[str], level_type: str, product_type: str, year: OneOrMore[str], soil_layer: OneOrMore[str], data_format: str = 'grib'):
+        leadtime_hour_valid_values = ['1', '2', '3', '4', '5', '6', '9', '12', '15', '18', '21', '24', '27', '30']
+        assert leadtime_hour in leadtime_hour_valid_values
 
         variable_valid_values = ['10m_wind_direction', '10m_wind_gust_since_previous_post_processing', '10m_wind_speed', '2m_relative_humidity', '2m_temperature', 'albedo', 'evaporation', 'high_cloud_cover', 'land_sea_mask', 'liquid_volumetric_soil_moisture', 'low_cloud_cover', 'maximum_2m_temperature_since_previous_post_processing', 'mean_sea_level_pressure', 'medium_cloud_cover', 'minimum_2m_temperature_since_previous_post_processing', 'momentum_flux_at_the_surface_u_component', 'momentum_flux_at_the_surface_v_component', 'orography', 'skin_temperature', 'snow_density', 'snow_depth', 'snow_depth_water_equivalent', 'snow_fall_water_equivalent', 'soil_temperature', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_solar_radiation_clear_sky', 'surface_net_thermal_radiation', 'surface_net_thermal_radiation_clear_sky', 'surface_pressure', 'surface_roughness', 'surface_sensible_heat_flux', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downwards', 'time_integrated_surface_direct_short_wave_radiation_flux', 'total_cloud_cover', 'total_column_integrated_water_vapour', 'total_precipitation', 'volumetric_soil_moisture']
         assert variable in variable_valid_values
 
-        level_type_valid_values = ['surface_or_atmosphere', 'soil']
-        assert level_type in level_type_valid_values
-
-        data_format_valid_values = ['grib', 'netcdf']
-        assert data_format in data_format_valid_values
-
-        return download_data(day=day, time=time, year=year, data_type=data_type, leadtime_hour=leadtime_hour, soil_layer=soil_layer, month=month, product_type=product_type, variable=variable, level_type=level_type, data_format=data_format)
-
-class Collection_satellite_precipitation_microwave(Collection):
-
-    @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time_aggregation: str, year: OneOrMore[str], month: OneOrMore[str], version: OneOrMore[str] = 'v1.0', variable: str = 'all'): UNREACHABLE()
-    
-    @classmethod
-    def __download__(cls, day: OneOrMore[str], time_aggregation: str, year: OneOrMore[str], month: OneOrMore[str], version: OneOrMore[str] = 'v1.0', variable: str = 'all'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_aggregation_valid_values = ['daily', 'monthly']
-        assert time_aggregation in time_aggregation_valid_values
-
-        year_valid_values = ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017']
-        assert year in year_valid_values
+        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
+        assert time in time_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        version_valid_values = ['v1_0']
-        assert version in version_valid_values
+        data_type_valid_values = ['ensemble_members', 'reanalysis']
+        assert data_type in data_type_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        level_type_valid_values = ['surface_or_atmosphere', 'soil']
+        assert level_type in level_type_valid_values
+
+        product_type_valid_values = ['analysis', 'forecast']
+        assert product_type in product_type_valid_values
+
+        year_valid_values = ['1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+        assert year in year_valid_values
+
+        soil_layer_valid_values = ['top_layer']
+        assert soil_layer in soil_layer_valid_values
+
+        data_format_valid_values = ['grib', 'netcdf']
+        assert data_format in data_format_valid_values
+
+        return download_data(leadtime_hour=leadtime_hour, variable=variable, time=time, month=month, data_type=data_type, day=day, level_type=level_type, product_type=product_type, year=year, soil_layer=soil_layer, data_format=data_format)
+class Collection_satellite_precipitation_microwave(Collection):
+
+    @Collection.wrapper
+    def download(cls, time_aggregation: str, month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], variable: str = 'all', version: OneOrMore[str] = 'v1.0'): UNREACHABLE()
+    
+    @classmethod
+    def __download__(cls, time_aggregation: str, month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], variable: str = 'all', version: OneOrMore[str] = 'v1.0'):
+        time_aggregation_valid_values = ['daily', 'monthly']
+        assert time_aggregation in time_aggregation_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017']
+        assert year in year_valid_values
 
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(day=day, time_aggregation=time_aggregation, year=year, month=month, version=version, variable=variable)
+        version_valid_values = ['v1_0']
+        assert version in version_valid_values
 
+        return download_data(time_aggregation=time_aggregation, month=month, day=day, year=year, variable=variable, version=version)
 class Collection_sis_ocean_wave_indicators(Collection):
 
     @Collection.wrapper
-    def download(cls, statistic: OneOrMore[str], period: OneOrMore[str], variable: OneOrMore[str], experiment: str): UNREACHABLE()
+    def download(cls, experiment: str, period: OneOrMore[str], statistic: OneOrMore[str], variable: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, statistic: OneOrMore[str], period: OneOrMore[str], variable: OneOrMore[str], experiment: str):
-        statistic_valid_values = ['90th_percentile', '90th_100th_percentile_average', '95th_percentile', '99th_percentile', '100_year_return_period']
-        assert statistic in statistic_valid_values
+    def __download__(cls, experiment: str, period: OneOrMore[str], statistic: OneOrMore[str], variable: OneOrMore[str]):
+        experiment_valid_values = ['historical', 'era5_reanalysis', 'rcp4_5', 'rcp8_5']
+        assert experiment in experiment_valid_values
 
         period_valid_values = ['1976_2005', '2001_2017', '2041_2070', '2071_2100']
         assert period in period_valid_values
 
+        statistic_valid_values = ['90th_percentile', '90th_100th_percentile_average', '95th_percentile', '99th_percentile', '100_year_return_period']
+        assert statistic in statistic_valid_values
+
         variable_valid_values = ['peak_wave_period', 'significant_wave_height']
         assert variable in variable_valid_values
 
-        experiment_valid_values = ['historical', 'era5_reanalysis', 'rcp4_5', 'rcp8_5']
-        assert experiment in experiment_valid_values
-
-        return download_data(statistic=statistic, period=period, variable=variable, experiment=experiment)
-
+        return download_data(experiment=experiment, period=period, statistic=statistic, variable=variable)
 class Collection_sis_european_wind_storm_synthetic_events(Collection):
 
     @Collection.wrapper
-    def download(cls, version_id: OneOrMore[str], year: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str]): UNREACHABLE()
+    def download(cls, version_id: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, version_id: OneOrMore[str], year: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str]):
+    def __download__(cls, version_id: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], year: OneOrMore[str]):
         version_id_valid_values = ['synthetic_set_1_2', 'synthetic_set_2_0', 'synthetic_set_3_0']
         assert version_id in version_id_valid_values
-
-        year_valid_values = ['1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011']
-        assert year in year_valid_values
-
-        variable_valid_values = ['wind_speed_of_gusts']
-        assert variable in variable_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        return download_data(version_id=version_id, year=year, variable=variable, month=month)
+        variable_valid_values = ['wind_speed_of_gusts']
+        assert variable in variable_valid_values
 
+        year_valid_values = ['1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011']
+        assert year in year_valid_values
+
+        return download_data(version_id=version_id, month=month, variable=variable, year=year)
 class Collection_reanalysis_era5_single_levels_monthly_means(Collection):
 
     @Collection.wrapper
-    def download(cls, time: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], download_format: str = 'unarchived', data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', download_format: str = 'unarchived'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, time: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], download_format: str = 'unarchived', data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', download_format: str = 'unarchived'):
+        variable_valid_values = ['10m_u_component_of_wind', '10m_v_component_of_wind', '2m_dewpoint_temperature', '2m_temperature', 'mean_sea_level_pressure', 'mean_wave_direction', 'mean_wave_period', 'sea_surface_temperature', 'significant_height_of_combined_wind_waves_and_swell', 'surface_pressure', 'total_precipitation', '2m_dewpoint_temperature', '2m_temperature', 'ice_temperature_layer_1', 'ice_temperature_layer_2', 'ice_temperature_layer_3', 'ice_temperature_layer_4', 'mean_sea_level_pressure', 'sea_surface_temperature', 'skin_temperature', 'surface_pressure', '100m_u_component_of_wind', '100m_v_component_of_wind', '10m_u_component_of_neutral_wind', '10m_u_component_of_wind', '10m_v_component_of_neutral_wind', '10m_v_component_of_wind', '10m_wind_speed', 'instantaneous_10m_wind_gust', 'mean_boundary_layer_dissipation', 'mean_convective_precipitation_rate', 'mean_convective_snowfall_rate', 'mean_eastward_gravity_wave_surface_stress', 'mean_eastward_turbulent_surface_stress', 'mean_evaporation_rate', 'mean_gravity_wave_dissipation', 'mean_large_scale_precipitation_fraction', 'mean_large_scale_precipitation_rate', 'mean_large_scale_snowfall_rate', 'mean_northward_gravity_wave_surface_stress', 'mean_northward_turbulent_surface_stress', 'mean_potential_evaporation_rate', 'mean_runoff_rate', 'mean_snow_evaporation_rate', 'mean_snowfall_rate', 'mean_snowmelt_rate', 'mean_sub_surface_runoff_rate', 'mean_surface_direct_short_wave_radiation_flux', 'mean_surface_direct_short_wave_radiation_flux_clear_sky', 'mean_surface_downward_long_wave_radiation_flux', 'mean_surface_downward_long_wave_radiation_flux_clear_sky', 'mean_surface_downward_short_wave_radiation_flux', 'mean_surface_downward_short_wave_radiation_flux_clear_sky', 'mean_surface_downward_uv_radiation_flux', 'mean_surface_latent_heat_flux', 'mean_surface_net_long_wave_radiation_flux', 'mean_surface_net_long_wave_radiation_flux_clear_sky', 'mean_surface_net_short_wave_radiation_flux', 'mean_surface_net_short_wave_radiation_flux_clear_sky', 'mean_surface_runoff_rate', 'mean_surface_sensible_heat_flux', 'mean_top_downward_short_wave_radiation_flux', 'mean_top_net_long_wave_radiation_flux', 'mean_top_net_long_wave_radiation_flux_clear_sky', 'mean_top_net_short_wave_radiation_flux', 'mean_top_net_short_wave_radiation_flux_clear_sky', 'mean_total_precipitation_rate', 'mean_vertically_integrated_moisture_divergence', 'clear_sky_direct_solar_radiation_at_surface', 'downward_uv_radiation_at_the_surface', 'forecast_logarithm_of_surface_roughness_for_heat', 'instantaneous_surface_sensible_heat_flux', 'near_ir_albedo_for_diffuse_radiation', 'near_ir_albedo_for_direct_radiation', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_solar_radiation_clear_sky', 'surface_net_thermal_radiation', 'surface_net_thermal_radiation_clear_sky', 'surface_sensible_heat_flux', 'surface_solar_radiation_downward_clear_sky', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downward_clear_sky', 'surface_thermal_radiation_downwards', 'toa_incident_solar_radiation', 'top_net_solar_radiation', 'top_net_solar_radiation_clear_sky', 'top_net_thermal_radiation', 'top_net_thermal_radiation_clear_sky', 'total_sky_direct_solar_radiation_at_surface', 'uv_visible_albedo_for_diffuse_radiation', 'uv_visible_albedo_for_direct_radiation', 'cloud_base_height', 'high_cloud_cover', 'low_cloud_cover', 'medium_cloud_cover', 'total_cloud_cover', 'total_column_cloud_ice_water', 'total_column_cloud_liquid_water', 'vertical_integral_of_divergence_of_cloud_frozen_water_flux', 'vertical_integral_of_divergence_of_cloud_liquid_water_flux', 'vertical_integral_of_eastward_cloud_frozen_water_flux', 'vertical_integral_of_eastward_cloud_liquid_water_flux', 'vertical_integral_of_northward_cloud_frozen_water_flux', 'vertical_integral_of_northward_cloud_liquid_water_flux', 'lake_bottom_temperature', 'lake_cover', 'lake_depth', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'evaporation', 'potential_evaporation', 'runoff', 'sub_surface_runoff', 'surface_runoff', 'convective_precipitation', 'convective_rain_rate', 'instantaneous_large_scale_surface_precipitation_fraction', 'large_scale_rain_rate', 'large_scale_precipitation', 'large_scale_precipitation_fraction', 'precipitation_type', 'total_column_rain_water', 'total_precipitation', 'convective_snowfall', 'convective_snowfall_rate_water_equivalent', 'large_scale_snowfall_rate_water_equivalent', 'large_scale_snowfall', 'snow_albedo', 'snow_density', 'snow_depth', 'snow_evaporation', 'snowfall', 'snowmelt', 'temperature_of_snow_layer', 'total_column_snow_water', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'soil_type', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', 'vertical_integral_of_divergence_of_cloud_frozen_water_flux', 'vertical_integral_of_divergence_of_cloud_liquid_water_flux', 'vertical_integral_of_divergence_of_geopotential_flux', 'vertical_integral_of_divergence_of_kinetic_energy_flux', 'vertical_integral_of_divergence_of_mass_flux', 'vertical_integral_of_divergence_of_moisture_flux', 'vertical_integral_of_divergence_of_ozone_flux', 'vertical_integral_of_divergence_of_thermal_energy_flux', 'vertical_integral_of_divergence_of_total_energy_flux', 'vertical_integral_of_eastward_cloud_frozen_water_flux', 'vertical_integral_of_eastward_cloud_liquid_water_flux', 'vertical_integral_of_eastward_geopotential_flux', 'vertical_integral_of_eastward_heat_flux', 'vertical_integral_of_eastward_kinetic_energy_flux', 'vertical_integral_of_eastward_mass_flux', 'vertical_integral_of_eastward_ozone_flux', 'vertical_integral_of_eastward_total_energy_flux', 'vertical_integral_of_eastward_water_vapour_flux', 'vertical_integral_of_energy_conversion', 'vertical_integral_of_kinetic_energy', 'vertical_integral_of_mass_of_atmosphere', 'vertical_integral_of_mass_tendency', 'vertical_integral_of_northward_cloud_frozen_water_flux', 'vertical_integral_of_northward_cloud_liquid_water_flux', 'vertical_integral_of_northward_geopotential_flux', 'vertical_integral_of_northward_heat_flux', 'vertical_integral_of_northward_kinetic_energy_flux', 'vertical_integral_of_northward_mass_flux', 'vertical_integral_of_northward_ozone_flux', 'vertical_integral_of_northward_total_energy_flux', 'vertical_integral_of_northward_water_vapour_flux', 'vertical_integral_of_potential_and_internal_energy', 'vertical_integral_of_potential_internal_and_latent_energy', 'vertical_integral_of_temperature', 'vertical_integral_of_thermal_energy', 'vertical_integral_of_total_energy', 'vertically_integrated_moisture_divergence', 'high_vegetation_cover', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation', 'low_vegetation_cover', 'type_of_high_vegetation', 'type_of_low_vegetation', 'air_density_over_the_oceans', 'coefficient_of_drag_with_waves', 'free_convective_velocity_over_the_oceans', 'maximum_individual_wave_height', 'mean_direction_of_total_swell', 'mean_direction_of_wind_waves', 'mean_period_of_total_swell', 'mean_period_of_wind_waves', 'mean_square_slope_of_waves', 'mean_wave_direction', 'mean_wave_direction_of_first_swell_partition', 'mean_wave_direction_of_second_swell_partition', 'mean_wave_direction_of_third_swell_partition', 'mean_wave_period', 'mean_wave_period_based_on_first_moment', 'mean_wave_period_based_on_first_moment_for_swell', 'mean_wave_period_based_on_first_moment_for_wind_waves', 'mean_wave_period_based_on_second_moment_for_swell', 'mean_wave_period_based_on_second_moment_for_wind_waves', 'mean_wave_period_of_first_swell_partition', 'mean_wave_period_of_second_swell_partition', 'mean_wave_period_of_third_swell_partition', 'mean_zero_crossing_wave_period', 'model_bathymetry', 'normalized_energy_flux_into_ocean', 'normalized_energy_flux_into_waves', 'normalized_stress_into_ocean', 'ocean_surface_stress_equivalent_10m_neutral_wind_direction', 'ocean_surface_stress_equivalent_10m_neutral_wind_speed', 'peak_wave_period', 'period_corresponding_to_maximum_individual_wave_height', 'significant_height_of_combined_wind_waves_and_swell', 'significant_height_of_total_swell', 'significant_height_of_wind_waves', 'significant_wave_height_of_first_swell_partition', 'significant_wave_height_of_second_swell_partition', 'significant_wave_height_of_third_swell_partition', 'wave_spectral_directional_width', 'wave_spectral_directional_width_for_swell', 'wave_spectral_directional_width_for_wind_waves', 'wave_spectral_kurtosis', 'wave_spectral_peakedness', 'wave_spectral_skewness', 'angle_of_sub_gridscale_orography', 'anisotropy_of_sub_gridscale_orography', 'benjamin_feir_index', 'boundary_layer_dissipation', 'boundary_layer_height', 'charnock', 'convective_available_potential_energy', 'convective_inhibition', 'duct_base_height', 'eastward_gravity_wave_surface_stress', 'eastward_turbulent_surface_stress', 'forecast_albedo', 'forecast_surface_roughness', 'friction_velocity', 'geopotential', 'gravity_wave_dissipation', 'instantaneous_eastward_turbulent_surface_stress', 'instantaneous_moisture_flux', 'instantaneous_northward_turbulent_surface_stress', 'k_index', 'land_sea_mask', 'magnitude_of_turbulent_surface_stress', 'mean_magnitude_of_turbulent_surface_stress', 'mean_vertical_gradient_of_refractivity_inside_trapping_layer', 'minimum_vertical_gradient_of_refractivity_inside_trapping_layer', 'northward_gravity_wave_surface_stress', 'northward_turbulent_surface_stress', 'sea_ice_cover', 'skin_reservoir_content', 'slope_of_sub_gridscale_orography', 'standard_deviation_of_filtered_subgrid_orography', 'standard_deviation_of_orography', 'total_column_ozone', 'total_column_supercooled_liquid_water', 'total_column_water', 'total_column_water_vapour', 'total_totals_index', 'trapping_layer_base_height', 'trapping_layer_top_height', 'u_component_stokes_drift', 'v_component_stokes_drift', 'zero_degree_level']
+        assert variable in variable_valid_values
+
         time_valid_values = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
         assert time in time_valid_values
-
-        year_valid_values = ['1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
@@ -2231,125 +2153,130 @@ class Collection_reanalysis_era5_single_levels_monthly_means(Collection):
         product_type_valid_values = ['monthly_averaged_reanalysis', 'monthly_averaged_reanalysis_by_hour_of_day', 'monthly_averaged_ensemble_members', 'monthly_averaged_ensemble_members_by_hour_of_day']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['10m_u_component_of_wind', '10m_v_component_of_wind', '2m_dewpoint_temperature', '2m_temperature', 'mean_sea_level_pressure', 'mean_wave_direction', 'mean_wave_period', 'sea_surface_temperature', 'significant_height_of_combined_wind_waves_and_swell', 'surface_pressure', 'total_precipitation', '2m_dewpoint_temperature', '2m_temperature', 'ice_temperature_layer_1', 'ice_temperature_layer_2', 'ice_temperature_layer_3', 'ice_temperature_layer_4', 'mean_sea_level_pressure', 'sea_surface_temperature', 'skin_temperature', 'surface_pressure', '100m_u_component_of_wind', '100m_v_component_of_wind', '10m_u_component_of_neutral_wind', '10m_u_component_of_wind', '10m_v_component_of_neutral_wind', '10m_v_component_of_wind', '10m_wind_speed', 'instantaneous_10m_wind_gust', 'mean_boundary_layer_dissipation', 'mean_convective_precipitation_rate', 'mean_convective_snowfall_rate', 'mean_eastward_gravity_wave_surface_stress', 'mean_eastward_turbulent_surface_stress', 'mean_evaporation_rate', 'mean_gravity_wave_dissipation', 'mean_large_scale_precipitation_fraction', 'mean_large_scale_precipitation_rate', 'mean_large_scale_snowfall_rate', 'mean_northward_gravity_wave_surface_stress', 'mean_northward_turbulent_surface_stress', 'mean_potential_evaporation_rate', 'mean_runoff_rate', 'mean_snow_evaporation_rate', 'mean_snowfall_rate', 'mean_snowmelt_rate', 'mean_sub_surface_runoff_rate', 'mean_surface_direct_short_wave_radiation_flux', 'mean_surface_direct_short_wave_radiation_flux_clear_sky', 'mean_surface_downward_long_wave_radiation_flux', 'mean_surface_downward_long_wave_radiation_flux_clear_sky', 'mean_surface_downward_short_wave_radiation_flux', 'mean_surface_downward_short_wave_radiation_flux_clear_sky', 'mean_surface_downward_uv_radiation_flux', 'mean_surface_latent_heat_flux', 'mean_surface_net_long_wave_radiation_flux', 'mean_surface_net_long_wave_radiation_flux_clear_sky', 'mean_surface_net_short_wave_radiation_flux', 'mean_surface_net_short_wave_radiation_flux_clear_sky', 'mean_surface_runoff_rate', 'mean_surface_sensible_heat_flux', 'mean_top_downward_short_wave_radiation_flux', 'mean_top_net_long_wave_radiation_flux', 'mean_top_net_long_wave_radiation_flux_clear_sky', 'mean_top_net_short_wave_radiation_flux', 'mean_top_net_short_wave_radiation_flux_clear_sky', 'mean_total_precipitation_rate', 'mean_vertically_integrated_moisture_divergence', 'clear_sky_direct_solar_radiation_at_surface', 'downward_uv_radiation_at_the_surface', 'forecast_logarithm_of_surface_roughness_for_heat', 'instantaneous_surface_sensible_heat_flux', 'near_ir_albedo_for_diffuse_radiation', 'near_ir_albedo_for_direct_radiation', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_solar_radiation_clear_sky', 'surface_net_thermal_radiation', 'surface_net_thermal_radiation_clear_sky', 'surface_sensible_heat_flux', 'surface_solar_radiation_downward_clear_sky', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downward_clear_sky', 'surface_thermal_radiation_downwards', 'toa_incident_solar_radiation', 'top_net_solar_radiation', 'top_net_solar_radiation_clear_sky', 'top_net_thermal_radiation', 'top_net_thermal_radiation_clear_sky', 'total_sky_direct_solar_radiation_at_surface', 'uv_visible_albedo_for_diffuse_radiation', 'uv_visible_albedo_for_direct_radiation', 'cloud_base_height', 'high_cloud_cover', 'low_cloud_cover', 'medium_cloud_cover', 'total_cloud_cover', 'total_column_cloud_ice_water', 'total_column_cloud_liquid_water', 'vertical_integral_of_divergence_of_cloud_frozen_water_flux', 'vertical_integral_of_divergence_of_cloud_liquid_water_flux', 'vertical_integral_of_eastward_cloud_frozen_water_flux', 'vertical_integral_of_eastward_cloud_liquid_water_flux', 'vertical_integral_of_northward_cloud_frozen_water_flux', 'vertical_integral_of_northward_cloud_liquid_water_flux', 'lake_bottom_temperature', 'lake_cover', 'lake_depth', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'evaporation', 'potential_evaporation', 'runoff', 'sub_surface_runoff', 'surface_runoff', 'convective_precipitation', 'convective_rain_rate', 'instantaneous_large_scale_surface_precipitation_fraction', 'large_scale_rain_rate', 'large_scale_precipitation', 'large_scale_precipitation_fraction', 'precipitation_type', 'total_column_rain_water', 'total_precipitation', 'convective_snowfall', 'convective_snowfall_rate_water_equivalent', 'large_scale_snowfall_rate_water_equivalent', 'large_scale_snowfall', 'snow_albedo', 'snow_density', 'snow_depth', 'snow_evaporation', 'snowfall', 'snowmelt', 'temperature_of_snow_layer', 'total_column_snow_water', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'soil_type', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', 'vertical_integral_of_divergence_of_cloud_frozen_water_flux', 'vertical_integral_of_divergence_of_cloud_liquid_water_flux', 'vertical_integral_of_divergence_of_geopotential_flux', 'vertical_integral_of_divergence_of_kinetic_energy_flux', 'vertical_integral_of_divergence_of_mass_flux', 'vertical_integral_of_divergence_of_moisture_flux', 'vertical_integral_of_divergence_of_ozone_flux', 'vertical_integral_of_divergence_of_thermal_energy_flux', 'vertical_integral_of_divergence_of_total_energy_flux', 'vertical_integral_of_eastward_cloud_frozen_water_flux', 'vertical_integral_of_eastward_cloud_liquid_water_flux', 'vertical_integral_of_eastward_geopotential_flux', 'vertical_integral_of_eastward_heat_flux', 'vertical_integral_of_eastward_kinetic_energy_flux', 'vertical_integral_of_eastward_mass_flux', 'vertical_integral_of_eastward_ozone_flux', 'vertical_integral_of_eastward_total_energy_flux', 'vertical_integral_of_eastward_water_vapour_flux', 'vertical_integral_of_energy_conversion', 'vertical_integral_of_kinetic_energy', 'vertical_integral_of_mass_of_atmosphere', 'vertical_integral_of_mass_tendency', 'vertical_integral_of_northward_cloud_frozen_water_flux', 'vertical_integral_of_northward_cloud_liquid_water_flux', 'vertical_integral_of_northward_geopotential_flux', 'vertical_integral_of_northward_heat_flux', 'vertical_integral_of_northward_kinetic_energy_flux', 'vertical_integral_of_northward_mass_flux', 'vertical_integral_of_northward_ozone_flux', 'vertical_integral_of_northward_total_energy_flux', 'vertical_integral_of_northward_water_vapour_flux', 'vertical_integral_of_potential_and_internal_energy', 'vertical_integral_of_potential_internal_and_latent_energy', 'vertical_integral_of_temperature', 'vertical_integral_of_thermal_energy', 'vertical_integral_of_total_energy', 'vertically_integrated_moisture_divergence', 'high_vegetation_cover', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation', 'low_vegetation_cover', 'type_of_high_vegetation', 'type_of_low_vegetation', 'air_density_over_the_oceans', 'coefficient_of_drag_with_waves', 'free_convective_velocity_over_the_oceans', 'maximum_individual_wave_height', 'mean_direction_of_total_swell', 'mean_direction_of_wind_waves', 'mean_period_of_total_swell', 'mean_period_of_wind_waves', 'mean_square_slope_of_waves', 'mean_wave_direction', 'mean_wave_direction_of_first_swell_partition', 'mean_wave_direction_of_second_swell_partition', 'mean_wave_direction_of_third_swell_partition', 'mean_wave_period', 'mean_wave_period_based_on_first_moment', 'mean_wave_period_based_on_first_moment_for_swell', 'mean_wave_period_based_on_first_moment_for_wind_waves', 'mean_wave_period_based_on_second_moment_for_swell', 'mean_wave_period_based_on_second_moment_for_wind_waves', 'mean_wave_period_of_first_swell_partition', 'mean_wave_period_of_second_swell_partition', 'mean_wave_period_of_third_swell_partition', 'mean_zero_crossing_wave_period', 'model_bathymetry', 'normalized_energy_flux_into_ocean', 'normalized_energy_flux_into_waves', 'normalized_stress_into_ocean', 'ocean_surface_stress_equivalent_10m_neutral_wind_direction', 'ocean_surface_stress_equivalent_10m_neutral_wind_speed', 'peak_wave_period', 'period_corresponding_to_maximum_individual_wave_height', 'significant_height_of_combined_wind_waves_and_swell', 'significant_height_of_total_swell', 'significant_height_of_wind_waves', 'significant_wave_height_of_first_swell_partition', 'significant_wave_height_of_second_swell_partition', 'significant_wave_height_of_third_swell_partition', 'wave_spectral_directional_width', 'wave_spectral_directional_width_for_swell', 'wave_spectral_directional_width_for_wind_waves', 'wave_spectral_kurtosis', 'wave_spectral_peakedness', 'wave_spectral_skewness', 'angle_of_sub_gridscale_orography', 'anisotropy_of_sub_gridscale_orography', 'benjamin_feir_index', 'boundary_layer_dissipation', 'boundary_layer_height', 'charnock', 'convective_available_potential_energy', 'convective_inhibition', 'duct_base_height', 'eastward_gravity_wave_surface_stress', 'eastward_turbulent_surface_stress', 'forecast_albedo', 'forecast_surface_roughness', 'friction_velocity', 'geopotential', 'gravity_wave_dissipation', 'instantaneous_eastward_turbulent_surface_stress', 'instantaneous_moisture_flux', 'instantaneous_northward_turbulent_surface_stress', 'k_index', 'land_sea_mask', 'magnitude_of_turbulent_surface_stress', 'mean_magnitude_of_turbulent_surface_stress', 'mean_vertical_gradient_of_refractivity_inside_trapping_layer', 'minimum_vertical_gradient_of_refractivity_inside_trapping_layer', 'northward_gravity_wave_surface_stress', 'northward_turbulent_surface_stress', 'sea_ice_cover', 'skin_reservoir_content', 'slope_of_sub_gridscale_orography', 'standard_deviation_of_filtered_subgrid_orography', 'standard_deviation_of_orography', 'total_column_ozone', 'total_column_supercooled_liquid_water', 'total_column_water', 'total_column_water_vapour', 'total_totals_index', 'trapping_layer_base_height', 'trapping_layer_top_height', 'u_component_stokes_drift', 'v_component_stokes_drift', 'zero_degree_level']
-        assert variable in variable_valid_values
+        year_valid_values = ['1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
+        data_format_valid_values = ['grib', 'netcdf']
+        assert data_format in data_format_valid_values
 
         download_format_valid_values = ['unarchived', 'zip']
         assert download_format in download_format_valid_values
 
-        data_format_valid_values = ['grib', 'netcdf']
-        assert data_format in data_format_valid_values
-
-        return download_data(time=time, year=year, month=month, product_type=product_type, variable=variable, download_format=download_format, data_format=data_format, area_group=area_group)
-
+        return download_data(variable=variable, time=time, month=month, product_type=product_type, year=year, data_format=data_format, area_group=area_group, download_format=download_format)
 class Collection_reanalysis_cerra_height_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], data_type: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], height_level: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
+    def download(cls, height_level: OneOrMore[str], leadtime_hour: OneOrMore[str], variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], data_type: OneOrMore[str], day: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], data_type: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], height_level: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
-        assert time in time_valid_values
-
-        data_type_valid_values = ['ensemble_members', 'reanalysis']
-        assert data_type in data_type_valid_values
-
-        year_valid_values = ['1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
-        assert year in year_valid_values
+    def __download__(cls, height_level: OneOrMore[str], leadtime_hour: OneOrMore[str], variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], data_type: OneOrMore[str], day: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib'):
+        height_level_valid_values = ['15_m', '30_m', '50_m', '75_m', '100_m', '150_m', '200_m', '250_m', '300_m', '400_m', '500_m']
+        assert height_level in height_level_valid_values
 
         leadtime_hour_valid_values = ['1', '2', '3', '4', '5', '6', '9', '12', '15', '18', '21', '24', '27', '30']
         assert leadtime_hour in leadtime_hour_valid_values
 
-        height_level_valid_values = ['15_m', '30_m', '50_m', '75_m', '100_m', '150_m', '200_m', '250_m', '300_m', '400_m', '500_m']
-        assert height_level in height_level_valid_values
+        variable_valid_values = ['pressure', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_rain_water_content', 'specific_snow_water_content', 'temperature', 'turbulent_kinetic_energy', 'wind_direction', 'wind_speed']
+        assert variable in variable_valid_values
+
+        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
+        assert time in time_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
+        data_type_valid_values = ['ensemble_members', 'reanalysis']
+        assert data_type in data_type_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
         product_type_valid_values = ['analysis', 'forecast']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['pressure', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_rain_water_content', 'specific_snow_water_content', 'temperature', 'turbulent_kinetic_energy', 'wind_direction', 'wind_speed']
-        assert variable in variable_valid_values
+        year_valid_values = ['1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+        assert year in year_valid_values
 
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(day=day, time=time, data_type=data_type, year=year, leadtime_hour=leadtime_hour, height_level=height_level, month=month, product_type=product_type, variable=variable, data_format=data_format)
-
+        return download_data(height_level=height_level, leadtime_hour=leadtime_hour, variable=variable, time=time, month=month, data_type=data_type, day=day, product_type=product_type, year=year, data_format=data_format)
 class Collection_sis_agroproductivity_indicators(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: str, product_family: OneOrMore[str], harvest_year: str, month: OneOrMore[str], variable: OneOrMore[str], crop_type: OneOrMore[str], growing_season: OneOrMore[str]): UNREACHABLE()
+    def download(cls, product_family: OneOrMore[str], crop_type: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], harvest_year: str, growing_season: OneOrMore[str], day: OneOrMore[str], year: str): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: str, product_family: OneOrMore[str], harvest_year: str, month: OneOrMore[str], variable: OneOrMore[str], crop_type: OneOrMore[str], growing_season: OneOrMore[str]):
+    def __download__(cls, product_family: OneOrMore[str], crop_type: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], harvest_year: str, growing_season: OneOrMore[str], day: OneOrMore[str], year: str):
+        product_family_valid_values = ['crop_productivity_indicators', 'evapotranspiration_indicators']
+        assert product_family in product_family_valid_values
+
+        crop_type_valid_values = ['maize', 'soybean', 'spring_wheat', 'winter_wheat', 'wet_rice']
+        assert crop_type in crop_type_valid_values
+
+        variable_valid_values = ['actual_evaporation', 'potential_evaporation', 'crop_development_stage', 'total_above_ground_production', 'total_weight_storage_organs']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        harvest_year_valid_values = ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert harvest_year in harvest_year_valid_values
+
+        growing_season_valid_values = ['1st_season_per_campaign', '2nd_season_per_campaign']
+        assert growing_season in growing_season_valid_values
+
         day_valid_values = ['01', '10', '11', '20', '21', '28', '29', '30', '31']
         assert day in day_valid_values
 
         year_valid_values = ['1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
         assert year in year_valid_values
 
-        product_family_valid_values = ['crop_productivity_indicators', 'evapotranspiration_indicators']
-        assert product_family in product_family_valid_values
-
-        harvest_year_valid_values = ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert harvest_year in harvest_year_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['actual_evaporation', 'potential_evaporation', 'crop_development_stage', 'total_above_ground_production', 'total_weight_storage_organs']
-        assert variable in variable_valid_values
-
-        crop_type_valid_values = ['maize', 'soybean', 'spring_wheat', 'winter_wheat', 'wet_rice']
-        assert crop_type in crop_type_valid_values
-
-        growing_season_valid_values = ['1st_season_per_campaign', '2nd_season_per_campaign']
-        assert growing_season in growing_season_valid_values
-
-        return download_data(day=day, year=year, product_family=product_family, harvest_year=harvest_year, month=month, variable=variable, crop_type=crop_type, growing_season=growing_season)
-
+        return download_data(product_family=product_family, crop_type=crop_type, variable=variable, month=month, harvest_year=harvest_year, growing_season=growing_season, day=day, year=year)
 class Collection_derived_reanalysis_energy_moisture_budget(Collection):
 
     @Collection.wrapper
-    def download(cls, year: OneOrMore[str], variable: str, month: OneOrMore[str], area_group: Optional[Union[LabelType, GeographicExtentMapType]] = None): UNREACHABLE()
+    def download(cls, month: OneOrMore[str], variable: str, year: OneOrMore[str], area_group: Optional[Union[LabelType, GeographicExtentMapType]] = None): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, year: OneOrMore[str], variable: str, month: OneOrMore[str], area_group: Optional[Union[LabelType, GeographicExtentMapType]] = None):
-        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
-        assert year in year_valid_values
+    def __download__(cls, month: OneOrMore[str], variable: str, year: OneOrMore[str], area_group: Optional[Union[LabelType, GeographicExtentMapType]] = None):
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
         variable_valid_values = ['divergence_of_vertical_integral_of_latent_heat_flux', 'divergence_of_vertical_integral_of_total_energy_flux', 'divergence_of_vertical_integral_of_water_vapour_flux', 'vertical_integral_of_eastward_latent_heat_flux', 'vertical_integral_of_eastward_total_energy_flux', 'vertical_integral_of_eastward_water_vapour_flux', 'vertical_integral_of_northward_latent_heat_flux', 'vertical_integral_of_northward_total_energy_flux', 'vertical_integral_of_northward_water_vapour_flux', 'tendency_of_vertical_integral_of_latent_heat', 'tendency_of_vertical_integral_of_water_vapour', 'tendency_of_vertical_integral_of_total_energy']
         assert variable in variable_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
+        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        assert year in year_valid_values
 
-        return download_data(year=year, variable=variable, month=month, area_group=area_group)
-
+        return download_data(month=month, variable=variable, year=year, area_group=area_group)
 class Collection_sis_hydrology_variables_derived_projections(Collection):
 
     @Collection.wrapper
-    def download(cls, period: OneOrMore[str], time_aggregation: str, hydrological_model: OneOrMore[str], ensemble_member: OneOrMore[str], rcm: str, gcm: str, product_type: str, variable: OneOrMore[str], variable_type: str, experiment: OneOrMore[str]): UNREACHABLE()
+    def download(cls, variable_type: str, ensemble_member: OneOrMore[str], period: OneOrMore[str], time_aggregation: str, variable: OneOrMore[str], hydrological_model: OneOrMore[str], experiment: OneOrMore[str], rcm: str, gcm: str, product_type: str): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, period: OneOrMore[str], time_aggregation: str, hydrological_model: OneOrMore[str], ensemble_member: OneOrMore[str], rcm: str, gcm: str, product_type: str, variable: OneOrMore[str], variable_type: str, experiment: OneOrMore[str]):
+    def __download__(cls, variable_type: str, ensemble_member: OneOrMore[str], period: OneOrMore[str], time_aggregation: str, variable: OneOrMore[str], hydrological_model: OneOrMore[str], experiment: OneOrMore[str], rcm: str, gcm: str, product_type: str):
+        variable_type_valid_values = ['relative_change_from_reference_period', 'absolute_change_from_reference_period', 'absolute_values']
+        assert variable_type in variable_type_valid_values
+
+        ensemble_member_valid_values = ['r1i1p1', 'r12i1p1', 'r2i1p1']
+        assert ensemble_member in ensemble_member_valid_values
+
         period_valid_values = ['1971_2000', '2011_2040', '2041_2070', '2071_2100', '1971_1980', '1981_1990', '1991_2000', '2001_2005', '2006_2010', '2011_2020', '2021_2030', '2031_2040', '2041_2050', '2051_2060', '2061_2070', '2071_2080', '2081_2090', '2091_2100', '1_5_c', '2_0_c', '3_0_c', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100']
         assert period in period_valid_values
 
         time_aggregation_valid_values = ['daily', 'monthly_mean', 'annual_mean']
         assert time_aggregation in time_aggregation_valid_values
 
+        variable_valid_values = ['river_discharge', 'mean_runoff', 'flood_recurrence_2_years_return_period', 'flood_recurrence_5_years_return_period', 'flood_recurrence_10_years_return_period', 'flood_recurrence_50_years_return_period', 'maximum_river_discharge', 'minimum_river_discharge', 'mean_soil_moisture', 'wetness_actual', 'wetness_potential', 'water_temperature_in_catchments', 'water_temperature_in_local_streams', 'aridity_potential', 'aridity_actual', 'total_nitrogen_concentration_in_catchments', 'total_nitrogen_load_in_catchments', 'total_nitrogen_concentration_in_local_streams', 'total_phosphorus_concentration_in_catchments', 'total_phosphorus_load_in_catchments', 'total_phosphorus_concentration_in_local_streams']
+        assert variable in variable_valid_values
+
         hydrological_model_valid_values = ['e_hypecatch_m00', 'e_hypecatch_m01', 'e_hypecatch_m02', 'e_hypecatch_m03', 'e_hypecatch_m04', 'e_hypecatch_m05', 'e_hypecatch_m06', 'e_hypecatch_m07', 'e_hypegrid', 'vic_wur']
         assert hydrological_model in hydrological_model_valid_values
 
-        ensemble_member_valid_values = ['r1i1p1', 'r12i1p1', 'r2i1p1']
-        assert ensemble_member in ensemble_member_valid_values
+        experiment_valid_values = ['historical', 'rcp_2_6', 'rcp_4_5', 'rcp_8_5', 'degree_scenario']
+        assert experiment in experiment_valid_values
 
         rcm_valid_values = ['cclm4_8_17', 'racmo22e', 'csc_remo2009', 'rca4']
         assert rcm in rcm_valid_values
@@ -2360,41 +2287,16 @@ class Collection_sis_hydrology_variables_derived_projections(Collection):
         product_type_valid_values = ['climate_impact_indicators', 'essential_climate_variables']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['river_discharge', 'mean_runoff', 'flood_recurrence_2_years_return_period', 'flood_recurrence_5_years_return_period', 'flood_recurrence_10_years_return_period', 'flood_recurrence_50_years_return_period', 'maximum_river_discharge', 'minimum_river_discharge', 'mean_soil_moisture', 'wetness_actual', 'wetness_potential', 'water_temperature_in_catchments', 'water_temperature_in_local_streams', 'aridity_potential', 'aridity_actual', 'total_nitrogen_concentration_in_catchments', 'total_nitrogen_load_in_catchments', 'total_nitrogen_concentration_in_local_streams', 'total_phosphorus_concentration_in_catchments', 'total_phosphorus_load_in_catchments', 'total_phosphorus_concentration_in_local_streams']
-        assert variable in variable_valid_values
-
-        variable_type_valid_values = ['relative_change_from_reference_period', 'absolute_change_from_reference_period', 'absolute_values']
-        assert variable_type in variable_type_valid_values
-
-        experiment_valid_values = ['historical', 'rcp_2_6', 'rcp_4_5', 'rcp_8_5', 'degree_scenario']
-        assert experiment in experiment_valid_values
-
-        return download_data(period=period, time_aggregation=time_aggregation, hydrological_model=hydrological_model, ensemble_member=ensemble_member, rcm=rcm, gcm=gcm, product_type=product_type, variable=variable, variable_type=variable_type, experiment=experiment)
-
+        return download_data(variable_type=variable_type, ensemble_member=ensemble_member, period=period, time_aggregation=time_aggregation, variable=variable, hydrological_model=hydrological_model, experiment=experiment, rcm=rcm, gcm=gcm, product_type=product_type)
 class Collection_reanalysis_carra_model_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], month: OneOrMore[str], product_type: str, variable: OneOrMore[str], model_level: OneOrMore[str], domain: str, data_format: str = 'grib'): UNREACHABLE()
+    def download(cls, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], model_level: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], domain: str, day: OneOrMore[str], product_type: str, year: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], month: OneOrMore[str], product_type: str, variable: OneOrMore[str], model_level: OneOrMore[str], domain: str, data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
-        assert time in time_valid_values
-
-        year_valid_values = ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
+    def __download__(cls, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], model_level: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], domain: str, day: OneOrMore[str], product_type: str, year: OneOrMore[str], data_format: str = 'grib'):
         leadtime_hour_valid_values = ['1', '2']
         assert leadtime_hour in leadtime_hour_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        product_type_valid_values = ['analysis', 'forecast']
-        assert product_type in product_type_valid_values
 
         variable_valid_values = ['cloud_cover', 'graupel', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_cloud_rain_water_content', 'specific_cloud_snow_water_content', 'specific_humidity', 'temperature', 'turbulent_kinetic_energy', 'u_component_of_wind', 'v_component_of_wind']
         assert variable in variable_valid_values
@@ -2402,89 +2304,98 @@ class Collection_reanalysis_carra_model_levels(Collection):
         model_level_valid_values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60', '61', '62', '63', '64', '65']
         assert model_level in model_level_valid_values
 
-        domain_valid_values = ['east_domain', 'west_domain']
-        assert domain in domain_valid_values
-
-        data_format_valid_values = ['grib', 'netcdf']
-        assert data_format in data_format_valid_values
-
-        return download_data(day=day, time=time, year=year, leadtime_hour=leadtime_hour, month=month, product_type=product_type, variable=variable, model_level=model_level, domain=domain, data_format=data_format)
-
-class Collection_projections_cmip6_decadal_prototype(Collection):
-
-    @Collection.wrapper
-    def download(cls, day: OneOrMore[str], base_year: str, model: str, year: OneOrMore[str], month: OneOrMore[str], temporal_resolution: str, variable: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
-    
-    @classmethod
-    def __download__(cls, day: OneOrMore[str], base_year: str, model: str, year: OneOrMore[str], month: OneOrMore[str], temporal_resolution: str, variable: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        base_year_valid_values = ['1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
-        assert base_year in base_year_valid_values
-
-        model_valid_values = ['cmcc_cm2_sr5', 'ec_earth3', 'hadgem3_gc31_mm', 'mpi_esm1_2_hr', 'mpi_esm1_2_lr']
-        assert model in model_valid_values
-
-        year_valid_values = ['1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031']
-        assert year in year_valid_values
+        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
+        assert time in time_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        temporal_resolution_valid_values = ['monthly', 'daily']
-        assert temporal_resolution in temporal_resolution_valid_values
+        domain_valid_values = ['east_domain', 'west_domain']
+        assert domain in domain_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        product_type_valid_values = ['analysis', 'forecast']
+        assert product_type in product_type_valid_values
+
+        year_valid_values = ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
+        data_format_valid_values = ['grib', 'netcdf']
+        assert data_format in data_format_valid_values
+
+        return download_data(leadtime_hour=leadtime_hour, variable=variable, model_level=model_level, time=time, month=month, domain=domain, day=day, product_type=product_type, year=year, data_format=data_format)
+class Collection_projections_cmip6_decadal_prototype(Collection):
+
+    @Collection.wrapper
+    def download(cls, model: str, variable: str, month: OneOrMore[str], base_year: str, temporal_resolution: str, day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    
+    @classmethod
+    def __download__(cls, model: str, variable: str, month: OneOrMore[str], base_year: str, temporal_resolution: str, day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        model_valid_values = ['cmcc_cm2_sr5', 'ec_earth3', 'hadgem3_gc31_mm', 'mpi_esm1_2_hr', 'mpi_esm1_2_lr']
+        assert model in model_valid_values
 
         variable_valid_values = ['near_surface_air_temperature', 'daily_maximum_near_surface_air_temperature', 'precipitation', 'sea_level_pressure', 'daily_minimum_near_surface_air_temperature', '500_hpa_geopotential_height']
         assert variable in variable_valid_values
 
-        return download_data(day=day, base_year=base_year, model=model, year=year, month=month, temporal_resolution=temporal_resolution, variable=variable, area_group=area_group)
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
+        base_year_valid_values = ['1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+        assert base_year in base_year_valid_values
+
+        temporal_resolution_valid_values = ['monthly', 'daily']
+        assert temporal_resolution in temporal_resolution_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031']
+        assert year in year_valid_values
+
+        return download_data(model=model, variable=variable, month=month, base_year=base_year, temporal_resolution=temporal_resolution, day=day, year=year, area_group=area_group)
 class Collection_sis_ecv_cmip5_bias_corrected(Collection):
 
     @Collection.wrapper
-    def download(cls, model: str, period: OneOrMore[str], variable: str, experiment: str): UNREACHABLE()
+    def download(cls, experiment: str, period: OneOrMore[str], model: str, variable: str): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, model: str, period: OneOrMore[str], variable: str, experiment: str):
-        model_valid_values = ['access1_0', 'access1_3', 'bcc_csm1_1', 'bcc_csm1_1_m', 'bnu_esm', 'cnrm_cm5', 'ec_earth', 'gfdl_cm3', 'gfdl_esm2g', 'gfdl_esm2m', 'hadgem2_cc', 'hadgem2_es', 'ipsl_cm5a_lr', 'ipsl_cm5a_mr', 'ipsl_cm5b_lr', 'mpi_esm_lr', 'mpi_esm_mr', 'noresm1_m']
-        assert model in model_valid_values
+    def __download__(cls, experiment: str, period: OneOrMore[str], model: str, variable: str):
+        experiment_valid_values = ['rcp_4_5', 'rcp_8_5']
+        assert experiment in experiment_valid_values
 
         period_valid_values = ['19500101_19741231', '19500101_19801231', '19500101_19991231', '19510101_19551231', '19560101_19601231', '19591201_19691130', '19600101_19641231', '19600101_19691231', '19610101_19651231', '19641201_19691130', '19650101_19691231', '19660101_19701231', '19691201_19741130', '19691201_19791130', '19700101_19741231', '19700101_19791231', '19710101_19751231', '19741201_19791130', '19750101_19791231', '19750101_19991231', '19750101_20051231', '19760101_19801231', '19791201_19841130', '19791201_19891130', '19800101_19841231', '19800101_19891231', '19810101_19851231', '19810101_20051231', '19841201_19891130', '19850101_19891231', '19860101_19901231', '19891201_19941130', '19891201_19991130', '19900101_19941231', '19900101_19991231', '19910101_19951231', '19941201_19991130', '19950101_19991231', '19960101_20001231', '19991201_20041130', '19991201_20051130', '20000101_20041231', '20000101_20051231', '20010101_20051231', '20041201_20051130', '20050101_20051231', '20051201_20101130', '20051201_20151130', '20060101_20091231', '20060101_20101231', '20060101_20301231', '20060101_20501231', '20060101_20551231', '20100101_20191231', '20101201_20151130', '20110101_20151231', '20151201_20201130', '20151201_20251130', '20160101_20201231', '20200101_20291231', '20201201_20251130', '20210101_20251231', '20251201_20301130', '20251201_20351130', '20260101_20301231', '20300101_20391231', '20301201_20351130', '20310101_20351231', '20310101_20551231', '20351201_20401130', '20351201_20451130', '20360101_20401231', '20400101_20491231', '20401201_20451130', '20410101_20451231', '20451201_20501130', '20451201_20551130', '20460101_20501231', '20500101_20591231', '20501201_20551130', '20510101_20551231', '20510101_20951231', '20551201_20601130', '20551201_20651130', '20560101_20601231', '20560101_20801231', '20560101_21001231', '20600101_20691231', '20601201_20651130', '20610101_20651231', '20651201_20701130', '20651201_20751130', '20660101_20701231', '20700101_20791231', '20701201_20751130', '20710101_20751231', '20751201_20801130', '20751201_20851130', '20760101_20801231', '20800101_20891231', '20801201_20851130', '20810101_20851231', '20810101_20991231', '20810101_21001231', '20851201_20901130', '20851201_20951130', '20860101_20901231', '20900101_21001231', '20901201_20951130', '20910101_20951231', '20951201_20991130', '20951201_20991231', '20960101_20991231', '20960101_21001231', '20991201_20991231', '21000101_21001231']
         assert period in period_valid_values
 
+        model_valid_values = ['access1_0', 'access1_3', 'bcc_csm1_1', 'bcc_csm1_1_m', 'bnu_esm', 'cnrm_cm5', 'ec_earth', 'gfdl_cm3', 'gfdl_esm2g', 'gfdl_esm2m', 'hadgem2_cc', 'hadgem2_es', 'ipsl_cm5a_lr', 'ipsl_cm5a_mr', 'ipsl_cm5b_lr', 'mpi_esm_lr', 'mpi_esm_mr', 'noresm1_m']
+        assert model in model_valid_values
+
         variable_valid_values = ['precipitation_flux', 'mean_2m_temperature', 'maximum_2m_temperature', 'minimum_2m_temperature']
         assert variable in variable_valid_values
 
-        experiment_valid_values = ['rcp_4_5', 'rcp_8_5']
-        assert experiment in experiment_valid_values
-
-        return download_data(model=model, period=period, variable=variable, experiment=experiment)
-
+        return download_data(experiment=experiment, period=period, model=model, variable=variable)
 class Collection_satellite_surface_radiation_budget(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time_aggregation: str, origin: str, climate_data_record_type: str, year: OneOrMore[str], product_family: str, sensor_on_satellite: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, climate_data_record_type: str, origin: str, product_family: str, time_aggregation: str, variable: OneOrMore[str], sensor_on_satellite: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time_aggregation: str, origin: str, climate_data_record_type: str, year: OneOrMore[str], product_family: str, sensor_on_satellite: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_aggregation_valid_values = ['monthly_mean', 'daily_mean']
-        assert time_aggregation in time_aggregation_valid_values
+    def __download__(cls, climate_data_record_type: str, origin: str, product_family: str, time_aggregation: str, variable: OneOrMore[str], sensor_on_satellite: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        climate_data_record_type_valid_values = ['interim_climate_data_record', 'thematic_climate_data_record']
+        assert climate_data_record_type in climate_data_record_type_valid_values
 
         origin_valid_values = ['eumetsat', 'c3s', 'esa']
         assert origin in origin_valid_values
 
-        climate_data_record_type_valid_values = ['interim_climate_data_record', 'thematic_climate_data_record']
-        assert climate_data_record_type in climate_data_record_type_valid_values
-
-        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
-        assert year in year_valid_values
-
         product_family_valid_values = ['clara_a2', 'clara_a3', 'cci']
         assert product_family in product_family_valid_values
+
+        time_aggregation_valid_values = ['monthly_mean', 'daily_mean']
+        assert time_aggregation in time_aggregation_valid_values
+
+        variable_valid_values = ['surface_upwelling_shortwave_flux', 'surface_upwelling_longwave_flux', 'surface_downwelling_shortwave_flux', 'surface_downwelling_longwave_flux', 'surface_net_downward_shortwave_flux', 'surface_net_downward_longwave_flux', 'surface_net_downward_radiative_flux', 'all_variables']
+        assert variable in variable_valid_values
 
         sensor_on_satellite_valid_values = ['aatsr_on_envisat', 'atsr2_on_ers2', 'slstr_on_sentinel_3a', 'slstr_on_sentinel_3b', 'slstr_on_sentinel_3a_3b']
         assert sensor_on_satellite in sensor_on_satellite_valid_values
@@ -2492,23 +2403,22 @@ class Collection_satellite_surface_radiation_budget(Collection):
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        variable_valid_values = ['surface_upwelling_shortwave_flux', 'surface_upwelling_longwave_flux', 'surface_downwelling_shortwave_flux', 'surface_downwelling_longwave_flux', 'surface_net_downward_shortwave_flux', 'surface_net_downward_longwave_flux', 'surface_net_downward_radiative_flux', 'all_variables']
-        assert variable in variable_valid_values
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
 
-        return download_data(day=day, time_aggregation=time_aggregation, origin=origin, climate_data_record_type=climate_data_record_type, year=year, product_family=product_family, sensor_on_satellite=sensor_on_satellite, month=month, variable=variable, area_group=area_group)
+        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
+        assert year in year_valid_values
 
+        return download_data(climate_data_record_type=climate_data_record_type, origin=origin, product_family=product_family, time_aggregation=time_aggregation, variable=variable, sensor_on_satellite=sensor_on_satellite, month=month, day=day, year=year, area_group=area_group)
 class Collection_satellite_sea_ice_thickness(Collection):
 
     @Collection.wrapper
-    def download(cls, cdr_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], satellite: OneOrMore[str], version: str = '3_0', variable: str = 'all'): UNREACHABLE()
+    def download(cls, cdr_type: OneOrMore[str], month: OneOrMore[str], satellite: OneOrMore[str], year: OneOrMore[str], variable: str = 'all', version: str = '3_0'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, cdr_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], satellite: OneOrMore[str], version: str = '3_0', variable: str = 'all'):
+    def __download__(cls, cdr_type: OneOrMore[str], month: OneOrMore[str], satellite: OneOrMore[str], year: OneOrMore[str], variable: str = 'all', version: str = '3_0'):
         cdr_type_valid_values = ['cdr', 'icdr']
         assert cdr_type in cdr_type_valid_values
-
-        year_valid_values = ['2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '10', '11', '12']
         assert month in month_valid_values
@@ -2516,35 +2426,31 @@ class Collection_satellite_sea_ice_thickness(Collection):
         satellite_valid_values = ['envisat', 'cryosat_2']
         assert satellite in satellite_valid_values
 
-        version_valid_values = ['1_0', '2_0', '3_0']
-        assert version in version_valid_values
+        year_valid_values = ['2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
 
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(cdr_type=cdr_type, year=year, month=month, satellite=satellite, version=version, variable=variable)
+        version_valid_values = ['1_0', '2_0', '3_0']
+        assert version in version_valid_values
 
+        return download_data(cdr_type=cdr_type, month=month, satellite=satellite, year=year, variable=variable, version=version)
 class Collection_sis_extreme_indices_cmip6(Collection):
 
     @Collection.wrapper
-    def download(cls, period: OneOrMore[str], model: OneOrMore[str], ensemble_member: OneOrMore[str], temporal_aggregation: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str], version: OneOrMore[str] = '2_0'): UNREACHABLE()
+    def download(cls, period: OneOrMore[str], ensemble_member: OneOrMore[str], model: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str], temporal_aggregation: OneOrMore[str], product_type: OneOrMore[str], version: OneOrMore[str] = '2_0'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, period: OneOrMore[str], model: OneOrMore[str], ensemble_member: OneOrMore[str], temporal_aggregation: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str], version: OneOrMore[str] = '2_0'):
+    def __download__(cls, period: OneOrMore[str], ensemble_member: OneOrMore[str], model: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str], temporal_aggregation: OneOrMore[str], product_type: OneOrMore[str], version: OneOrMore[str] = '2_0'):
         period_valid_values = ['19510101_20101230', '19510101_20101231', '19510101_20141230', '19510101_20141231', '20110101_21001230', '20110101_21001231', '20150101_21001230', '20150101_21001231', '184901_201412', '185001_201412', '185001_201612', '195101_201412', '201501_203912', '201501_210012', '201501_218012', '201501_230012', '1849_2014', '1850_2014', '1850_2016', '1951_2014', '2015_2039', '2015_2100', '2015_2180', '2015_2300']
         assert period in period_valid_values
-
-        model_valid_values = ['access_cm2', 'access_esm1_5', 'bcc_csm2_mr', 'cnrm_cm6_1', 'cnrm_cm6_1_hr', 'cnrm_esm2_1', 'canesm5', 'ec_earth3', 'ec_earth3_veg', 'fgoals_g3', 'gfdl_cm4', 'gfdl_esm4', 'hadgem3_gc31_ll', 'hadgem3_gc31_mm', 'inm_cm4_8', 'inm_cm5_0', 'kace_1_0_g', 'kiost_esm', 'miroc_es2l', 'miroc6', 'mpi_esm1_2_hr', 'mpi_esm1_2_lr', 'mri_esm2_0', 'nesm3', 'noresm2_lm', 'noresm2_mm', 'ukesm1_0_ll']
-        assert model in model_valid_values
 
         ensemble_member_valid_values = ['r10i1p1f1', 'r10i1p2f1', 'r11i1p1f1', 'r11i1p2f1', 'r12i1p1f1', 'r12i1p2f1', 'r13i1p1f1', 'r13i1p2f1', 'r14i1p1f1', 'r14i1p2f1', 'r15i1p1f1', 'r15i1p2f1', 'r16i1p1f1', 'r16i1p2f1', 'r17i1p1f1', 'r17i1p2f1', 'r18i1p1f1', 'r18i1p2f1', 'r19i1p1f1', 'r19i1p2f1', 'r1i1p1f1', 'r1i1p1f2', 'r1i1p1f3', 'r1i1p2f1', 'r20i1p1f1', 'r20i1p2f1', 'r21i1p1f1', 'r21i1p2f1', 'r22i1p1f1', 'r22i1p2f1', 'r23i1p1f1', 'r23i1p2f1', 'r24i1p1f1', 'r24i1p2f1', 'r25i1p1f1', 'r25i1p2f1', 'r26i1p1f1', 'r27i1p1f1', 'r28i1p1f1', 'r29i1p1f1', 'r2i1p1f1', 'r2i1p2f1', 'r30i1p1f1', 'r31i1p1f1', 'r32i1p1f1', 'r33i1p1f1', 'r34i1p1f1', 'r35i1p1f1', 'r36i1p1f1', 'r37i1p1f1', 'r38i1p1f1', 'r39i1p1f1', 'r3i1p1f1', 'r3i1p2f1', 'r40i1p1f1', 'r41i1p1f1', 'r42i1p1f1', 'r43i1p1f1', 'r44i1p1f1', 'r45i1p1f1', 'r46i1p1f1', 'r47i1p1f1', 'r48i1p1f1', 'r49i1p1f1', 'r4i1p1f1', 'r4i1p2f1', 'r50i1p1f1', 'r5i1p1f1', 'r5i1p2f1', 'r6i1p1f1', 'r6i1p2f1', 'r7i1p1f1', 'r7i1p2f1', 'r8i1p1f1', 'r8i1p2f1', 'r9i1p1f1', 'r9i1p2f1']
         assert ensemble_member in ensemble_member_valid_values
 
-        temporal_aggregation_valid_values = ['yearly', 'monthly', 'daily']
-        assert temporal_aggregation in temporal_aggregation_valid_values
-
-        product_type_valid_values = ['base_period_1961_1990', 'base_period_1981_2010', 'base_independent', 'bias_adjusted', 'non_bias_adjusted']
-        assert product_type in product_type_valid_values
+        model_valid_values = ['access_cm2', 'access_esm1_5', 'bcc_csm2_mr', 'cnrm_cm6_1', 'cnrm_cm6_1_hr', 'cnrm_esm2_1', 'canesm5', 'ec_earth3', 'ec_earth3_veg', 'fgoals_g3', 'gfdl_cm4', 'gfdl_esm4', 'hadgem3_gc31_ll', 'hadgem3_gc31_mm', 'inm_cm4_8', 'inm_cm5_0', 'kace_1_0_g', 'kiost_esm', 'miroc_es2l', 'miroc6', 'mpi_esm1_2_hr', 'mpi_esm1_2_lr', 'mri_esm2_0', 'nesm3', 'noresm2_lm', 'noresm2_mm', 'ukesm1_0_ll']
+        assert model in model_valid_values
 
         variable_valid_values = ['cold_days', 'cold_nights', 'cold_spell_duration_index', 'consecutive_dry_days', 'consecutive_wet_days', 'diurnal_temperature_range', 'extremely_wet_day_precipitation', 'frost_days', 'growing_season_length', 'heavy_precipitation_days', 'ice_days', 'maximum_1_day_precipitation', 'maximum_5_day_precipitation', 'maximum_value_of_daily_maximum_temperature', 'minimum_value_of_daily_maximum_temperature', 'maximum_value_of_daily_minimum_temperature', 'minimum_value_of_daily_minimum_temperature', 'number_of_wet_days', 'simple_daily_intensity_index', 'summer_days', 'total_wet_day_precipitation', 'tropical_nights', 'very_heavy_precipitation_days', 'very_wet_day_precipitation', 'warm_days', 'warm_nights', 'warm_spell_duration_index', 'heat_index', 'humidex', 'universal_thermal_climate_index', 'wet_bulb_temperature_index', 'wet_bulb_globe_temperature_index']
         assert variable in variable_valid_values
@@ -2552,32 +2458,31 @@ class Collection_sis_extreme_indices_cmip6(Collection):
         experiment_valid_values = ['historical', 'ssp1_2_6', 'ssp2_4_5', 'ssp3_7_0', 'ssp5_8_5']
         assert experiment in experiment_valid_values
 
+        temporal_aggregation_valid_values = ['yearly', 'monthly', 'daily']
+        assert temporal_aggregation in temporal_aggregation_valid_values
+
+        product_type_valid_values = ['base_period_1961_1990', 'base_period_1981_2010', 'base_independent', 'bias_adjusted', 'non_bias_adjusted']
+        assert product_type in product_type_valid_values
+
         version_valid_values = ['1_0', '2_0']
         assert version in version_valid_values
 
-        return download_data(period=period, model=model, ensemble_member=ensemble_member, temporal_aggregation=temporal_aggregation, product_type=product_type, variable=variable, experiment=experiment, version=version)
-
+        return download_data(period=period, ensemble_member=ensemble_member, model=model, variable=variable, experiment=experiment, temporal_aggregation=temporal_aggregation, product_type=product_type, version=version)
 class Collection_satellite_aerosol_properties(Collection):
 
     @Collection.wrapper
-    def download(cls, orbit: OneOrMore[str], day: OneOrMore[str], time_aggregation: str, version: OneOrMore[str], year: OneOrMore[str], sensor_on_satellite: str, month: OneOrMore[str], algorithm: str, variable: OneOrMore[str]): UNREACHABLE()
+    def download(cls, algorithm: str, time_aggregation: str, variable: OneOrMore[str], sensor_on_satellite: str, month: OneOrMore[str], version: OneOrMore[str], orbit: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, orbit: OneOrMore[str], day: OneOrMore[str], time_aggregation: str, version: OneOrMore[str], year: OneOrMore[str], sensor_on_satellite: str, month: OneOrMore[str], algorithm: str, variable: OneOrMore[str]):
-        orbit_valid_values = ['ascending', 'descending', 'ascending_and_descending']
-        assert orbit in orbit_valid_values
-
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, algorithm: str, time_aggregation: str, variable: OneOrMore[str], sensor_on_satellite: str, month: OneOrMore[str], version: OneOrMore[str], orbit: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str]):
+        algorithm_valid_values = ['aergom', 'adv', 'ens', 'grasp', 'imars', 'lmd', 'mapir', 'orac', 'sdv', 'swansea', 's4m', 's4o', 'ulb', 'xbaer']
+        assert algorithm in algorithm_valid_values
 
         time_aggregation_valid_values = ['daily_average', 'monthly_average', '5_daily_composite']
         assert time_aggregation in time_aggregation_valid_values
 
-        version_valid_values = ['deprecated (v4.32)', 'v2_30', 'v2_6', 'v2_9', 'v3_0', 'v3_11', 'v4_0', 'v4_01', 'v4_02', 'v4_1', 'v4_3', 'v4_32_latest', 'v4_33', 'deprecated (v1.11)', 'v1_00', 'v1_10', 'v1_12', 'v2_00', 'v2_10', 'v2_20', 'v2_30', 'v0_08', 'v2_01', 'v2_10', 'v2_20', 'v1_0', 'v2_1', 'v2_3', 'v4_8a', 'v7_0a', 'v1_0', 'v1_1', 'v1_2', 'v1_3', 'v1_4', 'v2_1', 'v2_2', 'v3_51', 'v3_7', 'v4_0', 'v4_1', 'v5_0', 'v5_1', 'v5_2', 'v6_0', 'v7_0', 'v7_1', 'v8', 'v9', 'v1_0', 'v1_1', 'v2_0', 'deprecated (v5.00)', 'v3_00', 'v4_00', 'v4_01s', 'deprecated (v5.00)', 'v1_0', 'v1_1', 'v1_2', 'v1_3', 'v1_4', 'v2_1', 'v2_2', 'v2_3', 'v2_6', 'v2_9', 'v3_0', 'v3_1']
-        assert version in version_valid_values
-
-        year_valid_values = ['1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
-        assert year in year_valid_values
+        variable_valid_values = ['aerosol_optical_depth', 'fine_mode_aerosol_optical_depth', 'dust_aerosol_optical_depth', 'single_scattering_albedo', 'aerosol_layer_height', 'dust_aerosol_layer_height', 'aerosol_extinction_coefficient']
+        assert variable in variable_valid_values
 
         sensor_on_satellite_valid_values = ['aatsr_on_envisat', 'atsr2_on_ers2', 'slstr_on_sentinel_3a', 'slstr_on_sentinel_3b', 'polder_on_parasol', 'meris_on_envisat', 'iasi_on_metopa', 'iasi_on_metopb', 'iasi_on_metopc', 'olci_on_sentinel_3a', 'gomos_on_envisat']
         assert sensor_on_satellite in sensor_on_satellite_valid_values
@@ -2585,50 +2490,57 @@ class Collection_satellite_aerosol_properties(Collection):
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        algorithm_valid_values = ['aergom', 'adv', 'ens', 'grasp', 'imars', 'lmd', 'mapir', 'orac', 'sdv', 'swansea', 's4m', 's4o', 'ulb', 'xbaer']
-        assert algorithm in algorithm_valid_values
+        version_valid_values = ['deprecated (v4.32)', 'v2_30', 'v2_6', 'v2_9', 'v3_0', 'v3_11', 'v4_0', 'v4_01', 'v4_02', 'v4_1', 'v4_3', 'v4_32_latest', 'v4_33', 'deprecated (v1.11)', 'v1_00', 'v1_10', 'v1_12', 'v2_00', 'v2_10', 'v2_20', 'v2_30', 'v0_08', 'v2_01', 'v2_10', 'v2_20', 'v1_0', 'v2_1', 'v2_3', 'v4_8a', 'v7_0a', 'v1_0', 'v1_1', 'v1_2', 'v1_3', 'v1_4', 'v2_1', 'v2_2', 'v3_51', 'v3_7', 'v4_0', 'v4_1', 'v5_0', 'v5_1', 'v5_2', 'v6_0', 'v7_0', 'v7_1', 'v8', 'v9', 'v1_0', 'v1_1', 'v2_0', 'deprecated (v5.00)', 'v3_00', 'v4_00', 'v4_01s', 'deprecated (v5.00)', 'v1_0', 'v1_1', 'v1_2', 'v1_3', 'v1_4', 'v2_1', 'v2_2', 'v2_3', 'v2_6', 'v2_9', 'v3_0', 'v3_1']
+        assert version in version_valid_values
 
-        variable_valid_values = ['aerosol_optical_depth', 'fine_mode_aerosol_optical_depth', 'dust_aerosol_optical_depth', 'single_scattering_albedo', 'aerosol_layer_height', 'dust_aerosol_layer_height', 'aerosol_extinction_coefficient']
-        assert variable in variable_valid_values
+        orbit_valid_values = ['ascending', 'descending', 'ascending_and_descending']
+        assert orbit in orbit_valid_values
 
-        return download_data(orbit=orbit, day=day, time_aggregation=time_aggregation, version=version, year=year, sensor_on_satellite=sensor_on_satellite, month=month, algorithm=algorithm, variable=variable)
-
-class Collection_insitu_observations_igra_baseline_network(Collection):
-
-    @Collection.wrapper
-    def download(cls, day: OneOrMore[str], archive: OneOrMore[str], year: OneOrMore[str], format: str, month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
-    
-    @classmethod
-    def __download__(cls, day: OneOrMore[str], archive: OneOrMore[str], year: OneOrMore[str], format: str, month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
         day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
         assert day in day_valid_values
 
-        archive_valid_values = ['global_radiosonde_archive', 'harmonised_global_radiosonde_archive']
-        assert archive in archive_valid_values
-
-        year_valid_values = ['1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+        year_valid_values = ['1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
         assert year in year_valid_values
 
-        format_valid_values = ['netcdf', 'csv']
-        assert format in format_valid_values
+        return download_data(algorithm=algorithm, time_aggregation=time_aggregation, variable=variable, sensor_on_satellite=sensor_on_satellite, month=month, version=version, orbit=orbit, day=day, year=year)
+class Collection_insitu_observations_igra_baseline_network(Collection):
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
+    @Collection.wrapper
+    def download(cls, archive: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], format: str, day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    
+    @classmethod
+    def __download__(cls, archive: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], format: str, day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        archive_valid_values = ['global_radiosonde_archive', 'harmonised_global_radiosonde_archive']
+        assert archive in archive_valid_values
 
         variable_valid_values = ['air_temperature', 'dew_point_depression', 'frost_point_temperature', 'relative_humidity', 'water_vapour_mixing_ratio', 'eastward_wind_speed', 'northward_wind_speed', 'wind_from_direction', 'wind_speed', 'geopotential_height', 'solar_zenith_angle', 'vertical_speed_of_radiosonde']
         assert variable in variable_valid_values
 
-        return download_data(day=day, archive=archive, year=year, format=format, month=month, variable=variable, area_group=area_group)
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
+        format_valid_values = ['netcdf', 'csv']
+        assert format in format_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+        assert year in year_valid_values
+
+        return download_data(archive=archive, variable=variable, month=month, format=format, day=day, year=year, area_group=area_group)
 class Collection_satellite_ocean_colour(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], version: str, projection: str, year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str]): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], version: str, projection: str, day: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], version: str, projection: str, year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str]):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], version: str, projection: str, day: OneOrMore[str], year: OneOrMore[str]):
+        variable_valid_values = ['mass_concentration_of_chlorophyll_a', 'remote_sensing_reflectance']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
         version_valid_values = ['6_0', '5_0_1', '5_0']
         assert version in version_valid_values
@@ -2636,98 +2548,86 @@ class Collection_satellite_ocean_colour(Collection):
         projection_valid_values = ['regular_latitude_longitude_grid', 'sinusoidal_grid']
         assert projection in projection_valid_values
 
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
         year_valid_values = ['1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
         assert year in year_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['mass_concentration_of_chlorophyll_a', 'remote_sensing_reflectance']
-        assert variable in variable_valid_values
-
-        return download_data(day=day, version=version, projection=projection, year=year, month=month, variable=variable)
-
+        return download_data(variable=variable, month=month, version=version, projection=projection, day=day, year=year)
 class Collection_reanalysis_oras5(Collection):
 
     @Collection.wrapper
-    def download(cls, vertical_resolution: str, year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str]): UNREACHABLE()
+    def download(cls, vertical_resolution: str, month: OneOrMore[str], variable: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, vertical_resolution: str, year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str]):
+    def __download__(cls, vertical_resolution: str, month: OneOrMore[str], variable: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str]):
         vertical_resolution_valid_values = ['single_level', 'all_levels']
         assert vertical_resolution in vertical_resolution_valid_values
 
-        year_valid_values = ['1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
-
-        product_type_valid_values = ['consolidated', 'operational']
-        assert product_type in product_type_valid_values
 
         variable_valid_values = ['depth_of_14_c_isotherm', 'depth_of_17_c_isotherm', 'depth_of_20_c_isotherm', 'depth_of_26_c_isotherm', 'depth_of_28_c_isotherm', 'meridional_velocity', 'meridional_wind_stress', 'mixed_layer_depth_0_01', 'mixed_layer_depth_0_03', 'net_downward_heat_flux', 'net_upward_water_flux', 'ocean_heat_content_for_the_total_water_column', 'ocean_heat_content_for_the_upper_300m', 'ocean_heat_content_for_the_upper_700m', 'potential_temperature', 'rotated_meridional_velocity', 'rotated_zonal_velocity', 'salinity', 'sea_ice_concentration', 'sea_ice_meridional_velocity', 'sea_ice_thickness', 'sea_ice_zonal_velocity', 'sea_surface_height', 'sea_surface_salinity', 'sea_surface_temperature', 'zonal_velocity', 'zonal_wind_stress']
         assert variable in variable_valid_values
 
-        return download_data(vertical_resolution=vertical_resolution, year=year, month=month, product_type=product_type, variable=variable)
+        product_type_valid_values = ['consolidated', 'operational']
+        assert product_type in product_type_valid_values
 
+        year_valid_values = ['1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
+        return download_data(vertical_resolution=vertical_resolution, month=month, variable=variable, product_type=product_type, year=year)
 class Collection_sis_european_wind_storm_indicators(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time_aggregation: OneOrMore[str], product: OneOrMore[str], year: OneOrMore[str], spatial_aggregation: OneOrMore[str], month: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
+    def download(cls, product: OneOrMore[str], time_aggregation: OneOrMore[str], month: OneOrMore[str], spatial_aggregation: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time_aggregation: OneOrMore[str], product: OneOrMore[str], year: OneOrMore[str], spatial_aggregation: OneOrMore[str], month: OneOrMore[str], variable: str = 'all'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, product: OneOrMore[str], time_aggregation: OneOrMore[str], month: OneOrMore[str], spatial_aggregation: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], variable: str = 'all'):
+        product_valid_values = ['windstorm_tracks', 'windstorm_footprints', 'summary_indicators', 'risk_indicators', 'loss_indicators']
+        assert product in product_valid_values
 
         time_aggregation_valid_values = ['annual', 'decadal']
         assert time_aggregation in time_aggregation_valid_values
 
-        product_valid_values = ['windstorm_tracks', 'windstorm_footprints', 'summary_indicators', 'risk_indicators', 'loss_indicators']
-        assert product in product_valid_values
-
-        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2005', '2006', '2007', '2008', '2009', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2020', '2021']
-        assert year in year_valid_values
+        month_valid_values = ['01', '02', '03', '10', '11', '12']
+        assert month in month_valid_values
 
         spatial_aggregation_valid_values = ['austria', 'belgium', 'switzerland', 'czech_republic', 'germany', 'denmark', 'estonia', 'spain', 'finland', 'france', 'ireland', 'italy', 'lithuania', 'luxemburg', 'latvia', 'netherlands', 'norway', 'poland', 'portugal', 'sweden', 'united_kingdom', 'agriculture', 'transport', 'residential', 'other', 'industry', 'europe', 'european_nuts1_region', 'european_nuts3_region']
         assert spatial_aggregation in spatial_aggregation_valid_values
 
-        month_valid_values = ['01', '02', '03', '10', '11', '12']
-        assert month in month_valid_values
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2005', '2006', '2007', '2008', '2009', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2020', '2021']
+        assert year in year_valid_values
 
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(day=day, time_aggregation=time_aggregation, product=product, year=year, spatial_aggregation=spatial_aggregation, month=month, variable=variable)
-
+        return download_data(product=product, time_aggregation=time_aggregation, month=month, spatial_aggregation=spatial_aggregation, day=day, year=year, variable=variable)
 class Collection_satellite_earth_radiation_budget(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time_aggregation: str, version: OneOrMore[str], origin: str, climate_data_record_type: str, year: OneOrMore[str], product_family: str, sensor_on_satellite: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, climate_data_record_type: str, origin: str, product_family: str, time_aggregation: str, variable: OneOrMore[str], sensor_on_satellite: OneOrMore[str], month: OneOrMore[str], version: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time_aggregation: str, version: OneOrMore[str], origin: str, climate_data_record_type: str, year: OneOrMore[str], product_family: str, sensor_on_satellite: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_aggregation_valid_values = ['daily_mean', 'monthly_mean']
-        assert time_aggregation in time_aggregation_valid_values
-
-        version_valid_values = ['1_2_reprocessed', '2_7_reprocessed']
-        assert version in version_valid_values
+    def __download__(cls, climate_data_record_type: str, origin: str, product_family: str, time_aggregation: str, variable: OneOrMore[str], sensor_on_satellite: OneOrMore[str], month: OneOrMore[str], version: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        climate_data_record_type_valid_values = ['interim_climate_data_record', 'thematic_climate_data_record']
+        assert climate_data_record_type in climate_data_record_type_valid_values
 
         origin_valid_values = ['nasa', 'noaa_ncei', 'eumetsat', 'esa', 'c3s', 'rmib']
         assert origin in origin_valid_values
 
-        climate_data_record_type_valid_values = ['interim_climate_data_record', 'thematic_climate_data_record']
-        assert climate_data_record_type in climate_data_record_type_valid_values
-
-        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
         product_family_valid_values = ['ceres_ebaf', 'hirs', 'clara_a3', 'cci', 'tsi']
         assert product_family in product_family_valid_values
+
+        time_aggregation_valid_values = ['daily_mean', 'monthly_mean']
+        assert time_aggregation in time_aggregation_valid_values
+
+        variable_valid_values = ['incoming_shortwave_radiation', 'outgoing_longwave_radiation', 'outgoing_shortwave_radiation', 'total_solar_irradiance', 'all_variables']
+        assert variable in variable_valid_values
 
         sensor_on_satellite_valid_values = ['aatsr', 'atsr2', 'slstr_on_sentinel_3a', 'slstr_on_sentinel_3b', 'slstr_on_sentinel_3a_3b']
         assert sensor_on_satellite in sensor_on_satellite_valid_values
@@ -2735,83 +2635,83 @@ class Collection_satellite_earth_radiation_budget(Collection):
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
-        variable_valid_values = ['incoming_shortwave_radiation', 'outgoing_longwave_radiation', 'outgoing_shortwave_radiation', 'total_solar_irradiance', 'all_variables']
-        assert variable in variable_valid_values
+        version_valid_values = ['1_2_reprocessed', '2_7_reprocessed']
+        assert version in version_valid_values
 
-        return download_data(day=day, time_aggregation=time_aggregation, version=version, origin=origin, climate_data_record_type=climate_data_record_type, year=year, product_family=product_family, sensor_on_satellite=sensor_on_satellite, month=month, variable=variable, area_group=area_group)
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
 
+        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
+        return download_data(climate_data_record_type=climate_data_record_type, origin=origin, product_family=product_family, time_aggregation=time_aggregation, variable=variable, sensor_on_satellite=sensor_on_satellite, month=month, version=version, day=day, year=year, area_group=area_group)
 class Collection_sis_hydrology_variables_derived_seasonal_forecast(Collection):
 
     @Collection.wrapper
-    def download(cls, hydrological_model: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], version: OneOrMore[str] = 1): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], hydrological_model: OneOrMore[str], year: OneOrMore[str], version: OneOrMore[str] = 1): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, hydrological_model: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], version: OneOrMore[str] = 1):
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], hydrological_model: OneOrMore[str], year: OneOrMore[str], version: OneOrMore[str] = 1):
+        variable_valid_values = ['river_discharge', 'reference_river_discharge_lower_tercile', 'reference_river_discharge_upper_tercile', 'brier_skill_score_above_normal_conditions', 'brier_skill_score_below_normal_conditions', 'continuous_ranked_probability_skill_score', 'fair_ranked_probability_skill_score']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
         hydrological_model_valid_values = ['e_hypecatch_m00', 'e_hypecatch_m01', 'e_hypecatch_m02', 'e_hypecatch_m05', 'e_hypecatch_m06', 'e_hypecatch_m07', 'e_hypecatch_m08', 'e_hypecatch_m09', 'e_hypegrid', 'lisflood_efas', 'vic_wur']
         assert hydrological_model in hydrological_model_valid_values
 
         year_valid_values = ['2020', '2021', '2022', '2023', '2024']
         assert year in year_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['river_discharge', 'reference_river_discharge_lower_tercile', 'reference_river_discharge_upper_tercile', 'brier_skill_score_above_normal_conditions', 'brier_skill_score_below_normal_conditions', 'continuous_ranked_probability_skill_score', 'fair_ranked_probability_skill_score']
-        assert variable in variable_valid_values
-
         version_valid_values = ['1']
         assert version in version_valid_values
 
-        return download_data(hydrological_model=hydrological_model, year=year, month=month, variable=variable, version=version)
-
+        return download_data(variable=variable, month=month, hydrological_model=hydrological_model, year=year, version=version)
 class Collection_ecv_for_climate_change(Collection):
 
     @Collection.wrapper
-    def download(cls, time_aggregation: OneOrMore[str], origin: OneOrMore[str], year: OneOrMore[str], climate_reference_period: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str]): UNREACHABLE()
+    def download(cls, origin: OneOrMore[str], time_aggregation: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], climate_reference_period: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, time_aggregation: OneOrMore[str], origin: OneOrMore[str], year: OneOrMore[str], climate_reference_period: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str]):
-        time_aggregation_valid_values = ['1_month_mean', '12_month_running_mean']
-        assert time_aggregation in time_aggregation_valid_values
-
+    def __download__(cls, origin: OneOrMore[str], time_aggregation: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], climate_reference_period: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str]):
         origin_valid_values = ['era5', 'era5_land', 'era_interim']
         assert origin in origin_valid_values
 
-        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
-        climate_reference_period_valid_values = ['1981_2010', '1991_2020']
-        assert climate_reference_period in climate_reference_period_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        product_type_valid_values = ['anomaly', 'climatology', 'monthly_mean']
-        assert product_type in product_type_valid_values
+        time_aggregation_valid_values = ['1_month_mean', '12_month_running_mean']
+        assert time_aggregation in time_aggregation_valid_values
 
         variable_valid_values = ['surface_air_temperature', 'surface_air_relative_humidity', '0_7cm_volumetric_soil_moisture', 'precipitation', 'sea_ice_cover']
         assert variable in variable_valid_values
 
-        return download_data(time_aggregation=time_aggregation, origin=origin, year=year, climate_reference_period=climate_reference_period, month=month, product_type=product_type, variable=variable)
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
+        climate_reference_period_valid_values = ['1981_2010', '1991_2020']
+        assert climate_reference_period in climate_reference_period_valid_values
+
+        product_type_valid_values = ['anomaly', 'climatology', 'monthly_mean']
+        assert product_type in product_type_valid_values
+
+        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
+        return download_data(origin=origin, time_aggregation=time_aggregation, variable=variable, month=month, climate_reference_period=climate_reference_period, product_type=product_type, year=year)
 class Collection_sis_energy_pecd(Collection):
 
     @Collection.wrapper
-    def download(cls, origin: OneOrMore[str], spatial_resolution: OneOrMore[str], year: OneOrMore[str], temporal_period: OneOrMore[str], month: OneOrMore[str], emissions: OneOrMore[str], technology: OneOrMore[str], variable: OneOrMore[str], area: Optional[str] = None, pecd_version: str = 'pecd4_1', area_group: Union[GeographicExtentType, FreeEditionType] = 'global'): UNREACHABLE()
+    def download(cls, technology: OneOrMore[str], origin: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], emissions: OneOrMore[str], temporal_period: OneOrMore[str], spatial_resolution: OneOrMore[str], year: OneOrMore[str], pecd_version: str = 'pecd4_1', area: Optional[str] = None, area_group: Union[GeographicExtentType, FreeEditionType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, origin: OneOrMore[str], spatial_resolution: OneOrMore[str], year: OneOrMore[str], temporal_period: OneOrMore[str], month: OneOrMore[str], emissions: OneOrMore[str], technology: OneOrMore[str], variable: OneOrMore[str], area: Optional[str] = None, pecd_version: str = 'pecd4_1', area_group: Union[GeographicExtentType, FreeEditionType] = 'global'):
+    def __download__(cls, technology: OneOrMore[str], origin: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], emissions: OneOrMore[str], temporal_period: OneOrMore[str], spatial_resolution: OneOrMore[str], year: OneOrMore[str], pecd_version: str = 'pecd4_1', area: Optional[str] = None, area_group: Union[GeographicExtentType, FreeEditionType] = 'global'):
+        technology_valid_values = ['20', '21', '22', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43']
+        assert technology in technology_valid_values
+
         origin_valid_values = ['era5_reanalysis', 'cmcc_cm2_sr5', 'ec_earth3', 'mpi_esm1_2_hr']
         assert origin in origin_valid_values
 
-        spatial_resolution_valid_values = ['0_25_degree', 'nuts_0', 'nuts_2', 'peof', 'peon', 'szof', 'szon']
-        assert spatial_resolution in spatial_resolution_valid_values
-
-        year_valid_values = ['1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065']
-        assert year in year_valid_values
-
-        temporal_period_valid_values = ['historical', 'future_projections']
-        assert temporal_period in temporal_period_valid_values
+        variable_valid_values = ['100m_wind_speed', '10m_wind_speed', '2m_temperature', 'population_weighted_temperature', 'surface_solar_radiation_downwards', 'total_precipitation', 'latitude_weights', 'nuts_0_regions_mask', 'nuts_2_regions_mask', 'peof_regions_mask', 'peon_regions_mask', 'population_density_mask', 'power_law_coefficients', 'solar_pv_mask', 'szof_regions_mask', 'szon_regions_mask', 'wind_power_regions_mask']
+        assert variable in variable_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
@@ -2819,122 +2719,121 @@ class Collection_sis_energy_pecd(Collection):
         emissions_valid_values = ['ssp2_4_5']
         assert emissions in emissions_valid_values
 
-        technology_valid_values = ['20', '21', '22', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43']
-        assert technology in technology_valid_values
+        temporal_period_valid_values = ['historical', 'future_projections']
+        assert temporal_period in temporal_period_valid_values
 
-        variable_valid_values = ['100m_wind_speed', '10m_wind_speed', '2m_temperature', 'population_weighted_temperature', 'surface_solar_radiation_downwards', 'total_precipitation', 'latitude_weights', 'nuts_0_regions_mask', 'nuts_2_regions_mask', 'peof_regions_mask', 'peon_regions_mask', 'population_density_mask', 'power_law_coefficients', 'solar_pv_mask', 'szof_regions_mask', 'szon_regions_mask', 'wind_power_regions_mask']
-        assert variable in variable_valid_values
+        spatial_resolution_valid_values = ['0_25_degree', 'nuts_0', 'nuts_2', 'peof', 'peon', 'szof', 'szon']
+        assert spatial_resolution in spatial_resolution_valid_values
+
+        year_valid_values = ['1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065']
+        assert year in year_valid_values
 
         pecd_version_valid_values = ['pecd4_1']
         assert pecd_version in pecd_version_valid_values
 
-        return download_data(origin=origin, spatial_resolution=spatial_resolution, year=year, temporal_period=temporal_period, month=month, emissions=emissions, technology=technology, variable=variable, area=area, pecd_version=pecd_version, area_group=area_group)
-
+        return download_data(technology=technology, origin=origin, variable=variable, month=month, emissions=emissions, temporal_period=temporal_period, spatial_resolution=spatial_resolution, year=year, pecd_version=pecd_version, area=area, area_group=area_group)
 class Collection_satellite_sea_ice_concentration(Collection):
 
     @Collection.wrapper
-    def download(cls, region: OneOrMore[str], day: OneOrMore[str], cdr_type: OneOrMore[str], version: str, origin: str, year: OneOrMore[str], sensor: str, month: OneOrMore[str], temporal_aggregation: str, variable: str = 'all'): UNREACHABLE()
+    def download(cls, origin: str, region: OneOrMore[str], cdr_type: OneOrMore[str], month: OneOrMore[str], sensor: str, version: str, day: OneOrMore[str], temporal_aggregation: str, year: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, region: OneOrMore[str], day: OneOrMore[str], cdr_type: OneOrMore[str], version: str, origin: str, year: OneOrMore[str], sensor: str, month: OneOrMore[str], temporal_aggregation: str, variable: str = 'all'):
+    def __download__(cls, origin: str, region: OneOrMore[str], cdr_type: OneOrMore[str], month: OneOrMore[str], sensor: str, version: str, day: OneOrMore[str], temporal_aggregation: str, year: OneOrMore[str], variable: str = 'all'):
+        origin_valid_values = ['esa_cci', 'eumetsat_osi_saf']
+        assert origin in origin_valid_values
+
         region_valid_values = ['northern_hemisphere', 'southern_hemisphere']
         assert region in region_valid_values
-
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
 
         cdr_type_valid_values = ['cdr', 'icdr']
         assert cdr_type in cdr_type_valid_values
 
-        version_valid_values = ['v2', 'v3']
-        assert version in version_valid_values
-
-        origin_valid_values = ['esa_cci', 'eumetsat_osi_saf']
-        assert origin in origin_valid_values
-
-        year_valid_values = ['1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
         sensor_valid_values = ['ssmis', 'amsr']
         assert sensor in sensor_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
+        version_valid_values = ['v2', 'v3']
+        assert version in version_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
 
         temporal_aggregation_valid_values = ['daily', 'monthly']
         assert temporal_aggregation in temporal_aggregation_valid_values
 
+        year_valid_values = ['1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(region=region, day=day, cdr_type=cdr_type, version=version, origin=origin, year=year, sensor=sensor, month=month, temporal_aggregation=temporal_aggregation, variable=variable)
-
+        return download_data(origin=origin, region=region, cdr_type=cdr_type, month=month, sensor=sensor, version=version, day=day, temporal_aggregation=temporal_aggregation, year=year, variable=variable)
 class Collection_derived_utci_historical(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], product_type: str, variable: OneOrMore[str], version: str = '1_1', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], product_type: str, year: OneOrMore[str], version: str = '1_1', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], product_type: str, variable: OneOrMore[str], version: str = '1_1', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        year_valid_values = ['1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], product_type: str, year: OneOrMore[str], version: str = '1_1', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        variable_valid_values = ['universal_thermal_climate_index', 'mean_radiant_temperature']
+        assert variable in variable_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
 
         product_type_valid_values = ['consolidated_dataset', 'intermediate_dataset']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['universal_thermal_climate_index', 'mean_radiant_temperature']
-        assert variable in variable_valid_values
+        year_valid_values = ['1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
 
         version_valid_values = ['1_1', '1_0']
         assert version in version_valid_values
 
-        return download_data(day=day, year=year, month=month, product_type=product_type, variable=variable, version=version, area_group=area_group)
-
+        return download_data(variable=variable, month=month, day=day, product_type=product_type, year=year, version=version, area_group=area_group)
 class Collection_sis_water_level_change_timeseries_cmip6(Collection):
 
     @Collection.wrapper
-    def download(cls, model: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], temporal_aggregation: OneOrMore[str], variable: OneOrMore[str], experiment: str): UNREACHABLE()
+    def download(cls, model: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], experiment: str, temporal_aggregation: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, model: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], temporal_aggregation: OneOrMore[str], variable: OneOrMore[str], experiment: str):
+    def __download__(cls, model: OneOrMore[str], variable: OneOrMore[str], month: OneOrMore[str], experiment: str, temporal_aggregation: OneOrMore[str], year: OneOrMore[str]):
         model_valid_values = ['cmcc_cm2_vhr4', 'ec_earth3p_hr', 'gfdl_cm4c192_sst', 'hadgem3_gc31_hm', 'hadgem3_gc31_hm_sst']
         assert model in model_valid_values
-
-        year_valid_values = ['1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050']
-        assert year in year_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        temporal_aggregation_valid_values = ['10_min', 'daily_maximum', 'hourly', 'annual']
-        assert temporal_aggregation in temporal_aggregation_valid_values
 
         variable_valid_values = ['mean_sea_level', 'storm_surge_residual', 'tidal_elevation', 'total_water_level']
         assert variable in variable_valid_values
 
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
         experiment_valid_values = ['future', 'historical', 'reanalysis']
         assert experiment in experiment_valid_values
 
-        return download_data(model=model, year=year, month=month, temporal_aggregation=temporal_aggregation, variable=variable, experiment=experiment)
+        temporal_aggregation_valid_values = ['10_min', 'daily_maximum', 'hourly', 'annual']
+        assert temporal_aggregation in temporal_aggregation_valid_values
 
+        year_valid_values = ['1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050']
+        assert year in year_valid_values
+
+        return download_data(model=model, variable=variable, month=month, experiment=experiment, temporal_aggregation=temporal_aggregation, year=year)
 class Collection_satellite_lai_fapar(Collection):
 
     @Collection.wrapper
-    def download(cls, product_version: str, year: OneOrMore[str], sensor: str, nominal_day: OneOrMore[str], month: OneOrMore[str], horizontal_resolution: OneOrMore[str], satellite: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], sensor: str, nominal_day: OneOrMore[str], satellite: OneOrMore[str], product_version: str, horizontal_resolution: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, product_version: str, year: OneOrMore[str], sensor: str, nominal_day: OneOrMore[str], month: OneOrMore[str], horizontal_resolution: OneOrMore[str], satellite: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
-        product_version_valid_values = ['v0', 'v1', 'v2', 'v3', 'v4']
-        assert product_version in product_version_valid_values
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], sensor: str, nominal_day: OneOrMore[str], satellite: OneOrMore[str], product_version: str, horizontal_resolution: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        variable_valid_values = ['fapar', 'lai']
+        assert variable in variable_valid_values
 
-        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
-        assert year in year_valid_values
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
         sensor_valid_values = ['avhrr', 'vgt', 'olci_and_slstr']
         assert sensor in sensor_valid_values
@@ -2942,53 +2841,48 @@ class Collection_satellite_lai_fapar(Collection):
         nominal_day_valid_values = ['03', '10', '13', '20', '21', '22', '23', '24', '28', '29', '30', '31']
         assert nominal_day in nominal_day_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
+        satellite_valid_values = ['proba', 'spot', 'noaa_7', 'noaa_9', 'noaa_11', 'noaa_14', 'noaa_16', 'noaa_17', 'sentinel_3']
+        assert satellite in satellite_valid_values
+
+        product_version_valid_values = ['v0', 'v1', 'v2', 'v3', 'v4']
+        assert product_version in product_version_valid_values
 
         horizontal_resolution_valid_values = ['300m', '1km', '4km']
         assert horizontal_resolution in horizontal_resolution_valid_values
 
-        satellite_valid_values = ['proba', 'spot', 'noaa_7', 'noaa_9', 'noaa_11', 'noaa_14', 'noaa_16', 'noaa_17', 'sentinel_3']
-        assert satellite in satellite_valid_values
+        year_valid_values = ['1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+        assert year in year_valid_values
 
-        variable_valid_values = ['fapar', 'lai']
-        assert variable in variable_valid_values
-
-        return download_data(product_version=product_version, year=year, sensor=sensor, nominal_day=nominal_day, month=month, horizontal_resolution=horizontal_resolution, satellite=satellite, variable=variable, area_group=area_group)
-
+        return download_data(variable=variable, month=month, sensor=sensor, nominal_day=nominal_day, satellite=satellite, product_version=product_version, horizontal_resolution=horizontal_resolution, year=year, area_group=area_group)
 class Collection_satellite_land_cover(Collection):
 
     @Collection.wrapper
-    def download(cls, year: OneOrMore[str], version: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global', variable: str = 'all'): UNREACHABLE()
+    def download(cls, version: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global', variable: str = 'all'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, year: OneOrMore[str], version: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global', variable: str = 'all'):
-        year_valid_values = ['1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
-        assert year in year_valid_values
-
+    def __download__(cls, version: OneOrMore[str], year: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global', variable: str = 'all'):
         version_valid_values = ['v2_0_7cds', 'v2_1_1']
         assert version in version_valid_values
+
+        year_valid_values = ['1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        assert year in year_valid_values
 
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(year=year, version=version, area_group=area_group, variable=variable)
-
+        return download_data(version=version, year=year, area_group=area_group, variable=variable)
 class Collection_satellite_total_column_water_vapour_ocean(Collection):
 
     @Collection.wrapper
-    def download(cls, origin: str, climate_data_record_type: str, year: OneOrMore[str], month: OneOrMore[str], temporal_aggregation: str, variable: str = 'all'): UNREACHABLE()
+    def download(cls, climate_data_record_type: str, origin: str, month: OneOrMore[str], temporal_aggregation: str, year: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, origin: str, climate_data_record_type: str, year: OneOrMore[str], month: OneOrMore[str], temporal_aggregation: str, variable: str = 'all'):
-        origin_valid_values = ['c3s', 'eumetsat']
-        assert origin in origin_valid_values
-
+    def __download__(cls, climate_data_record_type: str, origin: str, month: OneOrMore[str], temporal_aggregation: str, year: OneOrMore[str], variable: str = 'all'):
         climate_data_record_type_valid_values = ['icdr', 'tcdr']
         assert climate_data_record_type in climate_data_record_type_valid_values
 
-        year_valid_values = ['1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
-        assert year in year_valid_values
+        origin_valid_values = ['c3s', 'eumetsat']
+        assert origin in origin_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
@@ -2996,11 +2890,13 @@ class Collection_satellite_total_column_water_vapour_ocean(Collection):
         temporal_aggregation_valid_values = ['monthly', '6_hourly']
         assert temporal_aggregation in temporal_aggregation_valid_values
 
+        year_valid_values = ['1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+        assert year in year_valid_values
+
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(origin=origin, climate_data_record_type=climate_data_record_type, year=year, month=month, temporal_aggregation=temporal_aggregation, variable=variable)
-
+        return download_data(climate_data_record_type=climate_data_record_type, origin=origin, month=month, temporal_aggregation=temporal_aggregation, year=year, variable=variable)
 class Collection_projections_cmip5_monthly_pressure_levels(Collection):
 
     @Collection.wrapper
@@ -3024,31 +2920,39 @@ class Collection_projections_cmip5_monthly_pressure_levels(Collection):
         assert ensemble_member in ensemble_member_valid_values
 
         return download_data(period=period, model=model, variable=variable, experiment=experiment, ensemble_member=ensemble_member)
-
 class Collection_sis_hydrology_meteorology_derived_projections(Collection):
 
     @Collection.wrapper
-    def download(cls, period: OneOrMore[str], time_aggregation: OneOrMore[str], processing_type: str, ensemble_member: OneOrMore[str], rcm: str, horizontal_resolution: str, gcm: str, product_type: str, variable: OneOrMore[str], variable_type: str, experiment: OneOrMore[str]): UNREACHABLE()
+    def download(cls, variable_type: str, ensemble_member: OneOrMore[str], period: OneOrMore[str], time_aggregation: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str], horizontal_resolution: str, processing_type: str, rcm: str, gcm: str, product_type: str): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, period: OneOrMore[str], time_aggregation: OneOrMore[str], processing_type: str, ensemble_member: OneOrMore[str], rcm: str, horizontal_resolution: str, gcm: str, product_type: str, variable: OneOrMore[str], variable_type: str, experiment: OneOrMore[str]):
+    def __download__(cls, variable_type: str, ensemble_member: OneOrMore[str], period: OneOrMore[str], time_aggregation: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str], horizontal_resolution: str, processing_type: str, rcm: str, gcm: str, product_type: str):
+        variable_type_valid_values = ['relative_change_from_reference_period', 'absolute_change_from_reference_period', 'absolute_values']
+        assert variable_type in variable_type_valid_values
+
+        ensemble_member_valid_values = ['r1i1p1', 'r12i1p1', 'r2i1p1']
+        assert ensemble_member in ensemble_member_valid_values
+
         period_valid_values = ['1971_2000', '2011_2040', '2041_2070', '2071_2100', '1_5_c', '2_0_c', '3_0_c', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100']
         assert period in period_valid_values
 
         time_aggregation_valid_values = ['daily', 'monthly_mean', 'annual_mean']
         assert time_aggregation in time_aggregation_valid_values
 
-        processing_type_valid_values = ['original', 'bias_corrected']
-        assert processing_type in processing_type_valid_values
+        variable_valid_values = ['2m_air_temperature', 'precipitation', 'longest_dry_spells', 'number_of_dry_spells', 'highest_5_day_precipitation_amount']
+        assert variable in variable_valid_values
 
-        ensemble_member_valid_values = ['r1i1p1', 'r12i1p1', 'r2i1p1']
-        assert ensemble_member in ensemble_member_valid_values
-
-        rcm_valid_values = ['cclm4_8_17', 'racmo22e', 'csc_remo2009', 'rca4']
-        assert rcm in rcm_valid_values
+        experiment_valid_values = ['historical', 'rcp_2_6', 'rcp_4_5', 'rcp_8_5', 'degree_scenario']
+        assert experiment in experiment_valid_values
 
         horizontal_resolution_valid_values = ['5_km', '0_11_degrees']
         assert horizontal_resolution in horizontal_resolution_valid_values
+
+        processing_type_valid_values = ['original', 'bias_corrected']
+        assert processing_type in processing_type_valid_values
+
+        rcm_valid_values = ['cclm4_8_17', 'racmo22e', 'csc_remo2009', 'rca4']
+        assert rcm in rcm_valid_values
 
         gcm_valid_values = ['hadgem2_es', 'mpi_esm_lr', 'ec_earth']
         assert gcm in gcm_valid_values
@@ -3056,26 +2960,22 @@ class Collection_sis_hydrology_meteorology_derived_projections(Collection):
         product_type_valid_values = ['climate_impact_indicators', 'essential_climate_variables']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['2m_air_temperature', 'precipitation', 'longest_dry_spells', 'number_of_dry_spells', 'highest_5_day_precipitation_amount']
-        assert variable in variable_valid_values
-
-        variable_type_valid_values = ['relative_change_from_reference_period', 'absolute_change_from_reference_period', 'absolute_values']
-        assert variable_type in variable_type_valid_values
-
-        experiment_valid_values = ['historical', 'rcp_2_6', 'rcp_4_5', 'rcp_8_5', 'degree_scenario']
-        assert experiment in experiment_valid_values
-
-        return download_data(period=period, time_aggregation=time_aggregation, processing_type=processing_type, ensemble_member=ensemble_member, rcm=rcm, horizontal_resolution=horizontal_resolution, gcm=gcm, product_type=product_type, variable=variable, variable_type=variable_type, experiment=experiment)
-
+        return download_data(variable_type=variable_type, ensemble_member=ensemble_member, period=period, time_aggregation=time_aggregation, variable=variable, experiment=experiment, horizontal_resolution=horizontal_resolution, processing_type=processing_type, rcm=rcm, gcm=gcm, product_type=product_type)
 class Collection_sis_water_level_change_indicators_cmip6(Collection):
 
     @Collection.wrapper
-    def download(cls, period: OneOrMore[str], multi_model_ensemble_statistic: OneOrMore[str], statistic: OneOrMore[str], model: OneOrMore[str], confidence_interval: OneOrMore[str], derived_variable: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str]): UNREACHABLE()
+    def download(cls, period: OneOrMore[str], derived_variable: OneOrMore[str], variable: OneOrMore[str], multi_model_ensemble_statistic: OneOrMore[str], statistic: OneOrMore[str], experiment: OneOrMore[str], model: OneOrMore[str], confidence_interval: OneOrMore[str], product_type: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, period: OneOrMore[str], multi_model_ensemble_statistic: OneOrMore[str], statistic: OneOrMore[str], model: OneOrMore[str], confidence_interval: OneOrMore[str], derived_variable: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str]):
+    def __download__(cls, period: OneOrMore[str], derived_variable: OneOrMore[str], variable: OneOrMore[str], multi_model_ensemble_statistic: OneOrMore[str], statistic: OneOrMore[str], experiment: OneOrMore[str], model: OneOrMore[str], confidence_interval: OneOrMore[str], product_type: OneOrMore[str]):
         period_valid_values = ['1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '1951_1980', '1985_2014', '2021_2050']
         assert period in period_valid_values
+
+        derived_variable_valid_values = ['absolute_change', 'absolute_value', 'percentage_change']
+        assert derived_variable in derived_variable_valid_values
+
+        variable_valid_values = ['surge_level', 'total_water_level', 'mean_sea_level', 'tidal_range', 'highest_astronomical_tide', 'lowest_astronomical_tide', 'annual_mean_of_highest_high_water', 'annual_mean_of_lowest_low_water']
+        assert variable in variable_valid_values
 
         multi_model_ensemble_statistic_valid_values = ['ensemble_mean', 'ensemble_median', 'ensemble_range', 'ensemble_standard_deviation', 'negative_ensemble_counts', 'positive_ensemble_counts']
         assert multi_model_ensemble_statistic in multi_model_ensemble_statistic_valid_values
@@ -3083,65 +2983,57 @@ class Collection_sis_water_level_change_indicators_cmip6(Collection):
         statistic_valid_values = ['1_year', '10_year', '100_year', '2_year', '25_year', '5_year', '50_year', '75_year', '10th', '25th', '5th', '50th', '75th', '90th', '95th']
         assert statistic in statistic_valid_values
 
+        experiment_valid_values = ['historical', 'future']
+        assert experiment in experiment_valid_values
+
         model_valid_values = ['cmcc_cm2_vhr4', 'ec_earth3p_hr', 'hadgem3_gc31_hm', 'hadgem3_gc31_hm_sst']
         assert model in model_valid_values
 
         confidence_interval_valid_values = ['best_fit', 'low_bound_confidence_interval', 'high_bound_confidence_interval']
         assert confidence_interval in confidence_interval_valid_values
 
-        derived_variable_valid_values = ['absolute_change', 'absolute_value', 'percentage_change']
-        assert derived_variable in derived_variable_valid_values
-
         product_type_valid_values = ['single_model', 'multi_model_ensemble', 'reanalysis']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['surge_level', 'total_water_level', 'mean_sea_level', 'tidal_range', 'highest_astronomical_tide', 'lowest_astronomical_tide', 'annual_mean_of_highest_high_water', 'annual_mean_of_lowest_low_water']
-        assert variable in variable_valid_values
-
-        experiment_valid_values = ['historical', 'future']
-        assert experiment in experiment_valid_values
-
-        return download_data(period=period, multi_model_ensemble_statistic=multi_model_ensemble_statistic, statistic=statistic, model=model, confidence_interval=confidence_interval, derived_variable=derived_variable, product_type=product_type, variable=variable, experiment=experiment)
-
+        return download_data(period=period, derived_variable=derived_variable, variable=variable, multi_model_ensemble_statistic=multi_model_ensemble_statistic, statistic=statistic, experiment=experiment, model=model, confidence_interval=confidence_interval, product_type=product_type)
 class Collection_sis_agroclimatic_indicators(Collection):
 
     @Collection.wrapper
-    def download(cls, period: OneOrMore[str], version: OneOrMore[str], origin: str, temporal_aggregation: str, variable: OneOrMore[str], experiment: str): UNREACHABLE()
+    def download(cls, origin: str, period: OneOrMore[str], variable: OneOrMore[str], version: OneOrMore[str], experiment: str, temporal_aggregation: str): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, period: OneOrMore[str], version: OneOrMore[str], origin: str, temporal_aggregation: str, variable: OneOrMore[str], experiment: str):
-        period_valid_values = ['195101_198012', '198101_201012', '201101_204012', '204101_207012', '207101_209912']
-        assert period in period_valid_values
-
-        version_valid_values = ['1_0', '1_1']
-        assert version in version_valid_values
-
+    def __download__(cls, origin: str, period: OneOrMore[str], variable: OneOrMore[str], version: OneOrMore[str], experiment: str, temporal_aggregation: str):
         origin_valid_values = ['miroc_esm_chem_model', 'ipsl_cm5a_lr_model', 'noresm1_m_model', 'hadgem2_es_model', 'gfdl_esm2m_model', 'era_interim_reanalysis']
         assert origin in origin_valid_values
 
-        temporal_aggregation_valid_values = ['10_day', 'season', 'annual']
-        assert temporal_aggregation in temporal_aggregation_valid_values
+        period_valid_values = ['195101_198012', '198101_201012', '201101_204012', '204101_207012', '207101_209912']
+        assert period in period_valid_values
 
         variable_valid_values = ['biologically_effective_degree_days', 'growing_season_length', 'maximum_number_of_consecutive_dry_days', 'maximum_number_of_consecutive_frost_days', 'cold_spell_duration_index', 'maximum_number_of_consecutive_summer_days', 'maximum_number_of_consecutive_wet_days', 'mean_of_diurnal_temperature_range', 'frost_days', 'ice_days', 'heavy_precipitation_days', 'very_heavy_precipitation_days', 'precipitation_sum', 'wet_days', 'simple_daily_intensity_index', 'summer_days', 'mean_of_daily_mean_temperature', 'mean_of_daily_minimum_temperature', 'minimum_of_daily_minimum_temperature', 'maximum_of_daily_minimum_temperature', 'tropical_nights', 'mean_of_daily_maximum_temperature', 'minimum_of_daily_maximum_temperature', 'maximum_of_daily_maximum_temperature', 'warm_spell_duration_index', 'warm_and_wet_days']
         assert variable in variable_valid_values
 
+        version_valid_values = ['1_0', '1_1']
+        assert version in version_valid_values
+
         experiment_valid_values = ['historical', 'rcp2_6', 'rcp4_5', 'rcp6_0', 'rcp8_5']
         assert experiment in experiment_valid_values
 
-        return download_data(period=period, version=version, origin=origin, temporal_aggregation=temporal_aggregation, variable=variable, experiment=experiment)
+        temporal_aggregation_valid_values = ['10_day', 'season', 'annual']
+        assert temporal_aggregation in temporal_aggregation_valid_values
 
+        return download_data(origin=origin, period=period, variable=variable, version=version, experiment=experiment, temporal_aggregation=temporal_aggregation)
 class Collection_projections_climate_atlas(Collection):
 
     @Collection.wrapper
-    def download(cls, period: str, origin: str, variable: str, domain: str, experiment: str): UNREACHABLE()
+    def download(cls, origin: str, period: str, variable: str, domain: str, experiment: str): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, period: str, origin: str, variable: str, domain: str, experiment: str):
-        period_valid_values = ['1850-2005', '1850-2014', '1950-2005', '1950-2014', '1970-2005', '2006-2098', '2006-2100', '2015-2100']
-        assert period in period_valid_values
-
+    def __download__(cls, origin: str, period: str, variable: str, domain: str, experiment: str):
         origin_valid_values = ['cmip5', 'cmip6', 'cordex']
         assert origin in origin_valid_values
+
+        period_valid_values = ['1850-2005', '1850-2014', '1950-2005', '1950-2014', '1970-2005', '2006-2098', '2006-2100', '2015-2100']
+        assert period in period_valid_values
 
         variable_valid_values = ['monthly_mean_of_daily_accumulated_precipitation', 'monthly_mean_of_daily_accumulated_snowfall_precipitation', 'annual_cooling_degree_days', 'annual_consecutive_dry_days', 'monthly_count_of_frost_days', 'annual_heating_degree_days', 'monthly_mean_of_acidity_of_seawater', 'monthly_maximum_of_1_day_accumulated_precipitation', 'monthly_maximum_of_5_day_accumulated_precipitation', 'monthly_mean_of_daily_mean_wind_speed', 'monthly_mean_of_sea_ice_area_percentage', 'standardized_precipitation_index_for_6_months_cumulation_period', 'monthly_mean_of_sea_surface_temperature', 'monthly_mean_of_daily_mean_temperature', 'monthly_mean_of_daily_minimum_temperature', 'monthly_minimum_of_daily_minimum_temperature', 'monthly_mean_of_daily_maximum_temperature', 'monthly_count_of_days_with_maximum_temperature_above_35_c', 'bias_adjusted_monthly_count_of_days_with_maximum_temperature_above_35_c', 'monthly_count_of_days_with_maximum_temperature_above_40_c', 'bias_adjusted_monthly_count_of_days_with_maximum_temperature_above_40_c', 'monthly_maximum_of_daily_maximum_temperature']
         assert variable in variable_valid_values
@@ -3152,95 +3044,86 @@ class Collection_projections_climate_atlas(Collection):
         experiment_valid_values = ['historical', 'rcp_2_6', 'rcp_4_5', 'rcp_8_5', 'ssp1_2_6', 'ssp2_4_5', 'ssp3_7_0', 'ssp5_8_5']
         assert experiment in experiment_valid_values
 
-        return download_data(period=period, origin=origin, variable=variable, domain=domain, experiment=experiment)
-
+        return download_data(origin=origin, period=period, variable=variable, domain=domain, experiment=experiment)
 class Collection_reanalysis_carra_pressure_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], month: OneOrMore[str], product_type: str, variable: OneOrMore[str], pressure_level: OneOrMore[str], domain: str, data_format: str = 'grib'): UNREACHABLE()
+    def download(cls, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], domain: str, pressure_level: OneOrMore[str], day: OneOrMore[str], product_type: str, year: OneOrMore[str], data_format: str = 'grib'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], leadtime_hour: OneOrMore[str], month: OneOrMore[str], product_type: str, variable: OneOrMore[str], pressure_level: OneOrMore[str], domain: str, data_format: str = 'grib'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
-        assert time in time_valid_values
-
-        year_valid_values = ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
+    def __download__(cls, leadtime_hour: OneOrMore[str], variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], domain: str, pressure_level: OneOrMore[str], day: OneOrMore[str], product_type: str, year: OneOrMore[str], data_format: str = 'grib'):
         leadtime_hour_valid_values = ['1', '2', '3', '4', '5', '6', '9', '12', '15', '18', '21', '24', '27', '30']
         assert leadtime_hour in leadtime_hour_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        product_type_valid_values = ['analysis', 'forecast']
-        assert product_type in product_type_valid_values
 
         variable_valid_values = ['cloud_cover', 'geometric_vertical_velocity', 'geopotential', 'graupel', 'potential_vorticity', 'pseudo_adiabatic_potential_temperature', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_cloud_rain_water_content', 'specific_cloud_snow_water_content', 'temperature', 'u_component_of_wind', 'v_component_of_wind']
         assert variable in variable_valid_values
 
-        pressure_level_valid_values = ['10', '20', '30', '50', '70', '100', '150', '200', '250', '300', '400', '500', '600', '700', '750', '800', '825', '850', '875', '900', '925', '950', '1000']
-        assert pressure_level in pressure_level_valid_values
+        time_valid_values = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00']
+        assert time in time_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
 
         domain_valid_values = ['east_domain', 'west_domain']
         assert domain in domain_valid_values
 
+        pressure_level_valid_values = ['10', '20', '30', '50', '70', '100', '150', '200', '250', '300', '400', '500', '600', '700', '750', '800', '825', '850', '875', '900', '925', '950', '1000']
+        assert pressure_level in pressure_level_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        product_type_valid_values = ['analysis', 'forecast']
+        assert product_type in product_type_valid_values
+
+        year_valid_values = ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(day=day, time=time, year=year, leadtime_hour=leadtime_hour, month=month, product_type=product_type, variable=variable, pressure_level=pressure_level, domain=domain, data_format=data_format)
-
+        return download_data(leadtime_hour=leadtime_hour, variable=variable, time=time, month=month, domain=domain, pressure_level=pressure_level, day=day, product_type=product_type, year=year, data_format=data_format)
 class Collection_sis_biodiversity_cmip5_global(Collection):
 
     @Collection.wrapper
-    def download(cls, statistic: OneOrMore[str], model: OneOrMore[str], ensemble_member: OneOrMore[str], derived_variable: OneOrMore[str], temporal_aggregation: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str], version: OneOrMore[str] = '1.0'): UNREACHABLE()
+    def download(cls, ensemble_member: OneOrMore[str], derived_variable: OneOrMore[str], variable: OneOrMore[str], statistic: OneOrMore[str], model: OneOrMore[str], experiment: OneOrMore[str], temporal_aggregation: OneOrMore[str], version: OneOrMore[str] = '1.0'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, statistic: OneOrMore[str], model: OneOrMore[str], ensemble_member: OneOrMore[str], derived_variable: OneOrMore[str], temporal_aggregation: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str], version: OneOrMore[str] = '1.0'):
-        statistic_valid_values = ['mean', 'median', '25th_quartile', '75th_quartile']
-        assert statistic in statistic_valid_values
-
-        model_valid_values = ['access1_0', 'bcc_csm1_1_m', 'csiro_mk3_6_0', 'gfdl_esm2m', 'hadgem2_cc', 'hadgem2_es', 'ipsl_cm5a_lr', 'ipsl_cm5a_mr', 'ipsl_cm5b_lr', 'noresm1_m']
-        assert model in model_valid_values
-
+    def __download__(cls, ensemble_member: OneOrMore[str], derived_variable: OneOrMore[str], variable: OneOrMore[str], statistic: OneOrMore[str], model: OneOrMore[str], experiment: OneOrMore[str], temporal_aggregation: OneOrMore[str], version: OneOrMore[str] = '1.0'):
         ensemble_member_valid_values = ['r1i1p1', 'r2i1p1']
         assert ensemble_member in ensemble_member_valid_values
 
         derived_variable_valid_values = ['annual_maximum', 'annual_maximum_of_daily_mean', 'annual_mean', 'annual_mean_of_daily_maximum', 'annual_mean_of_daily_minimum', 'annual_minimum', 'annual_sum', 'coldest_quarter', 'driest_quarter', 'end_of_season', 'length_of_season', 'maximum_length', 'mean_intensity', 'mean_length_with_minimum_5_days', 'monthly_mean', 'monthly_mean_of_daily_maximum', 'monthly_mean_of_daily_minimum', 'monthly_sum', 'number_of_occurrences', 'start_of_season', 'warmest_quarter', 'wettest_quarter']
         assert derived_variable in derived_variable_valid_values
 
-        temporal_aggregation_valid_values = ['annual', 'climatology', 'monthly']
-        assert temporal_aggregation in temporal_aggregation_valid_values
-
         variable_valid_values = ['annual_mean_temperature', 'mean_diurnal_range', 'isothermality', 'temperature_seasonality', 'maximum_temperature_of_warmest_month', 'minimum_temperature_of_coldest_month', 'temperature_annual_range', 'mean_temperature_of_wettest_quarter', 'mean_temperature_of_driest_quarter', 'mean_temperature_of_warmest_quarter', 'mean_temperature_of_coldest_quarter', 'annual_precipitation', 'precipitation_of_wettest_month', 'precipitation_of_driest_month', 'precipitation_seasonality', 'precipitation_of_wettest_quarter', 'precipitation_of_driest_quarter', 'precipitation_of_warmest_quarter', 'precipitation_of_coldest_quarter', 'aridity', 'dry_spells', 'dry_days', 'summer_days', 'surface_latent_heat_flux', 'surface_sensible_heat_flux', 'evaporative_fraction', 'frost_days', 'growing_season', 'growing_degree_days', 'growing_degree_days_during_growing_season_length', 'koeppen_geiger_class', 'potential_evaporation', 'sea_ice_concentration', 'sea_surface_temperature', '2m_temperature', 'precipitation', 'water_vapor_pressure', 'cloud_cover', 'volumetric_soil_water', 'wind_speed', 'zonal_wind_speed', 'meridional_wind_speed']
         assert variable in variable_valid_values
+
+        statistic_valid_values = ['mean', 'median', '25th_quartile', '75th_quartile']
+        assert statistic in statistic_valid_values
+
+        model_valid_values = ['access1_0', 'bcc_csm1_1_m', 'csiro_mk3_6_0', 'gfdl_esm2m', 'hadgem2_cc', 'hadgem2_es', 'ipsl_cm5a_lr', 'ipsl_cm5a_mr', 'ipsl_cm5b_lr', 'noresm1_m']
+        assert model in model_valid_values
 
         experiment_valid_values = ['rcp4_5', 'rcp8_5']
         assert experiment in experiment_valid_values
 
+        temporal_aggregation_valid_values = ['annual', 'climatology', 'monthly']
+        assert temporal_aggregation in temporal_aggregation_valid_values
+
         version_valid_values = ['1_0']
         assert version in version_valid_values
 
-        return download_data(statistic=statistic, model=model, ensemble_member=ensemble_member, derived_variable=derived_variable, temporal_aggregation=temporal_aggregation, variable=variable, experiment=experiment, version=version)
-
+        return download_data(ensemble_member=ensemble_member, derived_variable=derived_variable, variable=variable, statistic=statistic, model=model, experiment=experiment, temporal_aggregation=temporal_aggregation, version=version)
 class Collection_insitu_gridded_observations_nordic(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], version: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], spatial_interpolation_method: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str]): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], spatial_interpolation_method: OneOrMore[str], version: OneOrMore[str], day: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], version: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], spatial_interpolation_method: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str]):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
-        version_valid_values = ['24_03', '23_03', '23_09', '24_03', '24_09']
-        assert version in version_valid_values
-
-        year_valid_values = ['1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], spatial_interpolation_method: OneOrMore[str], version: OneOrMore[str], day: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str]):
+        variable_valid_values = ['precipitation', 'mean_temperature', 'maximum_temperature', 'minimum_temperature']
+        assert variable in variable_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
@@ -3248,143 +3131,150 @@ class Collection_insitu_gridded_observations_nordic(Collection):
         spatial_interpolation_method_valid_values = ['type_1', 'type_2']
         assert spatial_interpolation_method in spatial_interpolation_method_valid_values
 
+        version_valid_values = ['24_03', '23_03', '23_09', '24_03', '24_09']
+        assert version in version_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
         product_type_valid_values = ['consolidated', 'provisional']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['precipitation', 'mean_temperature', 'maximum_temperature', 'minimum_temperature']
-        assert variable in variable_valid_values
+        year_valid_values = ['1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
 
-        return download_data(day=day, version=version, year=year, month=month, spatial_interpolation_method=spatial_interpolation_method, product_type=product_type, variable=variable)
-
+        return download_data(variable=variable, month=month, spatial_interpolation_method=spatial_interpolation_method, version=version, day=day, product_type=product_type, year=year)
 class Collection_reanalysis_era5_pressure_levels_monthly_means(Collection):
 
     @Collection.wrapper
-    def download(cls, time: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], download_format: str = 'unarchived', data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], pressure_level: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', download_format: str = 'unarchived'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, time: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], product_type: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], download_format: str = 'unarchived', data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], pressure_level: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', download_format: str = 'unarchived'):
+        variable_valid_values = ['divergence', 'fraction_of_cloud_cover', 'geopotential', 'ozone_mass_mixing_ratio', 'potential_vorticity', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_humidity', 'specific_rain_water_content', 'specific_snow_water_content', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'vertical_velocity', 'vorticity']
+        assert variable in variable_valid_values
+
         time_valid_values = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
         assert time in time_valid_values
 
-        year_valid_values = ['1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
-
-        product_type_valid_values = ['monthly_averaged_reanalysis', 'monthly_averaged_reanalysis_by_hour_of_day', 'monthly_averaged_ensemble_members', 'monthly_averaged_ensemble_members_by_hour_of_day']
-        assert product_type in product_type_valid_values
-
-        variable_valid_values = ['divergence', 'fraction_of_cloud_cover', 'geopotential', 'ozone_mass_mixing_ratio', 'potential_vorticity', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_humidity', 'specific_rain_water_content', 'specific_snow_water_content', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'vertical_velocity', 'vorticity']
-        assert variable in variable_valid_values
 
         pressure_level_valid_values = ['1', '2', '3', '5', '7', '10', '20', '30', '50', '70', '100', '125', '150', '175', '200', '225', '250', '300', '350', '400', '450', '500', '550', '600', '650', '700', '750', '775', '800', '825', '850', '875', '900', '925', '950', '975', '1000']
         assert pressure_level in pressure_level_valid_values
 
-        download_format_valid_values = ['unarchived', 'zip']
-        assert download_format in download_format_valid_values
+        product_type_valid_values = ['monthly_averaged_reanalysis', 'monthly_averaged_reanalysis_by_hour_of_day', 'monthly_averaged_ensemble_members', 'monthly_averaged_ensemble_members_by_hour_of_day']
+        assert product_type in product_type_valid_values
+
+        year_valid_values = ['1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
 
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
-        return download_data(time=time, year=year, month=month, product_type=product_type, variable=variable, pressure_level=pressure_level, download_format=download_format, data_format=data_format, area_group=area_group)
+        download_format_valid_values = ['unarchived', 'zip']
+        assert download_format in download_format_valid_values
 
+        return download_data(variable=variable, time=time, month=month, pressure_level=pressure_level, product_type=product_type, year=year, data_format=data_format, area_group=area_group, download_format=download_format)
 class Collection_satellite_precipitation(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time_aggregation: str, year: OneOrMore[str], month: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global', variable: str = 'all'): UNREACHABLE()
+    def download(cls, time_aggregation: str, month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], variable: str = 'all', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time_aggregation: str, year: OneOrMore[str], month: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global', variable: str = 'all'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
-
+    def __download__(cls, time_aggregation: str, month: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], variable: str = 'all', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
         time_aggregation_valid_values = ['monthly_mean', 'daily_mean']
         assert time_aggregation in time_aggregation_valid_values
-
-        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
 
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
 
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
+
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(day=day, time_aggregation=time_aggregation, year=year, month=month, area_group=area_group, variable=variable)
-
+        return download_data(time_aggregation=time_aggregation, month=month, day=day, year=year, variable=variable, area_group=area_group)
 class Collection_insitu_observations_gnss(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], year: str, format: str, network_type: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], month: OneOrMore[str], network_type: OneOrMore[str], format: str, day: OneOrMore[str], year: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], year: str, format: str, network_type: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+    def __download__(cls, variable: OneOrMore[str], month: OneOrMore[str], network_type: OneOrMore[str], format: str, day: OneOrMore[str], year: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        variable_valid_values = ['total_column_water_vapour', 'total_column_water_vapour_era5']
+        assert variable in variable_valid_values
+
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
+        network_type_valid_values = ['igs_daily', 'epn_repro2']
+        assert network_type in network_type_valid_values
+
+        format_valid_values = ['netcdf', 'csv']
+        assert format in format_valid_values
+
         day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
         assert day in day_valid_values
 
         year_valid_values = ['1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014']
         assert year in year_valid_values
 
-        format_valid_values = ['netcdf', 'csv']
-        assert format in format_valid_values
-
-        network_type_valid_values = ['igs_daily', 'epn_repro2']
-        assert network_type in network_type_valid_values
-
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['total_column_water_vapour', 'total_column_water_vapour_era5']
-        assert variable in variable_valid_values
-
-        return download_data(day=day, year=year, format=format, network_type=network_type, month=month, variable=variable, area_group=area_group)
-
+        return download_data(variable=variable, month=month, network_type=network_type, format=format, day=day, year=year, area_group=area_group)
 class Collection_sis_agrometeorological_indicators(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], statistic: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global', version: str = '1_1'): UNREACHABLE()
+    def download(cls, variable: str, time: OneOrMore[str], month: OneOrMore[str], statistic: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], version: str = '1_1', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], statistic: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: str, area_group: Union[FreeEditionType, GeographicExtentType] = 'global', version: str = '1_1'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, variable: str, time: OneOrMore[str], month: OneOrMore[str], statistic: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], version: str = '1_1', area_group: Union[FreeEditionType, GeographicExtentType] = 'global'):
+        variable_valid_values = ['cloud_cover', 'precipitation_flux', 'liquid_precipitation_duration_fraction', 'solid_precipitation_duration_fraction', 'snow_thickness_lwe', 'snow_thickness', 'solar_radiation_flux', 'vapour_pressure', '2m_temperature', '10m_wind_speed', '2m_dewpoint_temperature', '2m_relative_humidity']
+        assert variable in variable_valid_values
 
         time_valid_values = ['06_00', '09_00', '12_00', '15_00', '18_00']
         assert time in time_valid_values
 
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
         statistic_valid_values = ['24_hour_maximum', '24_hour_mean', '24_hour_minimum', 'day_time_maximum', 'day_time_mean', 'night_time_mean', 'night_time_minimum']
         assert statistic in statistic_valid_values
+
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
 
         year_valid_values = ['1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
         assert year in year_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
-        variable_valid_values = ['cloud_cover', 'precipitation_flux', 'liquid_precipitation_duration_fraction', 'solid_precipitation_duration_fraction', 'snow_thickness_lwe', 'snow_thickness', 'solar_radiation_flux', 'vapour_pressure', '2m_temperature', '10m_wind_speed', '2m_dewpoint_temperature', '2m_relative_humidity']
-        assert variable in variable_valid_values
-
         version_valid_values = ['1_0', '1_1']
         assert version in version_valid_values
 
-        return download_data(day=day, time=time, statistic=statistic, year=year, month=month, variable=variable, area_group=area_group, version=version)
-
+        return download_data(variable=variable, time=time, month=month, statistic=statistic, day=day, year=year, version=version, area_group=area_group)
 class Collection_sis_tourism_fire_danger_indicators(Collection):
 
     @Collection.wrapper
-    def download(cls, period: OneOrMore[str], time_aggregation: str, version: str, gcm_model: OneOrMore[str], product_type: str, variable: OneOrMore[str], experiment: str): UNREACHABLE()
+    def download(cls, period: OneOrMore[str], time_aggregation: str, variable: OneOrMore[str], version: str, experiment: str, gcm_model: OneOrMore[str], product_type: str): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, period: OneOrMore[str], time_aggregation: str, version: str, gcm_model: OneOrMore[str], product_type: str, variable: OneOrMore[str], experiment: str):
+    def __download__(cls, period: OneOrMore[str], time_aggregation: str, variable: OneOrMore[str], version: str, experiment: str, gcm_model: OneOrMore[str], product_type: str):
         period_valid_values = ['1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2041', '2042', '2043', '2044', '2045', '2046', '2047', '2048', '2049', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '1971_1975', '1976_1980', '1981_1982', '1981_1985', '1981_2000', '1981_2005', '1986_1990', '1991_1995', '1996_2000', '2001_2005', '2006_2010', '2011_2015', '2016_2020', '2021_2025', '2021_2040', '2026_2030', '2031_2035', '2036_2040', '2041_2045', '2041_2060', '2046_2050', '2051_2055', '2056_2060', '2061_2065', '2066_2070', '2071_2075', '2076_2080', '2078_2097', '2079_2098', '2081_2085', '2086_2090', '2091_2095', '2096_2098']
         assert period in period_valid_values
 
         time_aggregation_valid_values = ['daily_indicators', 'seasonal_indicators', 'annual_indicators']
         assert time_aggregation in time_aggregation_valid_values
 
+        variable_valid_values = ['daily_fire_weather_index', 'seasonal_fire_weather_index', 'number_of_days_with_moderate_fire_danger', 'number_of_days_with_high_fire_danger', 'number_of_days_with_very_high_fire_danger']
+        assert variable in variable_valid_values
+
         version_valid_values = ['v1_0', 'v2_0']
         assert version in version_valid_values
+
+        experiment_valid_values = ['historical', 'rcp2_6', 'rcp4_5', 'rcp8_5']
+        assert experiment in experiment_valid_values
 
         gcm_model_valid_values = ['cnrm_cm5', 'ec_earth', 'ipsl_cm5a_mr', 'hadgem2_es', 'mpi_esm_lr', 'noresm1_m']
         assert gcm_model in gcm_model_valid_values
@@ -3392,35 +3282,22 @@ class Collection_sis_tourism_fire_danger_indicators(Collection):
         product_type_valid_values = ['single_model', 'multi_model_mean_case', 'multi_model_best_case', 'multi_model_worst_case']
         assert product_type in product_type_valid_values
 
-        variable_valid_values = ['daily_fire_weather_index', 'seasonal_fire_weather_index', 'number_of_days_with_moderate_fire_danger', 'number_of_days_with_high_fire_danger', 'number_of_days_with_very_high_fire_danger']
-        assert variable in variable_valid_values
-
-        experiment_valid_values = ['historical', 'rcp2_6', 'rcp4_5', 'rcp8_5']
-        assert experiment in experiment_valid_values
-
-        return download_data(period=period, time_aggregation=time_aggregation, version=version, gcm_model=gcm_model, product_type=product_type, variable=variable, experiment=experiment)
-
+        return download_data(period=period, time_aggregation=time_aggregation, variable=variable, version=version, experiment=experiment, gcm_model=gcm_model, product_type=product_type)
 class Collection_sis_ecde_climate_indicators(Collection):
 
     @Collection.wrapper
-    def download(cls, other_parameters: OneOrMore[str], origin: str, hydrological_model: OneOrMore[str], ensemble_member: OneOrMore[str], rcm: OneOrMore[str], regional_layer: OneOrMore[str], spatial_aggregation: str, temporal_aggregation: OneOrMore[str], gcm: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str]): UNREACHABLE()
+    def download(cls, origin: str, ensemble_member: OneOrMore[str], variable: OneOrMore[str], regional_layer: OneOrMore[str], spatial_aggregation: str, hydrological_model: OneOrMore[str], experiment: OneOrMore[str], other_parameters: OneOrMore[str], rcm: OneOrMore[str], temporal_aggregation: OneOrMore[str], gcm: OneOrMore[str]): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, other_parameters: OneOrMore[str], origin: str, hydrological_model: OneOrMore[str], ensemble_member: OneOrMore[str], rcm: OneOrMore[str], regional_layer: OneOrMore[str], spatial_aggregation: str, temporal_aggregation: OneOrMore[str], gcm: OneOrMore[str], variable: OneOrMore[str], experiment: OneOrMore[str]):
-        other_parameters_valid_values = ['max', 'mean', 'min', '30_c', '35_c', '40_c', '1_in_2_year', '1_in_5_year', '1_in_10_year', '1_in_50_year']
-        assert other_parameters in other_parameters_valid_values
-
+    def __download__(cls, origin: str, ensemble_member: OneOrMore[str], variable: OneOrMore[str], regional_layer: OneOrMore[str], spatial_aggregation: str, hydrological_model: OneOrMore[str], experiment: OneOrMore[str], other_parameters: OneOrMore[str], rcm: OneOrMore[str], temporal_aggregation: OneOrMore[str], gcm: OneOrMore[str]):
         origin_valid_values = ['reanalysis', 'projections']
         assert origin in origin_valid_values
-
-        hydrological_model_valid_values = ['e_hype', 'vic_wur']
-        assert hydrological_model in hydrological_model_valid_values
 
         ensemble_member_valid_values = ['r12i1p1', 'r1i1p1', 'r2i1p1', 'r3i1p1']
         assert ensemble_member in ensemble_member_valid_values
 
-        rcm_valid_values = ['aladin53', 'cclm4_8_17', 'hirham5', 'racmo22e', 'rca4', 'this_is_another_remo2009', 'wrf331f', 'wrf381p', 'csc_remo2009']
-        assert rcm in rcm_valid_values
+        variable_valid_values = ['mean_temperature', 'growing_degree_days', 'heating_degree_days', 'cooling_degree_days', 'tropical_nights', 'hot_days', 'warmest_three_day_period', 'heatwave_days', 'high_utci_days', 'frost_days', 'daily_maximum_temperature', 'daily_minimum_temperature', 'total_precipitation', 'maximum_consecutive_five_day_precipitation', 'extreme_precipitation_total', 'frequency_of_extreme_precipitation', 'flood_recurrence', 'mean_river_discharge', 'aridity_actual', 'consecutive_dry_days', 'duration_of_meteorological_droughts', 'magnitude_of_meteorological_droughts', 'mean_soil_moisture', 'days_with_high_fire_danger', 'mean_wind_speed', 'extreme_wind_speed_days', 'fire_weather_index', 'snowfall_amount', 'relative_sea_level_rise', 'extreme_sea_level']
+        assert variable in variable_valid_values
 
         regional_layer_valid_values = ['nuts_level_0', 'nuts_level_1', 'nuts_level_2', 'nuts_level_3', 'non_nuts', 'adriatic_ionian', 'alpine_space', 'northern_periphery_and_arctic', 'atlantic_area', 'baltic_sea_region', 'central_europe', 'danube', 'mediterranean', 'north_sea', 'north_west_europe', 'south_west_europe', 'eu_27', 'eea_32', 'eea_38']
         assert regional_layer in regional_layer_valid_values
@@ -3428,74 +3305,441 @@ class Collection_sis_ecde_climate_indicators(Collection):
         spatial_aggregation_valid_values = ['gridded', 'regional_layer']
         assert spatial_aggregation in spatial_aggregation_valid_values
 
+        hydrological_model_valid_values = ['e_hype', 'vic_wur']
+        assert hydrological_model in hydrological_model_valid_values
+
+        experiment_valid_values = ['historical', 'rcp4_5', 'rcp8_5', 'ssp5_8_5']
+        assert experiment in experiment_valid_values
+
+        other_parameters_valid_values = ['max', 'mean', 'min', '30_c', '35_c', '40_c', '1_in_2_year', '1_in_5_year', '1_in_10_year', '1_in_50_year']
+        assert other_parameters in other_parameters_valid_values
+
+        rcm_valid_values = ['aladin53', 'cclm4_8_17', 'hirham5', 'racmo22e', 'rca4', 'this_is_another_remo2009', 'wrf331f', 'wrf381p', 'csc_remo2009']
+        assert rcm in rcm_valid_values
+
         temporal_aggregation_valid_values = ['monthly', 'seasonal', 'yearly']
         assert temporal_aggregation in temporal_aggregation_valid_values
 
         gcm_valid_values = ['cm2_vhr4', 'cm5a_mr', 'cnrm_cm5', 'ec_earth', 'ec_earth3p_hr', 'hadgem2_es', 'hadgem3_gc31_hm', 'hadgem3_gc31_hm_sst', 'ipsl_cm5a_mr', 'mpi_esm_lr', 'noresm1_m']
         assert gcm in gcm_valid_values
 
-        variable_valid_values = ['mean_temperature', 'growing_degree_days', 'heating_degree_days', 'cooling_degree_days', 'tropical_nights', 'hot_days', 'warmest_three_day_period', 'heatwave_days', 'high_utci_days', 'frost_days', 'daily_maximum_temperature', 'daily_minimum_temperature', 'total_precipitation', 'maximum_consecutive_five_day_precipitation', 'extreme_precipitation_total', 'frequency_of_extreme_precipitation', 'flood_recurrence', 'mean_river_discharge', 'aridity_actual', 'consecutive_dry_days', 'duration_of_meteorological_droughts', 'magnitude_of_meteorological_droughts', 'mean_soil_moisture', 'days_with_high_fire_danger', 'mean_wind_speed', 'extreme_wind_speed_days', 'fire_weather_index', 'snowfall_amount', 'relative_sea_level_rise', 'extreme_sea_level']
-        assert variable in variable_valid_values
-
-        experiment_valid_values = ['historical', 'rcp4_5', 'rcp8_5', 'ssp5_8_5']
-        assert experiment in experiment_valid_values
-
-        return download_data(other_parameters=other_parameters, origin=origin, hydrological_model=hydrological_model, ensemble_member=ensemble_member, rcm=rcm, regional_layer=regional_layer, spatial_aggregation=spatial_aggregation, temporal_aggregation=temporal_aggregation, gcm=gcm, variable=variable, experiment=experiment)
-
+        return download_data(origin=origin, ensemble_member=ensemble_member, variable=variable, regional_layer=regional_layer, spatial_aggregation=spatial_aggregation, hydrological_model=hydrological_model, experiment=experiment, other_parameters=other_parameters, rcm=rcm, temporal_aggregation=temporal_aggregation, gcm=gcm)
 class Collection_satellite_humidity_profiles(Collection):
 
     @Collection.wrapper
-    def download(cls, product_type: str, year: OneOrMore[str], month: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
+    def download(cls, month: OneOrMore[str], product_type: str, year: OneOrMore[str], variable: str = 'all'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, product_type: str, year: OneOrMore[str], month: OneOrMore[str], variable: str = 'all'):
+    def __download__(cls, month: OneOrMore[str], product_type: str, year: OneOrMore[str], variable: str = 'all'):
+        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        assert month in month_valid_values
+
         product_type_valid_values = ['radio_occultation_data', 'reanalysis_data']
         assert product_type in product_type_valid_values
 
         year_valid_values = ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
         assert year in year_valid_values
 
-        month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-        assert month in month_valid_values
-
         variable_valid_values = ['all']
         assert variable in variable_valid_values
 
-        return download_data(product_type=product_type, year=year, month=month, variable=variable)
-
+        return download_data(month=month, product_type=product_type, year=year, variable=variable)
 class Collection_reanalysis_era5_pressure_levels(Collection):
 
     @Collection.wrapper
-    def download(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], download_format: str = 'unarchived', data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', product_type: OneOrMore[str] = 'reanalysis'): UNREACHABLE()
+    def download(cls, variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], pressure_level: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', download_format: str = 'unarchived', product_type: OneOrMore[str] = 'reanalysis'): UNREACHABLE()
     
     @classmethod
-    def __download__(cls, day: OneOrMore[str], time: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], download_format: str = 'unarchived', data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', product_type: OneOrMore[str] = 'reanalysis'):
-        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-        assert day in day_valid_values
+    def __download__(cls, variable: OneOrMore[str], time: OneOrMore[str], month: OneOrMore[str], pressure_level: OneOrMore[str], day: OneOrMore[str], year: OneOrMore[str], data_format: str = 'grib', area_group: Union[FreeEditionType, GeographicExtentType] = 'global', download_format: str = 'unarchived', product_type: OneOrMore[str] = 'reanalysis'):
+        variable_valid_values = ['divergence', 'fraction_of_cloud_cover', 'geopotential', 'ozone_mass_mixing_ratio', 'potential_vorticity', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_humidity', 'specific_rain_water_content', 'specific_snow_water_content', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'vertical_velocity', 'vorticity']
+        assert variable in variable_valid_values
 
         time_valid_values = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
         assert time in time_valid_values
 
-        year_valid_values = ['1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
-        assert year in year_valid_values
-
         month_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         assert month in month_valid_values
-
-        variable_valid_values = ['divergence', 'fraction_of_cloud_cover', 'geopotential', 'ozone_mass_mixing_ratio', 'potential_vorticity', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_humidity', 'specific_rain_water_content', 'specific_snow_water_content', 'temperature', 'u_component_of_wind', 'v_component_of_wind', 'vertical_velocity', 'vorticity']
-        assert variable in variable_valid_values
 
         pressure_level_valid_values = ['1', '2', '3', '5', '7', '10', '20', '30', '50', '70', '100', '125', '150', '175', '200', '225', '250', '300', '350', '400', '450', '500', '550', '600', '650', '700', '750', '775', '800', '825', '850', '875', '900', '925', '950', '975', '1000']
         assert pressure_level in pressure_level_valid_values
 
-        download_format_valid_values = ['unarchived', 'zip']
-        assert download_format in download_format_valid_values
+        day_valid_values = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+        assert day in day_valid_values
+
+        year_valid_values = ['1940', '1941', '1942', '1943', '1944', '1945', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        assert year in year_valid_values
 
         data_format_valid_values = ['grib', 'netcdf']
         assert data_format in data_format_valid_values
 
+        download_format_valid_values = ['unarchived', 'zip']
+        assert download_format in download_format_valid_values
+
         product_type_valid_values = ['reanalysis', 'ensemble_members', 'ensemble_mean', 'ensemble_spread']
         assert product_type in product_type_valid_values
 
-        return download_data(day=day, time=time, year=year, month=month, variable=variable, pressure_level=pressure_level, download_format=download_format, data_format=data_format, area_group=area_group, product_type=product_type)
+        return download_data(variable=variable, time=time, month=month, pressure_level=pressure_level, day=day, year=year, data_format=data_format, area_group=area_group, download_format=download_format, product_type=product_type)
 
+
+cds_collections = {
+    "derived-era5-land-daily-statistics": \
+	Collection_derived_era5_land_daily_statistics,
+
+    "derived-era5-pressure-levels-daily-statistics": \
+	Collection_derived_era5_pressure_levels_daily_statistics,
+
+    "derived-era5-single-levels-daily-statistics": \
+	Collection_derived_era5_single_levels_daily_statistics,
+
+    "derived-gridded-glacier-mass-change": \
+	Collection_derived_gridded_glacier_mass_change,
+
+    "derived-near-surface-meteorological-variables": \
+	Collection_derived_near_surface_meteorological_variables,
+
+    "derived-reanalysis-energy-moisture-budget": \
+	Collection_derived_reanalysis_energy_moisture_budget,
+
+    "derived-utci-historical": \
+	Collection_derived_utci_historical,
+
+    "ecv-for-climate-change": \
+	Collection_ecv_for_climate_change,
+
+    "insitu-comprehensive-upper-air-observation-network": \
+	Collection_insitu_comprehensive_upper_air_observation_network,
+
+    "insitu-glaciers-extent": \
+	Collection_insitu_glaciers_extent,
+
+    "insitu-gridded-observations-alpine-precipitation": \
+	Collection_insitu_gridded_observations_alpine_precipitation,
+
+    "insitu-gridded-observations-europe": \
+	Collection_insitu_gridded_observations_europe,
+
+    "insitu-gridded-observations-global-and-regional": \
+	Collection_insitu_gridded_observations_global_and_regional,
+
+    "insitu-gridded-observations-nordic": \
+	Collection_insitu_gridded_observations_nordic,
+
+    "insitu-observations-gnss": \
+	Collection_insitu_observations_gnss,
+
+    "insitu-observations-gruan-reference-network": \
+	Collection_insitu_observations_gruan_reference_network,
+
+    "insitu-observations-igra-baseline-network": \
+	Collection_insitu_observations_igra_baseline_network,
+
+    "insitu-observations-near-surface-temperature-us-climate-reference-network": \
+	Collection_insitu_observations_near_surface_temperature_us_climate_reference_network,
+
+    "insitu-observations-surface-land": \
+	Collection_insitu_observations_surface_land,
+
+    "insitu-observations-surface-marine": \
+	Collection_insitu_observations_surface_marine,
+
+    "insitu-observations-woudc-ozone-total-column-and-profiles": \
+	Collection_insitu_observations_woudc_ozone_total_column_and_profiles,
+
+    "multi-origin-c3s-atlas": \
+	Collection_multi_origin_c3s_atlas,
+
+    "projections-climate-atlas": \
+	Collection_projections_climate_atlas,
+
+    "projections-cmip5-daily-pressure-levels": \
+	Collection_projections_cmip5_daily_pressure_levels,
+
+    "projections-cmip5-daily-single-levels": \
+	Collection_projections_cmip5_daily_single_levels,
+
+    "projections-cmip5-monthly-pressure-levels": \
+	Collection_projections_cmip5_monthly_pressure_levels,
+
+    "projections-cmip5-monthly-single-levels": \
+	Collection_projections_cmip5_monthly_single_levels,
+
+    "projections-cmip6": \
+	Collection_projections_cmip6,
+
+    "projections-cmip6-decadal-prototype": \
+	Collection_projections_cmip6_decadal_prototype,
+
+    "projections-cordex-domains-single-levels": \
+	Collection_projections_cordex_domains_single_levels,
+
+    "reanalysis-carra-height-levels": \
+	Collection_reanalysis_carra_height_levels,
+
+    "reanalysis-carra-model-levels": \
+	Collection_reanalysis_carra_model_levels,
+
+    "reanalysis-carra-pressure-levels": \
+	Collection_reanalysis_carra_pressure_levels,
+
+    "reanalysis-carra-single-levels": \
+	Collection_reanalysis_carra_single_levels,
+
+    "reanalysis-cerra-height-levels": \
+	Collection_reanalysis_cerra_height_levels,
+
+    "reanalysis-cerra-land": \
+	Collection_reanalysis_cerra_land,
+
+    "reanalysis-cerra-model-levels": \
+	Collection_reanalysis_cerra_model_levels,
+
+    "reanalysis-cerra-pressure-levels": \
+	Collection_reanalysis_cerra_pressure_levels,
+
+    "reanalysis-cerra-single-levels": \
+	Collection_reanalysis_cerra_single_levels,
+
+    "reanalysis-era5-complete": \
+	Collection_reanalysis_era5_complete,
+
+    "reanalysis-era5-land": \
+	Collection_reanalysis_era5_land,
+
+    "reanalysis-era5-land-monthly-means": \
+	Collection_reanalysis_era5_land_monthly_means,
+
+    "reanalysis-era5-pressure-levels": \
+	Collection_reanalysis_era5_pressure_levels,
+
+    "reanalysis-era5-pressure-levels-monthly-means": \
+	Collection_reanalysis_era5_pressure_levels_monthly_means,
+
+    "reanalysis-era5-single-levels": \
+	Collection_reanalysis_era5_single_levels,
+
+    "reanalysis-era5-single-levels-monthly-means": \
+	Collection_reanalysis_era5_single_levels_monthly_means,
+
+    "reanalysis-oras5": \
+	Collection_reanalysis_oras5,
+
+    "reanalysis-uerra-europe-complete": \
+	Collection_reanalysis_uerra_europe_complete,
+
+    "reanalysis-uerra-europe-height-levels": \
+	Collection_reanalysis_uerra_europe_height_levels,
+
+    "reanalysis-uerra-europe-pressure-levels": \
+	Collection_reanalysis_uerra_europe_pressure_levels,
+
+    "reanalysis-uerra-europe-single-levels": \
+	Collection_reanalysis_uerra_europe_single_levels,
+
+    "reanalysis-uerra-europe-soil-levels": \
+	Collection_reanalysis_uerra_europe_soil_levels,
+
+    "satellite-aerosol-properties": \
+	Collection_satellite_aerosol_properties,
+
+    "satellite-albedo": \
+	Collection_satellite_albedo,
+
+    "satellite-carbon-dioxide": \
+	Collection_satellite_carbon_dioxide,
+
+    "satellite-cloud-properties": \
+	Collection_satellite_cloud_properties,
+
+    "satellite-earth-radiation-budget": \
+	Collection_satellite_earth_radiation_budget,
+
+    "satellite-fire-burned-area": \
+	Collection_satellite_fire_burned_area,
+
+    "satellite-fire-radiative-power": \
+	Collection_satellite_fire_radiative_power,
+
+    "satellite-greenland-ice-sheet-velocity": \
+	Collection_satellite_greenland_ice_sheet_velocity,
+
+    "satellite-humidity-profiles": \
+	Collection_satellite_humidity_profiles,
+
+    "satellite-ice-sheet-elevation-change": \
+	Collection_satellite_ice_sheet_elevation_change,
+
+    "satellite-ice-sheet-mass-balance": \
+	Collection_satellite_ice_sheet_mass_balance,
+
+    "satellite-lai-fapar": \
+	Collection_satellite_lai_fapar,
+
+    "satellite-lake-water-level": \
+	Collection_satellite_lake_water_level,
+
+    "satellite-lake-water-temperature": \
+	Collection_satellite_lake_water_temperature,
+
+    "satellite-land-cover": \
+	Collection_satellite_land_cover,
+
+    "satellite-methane": \
+	Collection_satellite_methane,
+
+    "satellite-ocean-colour": \
+	Collection_satellite_ocean_colour,
+
+    "satellite-ozone-v1": \
+	Collection_satellite_ozone_v1,
+
+    "satellite-precipitation": \
+	Collection_satellite_precipitation,
+
+    "satellite-precipitation-microwave": \
+	Collection_satellite_precipitation_microwave,
+
+    "satellite-sea-ice-concentration": \
+	Collection_satellite_sea_ice_concentration,
+
+    "satellite-sea-ice-edge-type": \
+	Collection_satellite_sea_ice_edge_type,
+
+    "satellite-sea-ice-thickness": \
+	Collection_satellite_sea_ice_thickness,
+
+    "satellite-sea-level-global": \
+	Collection_satellite_sea_level_global,
+
+    "satellite-sea-surface-temperature": \
+	Collection_satellite_sea_surface_temperature,
+
+    "satellite-sea-surface-temperature-ensemble-product": \
+	Collection_satellite_sea_surface_temperature_ensemble_product,
+
+    "satellite-soil-moisture": \
+	Collection_satellite_soil_moisture,
+
+    "satellite-surface-radiation-budget": \
+	Collection_satellite_surface_radiation_budget,
+
+    "satellite-total-column-water-vapour-land-ocean": \
+	Collection_satellite_total_column_water_vapour_land_ocean,
+
+    "satellite-total-column-water-vapour-ocean": \
+	Collection_satellite_total_column_water_vapour_ocean,
+
+    "satellite-upper-troposphere-humidity": \
+	Collection_satellite_upper_troposphere_humidity,
+
+    "seasonal-monthly-ocean": \
+	Collection_seasonal_monthly_ocean,
+
+    "seasonal-monthly-pressure-levels": \
+	Collection_seasonal_monthly_pressure_levels,
+
+    "seasonal-monthly-single-levels": \
+	Collection_seasonal_monthly_single_levels,
+
+    "seasonal-original-pressure-levels": \
+	Collection_seasonal_original_pressure_levels,
+
+    "seasonal-original-single-levels": \
+	Collection_seasonal_original_single_levels,
+
+    "seasonal-postprocessed-pressure-levels": \
+	Collection_seasonal_postprocessed_pressure_levels,
+
+    "seasonal-postprocessed-single-levels": \
+	Collection_seasonal_postprocessed_single_levels,
+
+    "sis-agroclimatic-indicators": \
+	Collection_sis_agroclimatic_indicators,
+
+    "sis-agrometeorological-indicators": \
+	Collection_sis_agrometeorological_indicators,
+
+    "sis-agroproductivity-indicators": \
+	Collection_sis_agroproductivity_indicators,
+
+    "sis-biodiversity-cmip5-global": \
+	Collection_sis_biodiversity_cmip5_global,
+
+    "sis-biodiversity-cmip5-regional": \
+	Collection_sis_biodiversity_cmip5_regional,
+
+    "sis-biodiversity-era5-global": \
+	Collection_sis_biodiversity_era5_global,
+
+    "sis-biodiversity-era5-regional": \
+	Collection_sis_biodiversity_era5_regional,
+
+    "sis-ecde-climate-indicators": \
+	Collection_sis_ecde_climate_indicators,
+
+    "sis-ecv-cmip5-bias-corrected": \
+	Collection_sis_ecv_cmip5_bias_corrected,
+
+    "sis-energy-derived-projections": \
+	Collection_sis_energy_derived_projections,
+
+    "sis-energy-derived-reanalysis": \
+	Collection_sis_energy_derived_reanalysis,
+
+    "sis-energy-pecd": \
+	Collection_sis_energy_pecd,
+
+    "sis-european-risk-extreme-precipitation-indicators": \
+	Collection_sis_european_risk_extreme_precipitation_indicators,
+
+    "sis-european-wind-storm-indicators": \
+	Collection_sis_european_wind_storm_indicators,
+
+    "sis-european-wind-storm-synthetic-events": \
+	Collection_sis_european_wind_storm_synthetic_events,
+
+    "sis-extreme-indices-cmip6": \
+	Collection_sis_extreme_indices_cmip6,
+
+    "sis-health-vector": \
+	Collection_sis_health_vector,
+
+    "sis-heat-and-cold-spells": \
+	Collection_sis_heat_and_cold_spells,
+
+    "sis-hydrology-meteorology-derived-projections": \
+	Collection_sis_hydrology_meteorology_derived_projections,
+
+    "sis-hydrology-variables-derived-projections": \
+	Collection_sis_hydrology_variables_derived_projections,
+
+    "sis-hydrology-variables-derived-seasonal-forecast": \
+	Collection_sis_hydrology_variables_derived_seasonal_forecast,
+
+    "sis-hydrology-variables-derived-seasonal-reforecast": \
+	Collection_sis_hydrology_variables_derived_seasonal_reforecast,
+
+    "sis-marine-properties": \
+	Collection_sis_marine_properties,
+
+    "sis-ocean-wave-indicators": \
+	Collection_sis_ocean_wave_indicators,
+
+    "sis-ocean-wave-timeseries": \
+	Collection_sis_ocean_wave_timeseries,
+
+    "sis-temperature-statistics": \
+	Collection_sis_temperature_statistics,
+
+    "sis-tourism-fire-danger-indicators": \
+	Collection_sis_tourism_fire_danger_indicators,
+
+    "sis-tourism-snow-indicators": \
+	Collection_sis_tourism_snow_indicators,
+
+    "sis-water-level-change-indicators-cmip6": \
+	Collection_sis_water_level_change_indicators_cmip6,
+
+    "sis-water-level-change-timeseries-cmip6": \
+	Collection_sis_water_level_change_timeseries_cmip6,
+
+}
