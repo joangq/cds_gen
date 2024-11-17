@@ -6,7 +6,7 @@ from .types import Deprecated, Unreachable
 
 DEFAULT_CDS_API_URL = 'https://cds.climate.copernicus.eu/api'
 
-class Client(CdsApiClient):
+class ClientClass(CdsApiClient):
     def __init__(*_, **__) -> Unreachable:
         raise TypeError("This class should not be instantiated")
     
@@ -72,3 +72,51 @@ class Client(CdsApiClient):
             , forget              = forget
             , session             = session
         )
+
+global client_instance
+client_instance = None
+def Client(
+          url                 : Optional[str]      = None
+        , key                 : Optional[str]      = None
+        , quiet               : bool               = False
+        , debug               : bool               = False
+        , verify              : Optional[bool]     = None
+        , timeout             : int                = 60
+        , progress            : bool               = True
+        , full_stack          : Deprecated[bool]   = None
+        , delete              : bool               = True
+        , retry_max           : int                = 500
+        , sleep_max           : int                = 120
+        , wait_until_complete : bool               = True
+        , info_callback       : Optional[Callable] = None
+        , warning_callback    : Optional[Callable] = None
+        , error_callback      : Optional[Callable] = None
+        , debug_callback      : Optional[Callable] = None
+        , metadata            : Optional[Any]      = None
+        , forget              : Deprecated[bool]   = None
+        , session             : Optional[Session]  = None
+        ) -> ClientClass:
+    global client_instance
+    if client_instance is None:
+        client_instance = ClientClass(
+              url                 = url
+            , key                 = key
+            , quiet               = quiet
+            , debug               = debug
+            , verify              = verify
+            , timeout             = timeout
+            , progress            = progress
+            , full_stack          = full_stack
+            , delete              = delete
+            , retry_max           = retry_max
+            , sleep_max           = sleep_max
+            , wait_until_complete = wait_until_complete
+            , info_callback       = info_callback
+            , warning_callback    = warning_callback
+            , error_callback      = error_callback
+            , debug_callback      = debug_callback
+            , metadata            = metadata
+            , forget              = forget
+            , session             = session
+        )
+    return client_instance

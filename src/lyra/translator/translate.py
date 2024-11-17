@@ -1,4 +1,4 @@
-from .types import Collection
+from .types import BaseCollection
 from lyra.transformer import Parameter
 
 imports = \
@@ -10,7 +10,6 @@ from lyra.common import GeographicExtentMapType
 from lyra.common import LabelType
 from lyra.common import FreeEditionType
 from lyra.common import UNREACHABLE
-from lyra.downloader import download_data
 from typing import Union, Optional
 
 \"\"\"
@@ -27,48 +26,56 @@ imports = imports.strip() + '\n\n'
 base_quote = \
 """
 class Collection_{name}(Collection):
+    collection_name = {cname}
+    valid_values = dict(
+        {valid_values_params}
+    )
 
     @Collection.wrapper
-    def download(cls, {parameters}): UNREACHABLE()
-    
-    @classmethod
-    def __download__(cls, {parameters}):
-{body}
+    def download(cls, {parameters}): 
+        \"\"\"
+        {docstring}
+        \"\"\"
+        UNREACHABLE()
+
+def download_{name}({parameters}):
+    return Collection_{name}.download({kw})
 """
 
-base_quote = base_quote.strip()
+# """
+# def download_{name}({parameters}):
+#     return Collection_{name}.download({kw})
+# """
 
-def make_collection(name: str, parameters: list[Parameter]):
+base_quote = base_quote.strip() + '\n\n'
+
+def make_collection(name: str, parameters: list[Parameter], normalizer=lambda x: x):
     _parameters = ', '.join(str(x) for x in parameters)
-    
-    body = []
+    kw = ', '.join(f'{p.name}={p.name}' for p in parameters)
+    dict_items = '\n        '.join(f'{p.name} = {p.valid_values},' for p in parameters if hasattr(p, 'valid_values') and p.valid_values)
+
+    docstring = [f'Parameters', '----------']
     for p in parameters:
-        varname = p.name
-        valid_values = p.valid_values
+        docstring += [f':param {p.name}:']
+        docstring += [f':type {p.name}: str\n']
+        # valid values
+        if hasattr(p, 'valid_values') and p.valid_values:
+            docstring.append("**Valid values:**")
+            valid_values = ['\n        - ' + p_vv + '\n' for p_vv in p.valid_values]
+            docstring += valid_values
+        docstring.append('---\n')
+    docstring += [f'Returns', '-------']
+    docstring += [f':return: The data requested']
+    docstring += [f':rtype: Any']
+    docstring = '\n        '.join(docstring)
 
-        if not valid_values:
-            continue
-
-        valid_values = repr(valid_values)
-
-        body += [
-            f'{varname}_valid_values = {valid_values}',
-            f'assert {varname} in {varname}_valid_values\n',
-        ]
-
-
-    body.append('return download_data(' + ', '.join(f'{p.name}={p.name}' 
-                                                    for p in parameters) + ')')
-    body = '\n'.join('        ' + x for x in body)
-    body += '\n'
-
-    kw_parameters = set(str(p.name) for p in parameters)
-    kw_parameters = ', '.join(str(f'{s}={s}') for s in kw_parameters)
     base = base_quote.format(
-        name=name, 
-        parameters=_parameters,
-        kw_parameters=kw_parameters,
-        body=body)
+        docstring=docstring,
+        kw=kw,
+        valid_values_params=dict_items,
+        name=normalizer(name),
+        cname=repr(name),
+        parameters=_parameters)
 
     return base
 
@@ -86,7 +93,14 @@ def make_mapping(names: list[str], prefix = 'Collection_', normalizer = lambda x
     mappings = []
     for name in names:
         _name = f'    "{name}": \\\n\t{prefix}{normalizer(name)},\n'
+        #_name = f'    "{name}": \\\n\tdownload_{normalizer(name)},\n'
         mappings.append(_name)
     
     mappings = '\n'.join(mappings)
     return mapping_quote.format(mappings=mappings)
+
+
+def make___all__(names: list[str], prefix = 'Collection_', normalizer = lambda x: x, extra = []):
+    _list = [f'"{prefix}{normalizer(name)}"' for name in names] + list(map(repr, extra))
+    _names = ', \n'.join(_list)
+    return f'__all__ = [{_names}]'

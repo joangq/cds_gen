@@ -72,7 +72,10 @@ class Parameter:
         return f"{self.name}: {innertype_str}{default_str}"
     
     def __gt__(self, other):
-        return self.has_default_value() > other.has_default_value()
+        return (
+            self.has_default_value() > other.has_default_value() 
+            and self.name > other.name
+        )
     
     def __hash__(self):
         return hash(self.name)
