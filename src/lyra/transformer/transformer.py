@@ -178,8 +178,12 @@ class ExclusiveGroupWidgetTransformer(ParamTypeTransformer):
         if default is not None:
             default = default.name
 
+        name = obj.name
+        if name.endswith('_group'):
+            name = name.split('_group', 1)[0]
+
         return Parameter(
-            name = obj.name,
+            name = name,
             innertype = innertype,
             default = default,
             required = False,
@@ -204,3 +208,62 @@ class LicenceWidgetTransformer(ParamTypeTransformer):
     def transform(cls, obj: ParamType, tree: list[ParamType], **_) -> Parameter:
         assert isinstance(obj, lyra.parser.LicenceWidget)
         return None
+    
+class GeographicExtentMapWidgetTransformer(ParamTypeTransformer):
+    @classmethod
+    def transform(cls, obj: ParamType, **_) -> Parameter:
+        assert isinstance(obj, lyra.parser.GeographicExtentMapWidget)
+        return Parameter(
+            name = obj.name,
+            innertype = str,
+            default = None,
+            required = False
+        )
+    
+class ExclusiveFrameWidgetTransformer(ParamTypeTransformer):
+    @classmethod
+    def transform(cls, obj: ParamType, tree: list[ParamType], **_) -> Parameter:
+        assert isinstance(obj, lyra.parser.ExclusiveFrameWidget)
+        children = dict()
+        for i, child in enumerate(tree):
+            if child.name not in obj.widgets:
+                continue
+
+            children[child.name] = (
+                child if issubclass(type(child), BaseParamType) else
+                transform_node(child, parent=cls)
+            )
+
+            tree[i] = None
+        
+        innertypes = [None for _ in obj.widgets]
+
+        for i, child in enumerate(children):
+            typename = type(children[child]).__name__.split('Widget')[0]
+            typename += 'Type'
+            innertypes[i] = typename
+        
+        innertype = 'Union[' + ', '.join(innertypes) + ']'
+
+        name = obj.name
+        if name.endswith('_group'):
+            name = name.split('_group', 1)[0]
+
+        return Parameter(
+            name = name,
+            innertype = innertype,
+            default = None,
+            required = False
+        )
+    
+
+class GeographicExtentWidgetTransformer(ParamTypeTransformer):
+    @classmethod
+    def transform(cls, obj: ParamType, **_) -> Parameter:
+        assert isinstance(obj, lyra.parser.GeographicExtentWidget)
+        return Parameter(
+            name = obj.name,
+            innertype = str,
+            default = None,
+            required = False
+        )

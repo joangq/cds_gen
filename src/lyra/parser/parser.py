@@ -328,6 +328,7 @@ class LicenceWidget(BaseParamType): # [sic]
         )
     
 class ExclusiveFrameWidget(ParamType):
+    name: str
     widgets: List[str]
     required: bool
     id: Optional[int] = None
@@ -337,6 +338,7 @@ class ExclusiveFrameWidget(ParamType):
         return dict(
               id       = item.get('id')
             , label    = item['label']
+            , name     = item.get('name')
             , kind     = item.get('type')
             , details  = item.get('details', {})
             , widgets  = item.get('widgets', [])
@@ -347,6 +349,7 @@ class ExclusiveFrameWidget(ParamType):
     def __parse__(
         cls, 
         id       : Optional[int], 
+        name     : Optional[str],
         label    : str, 
         kind     : Optional[str], 
         details  : Dict, 
@@ -355,7 +358,7 @@ class ExclusiveFrameWidget(ParamType):
 
         id = details.get('id', None)
         
-        return cls(id=id, label=label, widgets=widgets, required=required)
+        return cls(name=name, id=id, label=label, widgets=widgets, required=required)
     
 class GeographicExtentMapWidget(BaseParamType):
     range: Dict[GeographicExtentLabel, number]
