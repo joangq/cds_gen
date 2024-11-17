@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 import lyra.parser
-from lyra.common import MISSING_IMPLEMENTATION, TODO
+from lyra.common import MISSING_IMPLEMENTATION
 from abc import ABC as AbstractBaseClass, abstractmethod
-from typing import Generic, TypeVar, Optional, Any, cast
+from typing import Generic, TypeVar, Optional, Any
 from collections.abc import Iterable
 from lyra.parser import (
     BaseParamType,
@@ -19,12 +19,6 @@ P = TypeVar('P') # Tipo del parámetro devuelto
 def unwrap_if_option(x: Option | Any) -> Any:
     return x.value if isinstance(x, Option) else x
 
-STRING_PARAM_TYPES = {
-    lyra.parser.StringChoiceWidget,
-    lyra.parser.StringListArrayWidget,
-    lyra.parser.StringListWidget
-}
-
 class Transformer(AbstractBaseClass, Generic[T, P]):
     @classmethod
     @abstractmethod
@@ -33,12 +27,12 @@ class Transformer(AbstractBaseClass, Generic[T, P]):
 
 @dataclass
 class Parameter:
-    name: str
-    innertype: type | str
-    default: any
-    required: bool
-    valid_values: Optional[Iterable[Any]] = None
-    bound: Optional[str] = None
+    name         : str
+    innertype    : type | str
+    default      : any
+    required     : bool
+    valid_values : Optional[Iterable[Any]] = None
+    bound        : Optional[str] = None
 
     def __str__(self):
         if isinstance(self.innertype, type):
@@ -98,6 +92,7 @@ def transform_node(x: ParamType, **transform_kwargs) -> MissingTransformer | Par
 def transform_form(form: list[ParamType]) -> list[MissingTransformer | Parameter]:
     return [
         y
+        
         for x in form
         
         # Algunas transformaciones (como la de ExclusiveGroupWidget) pueden
@@ -115,11 +110,11 @@ class StringListWidgetTransformer(ParamTypeTransformer):
     def transform(cls, obj: ParamType, **_) -> Parameter:
         assert isinstance(obj, lyra.parser.StringListWidget)
         return Parameter(
-            name = obj.name,
-            innertype = str,
-            default = obj.default.value if obj.default else None,
-            required = obj.required,
-            valid_values = [x.value for x in obj.options]
+              name         = obj.name
+            , innertype    = str
+            , default      = obj.default.value if obj.default else None
+            , required     = obj.required
+            , valid_values = [x.value for x in obj.options]
         )
     
 class StringListArrayWidgetTransformer(ParamTypeTransformer):
@@ -143,10 +138,10 @@ class FreeEditionWidgetTransformer(ParamTypeTransformer):
     def transform(cls, obj: ParamType, **_) -> Parameter:
         assert isinstance(obj, lyra.parser.FreeEditionWidget)
         return Parameter(
-            name = obj.name,
-            innertype = str,
-            default = None,
-            required = False
+              name         = obj.name
+            ,  innertype    = str
+            ,  default      = None
+            ,  required     = False
         )
 
 class ExclusiveGroupWidgetTransformer(ParamTypeTransformer):
@@ -183,10 +178,10 @@ class ExclusiveGroupWidgetTransformer(ParamTypeTransformer):
             name = name.split('_group', 1)[0]
 
         return Parameter(
-            name = name,
-            innertype = innertype,
-            default = default,
-            required = False,
+              name      = name
+            , innertype = innertype
+            , default   = default
+            , required  = False
         )
 
 
@@ -195,11 +190,11 @@ class StringChoiceWidgetTransformer(ParamTypeTransformer):
     def transform(cls, obj: ParamType, **_) -> Parameter:
         assert isinstance(obj, lyra.parser.StringChoiceWidget)
         return Parameter(
-            name = obj.name,
-            innertype = str,
-            default = obj.default.value if obj.default else None,
-            required = obj.required,
-            valid_values = [x.value for x in obj.options]
+              name         = obj.name
+            , innertype    = str
+            , default      = obj.default.value if obj.default else None
+            , required     = obj.required
+            , valid_values = [x.value for x in obj.options]
         )
 
 
@@ -214,10 +209,10 @@ class GeographicExtentMapWidgetTransformer(ParamTypeTransformer):
     def transform(cls, obj: ParamType, **_) -> Parameter:
         assert isinstance(obj, lyra.parser.GeographicExtentMapWidget)
         return Parameter(
-            name = obj.name,
-            innertype = str,
-            default = None,
-            required = False
+              name      = obj.name
+            , innertype = str
+            , default   = None
+            , required  = False
         )
     
 class ExclusiveFrameWidgetTransformer(ParamTypeTransformer):
@@ -250,10 +245,10 @@ class ExclusiveFrameWidgetTransformer(ParamTypeTransformer):
             name = name.split('_group', 1)[0]
 
         return Parameter(
-            name = name,
-            innertype = innertype,
-            default = None,
-            required = False
+              name      = name
+            , innertype = innertype
+            , default   = None
+            , required  = False
         )
     
 
@@ -262,8 +257,8 @@ class GeographicExtentWidgetTransformer(ParamTypeTransformer):
     def transform(cls, obj: ParamType, **_) -> Parameter:
         assert isinstance(obj, lyra.parser.GeographicExtentWidget)
         return Parameter(
-            name = obj.name,
-            innertype = str,
-            default = None,
-            required = False
+              name      = obj.name
+            , innertype = str
+            , default   = None
+            , required  = False
         )
