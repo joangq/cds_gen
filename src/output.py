@@ -1,9 +1,11 @@
 # type: ignore
 
+from lyra.common import OneOrMore
+
 def download_data(*args, **kwargs): ...
 
 # dataset: sis-energy-derived-projections
-def download_sis_energy_derived_projections(variable: str, spatial_aggregation: str, energy_product_type: str, temporal_aggregation: str, experiment: str, rcm: str, gcm: str, ensemble_member: str):
+def download_sis_energy_derived_projections(variable: OneOrMore[str], spatial_aggregation: str, energy_product_type: OneOrMore[str], temporal_aggregation: str, experiment: OneOrMore[str], rcm: str, gcm: OneOrMore[str], ensemble_member: OneOrMore[str]):
 	variable_valid_values = ['wind_speed_at_100m', 'wind_speed_at_10m', 'surface_downwelling_shortwave_radiation', '2m_air_temperature', 'total_precipitation', 'electricity_demand', 'hydro_power_generation_reservoirs', 'hydro_power_generation_rivers', 'solar_photovoltaic_power_generation', 'wind_power_generation_offshore', 'wind_power_generation_onshore']
 	assert variable in variable_valid_values
 
@@ -32,7 +34,7 @@ def download_sis_energy_derived_projections(variable: str, spatial_aggregation: 
 
 
 # dataset: satellite-lake-water-level
-def download_satellite_lake_water_level(variable: str = 'all', region: str, lake: str):
+def download_satellite_lake_water_level(variable: str = 'all', region: OneOrMore[str], lake: OneOrMore[str]):
 	variable_valid_values = ['all']
 	assert variable in variable_valid_values
 
@@ -46,7 +48,7 @@ def download_satellite_lake_water_level(variable: str = 'all', region: str, lake
 
 
 # dataset: satellite-lake-water-temperature
-def download_satellite_lake_water_temperature(variable: str = 'all', year: str, month: str, day: str, version: str):
+def download_satellite_lake_water_temperature(variable: str = 'all', year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], version: OneOrMore[str]):
 	variable_valid_values = ['all']
 	assert variable in variable_valid_values
 
@@ -86,7 +88,7 @@ def download_multi_origin_c3s_atlas(origin: str, experiment: str, domain: str, p
 
 
 # dataset: seasonal-postprocessed-single-levels
-def download_seasonal_postprocessed_single_levels(originating_centre: str, system: str, variable: str, product_type: str, year: str, month: str, leadtime_month: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib'):
+def download_seasonal_postprocessed_single_levels(originating_centre: str, system: str, variable: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], leadtime_month: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib'):
 	originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc', 'ncep', 'jma', 'eccc']
 	assert originating_centre in originating_centre_valid_values
 
@@ -123,7 +125,7 @@ def download_satellite_ice_sheet_mass_balance(variable: str = 'all'):
 
 
 # dataset: satellite-soil-moisture
-def download_satellite_soil_moisture(variable: str, type_of_sensor: str, time_aggregation: str, year: str, month: str, day: str, type_of_record: str, version: str):
+def download_satellite_soil_moisture(variable: OneOrMore[str], type_of_sensor: OneOrMore[str], time_aggregation: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], type_of_record: OneOrMore[str], version: OneOrMore[str]):
 	variable_valid_values = ['surface_soil_moisture', 'volumetric_surface_soil_moisture']
 	assert variable in variable_valid_values
 
@@ -152,7 +154,7 @@ def download_satellite_soil_moisture(variable: str, type_of_sensor: str, time_ag
 
 
 # dataset: insitu-gridded-observations-alpine-precipitation
-def download_insitu_gridded_observations_alpine_precipitation(variable: str = 'precipitation', dataset_issue: str, version: str = '1.2'):
+def download_insitu_gridded_observations_alpine_precipitation(variable: str = 'precipitation', dataset_issue: OneOrMore[str], version: OneOrMore[str] = '1.2'):
 	variable_valid_values = ['precipitation']
 	assert variable in variable_valid_values
 
@@ -166,7 +168,7 @@ def download_insitu_gridded_observations_alpine_precipitation(variable: str = 'p
 
 
 # dataset: reanalysis-cerra-model-levels
-def download_reanalysis_cerra_model_levels(variable: str, model_level: str, data_type: str, year: str, month: str, day: str, time: str, data_format: str = 'grib'):
+def download_reanalysis_cerra_model_levels(variable: OneOrMore[str], model_level: OneOrMore[str], data_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], time: OneOrMore[str], data_format: str = 'grib'):
 	variable_valid_values = ['specific_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind']
 	assert variable in variable_valid_values
 
@@ -195,7 +197,7 @@ def download_reanalysis_cerra_model_levels(variable: str, model_level: str, data
 
 
 # dataset: reanalysis-uerra-europe-single-levels
-def download_reanalysis_uerra_europe_single_levels(origin: str, variable: str, year: str, month: str, day: str, time: str, data_format: str = 'grib'):
+def download_reanalysis_uerra_europe_single_levels(origin: str, variable: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], time: OneOrMore[str], data_format: str = 'grib'):
 	origin_valid_values = ['mescan_surfex', 'uerra_harmonie']
 	assert origin in origin_valid_values
 
@@ -221,7 +223,7 @@ def download_reanalysis_uerra_europe_single_levels(origin: str, variable: str, y
 
 
 # dataset: insitu-observations-near-surface-temperature-us-climate-reference-network
-def download_insitu_observations_near_surface_temperature_us_climate_reference_network(time_aggregation: str, variable: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', format: str):
+def download_insitu_observations_near_surface_temperature_us_climate_reference_network(time_aggregation: OneOrMore[str], variable: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', format: str):
 	time_aggregation_valid_values = ['daily', 'hourly', 'monthly', 'sub_hourly']
 	assert time_aggregation in time_aggregation_valid_values
 
@@ -244,7 +246,7 @@ def download_insitu_observations_near_surface_temperature_us_climate_reference_n
 
 
 # dataset: seasonal-original-pressure-levels
-def download_seasonal_original_pressure_levels(originating_centre: str, system: str, variable: str, pressure_level: str, year: str, month: str, day: str, leadtime_hour: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib'):
+def download_seasonal_original_pressure_levels(originating_centre: str, system: str, variable: OneOrMore[str], pressure_level: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], leadtime_hour: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib'):
 	originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc', 'ncep', 'jma', 'eccc']
 	assert originating_centre in originating_centre_valid_values
 
@@ -276,7 +278,7 @@ def download_seasonal_original_pressure_levels(originating_centre: str, system: 
 
 
 # dataset: satellite-albedo
-def download_satellite_albedo(variable: str, satellite: str, sensor: str, product_version: str, horizontal_resolution: str, year: str, month: str, nominal_day: str, area: Optional[str] = None, area: Optional[Union[GeographicExtentMapType, LabelType]] = None):
+def download_satellite_albedo(variable: OneOrMore[str], satellite: OneOrMore[str], sensor: str, product_version: OneOrMore[str], horizontal_resolution: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], nominal_day: OneOrMore[str], area: Optional[str] = None, area: Optional[Union[GeographicExtentMapType, LabelType]] = None):
 	variable_valid_values = ['albb_bh', 'albb_dh', 'alsp_bh', 'alsp_dh']
 	assert variable in variable_valid_values
 
@@ -305,7 +307,7 @@ def download_satellite_albedo(variable: str, satellite: str, sensor: str, produc
 
 
 # dataset: satellite-upper-troposphere-humidity
-def download_satellite_upper_troposphere_humidity(sensor_on_satellite: str, year: str, month: str, day: str, variable: str = 'all', area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_satellite_upper_troposphere_humidity(sensor_on_satellite: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], variable: str = 'all', area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	sensor_on_satellite_valid_values = ['mhs_on_metop_a', 'mhs_on_metop_b', 'mhs_on_metop_c', 'amsu_b_on_noaa_15', 'amsu_b_on_noaa_16', 'amsu_b_on_noaa_17', 'mhs_on_noaa_18', 'mhs_on_noaa_19']
 	assert sensor_on_satellite in sensor_on_satellite_valid_values
 
@@ -325,7 +327,7 @@ def download_satellite_upper_troposphere_humidity(sensor_on_satellite: str, year
 
 
 # dataset: projections-cordex-domains-single-levels
-def download_projections_cordex_domains_single_levels(domain: str, experiment: str, horizontal_resolution: str, temporal_resolution: str, variable: str, gcm_model: str, rcm_model: str, ensemble_member: str, start_year: str, end_year: str):
+def download_projections_cordex_domains_single_levels(domain: str, experiment: str, horizontal_resolution: str, temporal_resolution: str, variable: OneOrMore[str], gcm_model: str, rcm_model: str, ensemble_member: str, start_year: OneOrMore[str], end_year: OneOrMore[str]):
 	domain_valid_values = ['africa', 'antarctic', 'arctic', 'australasia', 'central_america', 'central_asia', 'east_asia', 'europe', 'mediterranean', 'middle_east_and_north_africa', 'north_america', 'south_america', 'south_east_asia', 'south_asia']
 	assert domain in domain_valid_values
 
@@ -360,7 +362,7 @@ def download_projections_cordex_domains_single_levels(domain: str, experiment: s
 
 
 # dataset: sis-health-vector
-def download_sis_health_vector(variable: str, experiment: str, ensemble_statistic: str):
+def download_sis_health_vector(variable: OneOrMore[str], experiment: OneOrMore[str], ensemble_statistic: OneOrMore[str]):
 	variable_valid_values = ['suitability', 'season_length']
 	assert variable in variable_valid_values
 
@@ -374,7 +376,7 @@ def download_sis_health_vector(variable: str, experiment: str, ensemble_statisti
 
 
 # dataset: reanalysis-cerra-pressure-levels
-def download_reanalysis_cerra_pressure_levels(variable: str, pressure_level: str, data_type: str, product_type: str, year: str, month: str, day: str, time: str, leadtime_hour: str, data_format: str = 'grib'):
+def download_reanalysis_cerra_pressure_levels(variable: OneOrMore[str], pressure_level: OneOrMore[str], data_type: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], time: OneOrMore[str], leadtime_hour: OneOrMore[str], data_format: str = 'grib'):
 	variable_valid_values = ['cloud_cover', 'geopotential', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_rain_water_content', 'specific_snow_water_content', 'temperature', 'turbulent_kinetic_energy', 'u_component_of_wind', 'v_component_of_wind']
 	assert variable in variable_valid_values
 
@@ -409,7 +411,7 @@ def download_reanalysis_cerra_pressure_levels(variable: str, pressure_level: str
 
 
 # dataset: sis-marine-properties
-def download_sis_marine_properties(origin: str, vertical_resolution: str, time_aggregation: str, variable: str, experiment: str, year: str, month: str):
+def download_sis_marine_properties(origin: str, vertical_resolution: str, time_aggregation: str, variable: OneOrMore[str], experiment: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str]):
 	origin_valid_values = ['nemo_ersem', 'polcoms_ersem']
 	assert origin in origin_valid_values
 
@@ -435,7 +437,7 @@ def download_sis_marine_properties(origin: str, vertical_resolution: str, time_a
 
 
 # dataset: reanalysis-uerra-europe-soil-levels
-def download_reanalysis_uerra_europe_soil_levels(origin: str, variable: str, soil_level: str, year: str, month: str, day: str, time: str, data_format: str = 'grib'):
+def download_reanalysis_uerra_europe_soil_levels(origin: str, variable: str, soil_level: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], time: OneOrMore[str], data_format: str = 'grib'):
 	origin_valid_values = ['mescan_surfex', 'uerra_harmonie']
 	assert origin in origin_valid_values
 
@@ -464,7 +466,7 @@ def download_reanalysis_uerra_europe_soil_levels(origin: str, variable: str, soi
 
 
 # dataset: sis-biodiversity-era5-regional
-def download_sis_biodiversity_era5_regional(region: str, origin: str, variable: str, derived_variable: str, statistic: str, version: str = '1.0'):
+def download_sis_biodiversity_era5_regional(region: OneOrMore[str], origin: str, variable: OneOrMore[str], derived_variable: OneOrMore[str], statistic: OneOrMore[str], version: OneOrMore[str] = '1.0'):
 	region_valid_values = ['central_africa', 'northern_brazil', 'europe']
 	assert region in region_valid_values
 
@@ -487,7 +489,7 @@ def download_sis_biodiversity_era5_regional(region: str, origin: str, variable: 
 
 
 # dataset: sis-hydrology-variables-derived-seasonal-reforecast
-def download_sis_hydrology_variables_derived_seasonal_reforecast(variable: str, hydrological_model: str, year: str, month: str, version: str):
+def download_sis_hydrology_variables_derived_seasonal_reforecast(variable: OneOrMore[str], hydrological_model: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], version: OneOrMore[str]):
 	variable_valid_values = ['river_discharge', 'reference_river_discharge_lower_tercile', 'reference_river_discharge_upper_tercile', 'brier_skill_score_above_normal_conditions', 'brier_skill_score_below_normal_conditions', 'continuous_ranked_probability_skill_score', 'fair_ranked_probability_skill_score']
 	assert variable in variable_valid_values
 
@@ -507,7 +509,7 @@ def download_sis_hydrology_variables_derived_seasonal_reforecast(variable: str, 
 
 
 # dataset: reanalysis-era5-single-levels
-def download_reanalysis_era5_single_levels(product_type: str = 'reanalysis', variable: str, year: str, month: str, day: str, time: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib', download_format: str = 'unarchived'):
+def download_reanalysis_era5_single_levels(product_type: OneOrMore[str] = 'reanalysis', variable: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], time: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib', download_format: str = 'unarchived'):
 	product_type_valid_values = ['reanalysis', 'ensemble_members', 'ensemble_mean', 'ensemble_spread']
 	assert product_type in product_type_valid_values
 
@@ -536,7 +538,7 @@ def download_reanalysis_era5_single_levels(product_type: str = 'reanalysis', var
 
 
 # dataset: sis-energy-derived-reanalysis
-def download_sis_energy_derived_reanalysis(variable: str, spatial_aggregation: str, energy_product_type: str, temporal_aggregation: str, year: str, month: str):
+def download_sis_energy_derived_reanalysis(variable: OneOrMore[str], spatial_aggregation: OneOrMore[str], energy_product_type: OneOrMore[str], temporal_aggregation: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str]):
 	variable_valid_values = ['wind_speed_at_100m', 'wind_speed_at_10m', 'surface_downwelling_shortwave_radiation', 'pressure_at_sea_level', '2m_air_temperature', 'total_precipitation', 'electricity_demand', 'hydro_power_generation_reservoirs', 'hydro_power_generation_rivers', 'solar_photovoltaic_power_generation', 'wind_power_generation_offshore', 'wind_power_generation_onshore']
 	assert variable in variable_valid_values
 
@@ -559,7 +561,7 @@ def download_sis_energy_derived_reanalysis(variable: str, spatial_aggregation: s
 
 
 # dataset: satellite-sea-level-global
-def download_satellite_sea_level_global(variable: str, year: str, month: str, day: str, version: str = 'vDT2021'):
+def download_satellite_sea_level_global(variable: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], version: str = 'vDT2021'):
 	variable_valid_values = ['daily', 'monthly_mean']
 	assert variable in variable_valid_values
 
@@ -579,7 +581,7 @@ def download_satellite_sea_level_global(variable: str, year: str, month: str, da
 
 
 # dataset: satellite-sea-surface-temperature-ensemble-product
-def download_satellite_sea_surface_temperature_ensemble_product(variable: str = 'all', year: str, month: str, day: str):
+def download_satellite_sea_surface_temperature_ensemble_product(variable: str = 'all', year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str]):
 	variable_valid_values = ['all']
 	assert variable in variable_valid_values
 
@@ -596,7 +598,7 @@ def download_satellite_sea_surface_temperature_ensemble_product(variable: str = 
 
 
 # dataset: reanalysis-carra-height-levels
-def download_reanalysis_carra_height_levels(domain: str, variable: str, height_level: str, product_type: str, time: str, leadtime_hour: str, year: str, month: str, day: str, data_format: str = 'grib'):
+def download_reanalysis_carra_height_levels(domain: str, variable: OneOrMore[str], height_level: OneOrMore[str], product_type: str, time: OneOrMore[str], leadtime_hour: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], data_format: str = 'grib'):
 	domain_valid_values = ['east_domain', 'west_domain']
 	assert domain in domain_valid_values
 
@@ -631,7 +633,7 @@ def download_reanalysis_carra_height_levels(domain: str, variable: str, height_l
 
 
 # dataset: derived-era5-land-daily-statistics
-def download_derived_era5_land_daily_statistics(variable: str, year: str, month: str, day: str, daily_statistic: str = 'daily_mean', time_zone: str = 'utc+00:00', frequency: str = '1_hourly', area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_derived_era5_land_daily_statistics(variable: OneOrMore[str], year: str, month: str, day: OneOrMore[str], daily_statistic: str = 'daily_mean', time_zone: str = 'utc+00:00', frequency: str = '1_hourly', area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	variable_valid_values = ['2m_dewpoint_temperature', '2m_temperature', 'skin_temperature', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'lake_bottom_temperature', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'snow_albedo', 'snow_cover', 'snow_density', 'snow_depth', 'snow_depth_water_equivalent', 'temperature_of_snow_layer', 'skin_reservoir_content', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', '10m_u_component_of_wind', '10m_v_component_of_wind', 'surface_pressure', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation', 'forecast_albedo']
 	assert variable in variable_valid_values
 
@@ -657,7 +659,7 @@ def download_derived_era5_land_daily_statistics(variable: str, year: str, month:
 
 
 # dataset: insitu-observations-woudc-ozone-total-column-and-profiles
-def download_insitu_observations_woudc_ozone_total_column_and_profiles(observation_type: str, variable: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', format: str):
+def download_insitu_observations_woudc_ozone_total_column_and_profiles(observation_type: OneOrMore[str], variable: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', format: str):
 	observation_type_valid_values = ['total_column', 'vertical_profile']
 	assert observation_type in observation_type_valid_values
 
@@ -680,7 +682,7 @@ def download_insitu_observations_woudc_ozone_total_column_and_profiles(observati
 
 
 # dataset: insitu-glaciers-extent
-def download_insitu_glaciers_extent(variable: str, product_type: str, version: str = '7'):
+def download_insitu_glaciers_extent(variable: OneOrMore[str], product_type: OneOrMore[str], version: str = '7'):
 	variable_valid_values = ['glacier_area']
 	assert variable in variable_valid_values
 
@@ -694,7 +696,7 @@ def download_insitu_glaciers_extent(variable: str, product_type: str, version: s
 
 
 # dataset: projections-cmip5-daily-pressure-levels
-def download_projections_cmip5_daily_pressure_levels(experiment: str, variable: str, model: str, ensemble_member: str = 'r1i1p1', period: str):
+def download_projections_cmip5_daily_pressure_levels(experiment: str, variable: OneOrMore[str], model: str, ensemble_member: str = 'r1i1p1', period: OneOrMore[str]):
 	experiment_valid_values = ['amip', 'historical', 'rcp_2_6', 'rcp_4_5', 'rcp_6_0', 'rcp_8_5']
 	assert experiment in experiment_valid_values
 
@@ -714,7 +716,7 @@ def download_projections_cmip5_daily_pressure_levels(experiment: str, variable: 
 
 
 # dataset: satellite-fire-burned-area
-def download_satellite_fire_burned_area(origin: str, sensor: str, variable: str, version: str, region: str, year: str, month: str, nominal_day: str):
+def download_satellite_fire_burned_area(origin: str, sensor: str, variable: str, version: str, region: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], nominal_day: OneOrMore[str]):
 	origin_valid_values = ['c3s', 'esa_cci']
 	assert origin in origin_valid_values
 
@@ -743,7 +745,7 @@ def download_satellite_fire_burned_area(origin: str, sensor: str, variable: str,
 
 
 # dataset: reanalysis-uerra-europe-pressure-levels
-def download_reanalysis_uerra_europe_pressure_levels(variable: str, pressure_level: str, year: str, month: str, day: str, time: str, data_format: str = 'grib'):
+def download_reanalysis_uerra_europe_pressure_levels(variable: str, pressure_level: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], time: OneOrMore[str], data_format: str = 'grib'):
 	variable_valid_values = ['geopotential', 'geopotential_height', 'relative_humidity', 'temperature', 'u_component_of_wind', 'v_component_of_wind']
 	assert variable in variable_valid_values
 
@@ -769,7 +771,7 @@ def download_reanalysis_uerra_europe_pressure_levels(variable: str, pressure_lev
 
 
 # dataset: satellite-sea-ice-edge-type
-def download_satellite_sea_ice_edge_type(variable: str, region: str, cdr_type: str, year: str, month: str, day: str, version: str = '3_0'):
+def download_satellite_sea_ice_edge_type(variable: OneOrMore[str], region: str, cdr_type: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], version: str = '3_0'):
 	variable_valid_values = ['sea_ice_edge', 'sea_ice_type']
 	assert variable in variable_valid_values
 
@@ -795,7 +797,7 @@ def download_satellite_sea_ice_edge_type(variable: str, region: str, cdr_type: s
 
 
 # dataset: sis-ocean-wave-timeseries
-def download_sis_ocean_wave_timeseries(variable: str, experiment: str, year: str):
+def download_sis_ocean_wave_timeseries(variable: OneOrMore[str], experiment: str, year: OneOrMore[str]):
 	variable_valid_values = ['Mean wave direction', 'Mean wave period', 'Peak wave period', 'Significant wave height', 'Wave spectral directional width']
 	assert variable in variable_valid_values
 
@@ -809,7 +811,7 @@ def download_sis_ocean_wave_timeseries(variable: str, experiment: str, year: str
 
 
 # dataset: satellite-cloud-properties
-def download_satellite_cloud_properties(product_family: str, origin: str, variable: str, sensor_on_satellite: str, climate_data_record_type: str, time_aggregation: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_satellite_cloud_properties(product_family: str, origin: str, variable: OneOrMore[str], sensor_on_satellite: OneOrMore[str], climate_data_record_type: str, time_aggregation: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	product_family_valid_values = ['clara_a2', 'clara_a3', 'cci']
 	assert product_family in product_family_valid_values
 
@@ -841,7 +843,7 @@ def download_satellite_cloud_properties(product_family: str, origin: str, variab
 
 
 # dataset: seasonal-postprocessed-pressure-levels
-def download_seasonal_postprocessed_pressure_levels(originating_centre: str, system: str, variable: str, pressure_level: str, product_type: str, year: str, month: str, leadtime_month: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib'):
+def download_seasonal_postprocessed_pressure_levels(originating_centre: str, system: str, variable: OneOrMore[str], pressure_level: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], leadtime_month: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib'):
 	originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc', 'ncep', 'jma', 'eccc']
 	assert originating_centre in originating_centre_valid_values
 
@@ -873,7 +875,7 @@ def download_seasonal_postprocessed_pressure_levels(originating_centre: str, sys
 
 
 # dataset: sis-heat-and-cold-spells
-def download_sis_heat_and_cold_spells(variable: str, definition: str, experiment: str, ensemble_statistic: str):
+def download_sis_heat_and_cold_spells(variable: OneOrMore[str], definition: str, experiment: OneOrMore[str], ensemble_statistic: OneOrMore[str]):
 	variable_valid_values = ['heat_wave_days', 'cold_spell_days']
 	assert variable in variable_valid_values
 
@@ -890,7 +892,7 @@ def download_sis_heat_and_cold_spells(variable: str, definition: str, experiment
 
 
 # dataset: derived-gridded-glacier-mass-change
-def download_derived_gridded_glacier_mass_change(variable: str = 'glacier_mass_change', hydrological_year: str, product_version: str = 'wgms_fog_2023_09'):
+def download_derived_gridded_glacier_mass_change(variable: str = 'glacier_mass_change', hydrological_year: OneOrMore[str], product_version: str = 'wgms_fog_2023_09'):
 	variable_valid_values = ['glacier_mass_change']
 	assert variable in variable_valid_values
 
@@ -904,7 +906,7 @@ def download_derived_gridded_glacier_mass_change(variable: str = 'glacier_mass_c
 
 
 # dataset: reanalysis-cerra-land
-def download_reanalysis_cerra_land(variable: str, level_type: str, soil_layer: str, product_type: str, year: str, month: str, day: str, time: str, leadtime_hour: str, data_format: str = 'grib'):
+def download_reanalysis_cerra_land(variable: OneOrMore[str], level_type: OneOrMore[str], soil_layer: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], time: OneOrMore[str], leadtime_hour: OneOrMore[str], data_format: str = 'grib'):
 	variable_valid_values = ['albedo', 'evaporation', 'fraction_of_snow_cover', 'lake_bottom_temperature', 'lake_depth', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'land_sea_mask', 'liquid_volumetric_soil_moisture', 'orography', 'percolation', 'skin_temperature', 'snow_albedo', 'snow_density', 'snow_depth', 'snow_depth_water_equivalent', 'snow_melt', 'soil_heat_flux', 'soil_temperature', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_thermal_radiation', 'surface_roughness', 'surface_runoff', 'surface_sensible_heat_flux', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downwards', 'temperature_of_snow_layer', 'total_precipitation', 'volumetric_soil_moisture', 'volumetric_transpiration_stress_onset', 'volumetric_wilting_point']
 	assert variable in variable_valid_values
 
@@ -939,7 +941,7 @@ def download_reanalysis_cerra_land(variable: str, level_type: str, soil_layer: s
 
 
 # dataset: satellite-sea-surface-temperature
-def download_satellite_sea_surface_temperature(variable: str = 'all', processinglevel: str, sensor_on_satellite: str, version: str = '2_1', year: str, month: str, day: str):
+def download_satellite_sea_surface_temperature(variable: str = 'all', processinglevel: str, sensor_on_satellite: str, version: str = '2_1', year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str]):
 	variable_valid_values = ['all']
 	assert variable in variable_valid_values
 
@@ -965,7 +967,7 @@ def download_satellite_sea_surface_temperature(variable: str = 'all', processing
 
 
 # dataset: reanalysis-uerra-europe-height-levels
-def download_reanalysis_uerra_europe_height_levels(variable: str, height_level: str, year: str, month: str, day: str, time: str, data_format: str = 'grib'):
+def download_reanalysis_uerra_europe_height_levels(variable: str, height_level: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], time: OneOrMore[str], data_format: str = 'grib'):
 	variable_valid_values = ['pressure', 'relative_humidity', 'temperature', 'wind_direction', 'wind_speed']
 	assert variable in variable_valid_values
 
@@ -991,7 +993,7 @@ def download_reanalysis_uerra_europe_height_levels(variable: str, height_level: 
 
 
 # dataset: reanalysis-era5-land
-def download_reanalysis_era5_land(variable: str, year: str, month: str, day: str, time: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib', download_format: str = 'unarchived'):
+def download_reanalysis_era5_land(variable: OneOrMore[str], year: str, month: str, day: OneOrMore[str], time: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib', download_format: str = 'unarchived'):
 	variable_valid_values = ['2m_dewpoint_temperature', '2m_temperature', 'skin_temperature', 'soil_temperature_level_1', 'soil_temperature_level_2', 'soil_temperature_level_3', 'soil_temperature_level_4', 'lake_bottom_temperature', 'lake_ice_depth', 'lake_ice_temperature', 'lake_mix_layer_depth', 'lake_mix_layer_temperature', 'lake_shape_factor', 'lake_total_layer_temperature', 'snow_albedo', 'snow_cover', 'snow_density', 'snow_depth', 'snow_depth_water_equivalent', 'snowfall', 'snowmelt', 'temperature_of_snow_layer', 'skin_reservoir_content', 'volumetric_soil_water_layer_1', 'volumetric_soil_water_layer_2', 'volumetric_soil_water_layer_3', 'volumetric_soil_water_layer_4', 'forecast_albedo', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_thermal_radiation', 'surface_sensible_heat_flux', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downwards', 'evaporation_from_bare_soil', 'evaporation_from_open_water_surfaces_excluding_oceans', 'evaporation_from_the_top_of_canopy', 'evaporation_from_vegetation_transpiration', 'potential_evaporation', 'runoff', 'snow_evaporation', 'sub_surface_runoff', 'surface_runoff', 'total_evaporation', '10m_u_component_of_wind', '10m_v_component_of_wind', 'surface_pressure', 'total_precipitation', 'leaf_area_index_high_vegetation', 'leaf_area_index_low_vegetation']
 	assert variable in variable_valid_values
 
@@ -1017,7 +1019,7 @@ def download_reanalysis_era5_land(variable: str, year: str, month: str, day: str
 
 
 # dataset: reanalysis-carra-single-levels
-def download_reanalysis_carra_single_levels(domain: str, level_type: str, variable: str, soil_level: str, product_type: str, time: str, leadtime_hour: str, year: str, month: str, day: str, data_format: str = 'grib'):
+def download_reanalysis_carra_single_levels(domain: str, level_type: str, variable: OneOrMore[str], soil_level: OneOrMore[str], product_type: str, time: OneOrMore[str], leadtime_hour: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], data_format: str = 'grib'):
 	domain_valid_values = ['east_domain', 'west_domain']
 	assert domain in domain_valid_values
 
@@ -1055,7 +1057,7 @@ def download_reanalysis_carra_single_levels(domain: str, level_type: str, variab
 
 
 # dataset: sis-biodiversity-cmip5-regional
-def download_sis_biodiversity_cmip5_regional(region: str, variable: str, derived_variable: str, model: str, ensemble_member: str, experiment: str, statistic: str, version: str = '1.0'):
+def download_sis_biodiversity_cmip5_regional(region: OneOrMore[str], variable: OneOrMore[str], derived_variable: OneOrMore[str], model: OneOrMore[str], ensemble_member: OneOrMore[str], experiment: OneOrMore[str], statistic: OneOrMore[str], version: OneOrMore[str] = '1.0'):
 	region_valid_values = ['central_africa', 'northern_brazil', 'europe']
 	assert region in region_valid_values
 
@@ -1084,7 +1086,7 @@ def download_sis_biodiversity_cmip5_regional(region: str, variable: str, derived
 
 
 # dataset: insitu-gridded-observations-global-and-regional
-def download_insitu_gridded_observations_global_and_regional(origin: str, region: str, variable: str, statistic: str, time_aggregation: str, horizontal_aggregation: str, year: str, version: str):
+def download_insitu_gridded_observations_global_and_regional(origin: str, region: str, variable: OneOrMore[str], statistic: OneOrMore[str], time_aggregation: str, horizontal_aggregation: OneOrMore[str], year: OneOrMore[str], version: OneOrMore[str]):
 	origin_valid_values = ['berkearth', 'chirps', 'cmorph', 'cpc', 'cpc_conus', 'cru', 'gistemp', 'gpcc', 'imerg']
 	assert origin in origin_valid_values
 
@@ -1113,7 +1115,7 @@ def download_insitu_gridded_observations_global_and_regional(origin: str, region
 
 
 # dataset: projections-cmip5-daily-single-levels
-def download_projections_cmip5_daily_single_levels(experiment: str, variable: str, model: str, ensemble_member: str = 'r1i1p1', period: str):
+def download_projections_cmip5_daily_single_levels(experiment: str, variable: OneOrMore[str], model: str, ensemble_member: str = 'r1i1p1', period: OneOrMore[str]):
 	experiment_valid_values = ['amip', 'historical', 'rcp_2_6', 'rcp_4_5', 'rcp_6_0', 'rcp_8_5']
 	assert experiment in experiment_valid_values
 
@@ -1133,7 +1135,7 @@ def download_projections_cmip5_daily_single_levels(experiment: str, variable: st
 
 
 # dataset: sis-biodiversity-era5-global
-def download_sis_biodiversity_era5_global(variable: str, derived_variable: str, temporal_aggregation: str, statistic: str, version: str = '1.0'):
+def download_sis_biodiversity_era5_global(variable: OneOrMore[str], derived_variable: OneOrMore[str], temporal_aggregation: OneOrMore[str], statistic: OneOrMore[str], version: OneOrMore[str] = '1.0'):
 	variable_valid_values = ['annual_mean_temperature', 'mean_diurnal_range', 'isothermality', 'temperature_seasonality', 'maximum_temperature_of_warmest_month', 'minimum_temperature_of_coldest_month', 'temperature_annual_range', 'mean_temperature_of_wettest_quarter', 'mean_temperature_of_driest_quarter', 'mean_temperature_of_warmest_quarter', 'mean_temperature_of_coldest_quarter', 'annual_precipitation', 'precipitation_of_wettest_month', 'precipitation_of_driest_month', 'precipitation_seasonality', 'precipitation_of_wettest_quarter', 'precipitation_of_driest_quarter', 'precipitation_of_warmest_quarter', 'precipitation_of_coldest_quarter', 'aridity', 'dry_spells', 'dry_days', 'summer_days', 'surface_latent_heat_flux', 'surface_sensible_heat_flux', 'evaporative_fraction', 'frost_days', 'growing_season', 'growing_degree_days', 'growing_degree_days_during_growing_season_length', 'koeppen_geiger_class', 'potential_evaporation', 'sea_ice_concentration', 'sea_surface_temperature', '2m_temperature', 'precipitation', 'water_vapour_pressure', 'cloud_cover', 'volumetric_soil_water', 'wind_speed', 'zonal_wind_speed', 'meridional_wind_speed']
 	assert variable in variable_valid_values
 
@@ -1153,7 +1155,7 @@ def download_sis_biodiversity_era5_global(variable: str, derived_variable: str, 
 
 
 # dataset: reanalysis-era5-land-monthly-means
-def download_reanalysis_era5_land_monthly_means(product_type: str, variable: str, year: str, month: str, time: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib', download_format: str = 'unarchived'):
+def download_reanalysis_era5_land_monthly_means(product_type: OneOrMore[str], variable: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], time: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib', download_format: str = 'unarchived'):
 	product_type_valid_values = ['monthly_averaged_reanalysis', 'monthly_averaged_reanalysis_by_hour_of_day']
 	assert product_type in product_type_valid_values
 
@@ -1179,7 +1181,7 @@ def download_reanalysis_era5_land_monthly_means(product_type: str, variable: str
 
 
 # dataset: insitu-comprehensive-upper-air-observation-network
-def download_insitu_comprehensive_upper_air_observation_network(variable: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', format: str):
+def download_insitu_comprehensive_upper_air_observation_network(variable: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', format: str):
 	variable_valid_values = ['air_pressure', 'air_temperature', 'dew_point_temperature', 'dew_point_depression', 'specific_humidity', 'relative_humidity', 'wind_speed', 'wind_from_direction', 'eastward_wind_speed', 'northward_wind_speed', 'geopotential_height', 'wind_bias_estimate', 'rise_bias_estimate', 'desroziers_30_uncertainty', 'humidity_bias_estimate']
 	assert variable in variable_valid_values
 
@@ -1199,7 +1201,7 @@ def download_insitu_comprehensive_upper_air_observation_network(variable: str, y
 
 
 # dataset: projections-cmip6
-def download_projections_cmip6(temporal_resolution: str, experiment: str, variable: str, level: str, model: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_projections_cmip6(temporal_resolution: str, experiment: str, variable: str, level: OneOrMore[str], model: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	temporal_resolution_valid_values = ['monthly', 'daily', 'fixed']
 	assert temporal_resolution in temporal_resolution_valid_values
 
@@ -1228,7 +1230,7 @@ def download_projections_cmip6(temporal_resolution: str, experiment: str, variab
 
 
 # dataset: insitu-observations-gruan-reference-network
-def download_insitu_observations_gruan_reference_network(variable: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', format: str):
+def download_insitu_observations_gruan_reference_network(variable: OneOrMore[str], year: str, month: str, day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', format: str):
 	variable_valid_values = ['air_temperature', 'relative_humidity', 'air_relative_humidity_effective_vertical_resolution', 'eastward_wind_speed', 'northward_wind_speed', 'wind_from_direction', 'wind_speed', 'shortwave_radiation', 'altitude', 'frost_point_temperature', 'geopotential_height', 'vertical_speed_of_radiosonde', 'water_vapour_mixing_ratio']
 	assert variable in variable_valid_values
 
@@ -1248,7 +1250,7 @@ def download_insitu_observations_gruan_reference_network(variable: str, year: st
 
 
 # dataset: insitu-gridded-observations-europe
-def download_insitu_gridded_observations_europe(product_type: str, variable: str, grid_resolution: str, period: str, version: str):
+def download_insitu_gridded_observations_europe(product_type: str, variable: OneOrMore[str], grid_resolution: str, period: str, version: OneOrMore[str]):
 	product_type_valid_values = ['ensemble_mean', 'ensemble_spread', 'elevation']
 	assert product_type in product_type_valid_values
 
@@ -1268,7 +1270,7 @@ def download_insitu_gridded_observations_europe(product_type: str, variable: str
 
 
 # dataset: derived-era5-pressure-levels-daily-statistics
-def download_derived_era5_pressure_levels_daily_statistics(product_type: str = 'reanalysis', variable: str, year: str, month: str, day: str, pressure_level: str, daily_statistic: str = 'daily_mean', time_zone: str = 'utc+00:00', frequency: str = '1_hourly', area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_derived_era5_pressure_levels_daily_statistics(product_type: str = 'reanalysis', variable: OneOrMore[str], year: str, month: OneOrMore[str], day: OneOrMore[str], pressure_level: OneOrMore[str], daily_statistic: str = 'daily_mean', time_zone: str = 'utc+00:00', frequency: str = '1_hourly', area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	product_type_valid_values = ['reanalysis', 'ensemble_members', 'ensemble_mean']
 	assert product_type in product_type_valid_values
 
@@ -1305,7 +1307,7 @@ def download_reanalysis_era5_complete(download_instructions: Optional[str] = Non
 
 
 # dataset: derived-near-surface-meteorological-variables
-def download_derived_near_surface_meteorological_variables(variable: str, reference_dataset: str, year: str, month: str, version: str = '2.1'):
+def download_derived_near_surface_meteorological_variables(variable: OneOrMore[str], reference_dataset: str, year: OneOrMore[str], month: OneOrMore[str], version: OneOrMore[str] = '2.1'):
 	variable_valid_values = ['grid_point_altitude', 'near_surface_wind_speed', 'near_surface_air_temperature', 'surface_air_pressure', 'near_surface_specific_humidity', 'surface_downwelling_shortwave_radiation', 'surface_downwelling_longwave_radiation', 'rainfall_flux', 'snowfall_flux']
 	assert variable in variable_valid_values
 
@@ -1325,7 +1327,7 @@ def download_derived_near_surface_meteorological_variables(variable: str, refere
 
 
 # dataset: sis-tourism-snow-indicators
-def download_sis_tourism_snow_indicators(time_aggregation: str, variable: str, experiment: str, rcm: str, gcm: str, period: str, statistic: str, year: str, version: str):
+def download_sis_tourism_snow_indicators(time_aggregation: str, variable: OneOrMore[str], experiment: str, rcm: str, gcm: OneOrMore[str], period: OneOrMore[str], statistic: OneOrMore[str], year: OneOrMore[str], version: OneOrMore[str]):
 	time_aggregation_valid_values = ['climatology', 'annual_data']
 	assert time_aggregation in time_aggregation_valid_values
 
@@ -1362,7 +1364,7 @@ def download_reanalysis_uerra_europe_complete(download_instructions: Optional[st
 
 
 # dataset: sis-european-risk-extreme-precipitation-indicators
-def download_sis_european_risk_extreme_precipitation_indicators(spatial_coverage: str, variable: str, city: str, product_type: str, temporal_aggregation: str, percentile: str, return_period: str, period: str):
+def download_sis_european_risk_extreme_precipitation_indicators(spatial_coverage: OneOrMore[str], variable: OneOrMore[str], city: OneOrMore[str], product_type: OneOrMore[str], temporal_aggregation: OneOrMore[str], percentile: OneOrMore[str], return_period: OneOrMore[str], period: OneOrMore[str]):
 	spatial_coverage_valid_values = ['city', 'europe']
 	assert spatial_coverage in spatial_coverage_valid_values
 
@@ -1391,7 +1393,7 @@ def download_sis_european_risk_extreme_precipitation_indicators(spatial_coverage
 
 
 # dataset: satellite-total-column-water-vapour-land-ocean
-def download_satellite_total_column_water_vapour_land_ocean(variable: str = 'all', product: str, horizontal_aggregation: str, temporal_aggregation: str, year: str, month: str, day: str):
+def download_satellite_total_column_water_vapour_land_ocean(variable: str = 'all', product: str, horizontal_aggregation: OneOrMore[str], temporal_aggregation: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str]):
 	variable_valid_values = ['all']
 	assert variable in variable_valid_values
 
@@ -1417,7 +1419,7 @@ def download_satellite_total_column_water_vapour_land_ocean(variable: str = 'all
 
 
 # dataset: sis-temperature-statistics
-def download_sis_temperature_statistics(variable: str, period: str, statistic: str, experiment: str, ensemble_statistic: str):
+def download_sis_temperature_statistics(variable: str, period: str, statistic: OneOrMore[str], experiment: OneOrMore[str], ensemble_statistic: OneOrMore[str]):
 	variable_valid_values = ['maximum_temperature', 'minimum_temperature', 'average_temperature']
 	assert variable in variable_valid_values
 
@@ -1437,7 +1439,7 @@ def download_sis_temperature_statistics(variable: str, period: str, statistic: s
 
 
 # dataset: satellite-fire-radiative-power
-def download_satellite_fire_radiative_power(variable: str = 'all', product_type: str, time_aggregation: str, horizontal_aggregation: str, satellite: str, observation_time: str, year: str, month: str, day: str, version: str):
+def download_satellite_fire_radiative_power(variable: str = 'all', product_type: str, time_aggregation: str, horizontal_aggregation: str, satellite: OneOrMore[str], observation_time: OneOrMore[str], year: str, month: OneOrMore[str], day: OneOrMore[str], version: OneOrMore[str]):
 	variable_valid_values = ['all']
 	assert variable in variable_valid_values
 
@@ -1472,7 +1474,7 @@ def download_satellite_fire_radiative_power(variable: str = 'all', product_type:
 
 
 # dataset: satellite-methane
-def download_satellite_methane(processing_level: str, variable: str, sensor_and_algorithm: str, year: str, month: str, day: str, version: str):
+def download_satellite_methane(processing_level: OneOrMore[str], variable: str, sensor_and_algorithm: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], version: OneOrMore[str]):
 	processing_level_valid_values = ['level_2', 'level_3']
 	assert processing_level in processing_level_valid_values
 
@@ -1498,7 +1500,7 @@ def download_satellite_methane(processing_level: str, variable: str, sensor_and_
 
 
 # dataset: satellite-ice-sheet-elevation-change
-def download_satellite_ice_sheet_elevation_change(domain: str, climate_data_record_type: str, version: str, variable: str = 'all'):
+def download_satellite_ice_sheet_elevation_change(domain: OneOrMore[str], climate_data_record_type: OneOrMore[str], version: OneOrMore[str], variable: str = 'all'):
 	domain_valid_values = ['antarctica', 'greenland']
 	assert domain in domain_valid_values
 
@@ -1515,7 +1517,7 @@ def download_satellite_ice_sheet_elevation_change(domain: str, climate_data_reco
 
 
 # dataset: seasonal-monthly-pressure-levels
-def download_seasonal_monthly_pressure_levels(originating_centre: str, system: str, variable: str, pressure_level: str, product_type: str, year: str, month: str, leadtime_month: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib'):
+def download_seasonal_monthly_pressure_levels(originating_centre: str, system: str, variable: OneOrMore[str], pressure_level: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], leadtime_month: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib'):
 	originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc', 'ncep', 'jma', 'eccc']
 	assert originating_centre in originating_centre_valid_values
 
@@ -1547,7 +1549,7 @@ def download_seasonal_monthly_pressure_levels(originating_centre: str, system: s
 
 
 # dataset: satellite-carbon-dioxide
-def download_satellite_carbon_dioxide(processing_level: str, variable: str, sensor_and_algorithm: str, year: str, month: str, day: str, version: str):
+def download_satellite_carbon_dioxide(processing_level: OneOrMore[str], variable: str, sensor_and_algorithm: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], version: OneOrMore[str]):
 	processing_level_valid_values = ['level_2', 'level_3']
 	assert processing_level in processing_level_valid_values
 
@@ -1573,7 +1575,7 @@ def download_satellite_carbon_dioxide(processing_level: str, variable: str, sens
 
 
 # dataset: insitu-observations-surface-land
-def download_insitu_observations_surface_land(time_aggregation: str, variable: str, usage_restrictions: str, data_quality: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_insitu_observations_surface_land(time_aggregation: str, variable: OneOrMore[str], usage_restrictions: OneOrMore[str], data_quality: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	time_aggregation_valid_values = ['daily', 'monthly', 'sub_daily']
 	assert time_aggregation in time_aggregation_valid_values
 
@@ -1599,7 +1601,7 @@ def download_insitu_observations_surface_land(time_aggregation: str, variable: s
 
 
 # dataset: projections-cmip5-monthly-single-levels
-def download_projections_cmip5_monthly_single_levels(experiment: str, variable: str, model: str, ensemble_member: str = 'r1i1p1', period: str):
+def download_projections_cmip5_monthly_single_levels(experiment: str, variable: OneOrMore[str], model: str, ensemble_member: str = 'r1i1p1', period: OneOrMore[str]):
 	experiment_valid_values = ['amip', 'historical', 'rcp_2_6', 'rcp_4_5', 'rcp_6_0', 'rcp_8_5']
 	assert experiment in experiment_valid_values
 
@@ -1619,7 +1621,7 @@ def download_projections_cmip5_monthly_single_levels(experiment: str, variable: 
 
 
 # dataset: insitu-observations-surface-marine
-def download_insitu_observations_surface_marine(variable: str, data_quality: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_insitu_observations_surface_marine(variable: OneOrMore[str], data_quality: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	variable_valid_values = ['air_pressure_at_sea_level', 'air_temperature', 'dew_point_temperature', 'water_temperature', 'wind_from_direction', 'wind_speed']
 	assert variable in variable_valid_values
 
@@ -1639,7 +1641,7 @@ def download_insitu_observations_surface_marine(variable: str, data_quality: str
 
 
 # dataset: seasonal-monthly-ocean
-def download_seasonal_monthly_ocean(originating_centre: str, system: str, variable: str, forecast_type: str, year: str, month: str):
+def download_seasonal_monthly_ocean(originating_centre: str, system: str, variable: OneOrMore[str], forecast_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str]):
 	originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc']
 	assert originating_centre in originating_centre_valid_values
 
@@ -1662,7 +1664,7 @@ def download_seasonal_monthly_ocean(originating_centre: str, system: str, variab
 
 
 # dataset: seasonal-monthly-single-levels
-def download_seasonal_monthly_single_levels(originating_centre: str, system: str, variable: str, product_type: str, year: str, month: str, leadtime_month: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib'):
+def download_seasonal_monthly_single_levels(originating_centre: str, system: str, variable: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], leadtime_month: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib'):
 	originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc', 'ncep', 'jma', 'eccc']
 	assert originating_centre in originating_centre_valid_values
 
@@ -1691,7 +1693,7 @@ def download_seasonal_monthly_single_levels(originating_centre: str, system: str
 
 
 # dataset: satellite-greenland-ice-sheet-velocity
-def download_satellite_greenland_ice_sheet_velocity(variable: str = 'all', period: str, version: str):
+def download_satellite_greenland_ice_sheet_velocity(variable: str = 'all', period: OneOrMore[str], version: OneOrMore[str]):
 	variable_valid_values = ['all']
 	assert variable in variable_valid_values
 
@@ -1705,7 +1707,7 @@ def download_satellite_greenland_ice_sheet_velocity(variable: str = 'all', perio
 
 
 # dataset: satellite-ozone-v1
-def download_satellite_ozone_v1(processing_level: str, variable: str, vertical_aggregation: str, sensor: str, algorithm: str, year: str, month: str, version: str):
+def download_satellite_ozone_v1(processing_level: str, variable: str, vertical_aggregation: str, sensor: OneOrMore[str], algorithm: str, year: OneOrMore[str], month: OneOrMore[str], version: OneOrMore[str]):
 	processing_level_valid_values = ['level_3', 'level_4']
 	assert processing_level in processing_level_valid_values
 
@@ -1734,7 +1736,7 @@ def download_satellite_ozone_v1(processing_level: str, variable: str, vertical_a
 
 
 # dataset: derived-era5-single-levels-daily-statistics
-def download_derived_era5_single_levels_daily_statistics(product_type: str = 'reanalysis', variable: str, year: str, month: str, day: str, daily_statistic: str = 'daily_mean', time_zone: str = 'utc+00:00', frequency: str = '1_hourly', area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_derived_era5_single_levels_daily_statistics(product_type: str = 'reanalysis', variable: OneOrMore[str], year: str, month: OneOrMore[str], day: OneOrMore[str], daily_statistic: str = 'daily_mean', time_zone: str = 'utc+00:00', frequency: str = '1_hourly', area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	product_type_valid_values = ['reanalysis', 'ensemble_members', 'ensemble_mean']
 	assert product_type in product_type_valid_values
 
@@ -1763,7 +1765,7 @@ def download_derived_era5_single_levels_daily_statistics(product_type: str = 're
 
 
 # dataset: seasonal-original-single-levels
-def download_seasonal_original_single_levels(originating_centre: str, system: str, variable: str, year: str, month: str, day: str, leadtime_hour: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib'):
+def download_seasonal_original_single_levels(originating_centre: str, system: str, variable: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], leadtime_hour: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib'):
 	originating_centre_valid_values = ['ecmwf', 'ukmo', 'meteo_france', 'dwd', 'cmcc', 'ncep', 'jma', 'eccc']
 	assert originating_centre in originating_centre_valid_values
 
@@ -1792,7 +1794,7 @@ def download_seasonal_original_single_levels(originating_centre: str, system: st
 
 
 # dataset: reanalysis-cerra-single-levels
-def download_reanalysis_cerra_single_levels(variable: str, level_type: str, soil_layer: str, data_type: str, product_type: str, year: str, month: str, day: str, time: str, leadtime_hour: str, data_format: str = 'grib'):
+def download_reanalysis_cerra_single_levels(variable: OneOrMore[str], level_type: str, soil_layer: OneOrMore[str], data_type: OneOrMore[str], product_type: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], time: OneOrMore[str], leadtime_hour: OneOrMore[str], data_format: str = 'grib'):
 	variable_valid_values = ['10m_wind_direction', '10m_wind_gust_since_previous_post_processing', '10m_wind_speed', '2m_relative_humidity', '2m_temperature', 'albedo', 'evaporation', 'high_cloud_cover', 'land_sea_mask', 'liquid_volumetric_soil_moisture', 'low_cloud_cover', 'maximum_2m_temperature_since_previous_post_processing', 'mean_sea_level_pressure', 'medium_cloud_cover', 'minimum_2m_temperature_since_previous_post_processing', 'momentum_flux_at_the_surface_u_component', 'momentum_flux_at_the_surface_v_component', 'orography', 'skin_temperature', 'snow_density', 'snow_depth', 'snow_depth_water_equivalent', 'snow_fall_water_equivalent', 'soil_temperature', 'surface_latent_heat_flux', 'surface_net_solar_radiation', 'surface_net_solar_radiation_clear_sky', 'surface_net_thermal_radiation', 'surface_net_thermal_radiation_clear_sky', 'surface_pressure', 'surface_roughness', 'surface_sensible_heat_flux', 'surface_solar_radiation_downwards', 'surface_thermal_radiation_downwards', 'time_integrated_surface_direct_short_wave_radiation_flux', 'total_cloud_cover', 'total_column_integrated_water_vapour', 'total_precipitation', 'volumetric_soil_moisture']
 	assert variable in variable_valid_values
 
@@ -1830,7 +1832,7 @@ def download_reanalysis_cerra_single_levels(variable: str, level_type: str, soil
 
 
 # dataset: satellite-precipitation-microwave
-def download_satellite_precipitation_microwave(variable: str = 'all', time_aggregation: str, year: str, month: str, day: str, version: str = 'v1.0'):
+def download_satellite_precipitation_microwave(variable: str = 'all', time_aggregation: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], version: OneOrMore[str] = 'v1.0'):
 	variable_valid_values = ['all']
 	assert variable in variable_valid_values
 
@@ -1853,7 +1855,7 @@ def download_satellite_precipitation_microwave(variable: str = 'all', time_aggre
 
 
 # dataset: sis-ocean-wave-indicators
-def download_sis_ocean_wave_indicators(variable: str, experiment: str, period: str, statistic: str):
+def download_sis_ocean_wave_indicators(variable: OneOrMore[str], experiment: str, period: OneOrMore[str], statistic: OneOrMore[str]):
 	variable_valid_values = ['peak_wave_period', 'significant_wave_height']
 	assert variable in variable_valid_values
 
@@ -1870,7 +1872,7 @@ def download_sis_ocean_wave_indicators(variable: str, experiment: str, period: s
 
 
 # dataset: sis-european-wind-storm-synthetic-events
-def download_sis_european_wind_storm_synthetic_events(variable: str, version_id: str, year: str, month: str):
+def download_sis_european_wind_storm_synthetic_events(variable: OneOrMore[str], version_id: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str]):
 	variable_valid_values = ['wind_speed_of_gusts']
 	assert variable in variable_valid_values
 
@@ -1887,7 +1889,7 @@ def download_sis_european_wind_storm_synthetic_events(variable: str, version_id:
 
 
 # dataset: reanalysis-era5-single-levels-monthly-means
-def download_reanalysis_era5_single_levels_monthly_means(product_type: str, variable: str, year: str, month: str, time: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib', download_format: str = 'unarchived'):
+def download_reanalysis_era5_single_levels_monthly_means(product_type: OneOrMore[str], variable: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], time: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib', download_format: str = 'unarchived'):
 	product_type_valid_values = ['monthly_averaged_reanalysis', 'monthly_averaged_reanalysis_by_hour_of_day', 'monthly_averaged_ensemble_members', 'monthly_averaged_ensemble_members_by_hour_of_day']
 	assert product_type in product_type_valid_values
 
@@ -1913,7 +1915,7 @@ def download_reanalysis_era5_single_levels_monthly_means(product_type: str, vari
 
 
 # dataset: reanalysis-cerra-height-levels
-def download_reanalysis_cerra_height_levels(variable: str, height_level: str, data_type: str, product_type: str, year: str, month: str, day: str, time: str, leadtime_hour: str, data_format: str = 'grib'):
+def download_reanalysis_cerra_height_levels(variable: OneOrMore[str], height_level: OneOrMore[str], data_type: OneOrMore[str], product_type: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], time: OneOrMore[str], leadtime_hour: OneOrMore[str], data_format: str = 'grib'):
 	variable_valid_values = ['pressure', 'relative_humidity', 'specific_cloud_ice_water_content', 'specific_cloud_liquid_water_content', 'specific_rain_water_content', 'specific_snow_water_content', 'temperature', 'turbulent_kinetic_energy', 'wind_direction', 'wind_speed']
 	assert variable in variable_valid_values
 
@@ -1948,7 +1950,7 @@ def download_reanalysis_cerra_height_levels(variable: str, height_level: str, da
 
 
 # dataset: sis-agroproductivity-indicators
-def download_sis_agroproductivity_indicators(product_family: str, variable: str, crop_type: str, year: str, month: str, day: str, growing_season: str, harvest_year: str):
+def download_sis_agroproductivity_indicators(product_family: OneOrMore[str], variable: OneOrMore[str], crop_type: OneOrMore[str], year: str, month: OneOrMore[str], day: OneOrMore[str], growing_season: OneOrMore[str], harvest_year: str):
 	product_family_valid_values = ['crop_productivity_indicators', 'evapotranspiration_indicators']
 	assert product_family in product_family_valid_values
 
@@ -1977,7 +1979,7 @@ def download_sis_agroproductivity_indicators(product_family: str, variable: str,
 
 
 # dataset: derived-reanalysis-energy-moisture-budget
-def download_derived_reanalysis_energy_moisture_budget(variable: str, year: str, month: str, area: Optional[Union[LabelType, GeographicExtentMapType]] = None):
+def download_derived_reanalysis_energy_moisture_budget(variable: str, year: OneOrMore[str], month: OneOrMore[str], area: Optional[Union[LabelType, GeographicExtentMapType]] = None):
 	variable_valid_values = ['divergence_of_vertical_integral_of_latent_heat_flux', 'divergence_of_vertical_integral_of_total_energy_flux', 'divergence_of_vertical_integral_of_water_vapour_flux', 'vertical_integral_of_eastward_latent_heat_flux', 'vertical_integral_of_eastward_total_energy_flux', 'vertical_integral_of_eastward_water_vapour_flux', 'vertical_integral_of_northward_latent_heat_flux', 'vertical_integral_of_northward_total_energy_flux', 'vertical_integral_of_northward_water_vapour_flux', 'tendency_of_vertical_integral_of_latent_heat', 'tendency_of_vertical_integral_of_water_vapour', 'tendency_of_vertical_integral_of_total_energy']
 	assert variable in variable_valid_values
 
@@ -1991,7 +1993,7 @@ def download_derived_reanalysis_energy_moisture_budget(variable: str, year: str,
 
 
 # dataset: sis-hydrology-variables-derived-projections
-def download_sis_hydrology_variables_derived_projections(product_type: str, variable: str, variable_type: str, time_aggregation: str, experiment: str, hydrological_model: str, rcm: str, gcm: str, ensemble_member: str, period: str):
+def download_sis_hydrology_variables_derived_projections(product_type: str, variable: OneOrMore[str], variable_type: str, time_aggregation: str, experiment: OneOrMore[str], hydrological_model: OneOrMore[str], rcm: str, gcm: str, ensemble_member: OneOrMore[str], period: OneOrMore[str]):
 	product_type_valid_values = ['climate_impact_indicators', 'essential_climate_variables']
 	assert product_type in product_type_valid_values
 
@@ -2026,7 +2028,7 @@ def download_sis_hydrology_variables_derived_projections(product_type: str, vari
 
 
 # dataset: reanalysis-carra-model-levels
-def download_reanalysis_carra_model_levels(domain: str, variable: str, model_level: str, product_type: str, time: str, leadtime_hour: str, year: str, month: str, day: str, data_format: str = 'grib'):
+def download_reanalysis_carra_model_levels(domain: str, variable: OneOrMore[str], model_level: OneOrMore[str], product_type: str, time: OneOrMore[str], leadtime_hour: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], data_format: str = 'grib'):
 	domain_valid_values = ['east_domain', 'west_domain']
 	assert domain in domain_valid_values
 
@@ -2061,7 +2063,7 @@ def download_reanalysis_carra_model_levels(domain: str, variable: str, model_lev
 
 
 # dataset: projections-cmip6-decadal-prototype
-def download_projections_cmip6_decadal_prototype(temporal_resolution: str, variable: str, model: str, base_year: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_projections_cmip6_decadal_prototype(temporal_resolution: str, variable: str, model: str, base_year: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	temporal_resolution_valid_values = ['monthly', 'daily']
 	assert temporal_resolution in temporal_resolution_valid_values
 
@@ -2087,7 +2089,7 @@ def download_projections_cmip6_decadal_prototype(temporal_resolution: str, varia
 
 
 # dataset: sis-ecv-cmip5-bias-corrected
-def download_sis_ecv_cmip5_bias_corrected(variable: str, model: str, experiment: str, period: str):
+def download_sis_ecv_cmip5_bias_corrected(variable: str, model: str, experiment: str, period: OneOrMore[str]):
 	variable_valid_values = ['precipitation_flux', 'mean_2m_temperature', 'maximum_2m_temperature', 'minimum_2m_temperature']
 	assert variable in variable_valid_values
 
@@ -2104,7 +2106,7 @@ def download_sis_ecv_cmip5_bias_corrected(variable: str, model: str, experiment:
 
 
 # dataset: satellite-surface-radiation-budget
-def download_satellite_surface_radiation_budget(product_family: str, origin: str, variable: str, sensor_on_satellite: str, climate_data_record_type: str, time_aggregation: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_satellite_surface_radiation_budget(product_family: str, origin: str, variable: OneOrMore[str], sensor_on_satellite: OneOrMore[str], climate_data_record_type: str, time_aggregation: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	product_family_valid_values = ['clara_a2', 'clara_a3', 'cci']
 	assert product_family in product_family_valid_values
 
@@ -2136,7 +2138,7 @@ def download_satellite_surface_radiation_budget(product_family: str, origin: str
 
 
 # dataset: satellite-sea-ice-thickness
-def download_satellite_sea_ice_thickness(satellite: str, cdr_type: str, variable: str = 'all', year: str, month: str, version: str = '3_0'):
+def download_satellite_sea_ice_thickness(satellite: OneOrMore[str], cdr_type: OneOrMore[str], variable: str = 'all', year: OneOrMore[str], month: OneOrMore[str], version: str = '3_0'):
 	satellite_valid_values = ['envisat', 'cryosat_2']
 	assert satellite in satellite_valid_values
 
@@ -2159,7 +2161,7 @@ def download_satellite_sea_ice_thickness(satellite: str, cdr_type: str, variable
 
 
 # dataset: sis-extreme-indices-cmip6
-def download_sis_extreme_indices_cmip6(variable: str, product_type: str, model: str, ensemble_member: str, experiment: str, temporal_aggregation: str, period: str, version: str = '2_0'):
+def download_sis_extreme_indices_cmip6(variable: OneOrMore[str], product_type: OneOrMore[str], model: OneOrMore[str], ensemble_member: OneOrMore[str], experiment: OneOrMore[str], temporal_aggregation: OneOrMore[str], period: OneOrMore[str], version: OneOrMore[str] = '2_0'):
 	variable_valid_values = ['cold_days', 'cold_nights', 'cold_spell_duration_index', 'consecutive_dry_days', 'consecutive_wet_days', 'diurnal_temperature_range', 'extremely_wet_day_precipitation', 'frost_days', 'growing_season_length', 'heavy_precipitation_days', 'ice_days', 'maximum_1_day_precipitation', 'maximum_5_day_precipitation', 'maximum_value_of_daily_maximum_temperature', 'minimum_value_of_daily_maximum_temperature', 'maximum_value_of_daily_minimum_temperature', 'minimum_value_of_daily_minimum_temperature', 'number_of_wet_days', 'simple_daily_intensity_index', 'summer_days', 'total_wet_day_precipitation', 'tropical_nights', 'very_heavy_precipitation_days', 'very_wet_day_precipitation', 'warm_days', 'warm_nights', 'warm_spell_duration_index', 'heat_index', 'humidex', 'universal_thermal_climate_index', 'wet_bulb_temperature_index', 'wet_bulb_globe_temperature_index']
 	assert variable in variable_valid_values
 
@@ -2188,7 +2190,7 @@ def download_sis_extreme_indices_cmip6(variable: str, product_type: str, model: 
 
 
 # dataset: satellite-aerosol-properties
-def download_satellite_aerosol_properties(time_aggregation: str, variable: str, sensor_on_satellite: str, algorithm: str, year: str, month: str, day: str, version: str, orbit: str):
+def download_satellite_aerosol_properties(time_aggregation: str, variable: OneOrMore[str], sensor_on_satellite: str, algorithm: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], version: OneOrMore[str], orbit: OneOrMore[str]):
 	time_aggregation_valid_values = ['daily_average', 'monthly_average', '5_daily_composite']
 	assert time_aggregation in time_aggregation_valid_values
 
@@ -2220,7 +2222,7 @@ def download_satellite_aerosol_properties(time_aggregation: str, variable: str, 
 
 
 # dataset: insitu-observations-igra-baseline-network
-def download_insitu_observations_igra_baseline_network(archive: str, variable: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', format: str):
+def download_insitu_observations_igra_baseline_network(archive: OneOrMore[str], variable: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', format: str):
 	archive_valid_values = ['global_radiosonde_archive', 'harmonised_global_radiosonde_archive']
 	assert archive in archive_valid_values
 
@@ -2243,7 +2245,7 @@ def download_insitu_observations_igra_baseline_network(archive: str, variable: s
 
 
 # dataset: satellite-ocean-colour
-def download_satellite_ocean_colour(variable: str, projection: str, year: str, month: str, day: str, version: str):
+def download_satellite_ocean_colour(variable: OneOrMore[str], projection: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], version: str):
 	variable_valid_values = ['mass_concentration_of_chlorophyll_a', 'remote_sensing_reflectance']
 	assert variable in variable_valid_values
 
@@ -2266,7 +2268,7 @@ def download_satellite_ocean_colour(variable: str, projection: str, year: str, m
 
 
 # dataset: reanalysis-oras5
-def download_reanalysis_oras5(product_type: str, vertical_resolution: str, variable: str, year: str, month: str):
+def download_reanalysis_oras5(product_type: OneOrMore[str], vertical_resolution: str, variable: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str]):
 	product_type_valid_values = ['consolidated', 'operational']
 	assert product_type in product_type_valid_values
 
@@ -2286,7 +2288,7 @@ def download_reanalysis_oras5(product_type: str, vertical_resolution: str, varia
 
 
 # dataset: sis-european-wind-storm-indicators
-def download_sis_european_wind_storm_indicators(product: str, variable: str = 'all', time_aggregation: str, spatial_aggregation: str, year: str, month: str, day: str):
+def download_sis_european_wind_storm_indicators(product: OneOrMore[str], variable: str = 'all', time_aggregation: OneOrMore[str], spatial_aggregation: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str]):
 	product_valid_values = ['windstorm_tracks', 'windstorm_footprints', 'summary_indicators', 'risk_indicators', 'loss_indicators']
 	assert product in product_valid_values
 
@@ -2312,7 +2314,7 @@ def download_sis_european_wind_storm_indicators(product: str, variable: str = 'a
 
 
 # dataset: satellite-earth-radiation-budget
-def download_satellite_earth_radiation_budget(product_family: str, origin: str, variable: str, sensor_on_satellite: str, climate_data_record_type: str, time_aggregation: str, year: str, month: str, day: str, version: str, area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_satellite_earth_radiation_budget(product_family: str, origin: str, variable: OneOrMore[str], sensor_on_satellite: OneOrMore[str], climate_data_record_type: str, time_aggregation: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], version: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	product_family_valid_values = ['ceres_ebaf', 'hirs', 'clara_a3', 'cci', 'tsi']
 	assert product_family in product_family_valid_values
 
@@ -2347,7 +2349,7 @@ def download_satellite_earth_radiation_budget(product_family: str, origin: str, 
 
 
 # dataset: sis-hydrology-variables-derived-seasonal-forecast
-def download_sis_hydrology_variables_derived_seasonal_forecast(variable: str, hydrological_model: str, year: str, month: str, version: str = 1):
+def download_sis_hydrology_variables_derived_seasonal_forecast(variable: OneOrMore[str], hydrological_model: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], version: OneOrMore[str] = 1):
 	variable_valid_values = ['river_discharge', 'reference_river_discharge_lower_tercile', 'reference_river_discharge_upper_tercile', 'brier_skill_score_above_normal_conditions', 'brier_skill_score_below_normal_conditions', 'continuous_ranked_probability_skill_score', 'fair_ranked_probability_skill_score']
 	assert variable in variable_valid_values
 
@@ -2367,7 +2369,7 @@ def download_sis_hydrology_variables_derived_seasonal_forecast(variable: str, hy
 
 
 # dataset: ecv-for-climate-change
-def download_ecv_for_climate_change(variable: str, origin: str, product_type: str, climate_reference_period: str, time_aggregation: str, year: str, month: str):
+def download_ecv_for_climate_change(variable: OneOrMore[str], origin: OneOrMore[str], product_type: OneOrMore[str], climate_reference_period: OneOrMore[str], time_aggregation: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str]):
 	variable_valid_values = ['surface_air_temperature', 'surface_air_relative_humidity', '0_7cm_volumetric_soil_moisture', 'precipitation', 'sea_ice_cover']
 	assert variable in variable_valid_values
 
@@ -2393,7 +2395,7 @@ def download_ecv_for_climate_change(variable: str, origin: str, product_type: st
 
 
 # dataset: sis-energy-pecd
-def download_sis_energy_pecd(pecd_version: str = 'pecd4_1', temporal_period: str, origin: str, emissions: str, variable: str, technology: str, spatial_resolution: str, year: str, month: str, area: Optional[str] = None, area: Union[GeographicExtentType, FreeEditionType] = 'global'):
+def download_sis_energy_pecd(pecd_version: str = 'pecd4_1', temporal_period: OneOrMore[str], origin: OneOrMore[str], emissions: OneOrMore[str], variable: OneOrMore[str], technology: OneOrMore[str], spatial_resolution: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], area: Optional[str] = None, area: Union[GeographicExtentType, FreeEditionType] = 'global'):
 	pecd_version_valid_values = ['pecd4_1']
 	assert pecd_version in pecd_version_valid_values
 
@@ -2425,7 +2427,7 @@ def download_sis_energy_pecd(pecd_version: str = 'pecd4_1', temporal_period: str
 
 
 # dataset: satellite-sea-ice-concentration
-def download_satellite_sea_ice_concentration(variable: str = 'all', version: str, sensor: str, origin: str, region: str, cdr_type: str, temporal_aggregation: str, year: str, month: str, day: str):
+def download_satellite_sea_ice_concentration(variable: str = 'all', version: str, sensor: str, origin: str, region: OneOrMore[str], cdr_type: OneOrMore[str], temporal_aggregation: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str]):
 	variable_valid_values = ['all']
 	assert variable in variable_valid_values
 
@@ -2460,7 +2462,7 @@ def download_satellite_sea_ice_concentration(variable: str = 'all', version: str
 
 
 # dataset: derived-utci-historical
-def download_derived_utci_historical(variable: str, version: str = '1_1', product_type: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_derived_utci_historical(variable: OneOrMore[str], version: str = '1_1', product_type: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	variable_valid_values = ['universal_thermal_climate_index', 'mean_radiant_temperature']
 	assert variable in variable_valid_values
 
@@ -2483,7 +2485,7 @@ def download_derived_utci_historical(variable: str, version: str = '1_1', produc
 
 
 # dataset: sis-water-level-change-timeseries-cmip6
-def download_sis_water_level_change_timeseries_cmip6(variable: str, experiment: str, model: str, temporal_aggregation: str, year: str, month: str):
+def download_sis_water_level_change_timeseries_cmip6(variable: OneOrMore[str], experiment: str, model: OneOrMore[str], temporal_aggregation: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str]):
 	variable_valid_values = ['mean_sea_level', 'storm_surge_residual', 'tidal_elevation', 'total_water_level']
 	assert variable in variable_valid_values
 
@@ -2506,7 +2508,7 @@ def download_sis_water_level_change_timeseries_cmip6(variable: str, experiment: 
 
 
 # dataset: satellite-lai-fapar
-def download_satellite_lai_fapar(variable: str, satellite: str, sensor: str, horizontal_resolution: str, product_version: str, year: str, month: str, nominal_day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_satellite_lai_fapar(variable: OneOrMore[str], satellite: OneOrMore[str], sensor: str, horizontal_resolution: OneOrMore[str], product_version: str, year: OneOrMore[str], month: OneOrMore[str], nominal_day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	variable_valid_values = ['fapar', 'lai']
 	assert variable in variable_valid_values
 
@@ -2535,7 +2537,7 @@ def download_satellite_lai_fapar(variable: str, satellite: str, sensor: str, hor
 
 
 # dataset: satellite-land-cover
-def download_satellite_land_cover(variable: str = 'all', year: str, version: str, area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_satellite_land_cover(variable: str = 'all', year: OneOrMore[str], version: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	variable_valid_values = ['all']
 	assert variable in variable_valid_values
 
@@ -2549,7 +2551,7 @@ def download_satellite_land_cover(variable: str = 'all', year: str, version: str
 
 
 # dataset: satellite-total-column-water-vapour-ocean
-def download_satellite_total_column_water_vapour_ocean(origin: str, climate_data_record_type: str, temporal_aggregation: str, year: str, month: str, variable: str = 'all'):
+def download_satellite_total_column_water_vapour_ocean(origin: str, climate_data_record_type: str, temporal_aggregation: str, year: OneOrMore[str], month: OneOrMore[str], variable: str = 'all'):
 	origin_valid_values = ['c3s', 'eumetsat']
 	assert origin in origin_valid_values
 
@@ -2572,7 +2574,7 @@ def download_satellite_total_column_water_vapour_ocean(origin: str, climate_data
 
 
 # dataset: projections-cmip5-monthly-pressure-levels
-def download_projections_cmip5_monthly_pressure_levels(experiment: str, variable: str, model: str, ensemble_member: str = 'r1i1p1', period: str):
+def download_projections_cmip5_monthly_pressure_levels(experiment: str, variable: OneOrMore[str], model: str, ensemble_member: str = 'r1i1p1', period: OneOrMore[str]):
 	experiment_valid_values = ['amip', 'historical', 'rcp_2_6', 'rcp_4_5', 'rcp_6_0', 'rcp_8_5']
 	assert experiment in experiment_valid_values
 
@@ -2592,7 +2594,7 @@ def download_projections_cmip5_monthly_pressure_levels(experiment: str, variable
 
 
 # dataset: sis-hydrology-meteorology-derived-projections
-def download_sis_hydrology_meteorology_derived_projections(product_type: str, variable: str, processing_type: str, variable_type: str, time_aggregation: str, horizontal_resolution: str, experiment: str, rcm: str, gcm: str, ensemble_member: str, period: str):
+def download_sis_hydrology_meteorology_derived_projections(product_type: str, variable: OneOrMore[str], processing_type: str, variable_type: str, time_aggregation: OneOrMore[str], horizontal_resolution: str, experiment: OneOrMore[str], rcm: str, gcm: str, ensemble_member: OneOrMore[str], period: OneOrMore[str]):
 	product_type_valid_values = ['climate_impact_indicators', 'essential_climate_variables']
 	assert product_type in product_type_valid_values
 
@@ -2630,7 +2632,7 @@ def download_sis_hydrology_meteorology_derived_projections(product_type: str, va
 
 
 # dataset: sis-water-level-change-indicators-cmip6
-def download_sis_water_level_change_indicators_cmip6(variable: str, derived_variable: str, product_type: str, multi_model_ensemble_statistic: str, model: str, statistic: str, confidence_interval: str, experiment: str, period: str):
+def download_sis_water_level_change_indicators_cmip6(variable: OneOrMore[str], derived_variable: OneOrMore[str], product_type: OneOrMore[str], multi_model_ensemble_statistic: OneOrMore[str], model: OneOrMore[str], statistic: OneOrMore[str], confidence_interval: OneOrMore[str], experiment: OneOrMore[str], period: OneOrMore[str]):
 	variable_valid_values = ['surge_level', 'total_water_level', 'mean_sea_level', 'tidal_range', 'highest_astronomical_tide', 'lowest_astronomical_tide', 'annual_mean_of_highest_high_water', 'annual_mean_of_lowest_low_water']
 	assert variable in variable_valid_values
 
@@ -2662,7 +2664,7 @@ def download_sis_water_level_change_indicators_cmip6(variable: str, derived_vari
 
 
 # dataset: sis-agroclimatic-indicators
-def download_sis_agroclimatic_indicators(origin: str, variable: str, experiment: str, temporal_aggregation: str, period: str, version: str):
+def download_sis_agroclimatic_indicators(origin: str, variable: OneOrMore[str], experiment: str, temporal_aggregation: str, period: OneOrMore[str], version: OneOrMore[str]):
 	origin_valid_values = ['miroc_esm_chem_model', 'ipsl_cm5a_lr_model', 'noresm1_m_model', 'hadgem2_es_model', 'gfdl_esm2m_model', 'era_interim_reanalysis']
 	assert origin in origin_valid_values
 
@@ -2705,7 +2707,7 @@ def download_projections_climate_atlas(origin: str, experiment: str, domain: str
 
 
 # dataset: reanalysis-carra-pressure-levels
-def download_reanalysis_carra_pressure_levels(domain: str, variable: str, pressure_level: str, product_type: str, time: str, leadtime_hour: str, year: str, month: str, day: str, data_format: str = 'grib'):
+def download_reanalysis_carra_pressure_levels(domain: str, variable: OneOrMore[str], pressure_level: OneOrMore[str], product_type: str, time: OneOrMore[str], leadtime_hour: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], data_format: str = 'grib'):
 	domain_valid_values = ['east_domain', 'west_domain']
 	assert domain in domain_valid_values
 
@@ -2740,7 +2742,7 @@ def download_reanalysis_carra_pressure_levels(domain: str, variable: str, pressu
 
 
 # dataset: sis-biodiversity-cmip5-global
-def download_sis_biodiversity_cmip5_global(variable: str, derived_variable: str, model: str, ensemble_member: str, experiment: str, temporal_aggregation: str, statistic: str, version: str = '1.0'):
+def download_sis_biodiversity_cmip5_global(variable: OneOrMore[str], derived_variable: OneOrMore[str], model: OneOrMore[str], ensemble_member: OneOrMore[str], experiment: OneOrMore[str], temporal_aggregation: OneOrMore[str], statistic: OneOrMore[str], version: OneOrMore[str] = '1.0'):
 	variable_valid_values = ['annual_mean_temperature', 'mean_diurnal_range', 'isothermality', 'temperature_seasonality', 'maximum_temperature_of_warmest_month', 'minimum_temperature_of_coldest_month', 'temperature_annual_range', 'mean_temperature_of_wettest_quarter', 'mean_temperature_of_driest_quarter', 'mean_temperature_of_warmest_quarter', 'mean_temperature_of_coldest_quarter', 'annual_precipitation', 'precipitation_of_wettest_month', 'precipitation_of_driest_month', 'precipitation_seasonality', 'precipitation_of_wettest_quarter', 'precipitation_of_driest_quarter', 'precipitation_of_warmest_quarter', 'precipitation_of_coldest_quarter', 'aridity', 'dry_spells', 'dry_days', 'summer_days', 'surface_latent_heat_flux', 'surface_sensible_heat_flux', 'evaporative_fraction', 'frost_days', 'growing_season', 'growing_degree_days', 'growing_degree_days_during_growing_season_length', 'koeppen_geiger_class', 'potential_evaporation', 'sea_ice_concentration', 'sea_surface_temperature', '2m_temperature', 'precipitation', 'water_vapor_pressure', 'cloud_cover', 'volumetric_soil_water', 'wind_speed', 'zonal_wind_speed', 'meridional_wind_speed']
 	assert variable in variable_valid_values
 
@@ -2769,7 +2771,7 @@ def download_sis_biodiversity_cmip5_global(variable: str, derived_variable: str,
 
 
 # dataset: insitu-gridded-observations-nordic
-def download_insitu_gridded_observations_nordic(variable: str, product_type: str, spatial_interpolation_method: str, year: str, month: str, day: str, version: str):
+def download_insitu_gridded_observations_nordic(variable: OneOrMore[str], product_type: OneOrMore[str], spatial_interpolation_method: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], version: OneOrMore[str]):
 	variable_valid_values = ['precipitation', 'mean_temperature', 'maximum_temperature', 'minimum_temperature']
 	assert variable in variable_valid_values
 
@@ -2795,7 +2797,7 @@ def download_insitu_gridded_observations_nordic(variable: str, product_type: str
 
 
 # dataset: reanalysis-era5-pressure-levels-monthly-means
-def download_reanalysis_era5_pressure_levels_monthly_means(product_type: str, variable: str, pressure_level: str, year: str, month: str, time: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib', download_format: str = 'unarchived'):
+def download_reanalysis_era5_pressure_levels_monthly_means(product_type: OneOrMore[str], variable: OneOrMore[str], pressure_level: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], time: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib', download_format: str = 'unarchived'):
 	product_type_valid_values = ['monthly_averaged_reanalysis', 'monthly_averaged_reanalysis_by_hour_of_day', 'monthly_averaged_ensemble_members', 'monthly_averaged_ensemble_members_by_hour_of_day']
 	assert product_type in product_type_valid_values
 
@@ -2824,7 +2826,7 @@ def download_reanalysis_era5_pressure_levels_monthly_means(product_type: str, va
 
 
 # dataset: satellite-precipitation
-def download_satellite_precipitation(variable: str = 'all', time_aggregation: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_satellite_precipitation(variable: str = 'all', time_aggregation: str, year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	variable_valid_values = ['all']
 	assert variable in variable_valid_values
 
@@ -2844,7 +2846,7 @@ def download_satellite_precipitation(variable: str = 'all', time_aggregation: st
 
 
 # dataset: insitu-observations-gnss
-def download_insitu_observations_gnss(network_type: str, variable: str, year: str, month: str, day: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', format: str):
+def download_insitu_observations_gnss(network_type: OneOrMore[str], variable: OneOrMore[str], year: str, month: OneOrMore[str], day: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', format: str):
 	network_type_valid_values = ['igs_daily', 'epn_repro2']
 	assert network_type in network_type_valid_values
 
@@ -2867,7 +2869,7 @@ def download_insitu_observations_gnss(network_type: str, variable: str, year: st
 
 
 # dataset: sis-agrometeorological-indicators
-def download_sis_agrometeorological_indicators(variable: str, statistic: str, year: str, month: str, day: str, time: str, version: str = '1_1', area: Union[FreeEditionType, GeographicExtentType] = 'global'):
+def download_sis_agrometeorological_indicators(variable: str, statistic: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], time: OneOrMore[str], version: str = '1_1', area: Union[FreeEditionType, GeographicExtentType] = 'global'):
 	variable_valid_values = ['cloud_cover', 'precipitation_flux', 'liquid_precipitation_duration_fraction', 'solid_precipitation_duration_fraction', 'snow_thickness_lwe', 'snow_thickness', 'solar_radiation_flux', 'vapour_pressure', '2m_temperature', '10m_wind_speed', '2m_dewpoint_temperature', '2m_relative_humidity']
 	assert variable in variable_valid_values
 
@@ -2893,7 +2895,7 @@ def download_sis_agrometeorological_indicators(variable: str, statistic: str, ye
 
 
 # dataset: sis-tourism-fire-danger-indicators
-def download_sis_tourism_fire_danger_indicators(time_aggregation: str, product_type: str, variable: str, gcm_model: str, experiment: str, period: str, version: str):
+def download_sis_tourism_fire_danger_indicators(time_aggregation: str, product_type: str, variable: OneOrMore[str], gcm_model: OneOrMore[str], experiment: str, period: OneOrMore[str], version: str):
 	time_aggregation_valid_values = ['daily_indicators', 'seasonal_indicators', 'annual_indicators']
 	assert time_aggregation in time_aggregation_valid_values
 
@@ -2919,7 +2921,7 @@ def download_sis_tourism_fire_danger_indicators(time_aggregation: str, product_t
 
 
 # dataset: sis-ecde-climate-indicators
-def download_sis_ecde_climate_indicators(variable: str, origin: str, gcm: str, rcm: str, experiment: str, ensemble_member: str, hydrological_model: str, temporal_aggregation: str, spatial_aggregation: str, regional_layer: str, other_parameters: str):
+def download_sis_ecde_climate_indicators(variable: OneOrMore[str], origin: str, gcm: OneOrMore[str], rcm: OneOrMore[str], experiment: OneOrMore[str], ensemble_member: OneOrMore[str], hydrological_model: OneOrMore[str], temporal_aggregation: OneOrMore[str], spatial_aggregation: str, regional_layer: OneOrMore[str], other_parameters: OneOrMore[str]):
 	variable_valid_values = ['mean_temperature', 'growing_degree_days', 'heating_degree_days', 'cooling_degree_days', 'tropical_nights', 'hot_days', 'warmest_three_day_period', 'heatwave_days', 'high_utci_days', 'frost_days', 'daily_maximum_temperature', 'daily_minimum_temperature', 'total_precipitation', 'maximum_consecutive_five_day_precipitation', 'extreme_precipitation_total', 'frequency_of_extreme_precipitation', 'flood_recurrence', 'mean_river_discharge', 'aridity_actual', 'consecutive_dry_days', 'duration_of_meteorological_droughts', 'magnitude_of_meteorological_droughts', 'mean_soil_moisture', 'days_with_high_fire_danger', 'mean_wind_speed', 'extreme_wind_speed_days', 'fire_weather_index', 'snowfall_amount', 'relative_sea_level_rise', 'extreme_sea_level']
 	assert variable in variable_valid_values
 
@@ -2957,7 +2959,7 @@ def download_sis_ecde_climate_indicators(variable: str, origin: str, gcm: str, r
 
 
 # dataset: satellite-humidity-profiles
-def download_satellite_humidity_profiles(variable: str = 'all', product_type: str, year: str, month: str):
+def download_satellite_humidity_profiles(variable: str = 'all', product_type: str, year: OneOrMore[str], month: OneOrMore[str]):
 	variable_valid_values = ['all']
 	assert variable in variable_valid_values
 
@@ -2974,7 +2976,7 @@ def download_satellite_humidity_profiles(variable: str = 'all', product_type: st
 
 
 # dataset: reanalysis-era5-pressure-levels
-def download_reanalysis_era5_pressure_levels(product_type: str = 'reanalysis', variable: str, year: str, month: str, day: str, time: str, pressure_level: str, area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib', download_format: str = 'unarchived'):
+def download_reanalysis_era5_pressure_levels(product_type: OneOrMore[str] = 'reanalysis', variable: OneOrMore[str], year: OneOrMore[str], month: OneOrMore[str], day: OneOrMore[str], time: OneOrMore[str], pressure_level: OneOrMore[str], area: Union[FreeEditionType, GeographicExtentType] = 'global', data_format: str = 'grib', download_format: str = 'unarchived'):
 	product_type_valid_values = ['reanalysis', 'ensemble_members', 'ensemble_mean', 'ensemble_spread']
 	assert product_type in product_type_valid_values
 

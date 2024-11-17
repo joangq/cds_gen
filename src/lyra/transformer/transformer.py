@@ -1,13 +1,12 @@
 from dataclasses import dataclass
 import lyra.parser
-from lyra.common import MISSING_IMPLEMENTATION
+from lyra.common import MISSING_IMPLEMENTATION, OneOrMore
 from abc import ABC as AbstractBaseClass, abstractmethod
 from typing import Generic, TypeVar, Optional, Any
 from collections.abc import Iterable
 from lyra.parser import (
     BaseParamType,
     ParamType,
-    Object,
     Option
 )
 
@@ -111,7 +110,7 @@ class StringListWidgetTransformer(ParamTypeTransformer):
         assert isinstance(obj, lyra.parser.StringListWidget)
         return Parameter(
               name         = obj.name
-            , innertype    = str
+            , innertype    = "OneOrMore[str]"
             , default      = obj.default.value if obj.default else None
             , required     = obj.required
             , valid_values = [x.value for x in obj.options]
@@ -122,11 +121,11 @@ class StringListArrayWidgetTransformer(ParamTypeTransformer):
     def transform(cls, obj: ParamType, **_) -> Parameter:
         assert isinstance(obj, lyra.parser.StringListArrayWidget)
         return Parameter(
-            name = obj.name,
-            innertype = str,
-            default = None, # TODO: Are there any StringListArrays with 'default'?
-            required = obj.required,
-            valid_values = [
+              name         = obj.name
+            , innertype    = "OneOrMore[str]"
+            , default      = None # TODO: Are there any StringListArrays with 'default'?
+            , required     = obj.required
+            , valid_values = [
                 unwrap_if_option(x)
                 for g in obj.groups
                 for x in g.options
@@ -138,7 +137,7 @@ class FreeEditionWidgetTransformer(ParamTypeTransformer):
     def transform(cls, obj: ParamType, **_) -> Parameter:
         assert isinstance(obj, lyra.parser.FreeEditionWidget)
         return Parameter(
-              name         = obj.name
+               name         = obj.name
             ,  innertype    = str
             ,  default      = None
             ,  required     = False
