@@ -11,6 +11,14 @@ from lyra.common import LabelType
 from lyra.common import FreeEditionType
 from lyra.downloader import download_data
 from typing import Union, Optional
+
+\"\"\"
+This code has been automatically generated
+by Lyra. Specifically, the format for
+this code can be found in
+
+`lyra.translator.translate`
+\"\"\"
 """
 
 imports = imports.strip() + '\n\n'
