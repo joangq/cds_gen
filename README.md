@@ -19,16 +19,16 @@ pip install -r requirements.txt
 Here's a simple example of how to use Lyra to download data using the `cds_collections` module:
 
 ```python
-from cds_collections import cds_collections
+from lyra import cds_collections
 
-cds_collections['ecv-for-climate-change'].download(
-    variable     = 'surface_temperature',
-    product_type = 'reanalysis',
-    year         = '2020',
-    month        = '01',
-    day          = '01',
-    format       = 'netcdf',
-    filename     = 'output.nc'
+cds_collections.reanalysis_era5_single_levels.download(
+    product_type = "reanalysis",
+    data_format  = "netcdf",
+    variable     = "2m_temperature",
+    year         = "2020",
+    month        = "01",
+    day          = "01",
+    time         = "12:00",
 )
 ```
 
