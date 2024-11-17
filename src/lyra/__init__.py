@@ -1,6 +1,8 @@
 from .auth import Client
 
 from .common import OneOrMore
+from .common import GeographicExtentType
+from .common import FreeEditionType
 from .common import TODO
 from .common import MISSING_IMPLEMENTATION
 

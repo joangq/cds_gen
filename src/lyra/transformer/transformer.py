@@ -30,7 +30,7 @@ PARAMETER_DATACLASS_OPTIONS = dict(
     , repr        = True
     , eq          = True
     , order       = False
-    , unsafe_hash = True
+    , unsafe_hash = False
     , frozen      = False
     , match_args  = True
     , kw_only     = False
@@ -73,6 +73,9 @@ class Parameter:
     
     def __gt__(self, other):
         return self.has_default_value() > other.has_default_value()
+    
+    def __hash__(self):
+        return hash(self.name)
     
 
 global AVAILABLE_TRANSFORMERS
@@ -195,8 +198,8 @@ class ExclusiveGroupWidgetTransformer(ParamTypeTransformer):
             default = default.name
 
         name = obj.name
-        if name.endswith('_group'):
-            name = name.split('_group', 1)[0]
+        # if name.endswith('_group'):
+        #     name = name.split('_group', 1)[0]
 
         return Parameter(
               name      = name
@@ -262,8 +265,8 @@ class ExclusiveFrameWidgetTransformer(ParamTypeTransformer):
         innertype = 'Union[' + ', '.join(innertypes) + ']'
 
         name = obj.name
-        if name.endswith('_group'):
-            name = name.split('_group', 1)[0]
+        # if name.endswith('_group'):
+        #     name = name.split('_group', 1)[0]
 
         return Parameter(
               name      = name
