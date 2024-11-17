@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from abc import ABC as AbstractBaseClass, abstractmethod
 from typing import Generic, TypeVar, Any, Tuple, Optional, Dict
 import json
+from collections.abc import Iterable
 from lyra.common import MISSING_IMPLEMENTATION, TODO
 from lyra.enum import StrEnum
 
@@ -144,6 +145,7 @@ class Option(Object, Generic[T]):
 
 class StringListWidget(BaseParamType):
     options: List[Option]
+    default: Optional[Option] = None
 
     @classmethod
     def __parse__(
@@ -156,12 +158,28 @@ class StringListWidget(BaseParamType):
         
         values = details.get('values', [])
         labels = details.get('labels', [])
+        
+        default = details.get('default', None)
+
+        if isinstance(default, Iterable):
+            default_it = iter(default)
+            default = next(default_it, None)
+        
+        if default is not None:
+            default = Option(default, labels.get(default, default))
+
         options = [
             Option(val, labels.get(val, val))
             for val in values
         ]
 
-        return cls(name=name, label=label, options=options, required=required)
+        return cls(
+              name     = name
+            , label    = label
+            , options  = options
+            , required = required
+            , default  = default
+        )
 
 class StringChoiceWidget(StringListWidget): ...
 
