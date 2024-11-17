@@ -11,26 +11,26 @@ class Client(CdsApiClient):
         raise TypeError("This class should not be instantiated")
     
     def __new__(
-        cls,
-        url                 : Optional[str]      = None,
-        key                 : Optional[str]      = None,
-        quiet               : bool               = False,
-        debug               : bool               = False,
-        verify              : Optional[bool]     = None,
-        timeout             : int                = 60,
-        progress            : bool               = True,
-        full_stack          : Deprecated[bool]   = None,
-        delete              : bool               = True,
-        retry_max           : int                = 500,
-        sleep_max           : int                = 120,
-        wait_until_complete : bool               = True,
-        info_callback       : Optional[Callable] = None,
-        warning_callback    : Optional[Callable] = None,
-        error_callback      : Optional[Callable] = None,
-        debug_callback      : Optional[Callable] = None,
-        metadata            : Optional[Any]      = None,
-        forget              : Deprecated[bool]   = None,
-        session             : Optional[Session]  = None,
+          cls
+        , url                 : Optional[str]      = None
+        , key                 : Optional[str]      = None
+        , quiet               : bool               = False
+        , debug               : bool               = False
+        , verify              : Optional[bool]     = None
+        , timeout             : int                = 60
+        , progress            : bool               = True
+        , full_stack          : Deprecated[bool]   = None
+        , delete              : bool               = True
+        , retry_max           : int                = 500
+        , sleep_max           : int                = 120
+        , wait_until_complete : bool               = True
+        , info_callback       : Optional[Callable] = None
+        , warning_callback    : Optional[Callable] = None
+        , error_callback      : Optional[Callable] = None
+        , debug_callback      : Optional[Callable] = None
+        , metadata            : Optional[Any]      = None
+        , forget              : Deprecated[bool]   = None
+        , session             : Optional[Session]  = None
         ) -> CdsApiClient:
 
         session = session or Session()
@@ -52,23 +52,23 @@ class Client(CdsApiClient):
         url = url or DEFAULT_CDS_API_URL
 
         return CdsApiClient(
-            url                 = url,
-            key                 = key,
-            quiet               = quiet,
-            debug               = debug,
-            verify              = verify,
-            timeout             = timeout,
-            progress            = progress,
-            full_stack          = full_stack,
-            delete              = delete,
-            retry_max           = retry_max,
-            sleep_max           = sleep_max,
-            wait_until_complete = wait_until_complete,
-            info_callback       = info_callback,
-            warning_callback    = warning_callback,
-            error_callback      = error_callback,
-            debug_callback      = debug_callback,
-            metadata            = metadata,
-            forget              = forget,
-            session             = session,
+              url                 = url
+            , key                 = key
+            , quiet               = quiet
+            , debug               = debug
+            , verify              = verify
+            , timeout             = timeout
+            , progress            = progress
+            , full_stack          = full_stack
+            , delete              = delete
+            , retry_max           = retry_max
+            , sleep_max           = sleep_max
+            , wait_until_complete = wait_until_complete
+            , info_callback       = info_callback
+            , warning_callback    = warning_callback
+            , error_callback      = error_callback
+            , debug_callback      = debug_callback
+            , metadata            = metadata
+            , forget              = forget
+            , session             = session
         )
