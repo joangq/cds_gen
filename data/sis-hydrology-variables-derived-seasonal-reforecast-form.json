@@ -1,1 +1,239 @@
-[{"name": "variable", "label": "Variable", "help": " <p>The variables are split into three groups.</p> <p>The <b>forecast variables</b> are estimates of physical variables predicted by the forecast models. Files are available for all selectable years and months.</p> <p>The <b>reference variables</b> represent the climatological spread of the physical variables for a given reference period. They are static estimates with monthly temporal resolution provided in a single file for each model.</p> <p>The <b>skill score variables</b> provide an estimate of the forecast skill based model-model comparisons in re-forecasts for the period 1993-2016. Skills are presented as static estimates with a monthly temporal resolution, and provided in monthly files where each file contains seven monthly forecast lead times.</p> <p>Please consult the product user guide in the documentation section for more information on these variables</p> ", "required": true, "css": "todo", "type": "StringListArrayWidget", "details": {"groups": [{"label": "Forecast variables", "open": true, "values": ["river_discharge"], "labels": {"river_discharge": "River discharge"}, "columns": 4}, {"label": "Reference variables", "open": true, "values": ["reference_river_discharge_lower_tercile", "reference_river_discharge_upper_tercile"], "labels": {"reference_river_discharge_lower_tercile": "Reference river discharge lower tercile", "reference_river_discharge_upper_tercile": "Reference river discharge upper tercile"}, "columns": 4}, {"label": "Skill score variables", "open": true, "values": ["brier_skill_score_above_normal_conditions", "brier_skill_score_below_normal_conditions", "continuous_ranked_probability_skill_score", "fair_ranked_probability_skill_score"], "labels": {"brier_skill_score_above_normal_conditions": "Brier skill score above normal conditions", "brier_skill_score_below_normal_conditions": "Brier skill score below normal conditions", "continuous_ranked_probability_skill_score": "Continuous ranked probability skill score", "fair_ranked_probability_skill_score": "Fair ranked probability skill score"}, "columns": 4}], "displayaslist": false, "accordionGroups": true, "accordionOptions": {"searchable": false, "openGroups": ["Forecast variables", "Reference variables", "Skill score variables"]}}, "id": 0}, {"name": "hydrological_model", "label": "Hydrological model", "help": "The three models in this dataset are the E-HYPE model, the LISFLOOD model as used in EFAS, and the VIC model set up by Wageningen university (WUR). The E-HYPE model further exists in two versions, one cathcment-based and one gridded. For more information on the hydrological models and their differences please refer to the Hydrological model specification document.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["e_hypecatch_m00", "lisflood_efas", "vic_wur"], "columns": 2, "labels": {"e_hypecatch_m00": "E-HYPEcatch M00", "lisflood_efas": "LISFLOOD-EFAS", "vic_wur": "VIC-WUR"}}, "id": 1}, {"name": "year", "label": "Year", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"], "columns": 8, "labels": {"1991": "1991", "1992": "1992", "1993": "1993", "1994": "1994", "1995": "1995", "1996": "1996", "1997": "1997", "1998": "1998", "1999": "1999", "2000": "2000", "2001": "2001", "2002": "2002", "2003": "2003", "2004": "2004", "2005": "2005", "2006": "2006", "2007": "2007", "2008": "2008", "2009": "2009", "2010": "2010", "2011": "2011", "2012": "2012", "2013": "2013", "2014": "2014", "2015": "2015", "2016": "2016", "2017": "2017", "2018": "2018", "2019": "2019", "2020": "2020"}}, "id": 2}, {"name": "month", "label": "Month", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], "columns": 6, "labels": {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}}, "id": 3}, {"name": "version", "label": "Version", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["1"], "columns": 2, "labels": {"1": "1"}}, "id": 4}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "licence-to-use-copernicus-products", "revision": 12, "label": "Licence to use Copernicus Products", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"}]}}]
+[
+  {
+    "name": "variable",
+    "label": "Variable",
+    "help": " <p>The variables are split into three groups.</p> <p>The <b>forecast variables</b> are estimates of physical variables predicted by the forecast models. Files are available for all selectable years and months.</p> <p>The <b>reference variables</b> represent the climatological spread of the physical variables for a given reference period. They are static estimates with monthly temporal resolution provided in a single file for each model.</p> <p>The <b>skill score variables</b> provide an estimate of the forecast skill based model-model comparisons in re-forecasts for the period 1993-2016. Skills are presented as static estimates with a monthly temporal resolution, and provided in monthly files where each file contains seven monthly forecast lead times.</p> <p>Please consult the product user guide in the documentation section for more information on these variables</p> ",
+    "required": true,
+    "css": "todo",
+    "type": "StringListArrayWidget",
+    "details": {
+      "groups": [
+        {
+          "label": "Forecast variables",
+          "open": true,
+          "values": [
+            "river_discharge"
+          ],
+          "labels": {
+            "river_discharge": "River discharge"
+          },
+          "columns": 4
+        },
+        {
+          "label": "Reference variables",
+          "open": true,
+          "values": [
+            "reference_river_discharge_lower_tercile",
+            "reference_river_discharge_upper_tercile"
+          ],
+          "labels": {
+            "reference_river_discharge_lower_tercile": "Reference river discharge lower tercile",
+            "reference_river_discharge_upper_tercile": "Reference river discharge upper tercile"
+          },
+          "columns": 4
+        },
+        {
+          "label": "Skill score variables",
+          "open": true,
+          "values": [
+            "brier_skill_score_above_normal_conditions",
+            "brier_skill_score_below_normal_conditions",
+            "continuous_ranked_probability_skill_score",
+            "fair_ranked_probability_skill_score"
+          ],
+          "labels": {
+            "brier_skill_score_above_normal_conditions": "Brier skill score above normal conditions",
+            "brier_skill_score_below_normal_conditions": "Brier skill score below normal conditions",
+            "continuous_ranked_probability_skill_score": "Continuous ranked probability skill score",
+            "fair_ranked_probability_skill_score": "Fair ranked probability skill score"
+          },
+          "columns": 4
+        }
+      ],
+      "displayaslist": false,
+      "accordionGroups": true,
+      "accordionOptions": {
+        "searchable": false,
+        "openGroups": [
+          "Forecast variables",
+          "Reference variables",
+          "Skill score variables"
+        ]
+      }
+    },
+    "id": 0
+  },
+  {
+    "name": "hydrological_model",
+    "label": "Hydrological model",
+    "help": "The three models in this dataset are the E-HYPE model, the LISFLOOD model as used in EFAS, and the VIC model set up by Wageningen university (WUR). The E-HYPE model further exists in two versions, one cathcment-based and one gridded. For more information on the hydrological models and their differences please refer to the Hydrological model specification document.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "e_hypecatch_m00",
+        "lisflood_efas",
+        "vic_wur"
+      ],
+      "columns": 2,
+      "labels": {
+        "e_hypecatch_m00": "E-HYPEcatch M00",
+        "lisflood_efas": "LISFLOOD-EFAS",
+        "vic_wur": "VIC-WUR"
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "year",
+    "label": "Year",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "1991",
+        "1992",
+        "1993",
+        "1994",
+        "1995",
+        "1996",
+        "1997",
+        "1998",
+        "1999",
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020"
+      ],
+      "columns": 8,
+      "labels": {
+        "1991": "1991",
+        "1992": "1992",
+        "1993": "1993",
+        "1994": "1994",
+        "1995": "1995",
+        "1996": "1996",
+        "1997": "1997",
+        "1998": "1998",
+        "1999": "1999",
+        "2000": "2000",
+        "2001": "2001",
+        "2002": "2002",
+        "2003": "2003",
+        "2004": "2004",
+        "2005": "2005",
+        "2006": "2006",
+        "2007": "2007",
+        "2008": "2008",
+        "2009": "2009",
+        "2010": "2010",
+        "2011": "2011",
+        "2012": "2012",
+        "2013": "2013",
+        "2014": "2014",
+        "2015": "2015",
+        "2016": "2016",
+        "2017": "2017",
+        "2018": "2018",
+        "2019": "2019",
+        "2020": "2020"
+      }
+    },
+    "id": 2
+  },
+  {
+    "name": "month",
+    "label": "Month",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "columns": 6,
+      "labels": {
+        "01": "January",
+        "02": "February",
+        "03": "March",
+        "04": "April",
+        "05": "May",
+        "06": "June",
+        "07": "July",
+        "08": "August",
+        "09": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+      }
+    },
+    "id": 3
+  },
+  {
+    "name": "version",
+    "label": "Version",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "1"
+      ],
+      "columns": 2,
+      "labels": {
+        "1": "1"
+      }
+    },
+    "id": 4
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "licence-to-use-copernicus-products",
+          "revision": 12,
+          "label": "Licence to use Copernicus Products",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"
+        }
+      ]
+    }
+  }
+]

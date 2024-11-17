@@ -1,1 +1,456 @@
-[{"name": "variable", "label": "Variable", "help": "Please, consult the product user guide in the documentation section for more information on these variables.", "required": true, "css": "todo", "type": "StringListArrayWidget", "details": {"groups": [{"label": "Heat and cold", "open": false, "values": ["mean_temperature", "growing_degree_days", "heating_degree_days", "cooling_degree_days", "tropical_nights", "hot_days", "warmest_three_day_period", "heatwave_days", "high_utci_days", "frost_days", "daily_maximum_temperature", "daily_minimum_temperature"], "labels": {"mean_temperature": "Mean temperature", "growing_degree_days": "Growing degree days", "heating_degree_days": "Heating degree days", "cooling_degree_days": "Cooling degree days", "tropical_nights": "Tropical nights", "hot_days": "Hot days", "warmest_three_day_period": "Warmest three-day period", "heatwave_days": "Heatwave days", "high_utci_days": "High UTCI days", "frost_days": "Frost days", "daily_maximum_temperature": "Daily maximum temperature", "daily_minimum_temperature": "Daily minimum temperature"}, "columns": 4}, {"label": "Wet and dry", "open": false, "values": ["total_precipitation", "maximum_consecutive_five_day_precipitation", "extreme_precipitation_total", "frequency_of_extreme_precipitation", "flood_recurrence", "mean_river_discharge", "aridity_actual", "consecutive_dry_days", "duration_of_meteorological_droughts", "magnitude_of_meteorological_droughts", "mean_soil_moisture", "days_with_high_fire_danger", "mean_wind_speed", "extreme_wind_speed_days", "fire_weather_index"], "labels": {"total_precipitation": "Total precipitation", "maximum_consecutive_five_day_precipitation": "Maximum consecutive five-day precipitation", "extreme_precipitation_total": "Extreme precipitation total", "frequency_of_extreme_precipitation": "Frequency of extreme precipitation", "flood_recurrence": "Flood recurrence", "mean_river_discharge": "Mean river discharge", "aridity_actual": "Aridity actual", "consecutive_dry_days": "Consecutive dry days", "duration_of_meteorological_droughts": "Duration of meteorological droughts", "magnitude_of_meteorological_droughts": "Magnitude of meteorological droughts", "mean_soil_moisture": "Mean soil moisture", "days_with_high_fire_danger": "Days with high fire danger", "mean_wind_speed": "Mean wind speed", "extreme_wind_speed_days": "Extreme wind speed days", "fire_weather_index": "Fire weather index"}, "columns": 4}, {"label": "Snow and ice", "open": false, "values": ["snowfall_amount"], "labels": {"snowfall_amount": "Snowfall amount"}, "columns": 4}, {"label": "Coastal", "open": false, "values": ["relative_sea_level_rise", "extreme_sea_level"], "labels": {"relative_sea_level_rise": "Relative sea level rise", "extreme_sea_level": "Extreme sea level"}, "columns": 4}], "displayaslist": false, "accordionGroups": true, "accordionOptions": {"searchable": false, "openGroups": []}}, "id": 0}, {"name": "origin", "label": "Origin", "help": "Choose between reanalysis or projections derived analysis. The former provides information about the past while the later provides information about the future considering a range of scenarios.", "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["reanalysis", "projections"], "columns": 2, "labels": {"reanalysis": "Reanalysis", "projections": "Projections"}}, "id": 1}, {"name": "gcm", "label": "Global Climate Model", "help": "The Global Climate Models are all models in the CMIP5 climate simulation ensemble. They are used to provide the lateral boundary conditions needed by the Regional Climate Models.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["cm2_vhr4", "cm5a_mr", "cnrm_cm5", "ec_earth", "ec_earth3p_hr", "hadgem2_es", "hadgem3_gc31_hm", "hadgem3_gc31_hm_sst", "ipsl_cm5a_mr", "mpi_esm_lr", "noresm1_m"], "columns": 3, "labels": {"cm2_vhr4": "CM2-VHR4 (CMCC, Italy)", "cm5a_mr": "CM5A-MR (IPSL, France)", "cnrm_cm5": "CNRM-CM5 (CERFACS, France)", "ec_earth": "EC-EARTH (ICHEC, Ireland)", "ec_earth3p_hr": "EC-EARTH3p-HR (ICHEC, Ireland)", "hadgem2_es": "HadGEM2-ES (UK Met Office, UK)", "hadgem3_gc31_hm": "HadGEM3-GC31-HM (UK Met Office, UK)", "hadgem3_gc31_hm_sst": "HadGEM3-GC31-HM-SST (UK Met Office, UK)", "ipsl_cm5a_mr": "IPSL-CM5A-MR (IPSL, France)", "mpi_esm_lr": "MPI-ESM-LR (MPI, Germany)", "noresm1_m": "NorESM1-M (NCC, Norway)"}}, "id": 2}, {"name": "rcm", "label": "Regional Climate Model", "help": "The Regional Climate Models are all models in the EURO-CORDEX regional climate simulation ensemble.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["aladin53", "cclm4_8_17", "hirham5", "racmo22e", "rca4", "this_is_another_remo2009", "wrf331f", "wrf381p", "csc_remo2009"], "columns": 3, "labels": {"aladin53": "ALADIN53 (CNRM, France)", "cclm4_8_17": "CCLM4-8-17 (CLM-Community, Germany)", "hirham5": "HIRHAM5 (DMI, Denmark)", "racmo22e": "RACMO22E (KNMI, Netherlands)", "rca4": "RCA4 (SMHI, Sweden)", "this_is_another_remo2009": "THIS IS ANOTHER REMO2009", "wrf331f": "WRF331F (IPSL, France)", "wrf381p": "WRF381P (IPSL, France)", "csc_remo2009": "CSC-REMO2009 (MPI, Germany)"}}, "id": 3}, {"name": "experiment", "label": "Experiment", "help": "Each experiment is a simulation of the climate system under a specific hypothesis. Please consult the Overview and Documentation to learn more about these experiments.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["historical", "rcp4_5", "rcp8_5", "ssp5_8_5"], "columns": 3, "labels": {"historical": "Historical", "rcp4_5": "RCP4.5", "rcp8_5": "RCP8.5", "ssp5_8_5": "SSP5.8.5"}}, "id": 4}, {"name": "ensemble_member", "label": "Ensemble member", "help": "The main member is usually the member denoted r1i1p1. Other members are simulations which were obtained using slightly different initial conditions, dates or model parameters. Please consult the Overview or the Documentation section of the original data set to learn more about ensemble members.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["r12i1p1", "r1i1p1", "r2i1p1", "r3i1p1"], "columns": 3, "labels": {"r12i1p1": "r12i1p1", "r1i1p1": "r1i1p1", "r2i1p1": "r2i1p1", "r3i1p1": "r3i1p1"}}, "id": 5}, {"name": "hydrological_model", "label": "Hydrological model", "help": "Please consult section 2.3.4 of the product user guide (SIS Operational Water Service).", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["e_hype", "vic_wur"], "columns": 3, "labels": {"e_hype": "E-HYPE", "vic_wur": "VIC-WUR"}}, "id": 6}, {"name": "temporal_aggregation", "label": "Temporal aggregation", "help": "Time span over which the indicator has been calculated or aggregated.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["monthly", "seasonal", "yearly"], "columns": 3, "labels": {"monthly": "Monthly", "seasonal": "Seasonal", "yearly": "Yearly"}}, "id": 7}, {"name": "spatial_aggregation", "label": "Spatial aggregation", "help": "Select between gridded or regionally aggregated data. The regional layers are set out in the widget below. Please consult the Regional Aggregation section of the product user guide for more information", "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["gridded", "regional_layer"], "columns": 3, "labels": {"gridded": "Gridded", "regional_layer": "Regional layer"}}, "id": 8}, {"name": "regional_layer", "label": "Regional layer", "help": "Regional layer over which the indicator has been aggregated. Please consult the Regional Aggregation section of the product user guide for more information.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["nuts_level_0", "nuts_level_1", "nuts_level_2", "nuts_level_3", "non_nuts", "adriatic_ionian", "alpine_space", "northern_periphery_and_arctic", "atlantic_area", "baltic_sea_region", "central_europe", "danube", "mediterranean", "north_sea", "north_west_europe", "south_west_europe", "eu_27", "eea_32", "eea_38"], "columns": 3, "labels": {"nuts_level_0": "NUTS level 0", "nuts_level_1": "NUTS level 1", "nuts_level_2": "NUTS level 2", "nuts_level_3": "NUTS level 3", "non_nuts": "Non NUTS", "adriatic_ionian": "Adriatic-Ionian", "alpine_space": "Alpine Space", "northern_periphery_and_arctic": "Northern Periphery and Arctic", "atlantic_area": "Atlantic Area", "baltic_sea_region": "Baltic Sea Region", "central_europe": "Central Europe", "danube": "Danube", "mediterranean": "Mediterranean (EURO MED)", "north_sea": "North Sea", "north_west_europe": "North West Europe", "south_west_europe": "South West Europe (SUDOE)", "eu_27": "EU-27", "eea_32": "EEA-32 (EEA member countries)", "eea_38": "EEA-38 (EEA member and contributing countries)"}}, "id": 9}, {"name": "other_parameters", "label": "Other parameters", "help": "\nAdditional and indicator specific parameters. The parameters are valid for the following variables: <ul>\n  <li>Statistic: Daily maximum temperature; Daily minimum temperature</li>\n  <li>Threshold value: Hot days</li>\n  <li>Return value: Flood recurrence</li>\n</ul>", "required": true, "css": "todo", "type": "StringListArrayWidget", "details": {"groups": [{"label": "Statistics", "open": false, "values": ["max", "mean", "min"], "labels": {"max": "Max", "mean": "Mean", "min": "Min"}, "columns": 4}, {"label": "Threshold value", "open": false, "values": ["30_c", "35_c", "40_c"], "labels": {"30_c": "30\u00b0C", "35_c": "35\u00b0C", "40_c": "40\u00b0C"}, "columns": 4}, {"label": "Return period", "open": false, "values": ["1_in_2_year", "1_in_5_year", "1_in_10_year", "1_in_50_year"], "labels": {"1_in_2_year": "1 in 2 year", "1_in_5_year": "1 in 5 year", "1_in_10_year": "1 in 10 year", "1_in_50_year": "1 in 50 year"}, "columns": 4}], "displayaslist": false, "accordionGroups": true, "accordionOptions": {"searchable": false, "openGroups": []}}, "id": 10}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "licence-to-use-copernicus-products", "revision": 12, "label": "Licence to use Copernicus Products", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"}]}}]
+[
+  {
+    "name": "variable",
+    "label": "Variable",
+    "help": "Please, consult the product user guide in the documentation section for more information on these variables.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListArrayWidget",
+    "details": {
+      "groups": [
+        {
+          "label": "Heat and cold",
+          "open": false,
+          "values": [
+            "mean_temperature",
+            "growing_degree_days",
+            "heating_degree_days",
+            "cooling_degree_days",
+            "tropical_nights",
+            "hot_days",
+            "warmest_three_day_period",
+            "heatwave_days",
+            "high_utci_days",
+            "frost_days",
+            "daily_maximum_temperature",
+            "daily_minimum_temperature"
+          ],
+          "labels": {
+            "mean_temperature": "Mean temperature",
+            "growing_degree_days": "Growing degree days",
+            "heating_degree_days": "Heating degree days",
+            "cooling_degree_days": "Cooling degree days",
+            "tropical_nights": "Tropical nights",
+            "hot_days": "Hot days",
+            "warmest_three_day_period": "Warmest three-day period",
+            "heatwave_days": "Heatwave days",
+            "high_utci_days": "High UTCI days",
+            "frost_days": "Frost days",
+            "daily_maximum_temperature": "Daily maximum temperature",
+            "daily_minimum_temperature": "Daily minimum temperature"
+          },
+          "columns": 4
+        },
+        {
+          "label": "Wet and dry",
+          "open": false,
+          "values": [
+            "total_precipitation",
+            "maximum_consecutive_five_day_precipitation",
+            "extreme_precipitation_total",
+            "frequency_of_extreme_precipitation",
+            "flood_recurrence",
+            "mean_river_discharge",
+            "aridity_actual",
+            "consecutive_dry_days",
+            "duration_of_meteorological_droughts",
+            "magnitude_of_meteorological_droughts",
+            "mean_soil_moisture",
+            "days_with_high_fire_danger",
+            "mean_wind_speed",
+            "extreme_wind_speed_days",
+            "fire_weather_index"
+          ],
+          "labels": {
+            "total_precipitation": "Total precipitation",
+            "maximum_consecutive_five_day_precipitation": "Maximum consecutive five-day precipitation",
+            "extreme_precipitation_total": "Extreme precipitation total",
+            "frequency_of_extreme_precipitation": "Frequency of extreme precipitation",
+            "flood_recurrence": "Flood recurrence",
+            "mean_river_discharge": "Mean river discharge",
+            "aridity_actual": "Aridity actual",
+            "consecutive_dry_days": "Consecutive dry days",
+            "duration_of_meteorological_droughts": "Duration of meteorological droughts",
+            "magnitude_of_meteorological_droughts": "Magnitude of meteorological droughts",
+            "mean_soil_moisture": "Mean soil moisture",
+            "days_with_high_fire_danger": "Days with high fire danger",
+            "mean_wind_speed": "Mean wind speed",
+            "extreme_wind_speed_days": "Extreme wind speed days",
+            "fire_weather_index": "Fire weather index"
+          },
+          "columns": 4
+        },
+        {
+          "label": "Snow and ice",
+          "open": false,
+          "values": [
+            "snowfall_amount"
+          ],
+          "labels": {
+            "snowfall_amount": "Snowfall amount"
+          },
+          "columns": 4
+        },
+        {
+          "label": "Coastal",
+          "open": false,
+          "values": [
+            "relative_sea_level_rise",
+            "extreme_sea_level"
+          ],
+          "labels": {
+            "relative_sea_level_rise": "Relative sea level rise",
+            "extreme_sea_level": "Extreme sea level"
+          },
+          "columns": 4
+        }
+      ],
+      "displayaslist": false,
+      "accordionGroups": true,
+      "accordionOptions": {
+        "searchable": false,
+        "openGroups": []
+      }
+    },
+    "id": 0
+  },
+  {
+    "name": "origin",
+    "label": "Origin",
+    "help": "Choose between reanalysis or projections derived analysis. The former provides information about the past while the later provides information about the future considering a range of scenarios.",
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "reanalysis",
+        "projections"
+      ],
+      "columns": 2,
+      "labels": {
+        "reanalysis": "Reanalysis",
+        "projections": "Projections"
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "gcm",
+    "label": "Global Climate Model",
+    "help": "The Global Climate Models are all models in the CMIP5 climate simulation ensemble. They are used to provide the lateral boundary conditions needed by the Regional Climate Models.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "cm2_vhr4",
+        "cm5a_mr",
+        "cnrm_cm5",
+        "ec_earth",
+        "ec_earth3p_hr",
+        "hadgem2_es",
+        "hadgem3_gc31_hm",
+        "hadgem3_gc31_hm_sst",
+        "ipsl_cm5a_mr",
+        "mpi_esm_lr",
+        "noresm1_m"
+      ],
+      "columns": 3,
+      "labels": {
+        "cm2_vhr4": "CM2-VHR4 (CMCC, Italy)",
+        "cm5a_mr": "CM5A-MR (IPSL, France)",
+        "cnrm_cm5": "CNRM-CM5 (CERFACS, France)",
+        "ec_earth": "EC-EARTH (ICHEC, Ireland)",
+        "ec_earth3p_hr": "EC-EARTH3p-HR (ICHEC, Ireland)",
+        "hadgem2_es": "HadGEM2-ES (UK Met Office, UK)",
+        "hadgem3_gc31_hm": "HadGEM3-GC31-HM (UK Met Office, UK)",
+        "hadgem3_gc31_hm_sst": "HadGEM3-GC31-HM-SST (UK Met Office, UK)",
+        "ipsl_cm5a_mr": "IPSL-CM5A-MR (IPSL, France)",
+        "mpi_esm_lr": "MPI-ESM-LR (MPI, Germany)",
+        "noresm1_m": "NorESM1-M (NCC, Norway)"
+      }
+    },
+    "id": 2
+  },
+  {
+    "name": "rcm",
+    "label": "Regional Climate Model",
+    "help": "The Regional Climate Models are all models in the EURO-CORDEX regional climate simulation ensemble.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "aladin53",
+        "cclm4_8_17",
+        "hirham5",
+        "racmo22e",
+        "rca4",
+        "this_is_another_remo2009",
+        "wrf331f",
+        "wrf381p",
+        "csc_remo2009"
+      ],
+      "columns": 3,
+      "labels": {
+        "aladin53": "ALADIN53 (CNRM, France)",
+        "cclm4_8_17": "CCLM4-8-17 (CLM-Community, Germany)",
+        "hirham5": "HIRHAM5 (DMI, Denmark)",
+        "racmo22e": "RACMO22E (KNMI, Netherlands)",
+        "rca4": "RCA4 (SMHI, Sweden)",
+        "this_is_another_remo2009": "THIS IS ANOTHER REMO2009",
+        "wrf331f": "WRF331F (IPSL, France)",
+        "wrf381p": "WRF381P (IPSL, France)",
+        "csc_remo2009": "CSC-REMO2009 (MPI, Germany)"
+      }
+    },
+    "id": 3
+  },
+  {
+    "name": "experiment",
+    "label": "Experiment",
+    "help": "Each experiment is a simulation of the climate system under a specific hypothesis. Please consult the Overview and Documentation to learn more about these experiments.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "historical",
+        "rcp4_5",
+        "rcp8_5",
+        "ssp5_8_5"
+      ],
+      "columns": 3,
+      "labels": {
+        "historical": "Historical",
+        "rcp4_5": "RCP4.5",
+        "rcp8_5": "RCP8.5",
+        "ssp5_8_5": "SSP5.8.5"
+      }
+    },
+    "id": 4
+  },
+  {
+    "name": "ensemble_member",
+    "label": "Ensemble member",
+    "help": "The main member is usually the member denoted r1i1p1. Other members are simulations which were obtained using slightly different initial conditions, dates or model parameters. Please consult the Overview or the Documentation section of the original data set to learn more about ensemble members.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "r12i1p1",
+        "r1i1p1",
+        "r2i1p1",
+        "r3i1p1"
+      ],
+      "columns": 3,
+      "labels": {
+        "r12i1p1": "r12i1p1",
+        "r1i1p1": "r1i1p1",
+        "r2i1p1": "r2i1p1",
+        "r3i1p1": "r3i1p1"
+      }
+    },
+    "id": 5
+  },
+  {
+    "name": "hydrological_model",
+    "label": "Hydrological model",
+    "help": "Please consult section 2.3.4 of the product user guide (SIS Operational Water Service).",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "e_hype",
+        "vic_wur"
+      ],
+      "columns": 3,
+      "labels": {
+        "e_hype": "E-HYPE",
+        "vic_wur": "VIC-WUR"
+      }
+    },
+    "id": 6
+  },
+  {
+    "name": "temporal_aggregation",
+    "label": "Temporal aggregation",
+    "help": "Time span over which the indicator has been calculated or aggregated.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "monthly",
+        "seasonal",
+        "yearly"
+      ],
+      "columns": 3,
+      "labels": {
+        "monthly": "Monthly",
+        "seasonal": "Seasonal",
+        "yearly": "Yearly"
+      }
+    },
+    "id": 7
+  },
+  {
+    "name": "spatial_aggregation",
+    "label": "Spatial aggregation",
+    "help": "Select between gridded or regionally aggregated data. The regional layers are set out in the widget below. Please consult the Regional Aggregation section of the product user guide for more information",
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "gridded",
+        "regional_layer"
+      ],
+      "columns": 3,
+      "labels": {
+        "gridded": "Gridded",
+        "regional_layer": "Regional layer"
+      }
+    },
+    "id": 8
+  },
+  {
+    "name": "regional_layer",
+    "label": "Regional layer",
+    "help": "Regional layer over which the indicator has been aggregated. Please consult the Regional Aggregation section of the product user guide for more information.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "nuts_level_0",
+        "nuts_level_1",
+        "nuts_level_2",
+        "nuts_level_3",
+        "non_nuts",
+        "adriatic_ionian",
+        "alpine_space",
+        "northern_periphery_and_arctic",
+        "atlantic_area",
+        "baltic_sea_region",
+        "central_europe",
+        "danube",
+        "mediterranean",
+        "north_sea",
+        "north_west_europe",
+        "south_west_europe",
+        "eu_27",
+        "eea_32",
+        "eea_38"
+      ],
+      "columns": 3,
+      "labels": {
+        "nuts_level_0": "NUTS level 0",
+        "nuts_level_1": "NUTS level 1",
+        "nuts_level_2": "NUTS level 2",
+        "nuts_level_3": "NUTS level 3",
+        "non_nuts": "Non NUTS",
+        "adriatic_ionian": "Adriatic-Ionian",
+        "alpine_space": "Alpine Space",
+        "northern_periphery_and_arctic": "Northern Periphery and Arctic",
+        "atlantic_area": "Atlantic Area",
+        "baltic_sea_region": "Baltic Sea Region",
+        "central_europe": "Central Europe",
+        "danube": "Danube",
+        "mediterranean": "Mediterranean (EURO MED)",
+        "north_sea": "North Sea",
+        "north_west_europe": "North West Europe",
+        "south_west_europe": "South West Europe (SUDOE)",
+        "eu_27": "EU-27",
+        "eea_32": "EEA-32 (EEA member countries)",
+        "eea_38": "EEA-38 (EEA member and contributing countries)"
+      }
+    },
+    "id": 9
+  },
+  {
+    "name": "other_parameters",
+    "label": "Other parameters",
+    "help": "\nAdditional and indicator specific parameters. The parameters are valid for the following variables: <ul>\n  <li>Statistic: Daily maximum temperature; Daily minimum temperature</li>\n  <li>Threshold value: Hot days</li>\n  <li>Return value: Flood recurrence</li>\n</ul>",
+    "required": true,
+    "css": "todo",
+    "type": "StringListArrayWidget",
+    "details": {
+      "groups": [
+        {
+          "label": "Statistics",
+          "open": false,
+          "values": [
+            "max",
+            "mean",
+            "min"
+          ],
+          "labels": {
+            "max": "Max",
+            "mean": "Mean",
+            "min": "Min"
+          },
+          "columns": 4
+        },
+        {
+          "label": "Threshold value",
+          "open": false,
+          "values": [
+            "30_c",
+            "35_c",
+            "40_c"
+          ],
+          "labels": {
+            "30_c": "30\u00b0C",
+            "35_c": "35\u00b0C",
+            "40_c": "40\u00b0C"
+          },
+          "columns": 4
+        },
+        {
+          "label": "Return period",
+          "open": false,
+          "values": [
+            "1_in_2_year",
+            "1_in_5_year",
+            "1_in_10_year",
+            "1_in_50_year"
+          ],
+          "labels": {
+            "1_in_2_year": "1 in 2 year",
+            "1_in_5_year": "1 in 5 year",
+            "1_in_10_year": "1 in 10 year",
+            "1_in_50_year": "1 in 50 year"
+          },
+          "columns": 4
+        }
+      ],
+      "displayaslist": false,
+      "accordionGroups": true,
+      "accordionOptions": {
+        "searchable": false,
+        "openGroups": []
+      }
+    },
+    "id": 10
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "licence-to-use-copernicus-products",
+          "revision": 12,
+          "label": "Licence to use Copernicus Products",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"
+        }
+      ]
+    }
+  }
+]

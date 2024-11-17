@@ -1,1 +1,82 @@
-[{"name": "variable", "label": "Variable", "help": "Please, consult the product user guide in the documentation section for more information on these variables.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["glacier_area"], "columns": 2, "labels": {"glacier_area": "Glacier area"}}, "id": 0}, {"name": "product_type", "label": "Product type", "help": "Vector and gridded are two different output formats of the same data and the hypsometry file includes supplementary information that is useful together with the vector file. The file formats are netCDF for the gridded product, zipped Esri vector data storage format for the vector product, and comma-separated values (csv) for the hypsometry product.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["gridded", "vector", "hypsometry"], "columns": 2, "labels": {"gridded": "Gridded", "vector": "Vector", "hypsometry": "Hypsometry"}}, "id": 1}, {"name": "version", "label": "Version", "help": null, "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["rgi_5_0", "rgi_6_0", "rgi_7_0"], "columns": 2, "labels": {"rgi_5_0": "RGI 5.0", "rgi_6_0": "RGI 6.0", "rgi_7_0": "RGI 7.0"}, "default": "7"}, "id": 2}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "licence-to-use-insitu-glaciers-extent", "revision": 7, "label": "UZH Glaciers Extent licence", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-insitu-glaciers-extent/licence-to-use-insitu-glaciers-extentv7_6cf8006d3eae0434cc42574a7abf2b55ba5008af04469fd8435350cdc22a5874.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-insitu-glaciers-extent/licence-to-use-insitu-glaciers-extent_d69ddaeac01d0b556cc932144abe3c5a7f5433e31e5188c111591e455fc25497.pdf"}]}}]
+[
+  {
+    "name": "variable",
+    "label": "Variable",
+    "help": "Please, consult the product user guide in the documentation section for more information on these variables.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "glacier_area"
+      ],
+      "columns": 2,
+      "labels": {
+        "glacier_area": "Glacier area"
+      }
+    },
+    "id": 0
+  },
+  {
+    "name": "product_type",
+    "label": "Product type",
+    "help": "Vector and gridded are two different output formats of the same data and the hypsometry file includes supplementary information that is useful together with the vector file. The file formats are netCDF for the gridded product, zipped Esri vector data storage format for the vector product, and comma-separated values (csv) for the hypsometry product.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "gridded",
+        "vector",
+        "hypsometry"
+      ],
+      "columns": 2,
+      "labels": {
+        "gridded": "Gridded",
+        "vector": "Vector",
+        "hypsometry": "Hypsometry"
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "version",
+    "label": "Version",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "rgi_5_0",
+        "rgi_6_0",
+        "rgi_7_0"
+      ],
+      "columns": 2,
+      "labels": {
+        "rgi_5_0": "RGI 5.0",
+        "rgi_6_0": "RGI 6.0",
+        "rgi_7_0": "RGI 7.0"
+      },
+      "default": "7"
+    },
+    "id": 2
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "licence-to-use-insitu-glaciers-extent",
+          "revision": 7,
+          "label": "UZH Glaciers Extent licence",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-insitu-glaciers-extent/licence-to-use-insitu-glaciers-extentv7_6cf8006d3eae0434cc42574a7abf2b55ba5008af04469fd8435350cdc22a5874.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-insitu-glaciers-extent/licence-to-use-insitu-glaciers-extent_d69ddaeac01d0b556cc932144abe3c5a7f5433e31e5188c111591e455fc25497.pdf"
+        }
+      ]
+    }
+  }
+]

@@ -1,1 +1,305 @@
-[{"name": "variable", "label": "Variable", "help": "Please refer to the documentation and the variable description table in the overview page for more information about the variables.", "required": true, "css": "todo", "type": "StringListArrayWidget", "details": {"groups": [{"label": "Meterology", "open": true, "columns": 3, "values": ["wind_speed_at_100m", "wind_speed_at_10m", "surface_downwelling_shortwave_radiation", "pressure_at_sea_level", "2m_air_temperature", "total_precipitation"], "labels": {"wind_speed_at_100m": "Wind speed at 100m", "wind_speed_at_10m": "Wind speed at 10m", "surface_downwelling_shortwave_radiation": "Surface downwelling shortwave radiation", "pressure_at_sea_level": "Pressure at sea level", "2m_air_temperature": "2m air temperature", "total_precipitation": "Total precipitation"}}, {"label": "Energy", "open": true, "columns": 3, "values": ["electricity_demand", "hydro_power_generation_reservoirs", "hydro_power_generation_rivers", "solar_photovoltaic_power_generation", "wind_power_generation_offshore", "wind_power_generation_onshore"], "labels": {"electricity_demand": "Electricity demand", "hydro_power_generation_reservoirs": "Hydro power generation reservoirs", "hydro_power_generation_rivers": "Hydro power generation rivers", "solar_photovoltaic_power_generation": "Solar photovoltaic power generation", "wind_power_generation_offshore": "Wind power generation offshore", "wind_power_generation_onshore": "Wind power generation onshore"}}], "displayaslist": false, "accordionGroups": true, "accordionOptions": {"searchable": false, "openGroups": ["Meterology", "Energy"]}}, "id": 0}, {"name": "spatial_aggregation", "label": "Spatial aggregation", "help": "Data aggregated on the various levels are stored in single files for the entire timeseries. The ''year'' and ''month'' selection boxes are only available for ''Original grid'' data.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["original_grid", "country_level", "sub_country_level", "maritime_country_level", "maritime_sub_country_level"], "columns": 3, "labels": {"original_grid": "Original grid", "country_level": "Country level", "sub_country_level": "Sub-country level", "maritime_country_level": "Maritime country level", "maritime_sub_country_level": "Maritime sub-country level"}}, "id": 1}, {"name": "energy_product_type", "label": "Energy product type", "help": "Data for the energy variables is available in three different unit types. Energy is expressed in MWh, power is expressed in Mw and capacity factor ratio is the ratio of the actual generation to the installed capacity.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["capacity_factor_ratio", "energy", "power"], "columns": 3, "labels": {"capacity_factor_ratio": "Capacity factor ratio", "energy": "Energy", "power": "Power"}}, "id": 2}, {"name": "temporal_aggregation", "label": "Temporal aggregation", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["hourly", "daily", "monthly", "seasonal", "annual"], "columns": 3, "labels": {"hourly": "Hourly", "daily": "Daily", "monthly": "Monthly", "seasonal": "Seasonal (3 months)", "annual": "Annual"}}, "id": 3}, {"name": "year", "label": "Year", "help": "The ''year'' and ''month'' selection boxes are only available for ''Original grid'' data. Data aggregated on the various levels are stored in single files for the entire timeseries.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"], "columns": 6, "labels": {"1979": "1979", "1980": "1980", "1981": "1981", "1982": "1982", "1983": "1983", "1984": "1984", "1985": "1985", "1986": "1986", "1987": "1987", "1988": "1988", "1989": "1989", "1990": "1990", "1991": "1991", "1992": "1992", "1993": "1993", "1994": "1994", "1995": "1995", "1996": "1996", "1997": "1997", "1998": "1998", "1999": "1999", "2000": "2000", "2001": "2001", "2002": "2002", "2003": "2003", "2004": "2004", "2005": "2005", "2006": "2006", "2007": "2007", "2008": "2008", "2009": "2009", "2010": "2010", "2011": "2011", "2012": "2012", "2013": "2013", "2014": "2014", "2015": "2015", "2016": "2016", "2017": "2017", "2018": "2018", "2019": "2019", "2020": "2020", "2021": "2021", "2022": "2022", "2023": "2023", "2024": "2024"}}, "id": 4}, {"name": "month", "label": "Month", "help": "Monthly files are only available for ''Original grid'' data from 2019. Earlier dates are stored in annual files. The ''year'' and ''month'' selection boxes are only available for ''Original grid'' data. Data aggregated on the various levels are stored in single files for the entire timeseries.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], "columns": 6, "labels": {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}}, "id": 5}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "licence-to-use-copernicus-products", "revision": 12, "label": "Licence to use Copernicus Products", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"}]}}]
+[
+  {
+    "name": "variable",
+    "label": "Variable",
+    "help": "Please refer to the documentation and the variable description table in the overview page for more information about the variables.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListArrayWidget",
+    "details": {
+      "groups": [
+        {
+          "label": "Meterology",
+          "open": true,
+          "columns": 3,
+          "values": [
+            "wind_speed_at_100m",
+            "wind_speed_at_10m",
+            "surface_downwelling_shortwave_radiation",
+            "pressure_at_sea_level",
+            "2m_air_temperature",
+            "total_precipitation"
+          ],
+          "labels": {
+            "wind_speed_at_100m": "Wind speed at 100m",
+            "wind_speed_at_10m": "Wind speed at 10m",
+            "surface_downwelling_shortwave_radiation": "Surface downwelling shortwave radiation",
+            "pressure_at_sea_level": "Pressure at sea level",
+            "2m_air_temperature": "2m air temperature",
+            "total_precipitation": "Total precipitation"
+          }
+        },
+        {
+          "label": "Energy",
+          "open": true,
+          "columns": 3,
+          "values": [
+            "electricity_demand",
+            "hydro_power_generation_reservoirs",
+            "hydro_power_generation_rivers",
+            "solar_photovoltaic_power_generation",
+            "wind_power_generation_offshore",
+            "wind_power_generation_onshore"
+          ],
+          "labels": {
+            "electricity_demand": "Electricity demand",
+            "hydro_power_generation_reservoirs": "Hydro power generation reservoirs",
+            "hydro_power_generation_rivers": "Hydro power generation rivers",
+            "solar_photovoltaic_power_generation": "Solar photovoltaic power generation",
+            "wind_power_generation_offshore": "Wind power generation offshore",
+            "wind_power_generation_onshore": "Wind power generation onshore"
+          }
+        }
+      ],
+      "displayaslist": false,
+      "accordionGroups": true,
+      "accordionOptions": {
+        "searchable": false,
+        "openGroups": [
+          "Meterology",
+          "Energy"
+        ]
+      }
+    },
+    "id": 0
+  },
+  {
+    "name": "spatial_aggregation",
+    "label": "Spatial aggregation",
+    "help": "Data aggregated on the various levels are stored in single files for the entire timeseries. The ''year'' and ''month'' selection boxes are only available for ''Original grid'' data.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "original_grid",
+        "country_level",
+        "sub_country_level",
+        "maritime_country_level",
+        "maritime_sub_country_level"
+      ],
+      "columns": 3,
+      "labels": {
+        "original_grid": "Original grid",
+        "country_level": "Country level",
+        "sub_country_level": "Sub-country level",
+        "maritime_country_level": "Maritime country level",
+        "maritime_sub_country_level": "Maritime sub-country level"
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "energy_product_type",
+    "label": "Energy product type",
+    "help": "Data for the energy variables is available in three different unit types. Energy is expressed in MWh, power is expressed in Mw and capacity factor ratio is the ratio of the actual generation to the installed capacity.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "capacity_factor_ratio",
+        "energy",
+        "power"
+      ],
+      "columns": 3,
+      "labels": {
+        "capacity_factor_ratio": "Capacity factor ratio",
+        "energy": "Energy",
+        "power": "Power"
+      }
+    },
+    "id": 2
+  },
+  {
+    "name": "temporal_aggregation",
+    "label": "Temporal aggregation",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "hourly",
+        "daily",
+        "monthly",
+        "seasonal",
+        "annual"
+      ],
+      "columns": 3,
+      "labels": {
+        "hourly": "Hourly",
+        "daily": "Daily",
+        "monthly": "Monthly",
+        "seasonal": "Seasonal (3 months)",
+        "annual": "Annual"
+      }
+    },
+    "id": 3
+  },
+  {
+    "name": "year",
+    "label": "Year",
+    "help": "The ''year'' and ''month'' selection boxes are only available for ''Original grid'' data. Data aggregated on the various levels are stored in single files for the entire timeseries.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "1979",
+        "1980",
+        "1981",
+        "1982",
+        "1983",
+        "1984",
+        "1985",
+        "1986",
+        "1987",
+        "1988",
+        "1989",
+        "1990",
+        "1991",
+        "1992",
+        "1993",
+        "1994",
+        "1995",
+        "1996",
+        "1997",
+        "1998",
+        "1999",
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "columns": 6,
+      "labels": {
+        "1979": "1979",
+        "1980": "1980",
+        "1981": "1981",
+        "1982": "1982",
+        "1983": "1983",
+        "1984": "1984",
+        "1985": "1985",
+        "1986": "1986",
+        "1987": "1987",
+        "1988": "1988",
+        "1989": "1989",
+        "1990": "1990",
+        "1991": "1991",
+        "1992": "1992",
+        "1993": "1993",
+        "1994": "1994",
+        "1995": "1995",
+        "1996": "1996",
+        "1997": "1997",
+        "1998": "1998",
+        "1999": "1999",
+        "2000": "2000",
+        "2001": "2001",
+        "2002": "2002",
+        "2003": "2003",
+        "2004": "2004",
+        "2005": "2005",
+        "2006": "2006",
+        "2007": "2007",
+        "2008": "2008",
+        "2009": "2009",
+        "2010": "2010",
+        "2011": "2011",
+        "2012": "2012",
+        "2013": "2013",
+        "2014": "2014",
+        "2015": "2015",
+        "2016": "2016",
+        "2017": "2017",
+        "2018": "2018",
+        "2019": "2019",
+        "2020": "2020",
+        "2021": "2021",
+        "2022": "2022",
+        "2023": "2023",
+        "2024": "2024"
+      }
+    },
+    "id": 4
+  },
+  {
+    "name": "month",
+    "label": "Month",
+    "help": "Monthly files are only available for ''Original grid'' data from 2019. Earlier dates are stored in annual files. The ''year'' and ''month'' selection boxes are only available for ''Original grid'' data. Data aggregated on the various levels are stored in single files for the entire timeseries.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "columns": 6,
+      "labels": {
+        "01": "January",
+        "02": "February",
+        "03": "March",
+        "04": "April",
+        "05": "May",
+        "06": "June",
+        "07": "July",
+        "08": "August",
+        "09": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+      }
+    },
+    "id": 5
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "licence-to-use-copernicus-products",
+          "revision": 12,
+          "label": "Licence to use Copernicus Products",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"
+        }
+      ]
+    }
+  }
+]

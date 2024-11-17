@@ -1,1 +1,104 @@
-[{"name": "domain", "label": "Domain", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["antarctica", "greenland"], "columns": 2, "labels": {"antarctica": "Antarctica", "greenland": "Greenland"}}, "id": 0}, {"name": "climate_data_record_type", "label": "Climate data record type", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["icdr", "tcdr"], "columns": 2, "labels": {"icdr": "ICDR (Interim Climate Data Record)", "tcdr": "TCDR (Thematic Climate Data Record)"}}, "id": 1}, {"name": "version", "label": "Version", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["2_0", "3_0", "4_0", "5_0"], "columns": 2, "labels": {"2_0": "2.0", "3_0": "3.0", "4_0": "4.0", "5_0": "5.0"}}, "id": 2}, {"name": "variable", "details": {"values": ["all"], "labels": {"all": "All available variables"}, "default": ["all"], "columns": 2}, "type": "StringChoiceWidget", "required": true, "css": "todo", "help": "All variables available for this catalogue entry will be downloaded together.", "label": "Variable", "id": 3}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "creative-commons-attribute-4-international-licence", "revision": 1, "label": "Creative Commons Attribute 4.0 International License", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/creative-commons-attribute-4-international-licence/creative-commons-attribute-4-international-licencev1_7d779f0bb43e511ea0a0f35f1561db59b2cd7ccf8e88193c9275c5674a1f38f0.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/creative-commons-attribute-4-international-licence/creative-commons-attribute-4-international-licence_c590ec322e16932f8b93b4b8ab217421986470c9bbe99a7b1c74f0f62cc5f7b9.pdf"}]}}]
+[
+  {
+    "name": "domain",
+    "label": "Domain",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "antarctica",
+        "greenland"
+      ],
+      "columns": 2,
+      "labels": {
+        "antarctica": "Antarctica",
+        "greenland": "Greenland"
+      }
+    },
+    "id": 0
+  },
+  {
+    "name": "climate_data_record_type",
+    "label": "Climate data record type",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "icdr",
+        "tcdr"
+      ],
+      "columns": 2,
+      "labels": {
+        "icdr": "ICDR (Interim Climate Data Record)",
+        "tcdr": "TCDR (Thematic Climate Data Record)"
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "version",
+    "label": "Version",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "2_0",
+        "3_0",
+        "4_0",
+        "5_0"
+      ],
+      "columns": 2,
+      "labels": {
+        "2_0": "2.0",
+        "3_0": "3.0",
+        "4_0": "4.0",
+        "5_0": "5.0"
+      }
+    },
+    "id": 2
+  },
+  {
+    "name": "variable",
+    "details": {
+      "values": [
+        "all"
+      ],
+      "labels": {
+        "all": "All available variables"
+      },
+      "default": [
+        "all"
+      ],
+      "columns": 2
+    },
+    "type": "StringChoiceWidget",
+    "required": true,
+    "css": "todo",
+    "help": "All variables available for this catalogue entry will be downloaded together.",
+    "label": "Variable",
+    "id": 3
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "creative-commons-attribute-4-international-licence",
+          "revision": 1,
+          "label": "Creative Commons Attribute 4.0 International License",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/creative-commons-attribute-4-international-licence/creative-commons-attribute-4-international-licencev1_7d779f0bb43e511ea0a0f35f1561db59b2cd7ccf8e88193c9275c5674a1f38f0.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/creative-commons-attribute-4-international-licence/creative-commons-attribute-4-international-licence_c590ec322e16932f8b93b4b8ab217421986470c9bbe99a7b1c74f0f62cc5f7b9.pdf"
+        }
+      ]
+    }
+  }
+]

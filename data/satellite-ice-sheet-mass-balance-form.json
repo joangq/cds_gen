@@ -1,1 +1,40 @@
-[{"name": "variable", "details": {"values": ["all"], "labels": {"all": "All available variables"}, "default": ["all"], "columns": 2}, "type": "StringChoiceWidget", "required": true, "css": "todo", "help": "All variables available for this catalogue entry will be downloaded together.", "label": "Variable", "id": 0}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "creative-commons-attribution-4-0-international-public-licence", "revision": 1, "label": "Creative Commons Attribution 4.0 International Public Licence", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/creative-commons-attribution-4-0-international-public-licence/creative-commons-attribution-4-0-international-public-licencev1_9660aa141cffdfc3064774328f5f9d8d298b9e1414d5da591a974df1baa581a3.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/creative-commons-attribution-4-0-international-public-licence/creative-commons-attribution-4-0-international-public-licence_78edae52daa6e91c3370229e180badad7d6e8e5e440957e4417cf288b6556922.pdf"}]}}]
+[
+  {
+    "name": "variable",
+    "details": {
+      "values": [
+        "all"
+      ],
+      "labels": {
+        "all": "All available variables"
+      },
+      "default": [
+        "all"
+      ],
+      "columns": 2
+    },
+    "type": "StringChoiceWidget",
+    "required": true,
+    "css": "todo",
+    "help": "All variables available for this catalogue entry will be downloaded together.",
+    "label": "Variable",
+    "id": 0
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "creative-commons-attribution-4-0-international-public-licence",
+          "revision": 1,
+          "label": "Creative Commons Attribution 4.0 International Public Licence",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/creative-commons-attribution-4-0-international-public-licence/creative-commons-attribution-4-0-international-public-licencev1_9660aa141cffdfc3064774328f5f9d8d298b9e1414d5da591a974df1baa581a3.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/creative-commons-attribution-4-0-international-public-licence/creative-commons-attribution-4-0-international-public-licence_78edae52daa6e91c3370229e180badad7d6e8e5e440957e4417cf288b6556922.pdf"
+        }
+      ]
+    }
+  }
+]

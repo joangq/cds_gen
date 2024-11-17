@@ -1,1 +1,582 @@
-[{"name": "variable", "label": "Variable", "help": "The available variables grouped by product type. The ETCCDI short name for each variable is included in brackets. Please consult the documentation for more information on these variables.", "required": true, "css": "todo", "type": "StringListArrayWidget", "details": {"groups": [{"label": "Extreme value indices (ETCCDI)", "open": true, "values": ["cold_days", "cold_nights", "cold_spell_duration_index", "consecutive_dry_days", "consecutive_wet_days", "diurnal_temperature_range", "extremely_wet_day_precipitation", "frost_days", "growing_season_length", "heavy_precipitation_days", "ice_days", "maximum_1_day_precipitation", "maximum_5_day_precipitation", "maximum_value_of_daily_maximum_temperature", "minimum_value_of_daily_maximum_temperature", "maximum_value_of_daily_minimum_temperature", "minimum_value_of_daily_minimum_temperature", "number_of_wet_days", "simple_daily_intensity_index", "summer_days", "total_wet_day_precipitation", "tropical_nights", "very_heavy_precipitation_days", "very_wet_day_precipitation", "warm_days", "warm_nights", "warm_spell_duration_index"], "labels": {"cold_days": "Cold days (TX10p)", "cold_nights": "Cold nights (TN10p)", "cold_spell_duration_index": "Cold spell duration index (CSDI)", "consecutive_dry_days": "Consecutive dry days (CDD)", "consecutive_wet_days": "Consecutive wet days (CWD)", "diurnal_temperature_range": "Diurnal temperature range (DTR)", "extremely_wet_day_precipitation": "Extremely wet day precipitation (R99p)", "frost_days": "Frost days (FD)", "growing_season_length": "Growing season length (GSL)", "heavy_precipitation_days": "Heavy precipitation days (R10mm)", "ice_days": "Ice days (ID)", "maximum_1_day_precipitation": "Maximum 1-day precipitation (Rx1day)", "maximum_5_day_precipitation": "Maximum 5-day precipitation (Rx5day)", "maximum_value_of_daily_maximum_temperature": "Maximum value of daily maximum temperature (TXx)", "minimum_value_of_daily_maximum_temperature": "Minimum value of daily maximum temperature (TXn)", "maximum_value_of_daily_minimum_temperature": "Maximum value of daily minimum temperature (TNx)", "minimum_value_of_daily_minimum_temperature": "Minimum value of daily minimum temperature (TNn)", "number_of_wet_days": "Number of wet days (R1mm)", "simple_daily_intensity_index": "Simple daily intensity index (SDII)", "summer_days": "Summer days (SU)", "total_wet_day_precipitation": "Total wet day precipitation (PRCPTOT)", "tropical_nights": "Tropical nights (TR)", "very_heavy_precipitation_days": "Very heavy precipitation days (R20mm)", "very_wet_day_precipitation": "Very wet day precipitation (R95p)", "warm_days": "Warm days (TX90p)", "warm_nights": "Warm nights (TN90p)", "warm_spell_duration_index": "Warm spell duration index (WSDI)"}, "columns": 4}, {"label": "Heat stress indicators (HSI)", "open": true, "values": ["heat_index", "humidex", "universal_thermal_climate_index", "wet_bulb_temperature_index", "wet_bulb_globe_temperature_index"], "labels": {"heat_index": "Heat index", "humidex": "Humidex", "universal_thermal_climate_index": "Universal thermal climate index", "wet_bulb_temperature_index": "Wet-bulb temperature index", "wet_bulb_globe_temperature_index": "Wet-bulb globe temperature index"}, "columns": 4}], "displayaslist": false, "accordionGroups": true, "accordionOptions": {"searchable": false, "openGroups": ["Extreme value indices (ETCCDI)", "Heat stress indicators (HSI)"]}}, "id": 0}, {"name": "product_type", "label": "Product type", "help": "<p>ETCCDI: A number of the indices are calculated based on comparison with a baseline climatological period. Two base periods were chosen: 1961-1990 (from the AR5 climate assessment) & 1981-2010 (updated climatological period). The remainder of the indices are base independent, meaning that they are not based upon statistics calculated over the base period. For further information regarding the choice of base periods, please see Section 2.4.2 in the product user guide.</p> <p>HSI: The indices are calculated from both bias-adjusted and non bias-adjusted climate model data.</p>", "required": true, "css": "todo", "type": "StringListArrayWidget", "details": {"groups": [{"label": "Extreme value indices (ETCCDI)", "open": true, "values": ["base_period_1961_1990", "base_period_1981_2010", "base_independent"], "labels": {"base_period_1961_1990": "Base period: 1961-1990", "base_period_1981_2010": "Base period: 1981-2010", "base_independent": "Base independent"}, "columns": 4}, {"label": "Heat stress indices (HSI)", "open": true, "values": ["bias_adjusted", "non_bias_adjusted"], "labels": {"bias_adjusted": "Bias-adjusted", "non_bias_adjusted": "Non bias-adjusted"}, "columns": 4}], "displayaslist": false, "accordionGroups": true, "accordionOptions": {"searchable": false, "openGroups": ["Extreme value indices (ETCCDI)", "Heat stress indices (HSI)"]}}, "id": 1}, {"name": "model", "label": "Model", "help": "Contains the subset of CMIP6 climate models used to produce this dataset.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["access_cm2", "access_esm1_5", "bcc_csm2_mr", "cnrm_cm6_1", "cnrm_cm6_1_hr", "cnrm_esm2_1", "canesm5", "ec_earth3", "ec_earth3_veg", "fgoals_g3", "gfdl_cm4", "gfdl_esm4", "hadgem3_gc31_ll", "hadgem3_gc31_mm", "inm_cm4_8", "inm_cm5_0", "kace_1_0_g", "kiost_esm", "miroc_es2l", "miroc6", "mpi_esm1_2_hr", "mpi_esm1_2_lr", "mri_esm2_0", "nesm3", "noresm2_lm", "noresm2_mm", "ukesm1_0_ll"], "columns": 3, "labels": {"access_cm2": "ACCESS-CM2 (Australia)", "access_esm1_5": "ACCESS-ESM1-5 (Australia)", "bcc_csm2_mr": "BCC-CSM2-MR (China)", "cnrm_cm6_1": "CNRM-CM6-1 (France)", "cnrm_cm6_1_hr": "CNRM-CM6-1-HR (France)", "cnrm_esm2_1": "CNRM-ESM2-1 (France)", "canesm5": "CanESM5 (Canada)", "ec_earth3": "EC-Earth3 (Europe)", "ec_earth3_veg": "EC-Earth3-Veg (Europe)", "fgoals_g3": "FGOALS-g3 (China)", "gfdl_cm4": "GFDL-CM4 (USA)", "gfdl_esm4": "GFDL-ESM4 (USA)", "hadgem3_gc31_ll": "HadGEM3-GC31-LL (UK)", "hadgem3_gc31_mm": "HadGEM3-GC31-MM (UK)", "inm_cm4_8": "INM-CM4-8 (Russia)", "inm_cm5_0": "INM-CM5-0 (Russia)", "kace_1_0_g": "KACE-1-0-G (South Korea)", "kiost_esm": "KIOST-ESM (South Korea)", "miroc_es2l": "MIROC-ES2L (Japan)", "miroc6": "MIROC6 (Japan)", "mpi_esm1_2_hr": "MPI-ESM1-2-HR (Germany)", "mpi_esm1_2_lr": "MPI-ESM1-2-LR (Germany)", "mri_esm2_0": "MRI-ESM2-0 (Japan)", "nesm3": "NESM3 (China)", "noresm2_lm": "NorESM2-LM (Norway)", "noresm2_mm": "NorESM2-MM (Norway)", "ukesm1_0_ll": "UKESM1-0-LL"}}, "id": 2}, {"name": "ensemble_member", "label": "Ensemble member", "help": "Contains the subset of CMIP6 climate model ensemble members used to produce this dataset.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["r10i1p1f1", "r10i1p2f1", "r11i1p1f1", "r11i1p2f1", "r12i1p1f1", "r12i1p2f1", "r13i1p1f1", "r13i1p2f1", "r14i1p1f1", "r14i1p2f1", "r15i1p1f1", "r15i1p2f1", "r16i1p1f1", "r16i1p2f1", "r17i1p1f1", "r17i1p2f1", "r18i1p1f1", "r18i1p2f1", "r19i1p1f1", "r19i1p2f1", "r1i1p1f1", "r1i1p1f2", "r1i1p1f3", "r1i1p2f1", "r20i1p1f1", "r20i1p2f1", "r21i1p1f1", "r21i1p2f1", "r22i1p1f1", "r22i1p2f1", "r23i1p1f1", "r23i1p2f1", "r24i1p1f1", "r24i1p2f1", "r25i1p1f1", "r25i1p2f1", "r26i1p1f1", "r27i1p1f1", "r28i1p1f1", "r29i1p1f1", "r2i1p1f1", "r2i1p2f1", "r30i1p1f1", "r31i1p1f1", "r32i1p1f1", "r33i1p1f1", "r34i1p1f1", "r35i1p1f1", "r36i1p1f1", "r37i1p1f1", "r38i1p1f1", "r39i1p1f1", "r3i1p1f1", "r3i1p2f1", "r40i1p1f1", "r41i1p1f1", "r42i1p1f1", "r43i1p1f1", "r44i1p1f1", "r45i1p1f1", "r46i1p1f1", "r47i1p1f1", "r48i1p1f1", "r49i1p1f1", "r4i1p1f1", "r4i1p2f1", "r50i1p1f1", "r5i1p1f1", "r5i1p2f1", "r6i1p1f1", "r6i1p2f1", "r7i1p1f1", "r7i1p2f1", "r8i1p1f1", "r8i1p2f1", "r9i1p1f1", "r9i1p2f1"], "columns": 3, "labels": {"r10i1p1f1": "r10i1p1f1", "r10i1p2f1": "r10i1p2f1", "r11i1p1f1": "r11i1p1f1", "r11i1p2f1": "r11i1p2f1", "r12i1p1f1": "r12i1p1f1", "r12i1p2f1": "r12i1p2f1", "r13i1p1f1": "r13i1p1f1", "r13i1p2f1": "r13i1p2f1", "r14i1p1f1": "r14i1p1f1", "r14i1p2f1": "r14i1p2f1", "r15i1p1f1": "r15i1p1f1", "r15i1p2f1": "r15i1p2f1", "r16i1p1f1": "r16i1p1f1", "r16i1p2f1": "r16i1p2f1", "r17i1p1f1": "r17i1p1f1", "r17i1p2f1": "r17i1p2f1", "r18i1p1f1": "r18i1p1f1", "r18i1p2f1": "r18i1p2f1", "r19i1p1f1": "r19i1p1f1", "r19i1p2f1": "r19i1p2f1", "r1i1p1f1": "r1i1p1f1", "r1i1p1f2": "r1i1p1f2", "r1i1p1f3": "r1i1p1f3", "r1i1p2f1": "r1i1p2f1", "r20i1p1f1": "r20i1p1f1", "r20i1p2f1": "r20i1p2f1", "r21i1p1f1": "r21i1p1f1", "r21i1p2f1": "r21i1p2f1", "r22i1p1f1": "r22i1p1f1", "r22i1p2f1": "r22i1p2f1", "r23i1p1f1": "r23i1p1f1", "r23i1p2f1": "r23i1p2f1", "r24i1p1f1": "r24i1p1f1", "r24i1p2f1": "r24i1p2f1", "r25i1p1f1": "r25i1p1f1", "r25i1p2f1": "r25i1p2f1", "r26i1p1f1": "r26i1p1f1", "r27i1p1f1": "r27i1p1f1", "r28i1p1f1": "r28i1p1f1", "r29i1p1f1": "r29i1p1f1", "r2i1p1f1": "r2i1p1f1", "r2i1p2f1": "r2i1p2f1", "r30i1p1f1": "r30i1p1f1", "r31i1p1f1": "r31i1p1f1", "r32i1p1f1": "r32i1p1f1", "r33i1p1f1": "r33i1p1f1", "r34i1p1f1": "r34i1p1f1", "r35i1p1f1": "r35i1p1f1", "r36i1p1f1": "r36i1p1f1", "r37i1p1f1": "r37i1p1f1", "r38i1p1f1": "r38i1p1f1", "r39i1p1f1": "r39i1p1f1", "r3i1p1f1": "r3i1p1f1", "r3i1p2f1": "r3i1p2f1", "r40i1p1f1": "r40i1p1f1", "r41i1p1f1": "r41i1p1f1", "r42i1p1f1": "r42i1p1f1", "r43i1p1f1": "r43i1p1f1", "r44i1p1f1": "r44i1p1f1", "r45i1p1f1": "r45i1p1f1", "r46i1p1f1": "r46i1p1f1", "r47i1p1f1": "r47i1p1f1", "r48i1p1f1": "r48i1p1f1", "r49i1p1f1": "r49i1p1f1", "r4i1p1f1": "r4i1p1f1", "r4i1p2f1": "r4i1p2f1", "r50i1p1f1": "r50i1p1f1", "r5i1p1f1": "r5i1p1f1", "r5i1p2f1": "r5i1p2f1", "r6i1p1f1": "r6i1p1f1", "r6i1p2f1": "r6i1p2f1", "r7i1p1f1": "r7i1p1f1", "r7i1p2f1": "r7i1p2f1", "r8i1p1f1": "r8i1p1f1", "r8i1p2f1": "r8i1p2f1", "r9i1p1f1": "r9i1p1f1", "r9i1p2f1": "r9i1p2f1"}}, "id": 3}, {"name": "experiment", "label": "Experiment", "help": "<p>Each experiment is a simulation of the climate system under a specific hypothesis. <strong>Historical</strong> provides model output for the reference period. The <strong>SSP</strong> scenario experiments can be understood in terms of two pathways, a Shared Socioeconomic Pathway (SSP) storyline and a Representative Concentration Pathway (RCP). For example, experiment SSP2-4.5 follows SSP2, a storyline with intermediate mitigation and adaptation challenges, and RCP4.5 which leads to a radiative forcing of 4.5 Wm<sup>-2</sup> by the year 2100.</p>", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["historical", "ssp1_2_6", "ssp2_4_5", "ssp3_7_0", "ssp5_8_5"], "columns": 3, "labels": {"historical": "Historical", "ssp1_2_6": "SSP1-2.6", "ssp2_4_5": "SSP2-4.5", "ssp3_7_0": "SSP3-7.0", "ssp5_8_5": "SSP5-8.5"}}, "id": 4}, {"name": "temporal_aggregation", "label": "Temporal aggregation", "help": "The variables contained in the dataset are the ETCCDI indices at monthly and yearly resolution, and daily resolved Heat Stress Indices.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["yearly", "monthly", "daily"], "columns": 3, "labels": {"yearly": "Yearly", "monthly": "Monthly", "daily": "Daily"}}, "id": 5}, {"name": "period", "label": "Period", "help": "<p>For bias-adjusted HSIs, the historical period covers 1951-2010 (2 x 30 years application period for bias-adjustment) and the future SSP scenarios cover 2011-2100 (3 x 30 year application period).</p> <p>A small number of models have delivered data for more years than the prescribed standard (1850-2014, 2015-2100) and the indicators were computed for the full period to maintain consistency with the input data. These models have alternate start and end dates for the periods covered.</p>", "required": true, "css": "todo", "type": "StringListArrayWidget", "details": {"groups": [{"label": "Daily", "open": true, "values": ["19510101_20101230", "19510101_20101231", "19510101_20141230", "19510101_20141231", "20110101_21001230", "20110101_21001231", "20150101_21001230", "20150101_21001231"], "labels": {"19510101_20101230": "19510101-20101230", "19510101_20101231": "19510101-20101231", "19510101_20141230": "19510101-20141230", "19510101_20141231": "19510101-20141231", "20110101_21001230": "20110101-21001230", "20110101_21001231": "20110101-21001231", "20150101_21001230": "20150101-21001230", "20150101_21001231": "20150101-21001231"}, "columns": 4}, {"label": "Monthly", "open": true, "values": ["184901_201412", "185001_201412", "185001_201612", "195101_201412", "201501_203912", "201501_210012", "201501_218012", "201501_230012"], "labels": {"184901_201412": "184901-201412", "185001_201412": "185001-201412", "185001_201612": "185001-201612", "195101_201412": "195101-201412", "201501_203912": "201501-203912", "201501_210012": "201501-210012", "201501_218012": "201501-218012", "201501_230012": "201501-230012"}, "columns": 4}, {"label": "Yearly", "open": true, "values": ["1849_2014", "1850_2014", "1850_2016", "1951_2014", "2015_2039", "2015_2100", "2015_2180", "2015_2300"], "labels": {"1849_2014": "1849-2014", "1850_2014": "1850-2014", "1850_2016": "1850-2016", "1951_2014": "1951-2014", "2015_2039": "2015-2039", "2015_2100": "2015-2100", "2015_2180": "2015-2180", "2015_2300": "2015-2300"}, "columns": 4}], "displayaslist": false, "accordionGroups": true, "accordionOptions": {"searchable": false, "openGroups": ["Daily", "Monthly", "Yearly"]}}, "id": 6}, {"name": "version", "label": "Version", "help": "Version 1 has been superseded by version 2. Please see the 'Known issues' table in the Documentation tab for more details.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["1_0", "2_0"], "columns": 3, "labels": {"1_0": "1.0", "2_0": "2.0"}, "default": ["2_0"]}, "id": 7}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "cicero-cmip6-indicators-licence", "revision": 1, "label": "CMIP6 indicators dataset licence (CICERO)", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/cicero-cmip6-indicators-licence/cicero-cmip6-indicators-licencev1_fc1b81a04f614d78000770d9bc775a302ce8cc03e4d0d17a07d384ab429dc247.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/cicero-cmip6-indicators-licence/cicero-cmip6-indicators-licence_ba997e52f2423143e053ae30684aaaee1769d2e827611938366112bedccac5a1.pdf"}]}}]
+[
+  {
+    "name": "variable",
+    "label": "Variable",
+    "help": "The available variables grouped by product type. The ETCCDI short name for each variable is included in brackets. Please consult the documentation for more information on these variables.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListArrayWidget",
+    "details": {
+      "groups": [
+        {
+          "label": "Extreme value indices (ETCCDI)",
+          "open": true,
+          "values": [
+            "cold_days",
+            "cold_nights",
+            "cold_spell_duration_index",
+            "consecutive_dry_days",
+            "consecutive_wet_days",
+            "diurnal_temperature_range",
+            "extremely_wet_day_precipitation",
+            "frost_days",
+            "growing_season_length",
+            "heavy_precipitation_days",
+            "ice_days",
+            "maximum_1_day_precipitation",
+            "maximum_5_day_precipitation",
+            "maximum_value_of_daily_maximum_temperature",
+            "minimum_value_of_daily_maximum_temperature",
+            "maximum_value_of_daily_minimum_temperature",
+            "minimum_value_of_daily_minimum_temperature",
+            "number_of_wet_days",
+            "simple_daily_intensity_index",
+            "summer_days",
+            "total_wet_day_precipitation",
+            "tropical_nights",
+            "very_heavy_precipitation_days",
+            "very_wet_day_precipitation",
+            "warm_days",
+            "warm_nights",
+            "warm_spell_duration_index"
+          ],
+          "labels": {
+            "cold_days": "Cold days (TX10p)",
+            "cold_nights": "Cold nights (TN10p)",
+            "cold_spell_duration_index": "Cold spell duration index (CSDI)",
+            "consecutive_dry_days": "Consecutive dry days (CDD)",
+            "consecutive_wet_days": "Consecutive wet days (CWD)",
+            "diurnal_temperature_range": "Diurnal temperature range (DTR)",
+            "extremely_wet_day_precipitation": "Extremely wet day precipitation (R99p)",
+            "frost_days": "Frost days (FD)",
+            "growing_season_length": "Growing season length (GSL)",
+            "heavy_precipitation_days": "Heavy precipitation days (R10mm)",
+            "ice_days": "Ice days (ID)",
+            "maximum_1_day_precipitation": "Maximum 1-day precipitation (Rx1day)",
+            "maximum_5_day_precipitation": "Maximum 5-day precipitation (Rx5day)",
+            "maximum_value_of_daily_maximum_temperature": "Maximum value of daily maximum temperature (TXx)",
+            "minimum_value_of_daily_maximum_temperature": "Minimum value of daily maximum temperature (TXn)",
+            "maximum_value_of_daily_minimum_temperature": "Maximum value of daily minimum temperature (TNx)",
+            "minimum_value_of_daily_minimum_temperature": "Minimum value of daily minimum temperature (TNn)",
+            "number_of_wet_days": "Number of wet days (R1mm)",
+            "simple_daily_intensity_index": "Simple daily intensity index (SDII)",
+            "summer_days": "Summer days (SU)",
+            "total_wet_day_precipitation": "Total wet day precipitation (PRCPTOT)",
+            "tropical_nights": "Tropical nights (TR)",
+            "very_heavy_precipitation_days": "Very heavy precipitation days (R20mm)",
+            "very_wet_day_precipitation": "Very wet day precipitation (R95p)",
+            "warm_days": "Warm days (TX90p)",
+            "warm_nights": "Warm nights (TN90p)",
+            "warm_spell_duration_index": "Warm spell duration index (WSDI)"
+          },
+          "columns": 4
+        },
+        {
+          "label": "Heat stress indicators (HSI)",
+          "open": true,
+          "values": [
+            "heat_index",
+            "humidex",
+            "universal_thermal_climate_index",
+            "wet_bulb_temperature_index",
+            "wet_bulb_globe_temperature_index"
+          ],
+          "labels": {
+            "heat_index": "Heat index",
+            "humidex": "Humidex",
+            "universal_thermal_climate_index": "Universal thermal climate index",
+            "wet_bulb_temperature_index": "Wet-bulb temperature index",
+            "wet_bulb_globe_temperature_index": "Wet-bulb globe temperature index"
+          },
+          "columns": 4
+        }
+      ],
+      "displayaslist": false,
+      "accordionGroups": true,
+      "accordionOptions": {
+        "searchable": false,
+        "openGroups": [
+          "Extreme value indices (ETCCDI)",
+          "Heat stress indicators (HSI)"
+        ]
+      }
+    },
+    "id": 0
+  },
+  {
+    "name": "product_type",
+    "label": "Product type",
+    "help": "<p>ETCCDI: A number of the indices are calculated based on comparison with a baseline climatological period. Two base periods were chosen: 1961-1990 (from the AR5 climate assessment) & 1981-2010 (updated climatological period). The remainder of the indices are base independent, meaning that they are not based upon statistics calculated over the base period. For further information regarding the choice of base periods, please see Section 2.4.2 in the product user guide.</p> <p>HSI: The indices are calculated from both bias-adjusted and non bias-adjusted climate model data.</p>",
+    "required": true,
+    "css": "todo",
+    "type": "StringListArrayWidget",
+    "details": {
+      "groups": [
+        {
+          "label": "Extreme value indices (ETCCDI)",
+          "open": true,
+          "values": [
+            "base_period_1961_1990",
+            "base_period_1981_2010",
+            "base_independent"
+          ],
+          "labels": {
+            "base_period_1961_1990": "Base period: 1961-1990",
+            "base_period_1981_2010": "Base period: 1981-2010",
+            "base_independent": "Base independent"
+          },
+          "columns": 4
+        },
+        {
+          "label": "Heat stress indices (HSI)",
+          "open": true,
+          "values": [
+            "bias_adjusted",
+            "non_bias_adjusted"
+          ],
+          "labels": {
+            "bias_adjusted": "Bias-adjusted",
+            "non_bias_adjusted": "Non bias-adjusted"
+          },
+          "columns": 4
+        }
+      ],
+      "displayaslist": false,
+      "accordionGroups": true,
+      "accordionOptions": {
+        "searchable": false,
+        "openGroups": [
+          "Extreme value indices (ETCCDI)",
+          "Heat stress indices (HSI)"
+        ]
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "model",
+    "label": "Model",
+    "help": "Contains the subset of CMIP6 climate models used to produce this dataset.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "access_cm2",
+        "access_esm1_5",
+        "bcc_csm2_mr",
+        "cnrm_cm6_1",
+        "cnrm_cm6_1_hr",
+        "cnrm_esm2_1",
+        "canesm5",
+        "ec_earth3",
+        "ec_earth3_veg",
+        "fgoals_g3",
+        "gfdl_cm4",
+        "gfdl_esm4",
+        "hadgem3_gc31_ll",
+        "hadgem3_gc31_mm",
+        "inm_cm4_8",
+        "inm_cm5_0",
+        "kace_1_0_g",
+        "kiost_esm",
+        "miroc_es2l",
+        "miroc6",
+        "mpi_esm1_2_hr",
+        "mpi_esm1_2_lr",
+        "mri_esm2_0",
+        "nesm3",
+        "noresm2_lm",
+        "noresm2_mm",
+        "ukesm1_0_ll"
+      ],
+      "columns": 3,
+      "labels": {
+        "access_cm2": "ACCESS-CM2 (Australia)",
+        "access_esm1_5": "ACCESS-ESM1-5 (Australia)",
+        "bcc_csm2_mr": "BCC-CSM2-MR (China)",
+        "cnrm_cm6_1": "CNRM-CM6-1 (France)",
+        "cnrm_cm6_1_hr": "CNRM-CM6-1-HR (France)",
+        "cnrm_esm2_1": "CNRM-ESM2-1 (France)",
+        "canesm5": "CanESM5 (Canada)",
+        "ec_earth3": "EC-Earth3 (Europe)",
+        "ec_earth3_veg": "EC-Earth3-Veg (Europe)",
+        "fgoals_g3": "FGOALS-g3 (China)",
+        "gfdl_cm4": "GFDL-CM4 (USA)",
+        "gfdl_esm4": "GFDL-ESM4 (USA)",
+        "hadgem3_gc31_ll": "HadGEM3-GC31-LL (UK)",
+        "hadgem3_gc31_mm": "HadGEM3-GC31-MM (UK)",
+        "inm_cm4_8": "INM-CM4-8 (Russia)",
+        "inm_cm5_0": "INM-CM5-0 (Russia)",
+        "kace_1_0_g": "KACE-1-0-G (South Korea)",
+        "kiost_esm": "KIOST-ESM (South Korea)",
+        "miroc_es2l": "MIROC-ES2L (Japan)",
+        "miroc6": "MIROC6 (Japan)",
+        "mpi_esm1_2_hr": "MPI-ESM1-2-HR (Germany)",
+        "mpi_esm1_2_lr": "MPI-ESM1-2-LR (Germany)",
+        "mri_esm2_0": "MRI-ESM2-0 (Japan)",
+        "nesm3": "NESM3 (China)",
+        "noresm2_lm": "NorESM2-LM (Norway)",
+        "noresm2_mm": "NorESM2-MM (Norway)",
+        "ukesm1_0_ll": "UKESM1-0-LL"
+      }
+    },
+    "id": 2
+  },
+  {
+    "name": "ensemble_member",
+    "label": "Ensemble member",
+    "help": "Contains the subset of CMIP6 climate model ensemble members used to produce this dataset.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "r10i1p1f1",
+        "r10i1p2f1",
+        "r11i1p1f1",
+        "r11i1p2f1",
+        "r12i1p1f1",
+        "r12i1p2f1",
+        "r13i1p1f1",
+        "r13i1p2f1",
+        "r14i1p1f1",
+        "r14i1p2f1",
+        "r15i1p1f1",
+        "r15i1p2f1",
+        "r16i1p1f1",
+        "r16i1p2f1",
+        "r17i1p1f1",
+        "r17i1p2f1",
+        "r18i1p1f1",
+        "r18i1p2f1",
+        "r19i1p1f1",
+        "r19i1p2f1",
+        "r1i1p1f1",
+        "r1i1p1f2",
+        "r1i1p1f3",
+        "r1i1p2f1",
+        "r20i1p1f1",
+        "r20i1p2f1",
+        "r21i1p1f1",
+        "r21i1p2f1",
+        "r22i1p1f1",
+        "r22i1p2f1",
+        "r23i1p1f1",
+        "r23i1p2f1",
+        "r24i1p1f1",
+        "r24i1p2f1",
+        "r25i1p1f1",
+        "r25i1p2f1",
+        "r26i1p1f1",
+        "r27i1p1f1",
+        "r28i1p1f1",
+        "r29i1p1f1",
+        "r2i1p1f1",
+        "r2i1p2f1",
+        "r30i1p1f1",
+        "r31i1p1f1",
+        "r32i1p1f1",
+        "r33i1p1f1",
+        "r34i1p1f1",
+        "r35i1p1f1",
+        "r36i1p1f1",
+        "r37i1p1f1",
+        "r38i1p1f1",
+        "r39i1p1f1",
+        "r3i1p1f1",
+        "r3i1p2f1",
+        "r40i1p1f1",
+        "r41i1p1f1",
+        "r42i1p1f1",
+        "r43i1p1f1",
+        "r44i1p1f1",
+        "r45i1p1f1",
+        "r46i1p1f1",
+        "r47i1p1f1",
+        "r48i1p1f1",
+        "r49i1p1f1",
+        "r4i1p1f1",
+        "r4i1p2f1",
+        "r50i1p1f1",
+        "r5i1p1f1",
+        "r5i1p2f1",
+        "r6i1p1f1",
+        "r6i1p2f1",
+        "r7i1p1f1",
+        "r7i1p2f1",
+        "r8i1p1f1",
+        "r8i1p2f1",
+        "r9i1p1f1",
+        "r9i1p2f1"
+      ],
+      "columns": 3,
+      "labels": {
+        "r10i1p1f1": "r10i1p1f1",
+        "r10i1p2f1": "r10i1p2f1",
+        "r11i1p1f1": "r11i1p1f1",
+        "r11i1p2f1": "r11i1p2f1",
+        "r12i1p1f1": "r12i1p1f1",
+        "r12i1p2f1": "r12i1p2f1",
+        "r13i1p1f1": "r13i1p1f1",
+        "r13i1p2f1": "r13i1p2f1",
+        "r14i1p1f1": "r14i1p1f1",
+        "r14i1p2f1": "r14i1p2f1",
+        "r15i1p1f1": "r15i1p1f1",
+        "r15i1p2f1": "r15i1p2f1",
+        "r16i1p1f1": "r16i1p1f1",
+        "r16i1p2f1": "r16i1p2f1",
+        "r17i1p1f1": "r17i1p1f1",
+        "r17i1p2f1": "r17i1p2f1",
+        "r18i1p1f1": "r18i1p1f1",
+        "r18i1p2f1": "r18i1p2f1",
+        "r19i1p1f1": "r19i1p1f1",
+        "r19i1p2f1": "r19i1p2f1",
+        "r1i1p1f1": "r1i1p1f1",
+        "r1i1p1f2": "r1i1p1f2",
+        "r1i1p1f3": "r1i1p1f3",
+        "r1i1p2f1": "r1i1p2f1",
+        "r20i1p1f1": "r20i1p1f1",
+        "r20i1p2f1": "r20i1p2f1",
+        "r21i1p1f1": "r21i1p1f1",
+        "r21i1p2f1": "r21i1p2f1",
+        "r22i1p1f1": "r22i1p1f1",
+        "r22i1p2f1": "r22i1p2f1",
+        "r23i1p1f1": "r23i1p1f1",
+        "r23i1p2f1": "r23i1p2f1",
+        "r24i1p1f1": "r24i1p1f1",
+        "r24i1p2f1": "r24i1p2f1",
+        "r25i1p1f1": "r25i1p1f1",
+        "r25i1p2f1": "r25i1p2f1",
+        "r26i1p1f1": "r26i1p1f1",
+        "r27i1p1f1": "r27i1p1f1",
+        "r28i1p1f1": "r28i1p1f1",
+        "r29i1p1f1": "r29i1p1f1",
+        "r2i1p1f1": "r2i1p1f1",
+        "r2i1p2f1": "r2i1p2f1",
+        "r30i1p1f1": "r30i1p1f1",
+        "r31i1p1f1": "r31i1p1f1",
+        "r32i1p1f1": "r32i1p1f1",
+        "r33i1p1f1": "r33i1p1f1",
+        "r34i1p1f1": "r34i1p1f1",
+        "r35i1p1f1": "r35i1p1f1",
+        "r36i1p1f1": "r36i1p1f1",
+        "r37i1p1f1": "r37i1p1f1",
+        "r38i1p1f1": "r38i1p1f1",
+        "r39i1p1f1": "r39i1p1f1",
+        "r3i1p1f1": "r3i1p1f1",
+        "r3i1p2f1": "r3i1p2f1",
+        "r40i1p1f1": "r40i1p1f1",
+        "r41i1p1f1": "r41i1p1f1",
+        "r42i1p1f1": "r42i1p1f1",
+        "r43i1p1f1": "r43i1p1f1",
+        "r44i1p1f1": "r44i1p1f1",
+        "r45i1p1f1": "r45i1p1f1",
+        "r46i1p1f1": "r46i1p1f1",
+        "r47i1p1f1": "r47i1p1f1",
+        "r48i1p1f1": "r48i1p1f1",
+        "r49i1p1f1": "r49i1p1f1",
+        "r4i1p1f1": "r4i1p1f1",
+        "r4i1p2f1": "r4i1p2f1",
+        "r50i1p1f1": "r50i1p1f1",
+        "r5i1p1f1": "r5i1p1f1",
+        "r5i1p2f1": "r5i1p2f1",
+        "r6i1p1f1": "r6i1p1f1",
+        "r6i1p2f1": "r6i1p2f1",
+        "r7i1p1f1": "r7i1p1f1",
+        "r7i1p2f1": "r7i1p2f1",
+        "r8i1p1f1": "r8i1p1f1",
+        "r8i1p2f1": "r8i1p2f1",
+        "r9i1p1f1": "r9i1p1f1",
+        "r9i1p2f1": "r9i1p2f1"
+      }
+    },
+    "id": 3
+  },
+  {
+    "name": "experiment",
+    "label": "Experiment",
+    "help": "<p>Each experiment is a simulation of the climate system under a specific hypothesis. <strong>Historical</strong> provides model output for the reference period. The <strong>SSP</strong> scenario experiments can be understood in terms of two pathways, a Shared Socioeconomic Pathway (SSP) storyline and a Representative Concentration Pathway (RCP). For example, experiment SSP2-4.5 follows SSP2, a storyline with intermediate mitigation and adaptation challenges, and RCP4.5 which leads to a radiative forcing of 4.5 Wm<sup>-2</sup> by the year 2100.</p>",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "historical",
+        "ssp1_2_6",
+        "ssp2_4_5",
+        "ssp3_7_0",
+        "ssp5_8_5"
+      ],
+      "columns": 3,
+      "labels": {
+        "historical": "Historical",
+        "ssp1_2_6": "SSP1-2.6",
+        "ssp2_4_5": "SSP2-4.5",
+        "ssp3_7_0": "SSP3-7.0",
+        "ssp5_8_5": "SSP5-8.5"
+      }
+    },
+    "id": 4
+  },
+  {
+    "name": "temporal_aggregation",
+    "label": "Temporal aggregation",
+    "help": "The variables contained in the dataset are the ETCCDI indices at monthly and yearly resolution, and daily resolved Heat Stress Indices.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "yearly",
+        "monthly",
+        "daily"
+      ],
+      "columns": 3,
+      "labels": {
+        "yearly": "Yearly",
+        "monthly": "Monthly",
+        "daily": "Daily"
+      }
+    },
+    "id": 5
+  },
+  {
+    "name": "period",
+    "label": "Period",
+    "help": "<p>For bias-adjusted HSIs, the historical period covers 1951-2010 (2 x 30 years application period for bias-adjustment) and the future SSP scenarios cover 2011-2100 (3 x 30 year application period).</p> <p>A small number of models have delivered data for more years than the prescribed standard (1850-2014, 2015-2100) and the indicators were computed for the full period to maintain consistency with the input data. These models have alternate start and end dates for the periods covered.</p>",
+    "required": true,
+    "css": "todo",
+    "type": "StringListArrayWidget",
+    "details": {
+      "groups": [
+        {
+          "label": "Daily",
+          "open": true,
+          "values": [
+            "19510101_20101230",
+            "19510101_20101231",
+            "19510101_20141230",
+            "19510101_20141231",
+            "20110101_21001230",
+            "20110101_21001231",
+            "20150101_21001230",
+            "20150101_21001231"
+          ],
+          "labels": {
+            "19510101_20101230": "19510101-20101230",
+            "19510101_20101231": "19510101-20101231",
+            "19510101_20141230": "19510101-20141230",
+            "19510101_20141231": "19510101-20141231",
+            "20110101_21001230": "20110101-21001230",
+            "20110101_21001231": "20110101-21001231",
+            "20150101_21001230": "20150101-21001230",
+            "20150101_21001231": "20150101-21001231"
+          },
+          "columns": 4
+        },
+        {
+          "label": "Monthly",
+          "open": true,
+          "values": [
+            "184901_201412",
+            "185001_201412",
+            "185001_201612",
+            "195101_201412",
+            "201501_203912",
+            "201501_210012",
+            "201501_218012",
+            "201501_230012"
+          ],
+          "labels": {
+            "184901_201412": "184901-201412",
+            "185001_201412": "185001-201412",
+            "185001_201612": "185001-201612",
+            "195101_201412": "195101-201412",
+            "201501_203912": "201501-203912",
+            "201501_210012": "201501-210012",
+            "201501_218012": "201501-218012",
+            "201501_230012": "201501-230012"
+          },
+          "columns": 4
+        },
+        {
+          "label": "Yearly",
+          "open": true,
+          "values": [
+            "1849_2014",
+            "1850_2014",
+            "1850_2016",
+            "1951_2014",
+            "2015_2039",
+            "2015_2100",
+            "2015_2180",
+            "2015_2300"
+          ],
+          "labels": {
+            "1849_2014": "1849-2014",
+            "1850_2014": "1850-2014",
+            "1850_2016": "1850-2016",
+            "1951_2014": "1951-2014",
+            "2015_2039": "2015-2039",
+            "2015_2100": "2015-2100",
+            "2015_2180": "2015-2180",
+            "2015_2300": "2015-2300"
+          },
+          "columns": 4
+        }
+      ],
+      "displayaslist": false,
+      "accordionGroups": true,
+      "accordionOptions": {
+        "searchable": false,
+        "openGroups": [
+          "Daily",
+          "Monthly",
+          "Yearly"
+        ]
+      }
+    },
+    "id": 6
+  },
+  {
+    "name": "version",
+    "label": "Version",
+    "help": "Version 1 has been superseded by version 2. Please see the 'Known issues' table in the Documentation tab for more details.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "1_0",
+        "2_0"
+      ],
+      "columns": 3,
+      "labels": {
+        "1_0": "1.0",
+        "2_0": "2.0"
+      },
+      "default": [
+        "2_0"
+      ]
+    },
+    "id": 7
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "cicero-cmip6-indicators-licence",
+          "revision": 1,
+          "label": "CMIP6 indicators dataset licence (CICERO)",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/cicero-cmip6-indicators-licence/cicero-cmip6-indicators-licencev1_fc1b81a04f614d78000770d9bc775a302ce8cc03e4d0d17a07d384ab429dc247.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/cicero-cmip6-indicators-licence/cicero-cmip6-indicators-licence_ba997e52f2423143e053ae30684aaaee1769d2e827611938366112bedccac5a1.pdf"
+        }
+      ]
+    }
+  }
+]

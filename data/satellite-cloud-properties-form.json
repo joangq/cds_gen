@@ -1,1 +1,446 @@
-[{"name": "product_family", "label": "Product family", "help": "<p><strong>CLARA product family refers to EUMETSATs CM SAF CLARA datasets.</p> <p><strong>CCI product family</strong> refers to the ESA Cloud_cci data with additional time range funded by the Copernicus Climate Change Service (C3S).</p>", "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["clara_a2", "clara_a3", "cci"], "columns": 1, "labels": {"clara_a2": "CLARA-A2 (CM SAF cLoud, Albedo and surface RAdiation dataset from AVHRR data)", "clara_a3": "CLARA-A3 (CM SAF cLoud, Albedo and surface RAdiation dataset from AVHRR data)", "cci": "CCI (Climate Change Initiative)"}}, "id": 0}, {"name": "origin", "label": "Origin", "help": "Service, project or organisation in charge of the production of the data. There are 3 origins or producers in this dataset: C3S, ESA, EUMETSAT. <br> EUMETSAT is linked to the CLARA family  ESA and C3S contribute both to the CCI family. C3S provides a time extension of the previous ESA data, keeping the same algorithms but using the sucessor sensor.", "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["c3s", "eumetsat", "esa"], "columns": 1, "labels": {"c3s": "C3S (Copernicus Climate Change Service)", "eumetsat": "EUMETSAT (European Organisation for the Exploitation of Meteorological Satellites)", "esa": "ESA (European Space Agency)"}}, "id": 1}, {"name": "variable", "label": "Variable", "help": "There are two families of variables: CLARA product family and CCI product family. <br> Both families contain the same variables, but variables of the CLARA product family can be downloaded individually, whereas variables of the CCI product family are provided all together in a single netCDF file. <br> Note that the two families are based on the data from different sensors and algorithms. They also differ in temporal and horizontal resolution. That is why they are organised as product families.  Within each family there are two different providers or origins. The C3S origin acts as an extension of the previous provider for each family keeping the same sensors and algorithms but providing a time extension of the dataset.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["cloud_fraction", "cloud_top_level", "cloud_physical_properties_of_the_ice_phase", "cloud_physical_properties_of_the_liquid_phase", "all_variables"], "columns": 1, "labels": {"cloud_fraction": "Cloud fraction", "cloud_top_level": "Cloud top level", "cloud_physical_properties_of_the_ice_phase": "Cloud physical properties of the ice phase", "cloud_physical_properties_of_the_liquid_phase": "Cloud physical properties of the liquid phase", "all_variables": "All variables (CCI product family)"}}, "id": 2}, {"name": "sensor_on_satellite", "label": "Sensor on satellite for CCI product family", "help": "<p><strong>CCI product family</strong><br> ATSR2 (Along-Track Scanning Radiometer 2) on ERS-2<br> AATSR (Advanced Along-Track Scanning Radiometer) on Envisat<br> SLSTR (Sea and Land Surface Temperature Radiometer) on Sentinel 3A and 3B</p>", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["aatsr_on_envisat", "atsr2_on_ers2", "slstr_on_sentinel_3a", "slstr_on_sentinel_3b", "slstr_on_sentinel_3a_3b"], "columns": 3, "labels": {"aatsr_on_envisat": "AATSR on ENVISAT", "atsr2_on_ers2": "ATSR2 on ERS2", "slstr_on_sentinel_3a": "SLSTR on Sentinel-3A", "slstr_on_sentinel_3b": "SLSTR on Sentinel-3B", "slstr_on_sentinel_3a_3b": "SLSTR on Sentinel-3A & 3B"}}, "id": 3}, {"name": "climate_data_record_type", "label": "Climate data record type", "help": "Both the ICDR and the TCDR parts of each product family were generated using the same software and algorithms. The TCDR is intended to have sufficient length, consistency, and continuity to detect climate variability and change. The ICDR provides a short-delay access to current data where consistency with the CDR baseline is expected but was not extensively checked.", "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["interim_climate_data_record", "thematic_climate_data_record"], "columns": 3, "labels": {"interim_climate_data_record": "Interim Climate Data Record (ICDR)", "thematic_climate_data_record": "Thematic Climate Data Record (TCDR)"}}, "id": 4}, {"name": "time_aggregation", "label": "Time aggregation", "help": null, "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["monthly_mean", "daily_mean"], "columns": 1, "labels": {"monthly_mean": "Monthly mean", "daily_mean": "Daily mean"}}, "id": 5}, {"name": "year", "label": "Year", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"], "columns": 6, "labels": {"1979": "1979", "1980": "1980", "1981": "1981", "1982": "1982", "1983": "1983", "1984": "1984", "1985": "1985", "1986": "1986", "1987": "1987", "1988": "1988", "1989": "1989", "1990": "1990", "1991": "1991", "1992": "1992", "1993": "1993", "1994": "1994", "1995": "1995", "1996": "1996", "1997": "1997", "1998": "1998", "1999": "1999", "2000": "2000", "2001": "2001", "2002": "2002", "2003": "2003", "2004": "2004", "2005": "2005", "2006": "2006", "2007": "2007", "2008": "2008", "2009": "2009", "2010": "2010", "2011": "2011", "2012": "2012", "2013": "2013", "2014": "2014", "2015": "2015", "2016": "2016", "2017": "2017", "2018": "2018", "2019": "2019", "2020": "2020", "2021": "2021", "2022": "2022", "2023": "2023"}}, "id": 6}, {"name": "month", "label": "Month", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], "columns": 6, "labels": {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}}, "id": 7}, {"name": "day", "label": "Day", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"], "columns": 6, "labels": {"01": "01", "02": "02", "03": "03", "04": "04", "05": "05", "06": "06", "07": "07", "08": "08", "09": "09", "10": "10", "11": "11", "12": "12", "13": "13", "14": "14", "15": "15", "16": "16", "17": "17", "18": "18", "19": "19", "20": "20", "21": "21", "22": "22", "23": "23", "24": "24", "25": "25", "26": "26", "27": "27", "28": "28", "29": "29", "30": "30", "31": "31"}}, "id": 8}, {"name": "area_group", "help": "Select one widget from the choice below", "label": "Geographical area", "type": "ExclusiveGroupWidget", "children": ["global", "area"], "details": {"default": "global"}, "id": 9}, {"name": "global", "type": "FreeEditionWidget", "label": "Whole available region", "details": {"accordion": false, "default-open": true, "text": "With this option selected the entire available area will be provided"}, "id": 10}, {"name": "area", "type": "GeographicExtentWidget", "label": "Sub-region extraction", "help": "Select a sub-region of the available area by providing its limits on latitude and longitude", "details": {"precision": 2, "extentlabels": {"n": "North", "w": "West", "s": "South", "e": "East"}, "default": {"n": 90, "e": 180, "s": -90, "w": -180}, "range": {"n": 90, "w": -180, "s": -90, "e": 180}}, "id": 11}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "eumetsat-cm-saf-a3", "revision": 1, "label": "EUMETSAT CM SAF products licence", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/eumetsat-cm-saf-a3/eumetsat-cm-saf-a3v1_bb0fb66b494d3d4f59de6224906a4622e424f89a4baaefb66f482222a40da712.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/eumetsat-cm-saf-a3/eumetsat-cm-saf-a3_c24c3d6cccef2f22a8c210d30e7cd8060a4ca8a92c72788f0d43176199eabe1f.pdf"}, {"id": "licence-to-use-copernicus-products", "revision": 12, "label": "Licence to use Copernicus Products", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"}, {"id": "satellite-cloud-properties-cci", "revision": 1, "label": "ESA CCI  products licence", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/satellite-cloud-properties-cci/satellite-cloud-properties-cciv1_28736d7aadabdec3303ba69ce7b54f6cac08bce6a15210d71c68e04774e12654.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/satellite-cloud-properties-cci/satellite-cloud-properties-cci_48e6d0b6bdc58384a65beb3947f708d58489d0a2e0569b8bbe1cdde080255254.pdf"}]}}]
+[
+  {
+    "name": "product_family",
+    "label": "Product family",
+    "help": "<p><strong>CLARA product family refers to EUMETSATs CM SAF CLARA datasets.</p> <p><strong>CCI product family</strong> refers to the ESA Cloud_cci data with additional time range funded by the Copernicus Climate Change Service (C3S).</p>",
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "clara_a2",
+        "clara_a3",
+        "cci"
+      ],
+      "columns": 1,
+      "labels": {
+        "clara_a2": "CLARA-A2 (CM SAF cLoud, Albedo and surface RAdiation dataset from AVHRR data)",
+        "clara_a3": "CLARA-A3 (CM SAF cLoud, Albedo and surface RAdiation dataset from AVHRR data)",
+        "cci": "CCI (Climate Change Initiative)"
+      }
+    },
+    "id": 0
+  },
+  {
+    "name": "origin",
+    "label": "Origin",
+    "help": "Service, project or organisation in charge of the production of the data. There are 3 origins or producers in this dataset: C3S, ESA, EUMETSAT. <br> EUMETSAT is linked to the CLARA family  ESA and C3S contribute both to the CCI family. C3S provides a time extension of the previous ESA data, keeping the same algorithms but using the sucessor sensor.",
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "c3s",
+        "eumetsat",
+        "esa"
+      ],
+      "columns": 1,
+      "labels": {
+        "c3s": "C3S (Copernicus Climate Change Service)",
+        "eumetsat": "EUMETSAT (European Organisation for the Exploitation of Meteorological Satellites)",
+        "esa": "ESA (European Space Agency)"
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "variable",
+    "label": "Variable",
+    "help": "There are two families of variables: CLARA product family and CCI product family. <br> Both families contain the same variables, but variables of the CLARA product family can be downloaded individually, whereas variables of the CCI product family are provided all together in a single netCDF file. <br> Note that the two families are based on the data from different sensors and algorithms. They also differ in temporal and horizontal resolution. That is why they are organised as product families.  Within each family there are two different providers or origins. The C3S origin acts as an extension of the previous provider for each family keeping the same sensors and algorithms but providing a time extension of the dataset.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "cloud_fraction",
+        "cloud_top_level",
+        "cloud_physical_properties_of_the_ice_phase",
+        "cloud_physical_properties_of_the_liquid_phase",
+        "all_variables"
+      ],
+      "columns": 1,
+      "labels": {
+        "cloud_fraction": "Cloud fraction",
+        "cloud_top_level": "Cloud top level",
+        "cloud_physical_properties_of_the_ice_phase": "Cloud physical properties of the ice phase",
+        "cloud_physical_properties_of_the_liquid_phase": "Cloud physical properties of the liquid phase",
+        "all_variables": "All variables (CCI product family)"
+      }
+    },
+    "id": 2
+  },
+  {
+    "name": "sensor_on_satellite",
+    "label": "Sensor on satellite for CCI product family",
+    "help": "<p><strong>CCI product family</strong><br> ATSR2 (Along-Track Scanning Radiometer 2) on ERS-2<br> AATSR (Advanced Along-Track Scanning Radiometer) on Envisat<br> SLSTR (Sea and Land Surface Temperature Radiometer) on Sentinel 3A and 3B</p>",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "aatsr_on_envisat",
+        "atsr2_on_ers2",
+        "slstr_on_sentinel_3a",
+        "slstr_on_sentinel_3b",
+        "slstr_on_sentinel_3a_3b"
+      ],
+      "columns": 3,
+      "labels": {
+        "aatsr_on_envisat": "AATSR on ENVISAT",
+        "atsr2_on_ers2": "ATSR2 on ERS2",
+        "slstr_on_sentinel_3a": "SLSTR on Sentinel-3A",
+        "slstr_on_sentinel_3b": "SLSTR on Sentinel-3B",
+        "slstr_on_sentinel_3a_3b": "SLSTR on Sentinel-3A & 3B"
+      }
+    },
+    "id": 3
+  },
+  {
+    "name": "climate_data_record_type",
+    "label": "Climate data record type",
+    "help": "Both the ICDR and the TCDR parts of each product family were generated using the same software and algorithms. The TCDR is intended to have sufficient length, consistency, and continuity to detect climate variability and change. The ICDR provides a short-delay access to current data where consistency with the CDR baseline is expected but was not extensively checked.",
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "interim_climate_data_record",
+        "thematic_climate_data_record"
+      ],
+      "columns": 3,
+      "labels": {
+        "interim_climate_data_record": "Interim Climate Data Record (ICDR)",
+        "thematic_climate_data_record": "Thematic Climate Data Record (TCDR)"
+      }
+    },
+    "id": 4
+  },
+  {
+    "name": "time_aggregation",
+    "label": "Time aggregation",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "monthly_mean",
+        "daily_mean"
+      ],
+      "columns": 1,
+      "labels": {
+        "monthly_mean": "Monthly mean",
+        "daily_mean": "Daily mean"
+      }
+    },
+    "id": 5
+  },
+  {
+    "name": "year",
+    "label": "Year",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "1979",
+        "1980",
+        "1981",
+        "1982",
+        "1983",
+        "1984",
+        "1985",
+        "1986",
+        "1987",
+        "1988",
+        "1989",
+        "1990",
+        "1991",
+        "1992",
+        "1993",
+        "1994",
+        "1995",
+        "1996",
+        "1997",
+        "1998",
+        "1999",
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023"
+      ],
+      "columns": 6,
+      "labels": {
+        "1979": "1979",
+        "1980": "1980",
+        "1981": "1981",
+        "1982": "1982",
+        "1983": "1983",
+        "1984": "1984",
+        "1985": "1985",
+        "1986": "1986",
+        "1987": "1987",
+        "1988": "1988",
+        "1989": "1989",
+        "1990": "1990",
+        "1991": "1991",
+        "1992": "1992",
+        "1993": "1993",
+        "1994": "1994",
+        "1995": "1995",
+        "1996": "1996",
+        "1997": "1997",
+        "1998": "1998",
+        "1999": "1999",
+        "2000": "2000",
+        "2001": "2001",
+        "2002": "2002",
+        "2003": "2003",
+        "2004": "2004",
+        "2005": "2005",
+        "2006": "2006",
+        "2007": "2007",
+        "2008": "2008",
+        "2009": "2009",
+        "2010": "2010",
+        "2011": "2011",
+        "2012": "2012",
+        "2013": "2013",
+        "2014": "2014",
+        "2015": "2015",
+        "2016": "2016",
+        "2017": "2017",
+        "2018": "2018",
+        "2019": "2019",
+        "2020": "2020",
+        "2021": "2021",
+        "2022": "2022",
+        "2023": "2023"
+      }
+    },
+    "id": 6
+  },
+  {
+    "name": "month",
+    "label": "Month",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "columns": 6,
+      "labels": {
+        "01": "January",
+        "02": "February",
+        "03": "March",
+        "04": "April",
+        "05": "May",
+        "06": "June",
+        "07": "July",
+        "08": "August",
+        "09": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+      }
+    },
+    "id": 7
+  },
+  {
+    "name": "day",
+    "label": "Day",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31"
+      ],
+      "columns": 6,
+      "labels": {
+        "01": "01",
+        "02": "02",
+        "03": "03",
+        "04": "04",
+        "05": "05",
+        "06": "06",
+        "07": "07",
+        "08": "08",
+        "09": "09",
+        "10": "10",
+        "11": "11",
+        "12": "12",
+        "13": "13",
+        "14": "14",
+        "15": "15",
+        "16": "16",
+        "17": "17",
+        "18": "18",
+        "19": "19",
+        "20": "20",
+        "21": "21",
+        "22": "22",
+        "23": "23",
+        "24": "24",
+        "25": "25",
+        "26": "26",
+        "27": "27",
+        "28": "28",
+        "29": "29",
+        "30": "30",
+        "31": "31"
+      }
+    },
+    "id": 8
+  },
+  {
+    "name": "area_group",
+    "help": "Select one widget from the choice below",
+    "label": "Geographical area",
+    "type": "ExclusiveGroupWidget",
+    "children": [
+      "global",
+      "area"
+    ],
+    "details": {
+      "default": "global"
+    },
+    "id": 9
+  },
+  {
+    "name": "global",
+    "type": "FreeEditionWidget",
+    "label": "Whole available region",
+    "details": {
+      "accordion": false,
+      "default-open": true,
+      "text": "With this option selected the entire available area will be provided"
+    },
+    "id": 10
+  },
+  {
+    "name": "area",
+    "type": "GeographicExtentWidget",
+    "label": "Sub-region extraction",
+    "help": "Select a sub-region of the available area by providing its limits on latitude and longitude",
+    "details": {
+      "precision": 2,
+      "extentlabels": {
+        "n": "North",
+        "w": "West",
+        "s": "South",
+        "e": "East"
+      },
+      "default": {
+        "n": 90,
+        "e": 180,
+        "s": -90,
+        "w": -180
+      },
+      "range": {
+        "n": 90,
+        "w": -180,
+        "s": -90,
+        "e": 180
+      }
+    },
+    "id": 11
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "eumetsat-cm-saf-a3",
+          "revision": 1,
+          "label": "EUMETSAT CM SAF products licence",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/eumetsat-cm-saf-a3/eumetsat-cm-saf-a3v1_bb0fb66b494d3d4f59de6224906a4622e424f89a4baaefb66f482222a40da712.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/eumetsat-cm-saf-a3/eumetsat-cm-saf-a3_c24c3d6cccef2f22a8c210d30e7cd8060a4ca8a92c72788f0d43176199eabe1f.pdf"
+        },
+        {
+          "id": "licence-to-use-copernicus-products",
+          "revision": 12,
+          "label": "Licence to use Copernicus Products",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"
+        },
+        {
+          "id": "satellite-cloud-properties-cci",
+          "revision": 1,
+          "label": "ESA CCI  products licence",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/satellite-cloud-properties-cci/satellite-cloud-properties-cciv1_28736d7aadabdec3303ba69ce7b54f6cac08bce6a15210d71c68e04774e12654.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/satellite-cloud-properties-cci/satellite-cloud-properties-cci_48e6d0b6bdc58384a65beb3947f708d58489d0a2e0569b8bbe1cdde080255254.pdf"
+        }
+      ]
+    }
+  }
+]

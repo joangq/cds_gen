@@ -1,1 +1,209 @@
-[{"name": "origin", "label": "Origin", "help": "Source of the climate datasets used to generate the agroclimatic indicators.", "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["miroc_esm_chem_model", "ipsl_cm5a_lr_model", "noresm1_m_model", "hadgem2_es_model", "gfdl_esm2m_model", "era_interim_reanalysis"], "columns": 3, "labels": {"miroc_esm_chem_model": "MIROC-ESM-CHEM Model (JAMSTEC, Japan)", "ipsl_cm5a_lr_model": "IPSL-CM5A-LR Model (IPSL, France)", "noresm1_m_model": "NorESM1-M Model (NCC, Norway)", "hadgem2_es_model": "HadGEM2-ES Model (UK Met Office, UK)", "gfdl_esm2m_model": "GFDL-ESM2M Model (NOAA, USA)", "era_interim_reanalysis": "ERA-interim reanalysis (ECMWF)"}}, "id": 0}, {"name": "variable", "label": "Variable", "help": "Please, consult the product user guide in the documentation section for more information on these variables.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["biologically_effective_degree_days", "growing_season_length", "maximum_number_of_consecutive_dry_days", "maximum_number_of_consecutive_frost_days", "cold_spell_duration_index", "maximum_number_of_consecutive_summer_days", "maximum_number_of_consecutive_wet_days", "mean_of_diurnal_temperature_range", "frost_days", "ice_days", "heavy_precipitation_days", "very_heavy_precipitation_days", "precipitation_sum", "wet_days", "simple_daily_intensity_index", "summer_days", "mean_of_daily_mean_temperature", "mean_of_daily_minimum_temperature", "minimum_of_daily_minimum_temperature", "maximum_of_daily_minimum_temperature", "tropical_nights", "mean_of_daily_maximum_temperature", "minimum_of_daily_maximum_temperature", "maximum_of_daily_maximum_temperature", "warm_spell_duration_index", "warm_and_wet_days"], "columns": 3, "labels": {"biologically_effective_degree_days": "Biologically effective degree days", "growing_season_length": "Growing season length", "maximum_number_of_consecutive_dry_days": "Maximum number of consecutive dry days", "maximum_number_of_consecutive_frost_days": "Maximum number of consecutive frost days", "cold_spell_duration_index": "Cold spell duration index", "maximum_number_of_consecutive_summer_days": "Maximum number of consecutive summer days", "maximum_number_of_consecutive_wet_days": "Maximum number of consecutive wet days", "mean_of_diurnal_temperature_range": "Mean of diurnal temperature range", "frost_days": "Frost days", "ice_days": "Ice days", "heavy_precipitation_days": "Heavy precipitation days", "very_heavy_precipitation_days": "Very heavy precipitation days", "precipitation_sum": "Precipitation sum", "wet_days": "Wet days", "simple_daily_intensity_index": "Simple daily intensity index", "summer_days": "Summer days", "mean_of_daily_mean_temperature": "Mean of daily mean temperature", "mean_of_daily_minimum_temperature": "Mean of daily minimum temperature", "minimum_of_daily_minimum_temperature": "Minimum of daily minimum temperature", "maximum_of_daily_minimum_temperature": "Maximum of daily minimum temperature", "tropical_nights": "Tropical nights", "mean_of_daily_maximum_temperature": "Mean of daily maximum temperature", "minimum_of_daily_maximum_temperature": "Minimum of daily maximum temperature", "maximum_of_daily_maximum_temperature": "Maximum of daily maximum temperature", "warm_spell_duration_index": "Warm spell duration index", "warm_and_wet_days": "Warm and wet days"}}, "id": 1}, {"name": "experiment", "label": "Experiment", "help": "Simulations of either the past or future under the Representative Concentration Pathways (RCP) intended to cover a range of climate policy scenarios. Please consult the documentation section for more information.", "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["historical", "rcp2_6", "rcp4_5", "rcp6_0", "rcp8_5"], "columns": 6, "labels": {"historical": "Historical", "rcp2_6": "RCP2.6", "rcp4_5": "RCP4.5", "rcp6_0": "RCP6.0", "rcp8_5": "RCP8.5"}}, "id": 2}, {"name": "temporal_aggregation", "label": "Temporal aggregation", "help": "The time period over which the data is averaged. 10-day provides one value for each 10 consecutive days (1-10th, 11-20th, 21-end of month). Seasonal provides one value per climatological season (DJF, MAM, JJA, SON). Annual provides one value per year.", "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["10_day", "season", "annual"], "columns": 3, "labels": {"10_day": "10-day", "season": "Season", "annual": "Annual"}}, "id": 3}, {"name": "period", "label": "Period", "help": "Determines the 30-year climatological period over which the selected indicators are aggregated for download. Periods are formatted as \"yyyymm-yyyymm\", describing the start and final date of the period, where \"yyyy\" and \"mm\" stand for year and month, respectively.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["195101_198012", "198101_201012", "201101_204012", "204101_207012", "207101_209912"], "columns": 3, "labels": {"195101_198012": "195101-198012", "198101_201012": "198101-201012", "201101_204012": "201101-204012", "204101_207012": "204101-207012", "207101_209912": "207101-209912"}}, "id": 4}, {"name": "version", "label": "Version", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["1_0", "1_1"], "columns": 2, "labels": {"1_0": "1.0", "1_1": "1.1"}}, "id": 5}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "licence-to-use-copernicus-products", "revision": 12, "label": "Licence to use Copernicus Products", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"}]}}]
+[
+  {
+    "name": "origin",
+    "label": "Origin",
+    "help": "Source of the climate datasets used to generate the agroclimatic indicators.",
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "miroc_esm_chem_model",
+        "ipsl_cm5a_lr_model",
+        "noresm1_m_model",
+        "hadgem2_es_model",
+        "gfdl_esm2m_model",
+        "era_interim_reanalysis"
+      ],
+      "columns": 3,
+      "labels": {
+        "miroc_esm_chem_model": "MIROC-ESM-CHEM Model (JAMSTEC, Japan)",
+        "ipsl_cm5a_lr_model": "IPSL-CM5A-LR Model (IPSL, France)",
+        "noresm1_m_model": "NorESM1-M Model (NCC, Norway)",
+        "hadgem2_es_model": "HadGEM2-ES Model (UK Met Office, UK)",
+        "gfdl_esm2m_model": "GFDL-ESM2M Model (NOAA, USA)",
+        "era_interim_reanalysis": "ERA-interim reanalysis (ECMWF)"
+      }
+    },
+    "id": 0
+  },
+  {
+    "name": "variable",
+    "label": "Variable",
+    "help": "Please, consult the product user guide in the documentation section for more information on these variables.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "biologically_effective_degree_days",
+        "growing_season_length",
+        "maximum_number_of_consecutive_dry_days",
+        "maximum_number_of_consecutive_frost_days",
+        "cold_spell_duration_index",
+        "maximum_number_of_consecutive_summer_days",
+        "maximum_number_of_consecutive_wet_days",
+        "mean_of_diurnal_temperature_range",
+        "frost_days",
+        "ice_days",
+        "heavy_precipitation_days",
+        "very_heavy_precipitation_days",
+        "precipitation_sum",
+        "wet_days",
+        "simple_daily_intensity_index",
+        "summer_days",
+        "mean_of_daily_mean_temperature",
+        "mean_of_daily_minimum_temperature",
+        "minimum_of_daily_minimum_temperature",
+        "maximum_of_daily_minimum_temperature",
+        "tropical_nights",
+        "mean_of_daily_maximum_temperature",
+        "minimum_of_daily_maximum_temperature",
+        "maximum_of_daily_maximum_temperature",
+        "warm_spell_duration_index",
+        "warm_and_wet_days"
+      ],
+      "columns": 3,
+      "labels": {
+        "biologically_effective_degree_days": "Biologically effective degree days",
+        "growing_season_length": "Growing season length",
+        "maximum_number_of_consecutive_dry_days": "Maximum number of consecutive dry days",
+        "maximum_number_of_consecutive_frost_days": "Maximum number of consecutive frost days",
+        "cold_spell_duration_index": "Cold spell duration index",
+        "maximum_number_of_consecutive_summer_days": "Maximum number of consecutive summer days",
+        "maximum_number_of_consecutive_wet_days": "Maximum number of consecutive wet days",
+        "mean_of_diurnal_temperature_range": "Mean of diurnal temperature range",
+        "frost_days": "Frost days",
+        "ice_days": "Ice days",
+        "heavy_precipitation_days": "Heavy precipitation days",
+        "very_heavy_precipitation_days": "Very heavy precipitation days",
+        "precipitation_sum": "Precipitation sum",
+        "wet_days": "Wet days",
+        "simple_daily_intensity_index": "Simple daily intensity index",
+        "summer_days": "Summer days",
+        "mean_of_daily_mean_temperature": "Mean of daily mean temperature",
+        "mean_of_daily_minimum_temperature": "Mean of daily minimum temperature",
+        "minimum_of_daily_minimum_temperature": "Minimum of daily minimum temperature",
+        "maximum_of_daily_minimum_temperature": "Maximum of daily minimum temperature",
+        "tropical_nights": "Tropical nights",
+        "mean_of_daily_maximum_temperature": "Mean of daily maximum temperature",
+        "minimum_of_daily_maximum_temperature": "Minimum of daily maximum temperature",
+        "maximum_of_daily_maximum_temperature": "Maximum of daily maximum temperature",
+        "warm_spell_duration_index": "Warm spell duration index",
+        "warm_and_wet_days": "Warm and wet days"
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "experiment",
+    "label": "Experiment",
+    "help": "Simulations of either the past or future under the Representative Concentration Pathways (RCP) intended to cover a range of climate policy scenarios. Please consult the documentation section for more information.",
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "historical",
+        "rcp2_6",
+        "rcp4_5",
+        "rcp6_0",
+        "rcp8_5"
+      ],
+      "columns": 6,
+      "labels": {
+        "historical": "Historical",
+        "rcp2_6": "RCP2.6",
+        "rcp4_5": "RCP4.5",
+        "rcp6_0": "RCP6.0",
+        "rcp8_5": "RCP8.5"
+      }
+    },
+    "id": 2
+  },
+  {
+    "name": "temporal_aggregation",
+    "label": "Temporal aggregation",
+    "help": "The time period over which the data is averaged. 10-day provides one value for each 10 consecutive days (1-10th, 11-20th, 21-end of month). Seasonal provides one value per climatological season (DJF, MAM, JJA, SON). Annual provides one value per year.",
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "10_day",
+        "season",
+        "annual"
+      ],
+      "columns": 3,
+      "labels": {
+        "10_day": "10-day",
+        "season": "Season",
+        "annual": "Annual"
+      }
+    },
+    "id": 3
+  },
+  {
+    "name": "period",
+    "label": "Period",
+    "help": "Determines the 30-year climatological period over which the selected indicators are aggregated for download. Periods are formatted as \"yyyymm-yyyymm\", describing the start and final date of the period, where \"yyyy\" and \"mm\" stand for year and month, respectively.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "195101_198012",
+        "198101_201012",
+        "201101_204012",
+        "204101_207012",
+        "207101_209912"
+      ],
+      "columns": 3,
+      "labels": {
+        "195101_198012": "195101-198012",
+        "198101_201012": "198101-201012",
+        "201101_204012": "201101-204012",
+        "204101_207012": "204101-207012",
+        "207101_209912": "207101-209912"
+      }
+    },
+    "id": 4
+  },
+  {
+    "name": "version",
+    "label": "Version",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "1_0",
+        "1_1"
+      ],
+      "columns": 2,
+      "labels": {
+        "1_0": "1.0",
+        "1_1": "1.1"
+      }
+    },
+    "id": 5
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "licence-to-use-copernicus-products",
+          "revision": 12,
+          "label": "Licence to use Copernicus Products",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"
+        }
+      ]
+    }
+  }
+]

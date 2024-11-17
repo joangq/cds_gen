@@ -1,1 +1,197 @@
-[{"name": "satellite", "label": "Satellite mission", "help": "Data from Envisat cover the period from October 2002 to October 2010.<br> Data from CryoSat-2 cover the period from November 2010 onward.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["envisat", "cryosat_2"], "columns": 2, "labels": {"envisat": "Envisat (RA-2 altimeter)", "cryosat_2": "CryoSat-2 (SIRAL altimeter)"}}, "id": 0}, {"name": "cdr_type", "label": "CDR type", "help": "<p>The <strong>CDR</strong> covers the period October 2002 to March 2015 for version 1.0, and October 2002 to April 2020 for version 2.0.</p> <p>The <strong>ICDR</strong> covers the period from April 2015 onward for version 1.0, and October 2020 onward for version 2.0.</p> <p>Note that the quality and accuracy of the data record are higher during the CryoSat-2 period than during the Envisat period. As a result, care should be taken when combining the two missions to assess long-term changes and trends.</p>", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["cdr", "icdr"], "columns": 2, "labels": {"cdr": "CDR (Climate Data Record)", "icdr": "ICDR (Interim Climate Data Record)"}}, "id": 1}, {"name": "variable", "details": {"values": ["all"], "labels": {"all": "All available variables"}, "default": ["all"], "columns": 2}, "type": "StringChoiceWidget", "required": true, "css": "todo", "help": "All variables available for this catalogue entry will be downloaded together.", "label": "Variable", "id": 2}, {"name": "year", "label": "Year", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"], "columns": 6, "labels": {"2002": "2002", "2003": "2003", "2004": "2004", "2005": "2005", "2006": "2006", "2007": "2007", "2008": "2008", "2009": "2009", "2010": "2010", "2011": "2011", "2012": "2012", "2013": "2013", "2014": "2014", "2015": "2015", "2016": "2016", "2017": "2017", "2018": "2018", "2019": "2019", "2020": "2020", "2021": "2021", "2022": "2022", "2023": "2023", "2024": "2024"}}, "id": 3}, {"name": "month", "label": "Month", "help": "Sea ice thickness data are currently only available for winter months from October through April because of challenges caused by melting snow or melt ponds during the remaining five months.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["01", "02", "03", "04", "10", "11", "12"], "columns": 6, "labels": {"01": "January", "02": "February", "03": "March", "04": "April", "10": "October", "11": "November", "12": "December"}}, "id": 4}, {"name": "version", "label": "Version", "help": null, "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["1_0", "2_0", "3_0"], "columns": 3, "labels": {"1_0": "1.0", "2_0": "2.0", "3_0": "3.0"}, "default": ["3_0"]}, "id": 5}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "licence-to-use-copernicus-products", "revision": 12, "label": "Licence to use Copernicus Products", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"}]}}]
+[
+  {
+    "name": "satellite",
+    "label": "Satellite mission",
+    "help": "Data from Envisat cover the period from October 2002 to October 2010.<br> Data from CryoSat-2 cover the period from November 2010 onward.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "envisat",
+        "cryosat_2"
+      ],
+      "columns": 2,
+      "labels": {
+        "envisat": "Envisat (RA-2 altimeter)",
+        "cryosat_2": "CryoSat-2 (SIRAL altimeter)"
+      }
+    },
+    "id": 0
+  },
+  {
+    "name": "cdr_type",
+    "label": "CDR type",
+    "help": "<p>The <strong>CDR</strong> covers the period October 2002 to March 2015 for version 1.0, and October 2002 to April 2020 for version 2.0.</p> <p>The <strong>ICDR</strong> covers the period from April 2015 onward for version 1.0, and October 2020 onward for version 2.0.</p> <p>Note that the quality and accuracy of the data record are higher during the CryoSat-2 period than during the Envisat period. As a result, care should be taken when combining the two missions to assess long-term changes and trends.</p>",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "cdr",
+        "icdr"
+      ],
+      "columns": 2,
+      "labels": {
+        "cdr": "CDR (Climate Data Record)",
+        "icdr": "ICDR (Interim Climate Data Record)"
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "variable",
+    "details": {
+      "values": [
+        "all"
+      ],
+      "labels": {
+        "all": "All available variables"
+      },
+      "default": [
+        "all"
+      ],
+      "columns": 2
+    },
+    "type": "StringChoiceWidget",
+    "required": true,
+    "css": "todo",
+    "help": "All variables available for this catalogue entry will be downloaded together.",
+    "label": "Variable",
+    "id": 2
+  },
+  {
+    "name": "year",
+    "label": "Year",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "columns": 6,
+      "labels": {
+        "2002": "2002",
+        "2003": "2003",
+        "2004": "2004",
+        "2005": "2005",
+        "2006": "2006",
+        "2007": "2007",
+        "2008": "2008",
+        "2009": "2009",
+        "2010": "2010",
+        "2011": "2011",
+        "2012": "2012",
+        "2013": "2013",
+        "2014": "2014",
+        "2015": "2015",
+        "2016": "2016",
+        "2017": "2017",
+        "2018": "2018",
+        "2019": "2019",
+        "2020": "2020",
+        "2021": "2021",
+        "2022": "2022",
+        "2023": "2023",
+        "2024": "2024"
+      }
+    },
+    "id": 3
+  },
+  {
+    "name": "month",
+    "label": "Month",
+    "help": "Sea ice thickness data are currently only available for winter months from October through April because of challenges caused by melting snow or melt ponds during the remaining five months.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "10",
+        "11",
+        "12"
+      ],
+      "columns": 6,
+      "labels": {
+        "01": "January",
+        "02": "February",
+        "03": "March",
+        "04": "April",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+      }
+    },
+    "id": 4
+  },
+  {
+    "name": "version",
+    "label": "Version",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "1_0",
+        "2_0",
+        "3_0"
+      ],
+      "columns": 3,
+      "labels": {
+        "1_0": "1.0",
+        "2_0": "2.0",
+        "3_0": "3.0"
+      },
+      "default": [
+        "3_0"
+      ]
+    },
+    "id": 5
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "licence-to-use-copernicus-products",
+          "revision": 12,
+          "label": "Licence to use Copernicus Products",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"
+        }
+      ]
+    }
+  }
+]

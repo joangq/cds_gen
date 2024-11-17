@@ -1,1 +1,154 @@
-[{"name": "variable", "details": {"values": ["all"], "labels": {"all": "All available variables"}, "default": ["all"], "columns": 2}, "type": "StringChoiceWidget", "required": true, "css": "todo", "help": "All variables available for this catalogue entry will be downloaded together.", "label": "Variable", "id": 0}, {"name": "product_type", "label": "Product type", "help": "Monthly-mean profiles based on radio-occultation satellite observations and similar means from ERA-Interim reanalysis data at the same  observation locations (collocated).", "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["radio_occultation_data", "reanalysis_data"], "columns": 2, "labels": {"radio_occultation_data": "Radio-occultation data", "reanalysis_data": "Reanalysis data"}}, "id": 1}, {"name": "year", "label": "Year", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"], "columns": 6, "labels": {"2006": "2006", "2007": "2007", "2008": "2008", "2009": "2009", "2010": "2010", "2011": "2011", "2012": "2012", "2013": "2013", "2014": "2014", "2015": "2015", "2016": "2016", "2017": "2017", "2018": "2018", "2019": "2019", "2020": "2020", "2021": "2021", "2022": "2022", "2023": "2023", "2024": "2024"}}, "id": 2}, {"name": "month", "label": "Month", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], "columns": 6, "labels": {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}}, "id": 3}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "eumetsat-rom-saf", "revision": 4, "label": "EUMETSAT ROM SAF products licence", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/eumetsat-rom-saf/eumetsat-rom-safv4_d0999e53fdbf7d44be4cbb862fafd060bfcb69439d77f2b7208fefabdef6fb89.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/eumetsat-rom-saf/eumetsat-rom-saf_19be11273963436edb3c976a640d56a9238e272a346d12bebad80585287b0ead.pdf"}]}}]
+[
+  {
+    "name": "variable",
+    "details": {
+      "values": [
+        "all"
+      ],
+      "labels": {
+        "all": "All available variables"
+      },
+      "default": [
+        "all"
+      ],
+      "columns": 2
+    },
+    "type": "StringChoiceWidget",
+    "required": true,
+    "css": "todo",
+    "help": "All variables available for this catalogue entry will be downloaded together.",
+    "label": "Variable",
+    "id": 0
+  },
+  {
+    "name": "product_type",
+    "label": "Product type",
+    "help": "Monthly-mean profiles based on radio-occultation satellite observations and similar means from ERA-Interim reanalysis data at the same  observation locations (collocated).",
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "radio_occultation_data",
+        "reanalysis_data"
+      ],
+      "columns": 2,
+      "labels": {
+        "radio_occultation_data": "Radio-occultation data",
+        "reanalysis_data": "Reanalysis data"
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "year",
+    "label": "Year",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "columns": 6,
+      "labels": {
+        "2006": "2006",
+        "2007": "2007",
+        "2008": "2008",
+        "2009": "2009",
+        "2010": "2010",
+        "2011": "2011",
+        "2012": "2012",
+        "2013": "2013",
+        "2014": "2014",
+        "2015": "2015",
+        "2016": "2016",
+        "2017": "2017",
+        "2018": "2018",
+        "2019": "2019",
+        "2020": "2020",
+        "2021": "2021",
+        "2022": "2022",
+        "2023": "2023",
+        "2024": "2024"
+      }
+    },
+    "id": 2
+  },
+  {
+    "name": "month",
+    "label": "Month",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "columns": 6,
+      "labels": {
+        "01": "January",
+        "02": "February",
+        "03": "March",
+        "04": "April",
+        "05": "May",
+        "06": "June",
+        "07": "July",
+        "08": "August",
+        "09": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+      }
+    },
+    "id": 3
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "eumetsat-rom-saf",
+          "revision": 4,
+          "label": "EUMETSAT ROM SAF products licence",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/eumetsat-rom-saf/eumetsat-rom-safv4_d0999e53fdbf7d44be4cbb862fafd060bfcb69439d77f2b7208fefabdef6fb89.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/eumetsat-rom-saf/eumetsat-rom-saf_19be11273963436edb3c976a640d56a9238e272a346d12bebad80585287b0ead.pdf"
+        }
+      ]
+    }
+  }
+]

@@ -1,1 +1,409 @@
-[{"name": "spatial_coverage", "label": "Spatial coverage", "help": "This dataset contains data for Europe and high-resolution data for 20 European cities at 2 km x 2 km horizontal resolution.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["city", "europe"], "columns": 2, "labels": {"city": "City", "europe": "Europe"}}, "id": 0}, {"name": "variable", "label": "Variable", "help": "Please consult the Overview and Documentation for more information on these variables.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["maximum_1_day_precipitation", "maximum_5_day_precipitation", "number_of_consecutive_wet_days", "number_of_precipitation_days_exceeding_20mm", "number_of_precipitation_days_exceeding_fixed_percentiles", "number_of_wet_days", "total_precipitation", "precipitation_at_fixed_percentiles", "precipitation_at_fixed_return_periods", "standardised_precipitation_exceeding_fixed_percentiles"], "columns": 4, "labels": {"maximum_1_day_precipitation": "Maximum 1-day precipitation", "maximum_5_day_precipitation": "Maximum 5-day precipitation", "number_of_consecutive_wet_days": "Number of consecutive wet days", "number_of_precipitation_days_exceeding_20mm": "Number of precipitation days exceeding 20mm", "number_of_precipitation_days_exceeding_fixed_percentiles": "Number of precipitation days exceeding fixed percentiles", "number_of_wet_days": "Number of wet days", "total_precipitation": "Total precipitation", "precipitation_at_fixed_percentiles": "Precipitation at fixed percentiles", "precipitation_at_fixed_return_periods": "Precipitation at fixed return periods", "standardised_precipitation_exceeding_fixed_percentiles": "Standardised precipitation exceeding fixed percentiles"}}, "id": 1}, {"name": "city", "label": "City", "help": "The 20 European cities identified according to user requirements as vulnerable to urban pluvial flooding.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["amadora", "amersfoort", "antwerp", "athens", "bilbao", "birmingham", "brussels", "bucharest", "budapest", "frankfurt_am_main", "koln", "london", "milan", "pamplona", "paris", "prague", "riga", "rimini", "stockholm", "vienna"], "columns": 2, "labels": {"amadora": "Amadora", "amersfoort": "Amersfoort", "antwerp": "Antwerp", "athens": "Athens", "bilbao": "Bilbao", "birmingham": "Birmingham", "brussels": "Brussels", "bucharest": "Bucharest", "budapest": "Budapest", "frankfurt_am_main": "Frankfurt-am-main", "koln": "Koln", "london": "London", "milan": "Milan", "pamplona": "Pamplona", "paris": "Paris", "prague": "Prague", "riga": "Riga", "rimini": "Rimini", "stockholm": "Stockholm", "vienna": "Vienna"}}, "id": 2}, {"name": "product_type", "label": "Product type", "help": "The dataset contains four input data sources. The European-wide indicators are produced using ERA5, E-OBS and ECAD sources, whilst the high-resolution city-scale indicators are produced using dynamically downscaled ERA5 (ERA5-2km).", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["e_obs", "eca_d", "era5", "era5_2km"], "columns": 4, "labels": {"e_obs": "E-OBS", "eca_d": "ECA&D", "era5": "ERA5", "era5_2km": "ERA5-2km"}}, "id": 3}, {"name": "temporal_aggregation", "label": "Temporal aggregation", "help": "Extreme precipitation indicators are derived from the hourly (ERA5 and ERA5-2km) and daily (E-OBS and ECAD) series and represents daily, monthly or yearly aggregated values. Statistics are calculated over a 30-year period (1989-2018).", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["30_year", "daily", "monthly", "yearly"], "columns": 4, "labels": {"30_year": "30-year", "daily": "Daily", "monthly": "Monthly", "yearly": "Yearly"}}, "id": 4}, {"name": "percentile", "label": "Percentile", "help": "Reference thresholds assumed as proxies for heavy rainfall calculated over the 30-year period (1989-2018). For more details, please consult the documentation.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["90th", "95th", "99th"], "columns": 4, "labels": {"90th": "90th", "95th": "95th", "99th": "99th"}}, "id": 5}, {"name": "return_period", "label": "Return period", "help": "Daily precipitation amount characterised by the 5, 10, 25, 50, or 100 year return period computed over the 30-year period (1989-2018). The return period gives the estimated time interval between events of a similar size or intensity.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["10-yrs", "100-yrs", "25-yrs", "5-yrs", "50-yrs"], "columns": 4, "labels": {"10-yrs": "10-yrs", "100-yrs": "100-yrs", "25-yrs": "25-yrs", "5-yrs": "5-yrs", "50-yrs": "50-yrs"}}, "id": 6}, {"name": "period", "label": "Period", "help": "Data are available for single years at the selected temporal aggregation or the 30-year period (1989-2018).", "required": true, "css": "todo", "type": "StringListArrayWidget", "details": {"groups": [{"label": "Single year", "open": true, "columns": 4, "values": ["1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"], "labels": {"1950": "1950", "1951": "1951", "1952": "1952", "1953": "1953", "1954": "1954", "1955": "1955", "1956": "1956", "1957": "1957", "1958": "1958", "1959": "1959", "1960": "1960", "1961": "1961", "1962": "1962", "1963": "1963", "1964": "1964", "1965": "1965", "1966": "1966", "1967": "1967", "1968": "1968", "1969": "1969", "1970": "1970", "1971": "1971", "1972": "1972", "1973": "1973", "1974": "1974", "1975": "1975", "1976": "1976", "1977": "1977", "1978": "1978", "1979": "1979", "1980": "1980", "1981": "1981", "1982": "1982", "1983": "1983", "1984": "1984", "1985": "1985", "1986": "1986", "1987": "1987", "1988": "1988", "1989": "1989", "1990": "1990", "1991": "1991", "1992": "1992", "1993": "1993", "1994": "1994", "1995": "1995", "1996": "1996", "1997": "1997", "1998": "1998", "1999": "1999", "2000": "2000", "2001": "2001", "2002": "2002", "2003": "2003", "2004": "2004", "2005": "2005", "2006": "2006", "2007": "2007", "2008": "2008", "2009": "2009", "2010": "2010", "2011": "2011", "2012": "2012", "2013": "2013", "2014": "2014", "2015": "2015", "2016": "2016", "2017": "2017", "2018": "2018", "2019": "2019"}}, {"label": "Climatology", "open": true, "columns": 4, "values": ["1989_2018"], "labels": {"1989_2018": "1989-2018"}}], "displayaslist": false, "accordionGroups": true, "accordionOptions": {"searchable": false, "openGroups": ["Single year", "Climatology"]}}, "id": 7}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "licence-to-use-copernicus-products", "revision": 12, "label": "Licence to use Copernicus Products", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"}]}}]
+[
+  {
+    "name": "spatial_coverage",
+    "label": "Spatial coverage",
+    "help": "This dataset contains data for Europe and high-resolution data for 20 European cities at 2 km x 2 km horizontal resolution.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "city",
+        "europe"
+      ],
+      "columns": 2,
+      "labels": {
+        "city": "City",
+        "europe": "Europe"
+      }
+    },
+    "id": 0
+  },
+  {
+    "name": "variable",
+    "label": "Variable",
+    "help": "Please consult the Overview and Documentation for more information on these variables.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "maximum_1_day_precipitation",
+        "maximum_5_day_precipitation",
+        "number_of_consecutive_wet_days",
+        "number_of_precipitation_days_exceeding_20mm",
+        "number_of_precipitation_days_exceeding_fixed_percentiles",
+        "number_of_wet_days",
+        "total_precipitation",
+        "precipitation_at_fixed_percentiles",
+        "precipitation_at_fixed_return_periods",
+        "standardised_precipitation_exceeding_fixed_percentiles"
+      ],
+      "columns": 4,
+      "labels": {
+        "maximum_1_day_precipitation": "Maximum 1-day precipitation",
+        "maximum_5_day_precipitation": "Maximum 5-day precipitation",
+        "number_of_consecutive_wet_days": "Number of consecutive wet days",
+        "number_of_precipitation_days_exceeding_20mm": "Number of precipitation days exceeding 20mm",
+        "number_of_precipitation_days_exceeding_fixed_percentiles": "Number of precipitation days exceeding fixed percentiles",
+        "number_of_wet_days": "Number of wet days",
+        "total_precipitation": "Total precipitation",
+        "precipitation_at_fixed_percentiles": "Precipitation at fixed percentiles",
+        "precipitation_at_fixed_return_periods": "Precipitation at fixed return periods",
+        "standardised_precipitation_exceeding_fixed_percentiles": "Standardised precipitation exceeding fixed percentiles"
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "city",
+    "label": "City",
+    "help": "The 20 European cities identified according to user requirements as vulnerable to urban pluvial flooding.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "amadora",
+        "amersfoort",
+        "antwerp",
+        "athens",
+        "bilbao",
+        "birmingham",
+        "brussels",
+        "bucharest",
+        "budapest",
+        "frankfurt_am_main",
+        "koln",
+        "london",
+        "milan",
+        "pamplona",
+        "paris",
+        "prague",
+        "riga",
+        "rimini",
+        "stockholm",
+        "vienna"
+      ],
+      "columns": 2,
+      "labels": {
+        "amadora": "Amadora",
+        "amersfoort": "Amersfoort",
+        "antwerp": "Antwerp",
+        "athens": "Athens",
+        "bilbao": "Bilbao",
+        "birmingham": "Birmingham",
+        "brussels": "Brussels",
+        "bucharest": "Bucharest",
+        "budapest": "Budapest",
+        "frankfurt_am_main": "Frankfurt-am-main",
+        "koln": "Koln",
+        "london": "London",
+        "milan": "Milan",
+        "pamplona": "Pamplona",
+        "paris": "Paris",
+        "prague": "Prague",
+        "riga": "Riga",
+        "rimini": "Rimini",
+        "stockholm": "Stockholm",
+        "vienna": "Vienna"
+      }
+    },
+    "id": 2
+  },
+  {
+    "name": "product_type",
+    "label": "Product type",
+    "help": "The dataset contains four input data sources. The European-wide indicators are produced using ERA5, E-OBS and ECAD sources, whilst the high-resolution city-scale indicators are produced using dynamically downscaled ERA5 (ERA5-2km).",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "e_obs",
+        "eca_d",
+        "era5",
+        "era5_2km"
+      ],
+      "columns": 4,
+      "labels": {
+        "e_obs": "E-OBS",
+        "eca_d": "ECA&D",
+        "era5": "ERA5",
+        "era5_2km": "ERA5-2km"
+      }
+    },
+    "id": 3
+  },
+  {
+    "name": "temporal_aggregation",
+    "label": "Temporal aggregation",
+    "help": "Extreme precipitation indicators are derived from the hourly (ERA5 and ERA5-2km) and daily (E-OBS and ECAD) series and represents daily, monthly or yearly aggregated values. Statistics are calculated over a 30-year period (1989-2018).",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "30_year",
+        "daily",
+        "monthly",
+        "yearly"
+      ],
+      "columns": 4,
+      "labels": {
+        "30_year": "30-year",
+        "daily": "Daily",
+        "monthly": "Monthly",
+        "yearly": "Yearly"
+      }
+    },
+    "id": 4
+  },
+  {
+    "name": "percentile",
+    "label": "Percentile",
+    "help": "Reference thresholds assumed as proxies for heavy rainfall calculated over the 30-year period (1989-2018). For more details, please consult the documentation.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "90th",
+        "95th",
+        "99th"
+      ],
+      "columns": 4,
+      "labels": {
+        "90th": "90th",
+        "95th": "95th",
+        "99th": "99th"
+      }
+    },
+    "id": 5
+  },
+  {
+    "name": "return_period",
+    "label": "Return period",
+    "help": "Daily precipitation amount characterised by the 5, 10, 25, 50, or 100 year return period computed over the 30-year period (1989-2018). The return period gives the estimated time interval between events of a similar size or intensity.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "10-yrs",
+        "100-yrs",
+        "25-yrs",
+        "5-yrs",
+        "50-yrs"
+      ],
+      "columns": 4,
+      "labels": {
+        "10-yrs": "10-yrs",
+        "100-yrs": "100-yrs",
+        "25-yrs": "25-yrs",
+        "5-yrs": "5-yrs",
+        "50-yrs": "50-yrs"
+      }
+    },
+    "id": 6
+  },
+  {
+    "name": "period",
+    "label": "Period",
+    "help": "Data are available for single years at the selected temporal aggregation or the 30-year period (1989-2018).",
+    "required": true,
+    "css": "todo",
+    "type": "StringListArrayWidget",
+    "details": {
+      "groups": [
+        {
+          "label": "Single year",
+          "open": true,
+          "columns": 4,
+          "values": [
+            "1950",
+            "1951",
+            "1952",
+            "1953",
+            "1954",
+            "1955",
+            "1956",
+            "1957",
+            "1958",
+            "1959",
+            "1960",
+            "1961",
+            "1962",
+            "1963",
+            "1964",
+            "1965",
+            "1966",
+            "1967",
+            "1968",
+            "1969",
+            "1970",
+            "1971",
+            "1972",
+            "1973",
+            "1974",
+            "1975",
+            "1976",
+            "1977",
+            "1978",
+            "1979",
+            "1980",
+            "1981",
+            "1982",
+            "1983",
+            "1984",
+            "1985",
+            "1986",
+            "1987",
+            "1988",
+            "1989",
+            "1990",
+            "1991",
+            "1992",
+            "1993",
+            "1994",
+            "1995",
+            "1996",
+            "1997",
+            "1998",
+            "1999",
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019"
+          ],
+          "labels": {
+            "1950": "1950",
+            "1951": "1951",
+            "1952": "1952",
+            "1953": "1953",
+            "1954": "1954",
+            "1955": "1955",
+            "1956": "1956",
+            "1957": "1957",
+            "1958": "1958",
+            "1959": "1959",
+            "1960": "1960",
+            "1961": "1961",
+            "1962": "1962",
+            "1963": "1963",
+            "1964": "1964",
+            "1965": "1965",
+            "1966": "1966",
+            "1967": "1967",
+            "1968": "1968",
+            "1969": "1969",
+            "1970": "1970",
+            "1971": "1971",
+            "1972": "1972",
+            "1973": "1973",
+            "1974": "1974",
+            "1975": "1975",
+            "1976": "1976",
+            "1977": "1977",
+            "1978": "1978",
+            "1979": "1979",
+            "1980": "1980",
+            "1981": "1981",
+            "1982": "1982",
+            "1983": "1983",
+            "1984": "1984",
+            "1985": "1985",
+            "1986": "1986",
+            "1987": "1987",
+            "1988": "1988",
+            "1989": "1989",
+            "1990": "1990",
+            "1991": "1991",
+            "1992": "1992",
+            "1993": "1993",
+            "1994": "1994",
+            "1995": "1995",
+            "1996": "1996",
+            "1997": "1997",
+            "1998": "1998",
+            "1999": "1999",
+            "2000": "2000",
+            "2001": "2001",
+            "2002": "2002",
+            "2003": "2003",
+            "2004": "2004",
+            "2005": "2005",
+            "2006": "2006",
+            "2007": "2007",
+            "2008": "2008",
+            "2009": "2009",
+            "2010": "2010",
+            "2011": "2011",
+            "2012": "2012",
+            "2013": "2013",
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019"
+          }
+        },
+        {
+          "label": "Climatology",
+          "open": true,
+          "columns": 4,
+          "values": [
+            "1989_2018"
+          ],
+          "labels": {
+            "1989_2018": "1989-2018"
+          }
+        }
+      ],
+      "displayaslist": false,
+      "accordionGroups": true,
+      "accordionOptions": {
+        "searchable": false,
+        "openGroups": [
+          "Single year",
+          "Climatology"
+        ]
+      }
+    },
+    "id": 7
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "licence-to-use-copernicus-products",
+          "revision": 12,
+          "label": "Licence to use Copernicus Products",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"
+        }
+      ]
+    }
+  }
+]

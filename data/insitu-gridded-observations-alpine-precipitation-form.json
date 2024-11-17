@@ -1,1 +1,89 @@
-[{"name": "variable", "label": "Variable", "help": "Please refer to the main variables table on the overview tab for more details", "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["precipitation"], "columns": 2, "labels": {"precipitation": "Precipitation"}, "default": ["precipitation"]}, "id": 0, "default": ["precipitation"]}, {"name": "dataset_issue", "label": "Dataset issue", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["laprec1871", "laprec1901"], "columns": 2, "labels": {"laprec1871": "LAPrec1871", "laprec1901": "LAPrec1901"}}, "id": 1}, {"name": "version", "label": "Version", "help": "Please refer to the documentation for more details on the versioning of this dataset", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["1_1", "1_2"], "columns": 2, "labels": {"1_1": "1.1", "1_2": "1.2"}, "default": ["1.2"]}, "id": 2, "default": ["1.2"]}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "licence-to-use-copernicus-products", "revision": 12, "label": "Licence to use Copernicus Products", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"}]}}]
+[
+  {
+    "name": "variable",
+    "label": "Variable",
+    "help": "Please refer to the main variables table on the overview tab for more details",
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "precipitation"
+      ],
+      "columns": 2,
+      "labels": {
+        "precipitation": "Precipitation"
+      },
+      "default": [
+        "precipitation"
+      ]
+    },
+    "id": 0,
+    "default": [
+      "precipitation"
+    ]
+  },
+  {
+    "name": "dataset_issue",
+    "label": "Dataset issue",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "laprec1871",
+        "laprec1901"
+      ],
+      "columns": 2,
+      "labels": {
+        "laprec1871": "LAPrec1871",
+        "laprec1901": "LAPrec1901"
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "version",
+    "label": "Version",
+    "help": "Please refer to the documentation for more details on the versioning of this dataset",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "1_1",
+        "1_2"
+      ],
+      "columns": 2,
+      "labels": {
+        "1_1": "1.1",
+        "1_2": "1.2"
+      },
+      "default": [
+        "1.2"
+      ]
+    },
+    "id": 2,
+    "default": [
+      "1.2"
+    ]
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "licence-to-use-copernicus-products",
+          "revision": 12,
+          "label": "Licence to use Copernicus Products",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"
+        }
+      ]
+    }
+  }
+]

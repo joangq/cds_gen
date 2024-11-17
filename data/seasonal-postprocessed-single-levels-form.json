@@ -1,1 +1,413 @@
-[{"name": "originating_centre", "label": "Originating centre", "help": null, "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["ecmwf", "ukmo", "meteo_france", "dwd", "cmcc", "ncep", "jma", "eccc"], "columns": 4, "labels": {"ecmwf": "ECMWF", "ukmo": "UK Met Office", "meteo_france": "M\u00e9t\u00e9o France", "dwd": "DWD", "cmcc": "CMCC", "ncep": "NCEP", "jma": "JMA", "eccc": "ECCC"}}, "id": 0}, {"name": "system", "label": "System", "help": "Model version identifier. The values of this identifier can be different for the different 'originating centres'; also for some start dates there could be more than one 'system' available for a single 'originating centre'. Forecasts must be paired with the relevant hindcasts by using the same system for both.", "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["1", "2", "3", "4", "5", "6", "7", "8", "12", "13", "14", "15", "21", "35", "51", "600", "601", "602", "603"], "columns": 6, "labels": {"1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8", "12": "12", "13": "13", "14": "14", "15": "15", "21": "21", "35": "35", "51": "51", "600": "600", "601": "601", "602": "602", "603": "603"}}, "id": 1}, {"name": "variable", "label": "Variable", "help": "Please, consult the product user guide in the documentation section for more information on these variables.", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["10m_u_component_of_wind_anomaly", "10m_v_component_of_wind_anomaly", "10m_wind_gust_anomaly", "10m_wind_speed_anomaly", "2m_dewpoint_temperature_anomaly", "2m_temperature_anomaly", "east_west_surface_stress_anomalous_rate_of_accumulation", "evaporation_anomalous_rate_of_accumulation", "maximum_2m_temperature_in_the_last_24_hours_anomaly", "mean_sea_level_pressure_anomaly", "mean_sub_surface_runoff_rate_anomaly", "mean_surface_runoff_rate_anomaly", "minimum_2m_temperature_in_the_last_24_hours_anomaly", "north_south_surface_stress_anomalous_rate_of_accumulation", "runoff_anomalous_rate_of_accumulation", "sea_surface_temperature_anomaly", "sea_ice_cover_anomaly", "snow_density_anomaly", "snow_depth_anomaly", "snowfall_anomalous_rate_of_accumulation", "soil_temperature_anomaly_level_1", "solar_insolation_anomalous_rate_of_accumulation", "surface_latent_heat_flux_anomalous_rate_of_accumulation", "surface_sensible_heat_flux_anomalous_rate_of_accumulation", "surface_solar_radiation_anomalous_rate_of_accumulation", "surface_solar_radiation_downwards_anomalous_rate_of_accumulation", "surface_thermal_radiation_anomalous_rate_of_accumulation", "surface_thermal_radiation_downwards_anomalous_rate_of_accumulation", "top_solar_radiation_anomalous_rate_of_accumulation", "top_thermal_radiation_anomalous_rate_of_accumulation", "total_cloud_cover_anomaly", "total_column_ice_water_anomaly", "total_column_liquid_water_anomaly", "total_column_water_vapour_anomaly", "total_precipitation_anomalous_rate_of_accumulation"], "columns": 2, "labels": {"10m_u_component_of_wind_anomaly": "10m u-component of wind anomaly", "10m_v_component_of_wind_anomaly": "10m v-component of wind anomaly", "10m_wind_gust_anomaly": "10m wind gust anomaly", "10m_wind_speed_anomaly": "10m wind speed anomaly", "2m_dewpoint_temperature_anomaly": "2m dewpoint temperature anomaly", "2m_temperature_anomaly": "2m temperature anomaly", "east_west_surface_stress_anomalous_rate_of_accumulation": "East-west surface stress anomalous rate of accumulation", "evaporation_anomalous_rate_of_accumulation": "Evaporation anomalous rate of accumulation", "maximum_2m_temperature_in_the_last_24_hours_anomaly": "Maximum 2m temperature in the last 24 hours anomaly", "mean_sea_level_pressure_anomaly": "Mean sea level pressure anomaly", "mean_sub_surface_runoff_rate_anomaly": "Mean sub-surface runoff rate anomaly", "mean_surface_runoff_rate_anomaly": "Mean surface runoff rate anomaly", "minimum_2m_temperature_in_the_last_24_hours_anomaly": "Minimum 2m temperature in the last 24 hours anomaly", "north_south_surface_stress_anomalous_rate_of_accumulation": "North-south surface stress anomalous rate of accumulation", "runoff_anomalous_rate_of_accumulation": "Runoff anomalous rate of accumulation", "sea_surface_temperature_anomaly": "Sea surface temperature anomaly", "sea_ice_cover_anomaly": "Sea-ice cover anomaly", "snow_density_anomaly": "Snow density anomaly", "snow_depth_anomaly": "Snow depth anomaly", "snowfall_anomalous_rate_of_accumulation": "Snowfall anomalous rate of accumulation", "soil_temperature_anomaly_level_1": "Soil temperature anomaly level 1", "solar_insolation_anomalous_rate_of_accumulation": "Solar insolation anomalous rate of accumulation", "surface_latent_heat_flux_anomalous_rate_of_accumulation": "Surface latent heat flux anomalous rate of accumulation", "surface_sensible_heat_flux_anomalous_rate_of_accumulation": "Surface sensible heat flux anomalous rate of accumulation", "surface_solar_radiation_anomalous_rate_of_accumulation": "Surface solar radiation anomalous rate of accumulation", "surface_solar_radiation_downwards_anomalous_rate_of_accumulation": "Surface solar radiation downwards anomalous rate of accumulation", "surface_thermal_radiation_anomalous_rate_of_accumulation": "Surface thermal radiation anomalous rate of accumulation", "surface_thermal_radiation_downwards_anomalous_rate_of_accumulation": "Surface thermal radiation downwards anomalous rate of accumulation", "top_solar_radiation_anomalous_rate_of_accumulation": "Top solar radiation anomalous rate of accumulation", "top_thermal_radiation_anomalous_rate_of_accumulation": "Top thermal radiation anomalous rate of accumulation", "total_cloud_cover_anomaly": "Total cloud cover anomaly", "total_column_ice_water_anomaly": "Total column ice water anomaly", "total_column_liquid_water_anomaly": "Total column liquid water anomaly", "total_column_water_vapour_anomaly": "Total column water vapour anomaly", "total_precipitation_anomalous_rate_of_accumulation": "Total precipitation anomalous rate of accumulation"}}, "id": 2}, {"name": "product_type", "label": "Product type", "help": null, "required": true, "css": "todo", "type": "StringListArrayWidget", "details": {"groups": [{"label": "Ensemble", "values": ["ensemble_mean"], "labels": {"ensemble_mean": "Ensemble mean"}, "columns": 4}, {"label": "Individual members", "values": ["monthly_mean"], "labels": {"monthly_mean": "Monthly mean"}, "columns": 4}], "displayaslist": false, "accordionGroups": true, "accordionOptions": {"searchable": false, "openGroups": []}}, "id": 3}, {"name": "year", "label": "Year", "help": "Start date year", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"], "columns": 8, "labels": {"2017": "2017", "2018": "2018", "2019": "2019", "2020": "2020", "2021": "2021", "2022": "2022", "2023": "2023", "2024": "2024"}}, "id": 4}, {"name": "month", "label": "Month", "help": "Start date month", "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], "columns": 6, "labels": {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}}, "id": 5}, {"name": "leadtime_month", "label": "Leadtime month", "help": null, "required": true, "css": "todo", "type": "StringListWidget", "details": {"values": ["1", "2", "3", "4", "5", "6"], "columns": 8, "labels": {"1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6"}}, "id": 6}, {"name": "area_group", "help": "Select one widget from the choice below", "label": "Geographical area", "type": "ExclusiveGroupWidget", "children": ["global", "area"], "details": {"default": "global"}, "id": 7}, {"name": "global", "type": "FreeEditionWidget", "label": "Whole available region", "details": {"accordion": false, "default-open": true, "text": "With this option selected the entire available area will be provided"}, "id": 8}, {"name": "area", "type": "GeographicExtentWidget", "label": "Sub-region extraction", "help": "Select a sub-region of the available area by providing its limits on latitude and longitude", "details": {"precision": 2, "extentlabels": {"n": "North", "w": "West", "s": "South", "e": "East"}, "default": {"n": 90, "e": 180, "s": -90, "w": -180}, "range": {"n": 90, "w": -180, "s": -90, "e": 180}}, "id": 9}, {"name": "data_format", "label": "Data format", "help": "Select a format for the data files, the native format of MARS datasets is GRIB, and this format is recommended for any operational use, such as deriving downstream products.\nPlease note that to ensure that data is accurate and sufficient metadata is included in the output, your request may be split into multiple files when converted to netCDF.", "required": true, "css": "todo", "type": "StringChoiceWidget", "details": {"values": ["grib", "netcdf"], "columns": 2, "labels": {"grib": "GRIB", "netcdf": "NetCDF4 (Experimental)"}, "default": ["grib"]}, "id": 10}, {"type": "LicenceWidget", "name": "licences", "label": "Terms of use", "help": null, "details": {"licences": [{"id": "Additional-licence-to-use-non-European-contributions", "revision": 1, "label": "Additional licence to use non European contributions", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/Additional-licence-to-use-non-European-contributions/Additional-licence-to-use-non-European-contributionsv1_745d8ecfd68f2cb24aca559b26f526c36ca18719ac22d8398f06efc940fbbef3.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/Additional-licence-to-use-non-European-contributions/Additional-licence-to-use-non-European-contributions_7f60a470cb29d48993fa5d9d788b33374a9ff7aae3dd4e7ba8429cc95c53f592.pdf"}, {"id": "licence-to-use-copernicus-products", "revision": 12, "label": "Licence to use Copernicus Products", "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md", "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"}]}}]
+[
+  {
+    "name": "originating_centre",
+    "label": "Originating centre",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "ecmwf",
+        "ukmo",
+        "meteo_france",
+        "dwd",
+        "cmcc",
+        "ncep",
+        "jma",
+        "eccc"
+      ],
+      "columns": 4,
+      "labels": {
+        "ecmwf": "ECMWF",
+        "ukmo": "UK Met Office",
+        "meteo_france": "M\u00e9t\u00e9o France",
+        "dwd": "DWD",
+        "cmcc": "CMCC",
+        "ncep": "NCEP",
+        "jma": "JMA",
+        "eccc": "ECCC"
+      }
+    },
+    "id": 0
+  },
+  {
+    "name": "system",
+    "label": "System",
+    "help": "Model version identifier. The values of this identifier can be different for the different 'originating centres'; also for some start dates there could be more than one 'system' available for a single 'originating centre'. Forecasts must be paired with the relevant hindcasts by using the same system for both.",
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "12",
+        "13",
+        "14",
+        "15",
+        "21",
+        "35",
+        "51",
+        "600",
+        "601",
+        "602",
+        "603"
+      ],
+      "columns": 6,
+      "labels": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "12": "12",
+        "13": "13",
+        "14": "14",
+        "15": "15",
+        "21": "21",
+        "35": "35",
+        "51": "51",
+        "600": "600",
+        "601": "601",
+        "602": "602",
+        "603": "603"
+      }
+    },
+    "id": 1
+  },
+  {
+    "name": "variable",
+    "label": "Variable",
+    "help": "Please, consult the product user guide in the documentation section for more information on these variables.",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "10m_u_component_of_wind_anomaly",
+        "10m_v_component_of_wind_anomaly",
+        "10m_wind_gust_anomaly",
+        "10m_wind_speed_anomaly",
+        "2m_dewpoint_temperature_anomaly",
+        "2m_temperature_anomaly",
+        "east_west_surface_stress_anomalous_rate_of_accumulation",
+        "evaporation_anomalous_rate_of_accumulation",
+        "maximum_2m_temperature_in_the_last_24_hours_anomaly",
+        "mean_sea_level_pressure_anomaly",
+        "mean_sub_surface_runoff_rate_anomaly",
+        "mean_surface_runoff_rate_anomaly",
+        "minimum_2m_temperature_in_the_last_24_hours_anomaly",
+        "north_south_surface_stress_anomalous_rate_of_accumulation",
+        "runoff_anomalous_rate_of_accumulation",
+        "sea_surface_temperature_anomaly",
+        "sea_ice_cover_anomaly",
+        "snow_density_anomaly",
+        "snow_depth_anomaly",
+        "snowfall_anomalous_rate_of_accumulation",
+        "soil_temperature_anomaly_level_1",
+        "solar_insolation_anomalous_rate_of_accumulation",
+        "surface_latent_heat_flux_anomalous_rate_of_accumulation",
+        "surface_sensible_heat_flux_anomalous_rate_of_accumulation",
+        "surface_solar_radiation_anomalous_rate_of_accumulation",
+        "surface_solar_radiation_downwards_anomalous_rate_of_accumulation",
+        "surface_thermal_radiation_anomalous_rate_of_accumulation",
+        "surface_thermal_radiation_downwards_anomalous_rate_of_accumulation",
+        "top_solar_radiation_anomalous_rate_of_accumulation",
+        "top_thermal_radiation_anomalous_rate_of_accumulation",
+        "total_cloud_cover_anomaly",
+        "total_column_ice_water_anomaly",
+        "total_column_liquid_water_anomaly",
+        "total_column_water_vapour_anomaly",
+        "total_precipitation_anomalous_rate_of_accumulation"
+      ],
+      "columns": 2,
+      "labels": {
+        "10m_u_component_of_wind_anomaly": "10m u-component of wind anomaly",
+        "10m_v_component_of_wind_anomaly": "10m v-component of wind anomaly",
+        "10m_wind_gust_anomaly": "10m wind gust anomaly",
+        "10m_wind_speed_anomaly": "10m wind speed anomaly",
+        "2m_dewpoint_temperature_anomaly": "2m dewpoint temperature anomaly",
+        "2m_temperature_anomaly": "2m temperature anomaly",
+        "east_west_surface_stress_anomalous_rate_of_accumulation": "East-west surface stress anomalous rate of accumulation",
+        "evaporation_anomalous_rate_of_accumulation": "Evaporation anomalous rate of accumulation",
+        "maximum_2m_temperature_in_the_last_24_hours_anomaly": "Maximum 2m temperature in the last 24 hours anomaly",
+        "mean_sea_level_pressure_anomaly": "Mean sea level pressure anomaly",
+        "mean_sub_surface_runoff_rate_anomaly": "Mean sub-surface runoff rate anomaly",
+        "mean_surface_runoff_rate_anomaly": "Mean surface runoff rate anomaly",
+        "minimum_2m_temperature_in_the_last_24_hours_anomaly": "Minimum 2m temperature in the last 24 hours anomaly",
+        "north_south_surface_stress_anomalous_rate_of_accumulation": "North-south surface stress anomalous rate of accumulation",
+        "runoff_anomalous_rate_of_accumulation": "Runoff anomalous rate of accumulation",
+        "sea_surface_temperature_anomaly": "Sea surface temperature anomaly",
+        "sea_ice_cover_anomaly": "Sea-ice cover anomaly",
+        "snow_density_anomaly": "Snow density anomaly",
+        "snow_depth_anomaly": "Snow depth anomaly",
+        "snowfall_anomalous_rate_of_accumulation": "Snowfall anomalous rate of accumulation",
+        "soil_temperature_anomaly_level_1": "Soil temperature anomaly level 1",
+        "solar_insolation_anomalous_rate_of_accumulation": "Solar insolation anomalous rate of accumulation",
+        "surface_latent_heat_flux_anomalous_rate_of_accumulation": "Surface latent heat flux anomalous rate of accumulation",
+        "surface_sensible_heat_flux_anomalous_rate_of_accumulation": "Surface sensible heat flux anomalous rate of accumulation",
+        "surface_solar_radiation_anomalous_rate_of_accumulation": "Surface solar radiation anomalous rate of accumulation",
+        "surface_solar_radiation_downwards_anomalous_rate_of_accumulation": "Surface solar radiation downwards anomalous rate of accumulation",
+        "surface_thermal_radiation_anomalous_rate_of_accumulation": "Surface thermal radiation anomalous rate of accumulation",
+        "surface_thermal_radiation_downwards_anomalous_rate_of_accumulation": "Surface thermal radiation downwards anomalous rate of accumulation",
+        "top_solar_radiation_anomalous_rate_of_accumulation": "Top solar radiation anomalous rate of accumulation",
+        "top_thermal_radiation_anomalous_rate_of_accumulation": "Top thermal radiation anomalous rate of accumulation",
+        "total_cloud_cover_anomaly": "Total cloud cover anomaly",
+        "total_column_ice_water_anomaly": "Total column ice water anomaly",
+        "total_column_liquid_water_anomaly": "Total column liquid water anomaly",
+        "total_column_water_vapour_anomaly": "Total column water vapour anomaly",
+        "total_precipitation_anomalous_rate_of_accumulation": "Total precipitation anomalous rate of accumulation"
+      }
+    },
+    "id": 2
+  },
+  {
+    "name": "product_type",
+    "label": "Product type",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListArrayWidget",
+    "details": {
+      "groups": [
+        {
+          "label": "Ensemble",
+          "values": [
+            "ensemble_mean"
+          ],
+          "labels": {
+            "ensemble_mean": "Ensemble mean"
+          },
+          "columns": 4
+        },
+        {
+          "label": "Individual members",
+          "values": [
+            "monthly_mean"
+          ],
+          "labels": {
+            "monthly_mean": "Monthly mean"
+          },
+          "columns": 4
+        }
+      ],
+      "displayaslist": false,
+      "accordionGroups": true,
+      "accordionOptions": {
+        "searchable": false,
+        "openGroups": []
+      }
+    },
+    "id": 3
+  },
+  {
+    "name": "year",
+    "label": "Year",
+    "help": "Start date year",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "columns": 8,
+      "labels": {
+        "2017": "2017",
+        "2018": "2018",
+        "2019": "2019",
+        "2020": "2020",
+        "2021": "2021",
+        "2022": "2022",
+        "2023": "2023",
+        "2024": "2024"
+      }
+    },
+    "id": 4
+  },
+  {
+    "name": "month",
+    "label": "Month",
+    "help": "Start date month",
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "columns": 6,
+      "labels": {
+        "01": "January",
+        "02": "February",
+        "03": "March",
+        "04": "April",
+        "05": "May",
+        "06": "June",
+        "07": "July",
+        "08": "August",
+        "09": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+      }
+    },
+    "id": 5
+  },
+  {
+    "name": "leadtime_month",
+    "label": "Leadtime month",
+    "help": null,
+    "required": true,
+    "css": "todo",
+    "type": "StringListWidget",
+    "details": {
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "columns": 8,
+      "labels": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6"
+      }
+    },
+    "id": 6
+  },
+  {
+    "name": "area_group",
+    "help": "Select one widget from the choice below",
+    "label": "Geographical area",
+    "type": "ExclusiveGroupWidget",
+    "children": [
+      "global",
+      "area"
+    ],
+    "details": {
+      "default": "global"
+    },
+    "id": 7
+  },
+  {
+    "name": "global",
+    "type": "FreeEditionWidget",
+    "label": "Whole available region",
+    "details": {
+      "accordion": false,
+      "default-open": true,
+      "text": "With this option selected the entire available area will be provided"
+    },
+    "id": 8
+  },
+  {
+    "name": "area",
+    "type": "GeographicExtentWidget",
+    "label": "Sub-region extraction",
+    "help": "Select a sub-region of the available area by providing its limits on latitude and longitude",
+    "details": {
+      "precision": 2,
+      "extentlabels": {
+        "n": "North",
+        "w": "West",
+        "s": "South",
+        "e": "East"
+      },
+      "default": {
+        "n": 90,
+        "e": 180,
+        "s": -90,
+        "w": -180
+      },
+      "range": {
+        "n": 90,
+        "w": -180,
+        "s": -90,
+        "e": 180
+      }
+    },
+    "id": 9
+  },
+  {
+    "name": "data_format",
+    "label": "Data format",
+    "help": "Select a format for the data files, the native format of MARS datasets is GRIB, and this format is recommended for any operational use, such as deriving downstream products.\nPlease note that to ensure that data is accurate and sufficient metadata is included in the output, your request may be split into multiple files when converted to netCDF.",
+    "required": true,
+    "css": "todo",
+    "type": "StringChoiceWidget",
+    "details": {
+      "values": [
+        "grib",
+        "netcdf"
+      ],
+      "columns": 2,
+      "labels": {
+        "grib": "GRIB",
+        "netcdf": "NetCDF4 (Experimental)"
+      },
+      "default": [
+        "grib"
+      ]
+    },
+    "id": 10
+  },
+  {
+    "type": "LicenceWidget",
+    "name": "licences",
+    "label": "Terms of use",
+    "help": null,
+    "details": {
+      "licences": [
+        {
+          "id": "Additional-licence-to-use-non-European-contributions",
+          "revision": 1,
+          "label": "Additional licence to use non European contributions",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/Additional-licence-to-use-non-European-contributions/Additional-licence-to-use-non-European-contributionsv1_745d8ecfd68f2cb24aca559b26f526c36ca18719ac22d8398f06efc940fbbef3.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/Additional-licence-to-use-non-European-contributions/Additional-licence-to-use-non-European-contributions_7f60a470cb29d48993fa5d9d788b33374a9ff7aae3dd4e7ba8429cc95c53f592.pdf"
+        },
+        {
+          "id": "licence-to-use-copernicus-products",
+          "revision": 12,
+          "label": "Licence to use Copernicus Products",
+          "contents_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-productsv12_c742a3ce47ae53486a6bc9012f0496e655cd94f19fb2d01b4f6e32af69276ed1.md",
+          "attachment_url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/licence-to-use-copernicus-products/licence-to-use-copernicus-products_b4b9451f54cffa16ecef5c912c9cebd6979925a956e3fa677976e0cf198c2c18.pdf"
+        }
+      ]
+    }
+  }
+]
